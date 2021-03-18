@@ -1,6 +1,3 @@
-DROP TABLE users IF EXISTS;
-DROP TABLE authorities IF EXISTS;
-
 CREATE TABLE users(
 	username varchar_ignorecase(255) NOT NULL PRIMARY KEY,
 	password varchar_ignorecase(255) NOT NULL,

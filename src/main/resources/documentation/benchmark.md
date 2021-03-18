@@ -33,8 +33,6 @@ detailsEntity.html
 
 ## Estandar para nombrar metodos de prueba
 
-## Estandar para nombrar ramas en git
-
 ## Metodología
 
 Se seguirá la metodología Golden Flow. Se puede revisar en documentation/golden_flow.pdf.
@@ -57,4 +55,28 @@ Se marcaran 3 tags principales a lo largo del desarrollo.
 
 0.8.0 --> Final del segundo Sprint
 
-1.0.0 --> Final del tercer 
+1.0.0 --> Final del tercer
+
+## RAMAS GIT
+
+Ramas principales:
+
+    master
+
+    develop
+
+Ramas temporales:
+
+    feature
+
+    hotfix
+
+    release
+
+### Como nombrar las ramas git
+
+    feature/issue-(número de issue)
+
+    hotfix/issue-(número de issue)    
+
+    release/issue-(número de issue)
