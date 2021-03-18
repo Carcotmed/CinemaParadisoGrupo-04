@@ -1,10 +1,10 @@
 dist: trusty
 sudo: true
 language: java
-jdk: oraclejdk11
+jdk: oraclejdk15
 addons:
   apt:
     packages:
-      - oracle-java11-installer
+      - openjdk-15-jdk
 before_install:
   - chmod +x mvnw
