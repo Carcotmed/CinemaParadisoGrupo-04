@@ -5,13 +5,16 @@ ISPP Group 4
 
 ## Codacy Coverage Reporter
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1c524e61cd8640e79b80d406eda8754b)](https://www.codacy.com/gh/codacy/codacy-coverage-reporter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codacy/codacy-coverage-reporter&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7c222eeb6ee742f79dc88d94e4331e7e)](https://www.codacy.com/gh/ivan-desing-testing/CinemaParadisoGrupo-04/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ivan-desing-testing/CinemaParadisoGrupo-04&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/1c524e61cd8640e79b80d406eda8754b)](https://www.codacy.com/gh/codacy/codacy-coverage-reporter?utm_source=github.com&utm_medium=referral&utm_content=codacy/codacy-coverage-reporter&utm_campaign=Badge_Coverage)
 
 ## Travis Status
 
-[![Build Status](https://travis-ci.org/simkimsia/UtilityBehaviors.png)](https://travis-ci.org/simkimsia/UtilityBehaviors)
+Master:
+[![Build Status](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04.svg?token=eRyUu1vNYWXwcHGXDak4&branch=master)](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04)
 
+Develop:
+[![Build Status](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04.svg?token=eRyUu1vNYWXwcHGXDak4&branch=develop)](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04)
 ## Running cinemaparadiso locally
 Cinema Paradiso is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
