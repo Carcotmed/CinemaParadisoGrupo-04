@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Usuario</title>
+</head>
+<body>
+    <form th:action="@{/users/create}" th:object="${user}" method="post">
+        <fieldset>
+            <legend>Datos del usuario</legend>
+            <table>
+                <tr>
+                    <td><label>Usuario: </label></td>
+                    <td><input type="text" th:field="*{username}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Contraseña: </label></td>
+                    <td><input type="text" th:field="*{password}" /></td>
+                </tr>
+                    <td>
+                        <button type="submit">Registrar...</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</body>
+</html>
