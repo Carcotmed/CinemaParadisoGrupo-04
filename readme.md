@@ -5,6 +5,7 @@ ISPP Group 4
 
 ## Codacy Coverage Reporter
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe9af29d93d14f738812e929bbcecc46)](https://app.codacy.com/gh/ivan-desing-testing/CinemaParadisoGrupo-04?utm_source=github.com&utm_medium=referral&utm_content=ivan-desing-testing/CinemaParadisoGrupo-04&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7c222eeb6ee742f79dc88d94e4331e7e)](https://www.codacy.com/gh/ivan-desing-testing/CinemaParadisoGrupo-04/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ivan-desing-testing/CinemaParadisoGrupo-04&amp;utm_campaign=Badge_Grade)
 
 ## Travis Status
