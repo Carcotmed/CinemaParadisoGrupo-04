@@ -15,7 +15,7 @@ import lombok.Setter;
 @Table(name="artists")
 @Getter
 @Setter
-public class Artist extends BaseEntity {
+public class Artist extends Person {
 	
 	@Column(name="roles")
 	private List<Role> roles;
