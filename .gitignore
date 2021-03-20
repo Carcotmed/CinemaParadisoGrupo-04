@@ -543,3 +543,7 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 .vscode/launch.json
+
+# .classpath .project
+/.classpath
+/*.project
