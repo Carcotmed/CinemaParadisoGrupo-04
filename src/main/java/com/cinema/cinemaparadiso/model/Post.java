@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,7 +15,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Post {
+public class Post extends BaseEntity{
 	
 	@Column(name = "title")
 	@NotNull

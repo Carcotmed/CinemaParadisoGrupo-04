@@ -3,6 +3,7 @@ package com.cinema.cinemaparadiso.model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
@@ -12,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @MappedSuperclass
-@Table(name="person")
+@Table(name="persons")
 @Getter
 @Setter
 public class Person extends BaseEntity  {
@@ -25,6 +26,7 @@ public class Person extends BaseEntity  {
 	@NotNull
 	protected String surName;
 	
+	@ElementCollection(targetClass=Skill.class)
 	@Column(name = "skills")
 	@NotNull
 	protected List<Skill> skills;

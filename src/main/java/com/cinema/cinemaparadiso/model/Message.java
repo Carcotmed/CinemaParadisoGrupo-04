@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,9 +14,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name="messages")
 @Getter
 @Setter
-public class Message {
+public class Message extends BaseEntity{
 	
 	@Column(name = "issue")
 	@NotNull
