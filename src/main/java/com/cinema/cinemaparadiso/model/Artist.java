@@ -3,9 +3,13 @@ package com.cinema.cinemaparadiso.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -20,9 +24,15 @@ public class Artist extends Person {
 	@ElementCollection(targetClass=Role.class)
 	@Column(name="roles")
 	private List<Role> roles;
-	/*
+	
+	
+	
 	@Column(name="projects")
 	@ManyToMany(mappedBy = "team")
 	private List<Project> projects;
-	*/
+	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "username", referencedColumnName = "username")
+	private User user;
 }
