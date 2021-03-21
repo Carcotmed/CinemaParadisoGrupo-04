@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -20,9 +21,12 @@ public class Artist extends Person {
 	@ElementCollection(targetClass=Role.class)
 	@Column(name="roles")
 	private List<Role> roles;
-	/*
+	
 	@Column(name="projects")
 	@ManyToMany(mappedBy = "team")
 	private List<Project> projects;
-	*/
+	
+	@Column(name="summary")
+	private String summary;
+	
 }
