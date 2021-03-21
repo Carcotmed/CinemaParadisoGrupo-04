@@ -27,6 +27,10 @@ public class UserService {
     public List<User> getEnabledUsers() {
     	return userRepository.findByEnabled(true);
     }
+    
+    public User getUserByUsername(String username) throws NoSuchElementException {
+    	return userRepository.findById(username).get();
+    }
 
     public void createUser(User user){
         String encryptedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(10));
@@ -39,7 +43,7 @@ public class UserService {
     
     public void changePassword (String userName, String oldPassword, String newPassword) throws Exception, NoSuchElementException{
         String encryptedOldPassword = BCrypt.hashpw(oldPassword, BCrypt.gensalt(10));
-        User retrievedUser = userRepository.findById(userName).get();
+        User retrievedUser = getUserByUsername(userName);
         if (retrievedUser.getPassword().equals(encryptedOldPassword)) {
         	String encryptedNewPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt(10));
         	retrievedUser.setPassword(encryptedNewPassword);
@@ -50,7 +54,7 @@ public class UserService {
     }
     
     public void enableUser(String userName) throws NoSuchElementException {
-    	User retrievedUser = userRepository.findById(userName).get();
+    	User retrievedUser = getUserByUsername(userName);
     	retrievedUser.setEnabled(true);
     	userRepository.save(retrievedUser);
     }
