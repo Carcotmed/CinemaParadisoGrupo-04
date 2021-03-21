@@ -25,14 +25,17 @@ public class Artist extends Person {
 	@Column(name="roles")
 	private List<Role> roles;
 	
-	
-	
+
 	@Column(name="projects")
 	@ManyToMany(mappedBy = "team")
 	private List<Project> projects;
 	
+
+	@Column(name="summary")
+	private String summary;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
+  
 }
