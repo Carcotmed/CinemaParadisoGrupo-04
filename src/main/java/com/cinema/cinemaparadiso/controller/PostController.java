@@ -5,6 +5,8 @@ import com.cinema.cinemaparadiso.service.PostService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +21,15 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/find")
-    public String list(Model model, Integer id){
-        Post post = postService.findById(id);
-        model.addAttribute("post", post);
-        log.info("Showing Post..."+post.toString());
+    @GetMapping("/find/{postId}")
+    public String list(Model model, Integer postId){
+    	try {
+	        Post post = postService.findById(postId);
+	        model.addAttribute("post", post);
+	        log.info("Showing Post..."+post.toString());
+    	}catch (NoSuchElementException e) {
+	        log.error("Error Showing Post..."+postId.toString());
+		}
         return "posts/showPost";
     }
 
@@ -35,8 +41,8 @@ public class PostController {
         return "posts/listPost";
     }
 
-    @GetMapping("/create")
-    public String create(Model model, Post post){
+    @GetMapping("/create/{projectId}")
+    public String create(Model model, Integer projectId, Post post){
     	try {
     		postService.createUpdate(post);
     		model.addAttribute("Estado", "Exito");
@@ -47,27 +53,31 @@ public class PostController {
         return "posts/createPost";
     }
 
-    @GetMapping("/update")
-    public String update(Model model, Post post){
+    @GetMapping("/update/{postId}")
+    public String update(Model model, Integer postId){
     	try {
+    		Post post = postService.findById(postId);
     		postService.createUpdate(post);
     		model.addAttribute("Estado", "Exito");
-    	}catch (IllegalArgumentException e) {
-    		model.addAttribute("Estado", "Error, entidad incorrecta");
+            log.info("Updating Post..."+post.toString());
+    	}catch (NoSuchElementException e) {
+    		model.addAttribute("Estado", "Error, identificador incorrecto");
+            log.error("Error Updating Post..."+postId.toString());
 		}
-        log.info("Updating Posts..."+post.toString());
         return "posts/updatePost";
     }
 
-    @GetMapping("/delete")
-    public String delete(Model model, Post post){
+    @GetMapping("/delete/{postId}")
+    public String delete(Model model, Integer postId){
     	try {
+    		Post post = postService.findById(postId);
     		postService.delete(post);
     		model.addAttribute("Estado", "Exito");
-    	}catch (IllegalArgumentException e) {
-    		model.addAttribute("Estado", "Error, entidad incorrecta");
+            log.info("Deleting Posts..."+post.toString());
+    	}catch (NoSuchElementException e) {
+    		model.addAttribute("Estado", "Error, identificador incorrecto");
+            log.error("Error Deleting Posts..."+postId.toString());
 		}
-        log.info("Deleting Posts..."+post.toString());
         return "posts/deletePost";
     }
 }

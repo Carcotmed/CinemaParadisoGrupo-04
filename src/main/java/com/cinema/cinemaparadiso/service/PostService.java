@@ -27,6 +27,6 @@ public class PostService {
     }
 
     public void delete(Post post) throws IllegalArgumentException{
-        postRepository.delete(post);;
+        postRepository.delete(post);
     }
 }
