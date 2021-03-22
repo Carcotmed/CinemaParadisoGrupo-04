@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,12 +33,12 @@ public class Post extends BaseEntity{
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private Date date;
 	
-//	@ManyToOne(optional=false)
-//	@JoinColumn(name = "artist_id")
-//	private Artist artist;
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "artist_id")
+	private Artist artist;
 	
-//	@ManyToOne(optional=false)
-//	@JoinColumn(name = "project_id")
-//	private Project project;
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "project_id")
+	private Project project;
 	
 }

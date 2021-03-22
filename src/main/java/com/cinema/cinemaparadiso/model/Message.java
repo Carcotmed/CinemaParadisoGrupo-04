@@ -2,8 +2,11 @@ package com.cinema.cinemaparadiso.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +36,7 @@ public class Message extends BaseEntity{
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private Date date;
 	
-//	@ManyToOne(optional=false)
-//	@JoinColumn(name = "user_id")
-//	private List<User> user;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private User user;
 }

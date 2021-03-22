@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Artist List</title>
+</head>
+<body style="display: flex;color:white;">
+	<!-- Filtros -->
+	
+	<!-- TODO -->
+	
+	<div style="width: 15%;background-color: red">
+		<p>Filtros</p>
+		</br>
+		<form>
+			<label>Nombre:</label>
+			<input type="text" value="" placeholder="Nombre" id="name">
+			<label>Rol:</label>
+			<select id="role">
+				<c:forEach items="${roles}" var="role">
+					<option value="${role}">${role}</option>
+				</c:forEach>
+			</select>
+			<label>Experiencia:</label>
+				<input type="checkbox" value="1" id="exp1">
+				<input type="checkbox" value="2" id="exp2">
+				<input type="checkbox" value="3" id="exp3">
+				<input type="checkbox" value="4" id="exp4">
+				<input type="checkbox" value="5" id="exp5">
+			<label>Disponibilidad:</label>
+				<label><input type="checkbox" value="morning" id="availability">Mañana</label>
+				<label><input type="checkbox" value="afternoon" id="availability">Tarde</label>
+		</form>
+	</div>
+	
+	<!-- Listado Artistas -->
+    <div>
+      	<!-- Listado Artistas PRO -->
+      	<div>
+      		<c:forEach items="${artistsPro}" var="artistPro">
+      			<a href="artist/detailsArtist/${artistPro.id}"><img src="https://via.placeholder.com/150/FFFF00/000000"></a>
+      			<span>${artistPro.name}</span>
+      			<p>${artistPro.summary}</p>
+      		</c:forEach>
+      	</div>
+      	
+      	<hr>
+      	
+      	<!-- Listado Artistas -->
+      	<div>
+      		<c:forEach items="${artists}" var="artist">
+      			<a href="artist/detailsArtist/${artist.id}"><img src="https://via.placeholder.com/150"></a>
+      			<span>${artist.name}</span>
+      			<p>${artist.summary}</p>
+      		</c:forEach>
+      	</div>
+        
+    </div>
+</body>
+</html>
