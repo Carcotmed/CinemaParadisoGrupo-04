@@ -1,5 +1,10 @@
+<%@ page session="false" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +22,7 @@
 		</div>
 		<p>${artist.summary}</p>
 	</div>
-	
+
 	<!-- Info general Artista -->
     <div class="container mt-4">
         <table class="table">
@@ -37,4 +42,4 @@
         </table>
     </div>
 </body>
-</html>
+</html> 
