@@ -71,6 +71,10 @@
 					</div>
 				</div>
 				
+				<div class="form-group d-flex justify-content-center align-items-center my-4">
+					<button class="btn-primary" type="submit">Filtrar</button>
+				</div>
+				
 			</form>
 		</div>
 
@@ -102,3 +106,27 @@
 	</div>
 </body>
 </html>
+
+<!-- COMENTARIOS PARA BACKEND -->
+<!-- 
+
+-Necesito que el modelo Persona tenga una propiedad "pro" (boolean) para indicar si es de pago o no
+
+-Necesito que se me pase en una variable "artistsPro" (por ej) aquellos usuarios que tienen pro a true
+
+-Necesito que el modelo Persona tenga una imagen almacenada en DB para poder mostrar la foto del user
+
+-Necesito que se me pase en una variable "roles" (por ej) todos los valores del Enum Roles
+
+
+
+
+
+
+
+
+
+
+
+
+ -->
