@@ -547,3 +547,6 @@ fabric.properties
 # .classpath .project
 /.classpath
 /*.project
+
+.mvn
+.vscode/settings.json
