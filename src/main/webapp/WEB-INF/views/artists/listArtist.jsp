@@ -72,7 +72,7 @@
 				</div>
 				
 				<div class="form-group d-flex justify-content-center align-items-center my-4">
-					<button class="btn-primary" type="submit">Filtrar</button>
+					<button class="btn" style="color:white;background-color: #3e3e3e" type="submit">Filtrar</button>
 				</div>
 				
 			</form>
@@ -96,7 +96,7 @@
 				<div class="w-75 p-4 d-flex flex-wrap justify-content-center align-items-center" style="background-color: #3e3e3e">
 		      		<c:forEach items="${artists}" var="artist">
 						<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%">
-							<img src="https://via.placeholder.com/150" onClick="location.href='/show/${artist.id}'" class="rounded-circle w-50" style="cursor:pointer">
+							<img src="https://via.placeholder.com/150" onClick="location.href='/artists/show/${artist.id}'" class="rounded-circle w-50" style="cursor:pointer">
 							<h4 style="margin: 0">${artist.name}</h4>
 							<p>${artist.summary}</p>
 						</div>
