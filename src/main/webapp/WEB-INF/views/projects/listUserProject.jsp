@@ -76,6 +76,17 @@
 					</div>
 				</div>
 			<!--  c:forEach -->
+			<div class="d-flex align-items-center">
+				<form>
+					<div class="form-group">
+						<h5 for="email">Invitar por email:</h5>
+						<input type="text" id="email"></input>
+					</div>
+					<div class="form-group">
+						<button type="submit">Enviar</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	
 	</div>
