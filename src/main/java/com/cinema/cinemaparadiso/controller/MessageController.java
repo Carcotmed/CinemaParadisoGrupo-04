@@ -1,6 +1,7 @@
 package com.cinema.cinemaparadiso.controller;
 
 import com.cinema.cinemaparadiso.model.Message;
+import com.cinema.cinemaparadiso.model.Post;
 import com.cinema.cinemaparadiso.service.MessageService;
 
 import java.util.NoSuchElementException;
@@ -29,6 +30,18 @@ public class MessageController {
         model.addAttribute("messages", messages);
         log.info("Listing Messages..."+messages.toString());
         return "messages/listMessage";
+    }
+
+    @GetMapping("/show/{messageId}")
+    public String show(Model model, String messageId){
+    	try {
+	        Message message = messageService.findById(messageId);
+	        model.addAttribute("message", message);
+	        log.info("Showing Message..."+message.toString());
+    	}catch (NoSuchElementException e) {
+	        log.error("Error Showing Message..."+messageId.toString());
+		}
+        return "messages/showMessage";
     }
 
     @PostMapping("/create/{userId}")
