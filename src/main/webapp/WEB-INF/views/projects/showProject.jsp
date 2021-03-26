@@ -71,6 +71,6 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--Necesito que se me pasen los miembros del equipo mediante la propiedad "members" (por ej)
+-Necesito que se me pasen los miembros del equipo mediante la propiedad "members" (por ej)  [HECHO]
 
 -->

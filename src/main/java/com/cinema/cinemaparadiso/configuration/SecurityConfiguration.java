@@ -26,16 +26,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/create").permitAll()
-				//artist
+				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
+				.antMatchers("/artists/update/{artistId}").permitAll()
+				.antMatchers("/artists/delete/{artistId}").permitAll()
+				.antMatchers("/artists/show/{artistId}").permitAll()
+				//MENSAJES
 				.antMatchers("/mensaje").permitAll()
 				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/artists/update/{artistId}").permitAll()
-				.antMatchers("/artists/delete/{artistId}").permitAll()
-				.antMatchers("/artists/show/{artistId}").permitAll()
+				//PROJECT
+				.antMatchers("/projects/list").permitAll()
+				.antMatchers("/projects/show/{projectId}").permitAll()
+
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")

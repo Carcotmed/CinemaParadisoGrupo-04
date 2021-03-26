@@ -85,13 +85,13 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--Necesito que el modelo Project tenga una propiedad "pro" (boolean) para indicar si es de pago o no
+-Necesito que el modelo Project tenga una propiedad "pro" (boolean) para indicar si es de pago o no (HECHO)
 
--Necesito que se me pase en una variable "projectsPro" (por ej) aquellos usuarios que tienen pro a true
+-Necesito que se me pase en una variable "projectsPro" (por ej) aquellos usuarios (suponemos que es proyectos) que tienen pro a true (HECHO)
 
--Necesito que el modelo Project tenga una imagen almacenada en DB para poder mostrar la foto del project
+-Necesito que el modelo Project tenga una imagen almacenada en DB para poder mostrar la foto del project (HECHO)
 
--Necesito que se me pase en una variable "genres" (por ej) todos los valores del Enum Genre
+-Necesito que se me pase en una variable "genres" (por ej) todos los valores del Enum Genre (HECHO)
 
 
 
