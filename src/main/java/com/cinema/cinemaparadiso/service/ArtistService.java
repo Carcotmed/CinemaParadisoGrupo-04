@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
 
 @Service
@@ -34,6 +35,17 @@ public class ArtistService {
 		List<Artist> artistasPro = new ArrayList<>();
 		artistasPro = artistRepository.findProArtists();
 		return artistasPro;
+	}
+	
+	public List<Artist> listNoProArtist() {
+		List<Artist> artistasNoPro = new ArrayList<>();
+		artistasNoPro = artistRepository.findNoProArtists();
+		return artistasNoPro;
+	}
+	public List<Artist> artistsFiltered(Role filterRole, String filterName) {
+		List<Artist> artistasByRoleAndUsername = new ArrayList<>();
+		artistasByRoleAndUsername = artistRepository.findArtistByRoleAndUsername(filterRole,filterName);
+		return artistasByRoleAndUsername;
 	}
 
 	public void createArtist(Artist artist){

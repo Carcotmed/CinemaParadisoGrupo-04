@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Role;
@@ -28,12 +29,15 @@ public class ArtistController {
 	private ArtistService artistService;
 
 	@GetMapping("/list")
-	public String list(Model model) {
+	public String list(@RequestParam("filteredName") String filterName,@RequestParam("filteredRole") Role filterRole,Model model) {
 		List<Role> roles = Arrays.asList(Role.values());
 		Iterable<Artist> artists = artistService.list();
 		model.addAttribute("artists", artists);
 		model.addAttribute("artistsPro", artistService.listProArtist());
+		model.addAttribute("artistsNoPro", artistService.listNoProArtist());
 		model.addAttribute("roles", roles);
+		model.addAttribute("artistsFiltered", artistService.artistsFiltered(filterRole,filterName));
+
 		log.info("Listing Artists..." + artists.toString());
 		return "artists/listArtist";
 	}
