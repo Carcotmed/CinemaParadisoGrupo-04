@@ -1,5 +1,8 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.service.ArtistService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +29,11 @@ public class ArtistController {
 
 	@GetMapping("/list")
 	public String list(Model model) {
+		List<Role> roles = Arrays.asList(Role.values());
 		Iterable<Artist> artists = artistService.list();
 		model.addAttribute("artists", artists);
+		model.addAttribute("artistsPro", artistService.listProArtist());
+		model.addAttribute("roles", roles);
 		log.info("Listing Artists..." + artists.toString());
 		return "artists/listArtist";
 	}

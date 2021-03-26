@@ -1,5 +1,7 @@
 package com.cinema.cinemaparadiso.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +17,8 @@ public interface ArtistRepository extends CrudRepository<Artist,Integer>{
 	
 	@Query("SELECT artist FROM Artist artist WHERE artist.user.username =: username")
 	public Artist findByUsername(@Param("username") String username);
+	
+	@Query("SELECT artist FROM Artist artist WHERE artist.pro = 1")
+	public List<Artist> findProArtists();
     
 }

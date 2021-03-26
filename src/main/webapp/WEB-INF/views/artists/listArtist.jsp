@@ -63,7 +63,7 @@
 					<h5 class="form-control-label"> Disponibilidad:</h5>
 					<div class="d-flex flex-column">
 						<div class="form-group">
-							<label><input type="checkbox" class="mx-2" value="morning" id="av-morning">Mañana</label>
+							<label><input type="checkbox" class="mx-2" value="morning" id="av-morning">Maï¿½ana</label>
 						</div>
 						<div class="form-group">
 							<label><input type="checkbox" class="mx-2" value="afternoon" id="av-afternoon">Tarde</label>
@@ -82,7 +82,6 @@
 		
 		
 			<!-- Listado Artistas PRO -->
-				<!-- 
 				<div>
 		      		<c:forEach items="${artistsPro}" var="artistPro">
 		      			<a href="artist/detailsArtist/${artistPro.id}"><img src="https://via.placeholder.com/150/FFFF00/000000"></a>
@@ -91,7 +90,6 @@
 		      		</c:forEach>
 		      	</div>
 				
-				-->
 				
 				<div class="w-75 p-4 d-flex flex-wrap justify-content-center align-items-center" style="background-color: #3e3e3e">
 		      		<c:forEach items="${artists}" var="artist">
@@ -110,13 +108,13 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--Necesito que el modelo Persona tenga una propiedad "pro" (boolean) para indicar si es de pago o no
+-Necesito que el modelo Persona tenga una propiedad "pro" (boolean) para indicar si es de pago o no (HECHO)
 
--Necesito que se me pase en una variable "artistsPro" (por ej) aquellos usuarios que tienen pro a true
+-Necesito que se me pase en una variable "artistsPro" (por ej) aquellos usuarios que tienen pro a true (HECHO)
 
--Necesito que el modelo Persona tenga una imagen almacenada en DB para poder mostrar la foto del user
+-Necesito que el modelo Persona tenga una imagen almacenada en DB para poder mostrar la foto del user (REDIRECCIONADO AL GRUPO QUE LE CORRESPONDE)
 
--Necesito que se me pase en una variable "roles" (por ej) todos los valores del Enum Roles
+-Necesito que se me pase en una variable "roles" (por ej) todos los valores del Enum Roles (HECHO)
 
 
 

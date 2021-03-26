@@ -2,6 +2,9 @@ package com.cinema.cinemaparadiso.service;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -26,19 +29,22 @@ public class ArtistService {
 	public Iterable<Artist> list() {
 		return artistRepository.findAll();
 	}
+	
+	public List<Artist> listProArtist() {
+		List<Artist> artistasPro = new ArrayList<>();
+		artistasPro = artistRepository.findProArtists();
+		return artistasPro;
+	}
 
 	public void createArtist(Artist artist){
 	       saveArtist(artist);
-	        
-
-	    }
+	        }
 	
 	@Transactional
 	public void saveArtist(Artist artist) throws DataAccessException{
 
 			artistRepository.save(artist);	
-		
-	}
+		}
 	
 	
 	@Transactional
@@ -51,8 +57,7 @@ public class ArtistService {
 	public void editArtist(Integer artistId) throws DataAccessException{
 			Artist artist = findArtistById(artistId);
 			artistRepository.save(artist);	
-		
-	}
+		}
 	
 	@Transactional(readOnly = true)
 	public Artist findArtistById(int id) throws DataAccessException {
@@ -63,5 +68,7 @@ public class ArtistService {
 	public Artist findArtistByUsername(String username) throws DataAccessException {
 		return artistRepository.findByUsername(username);
 	}
+	
+	
 
 }
