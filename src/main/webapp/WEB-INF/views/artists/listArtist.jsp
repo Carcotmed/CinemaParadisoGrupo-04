@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html class="h-100">
 <head>
@@ -23,84 +24,88 @@
 		<div class="p-4 w-25" style="background-color: #af3248">
 			<h3 class="text-center page-header mb-4" >Filtros</h3>
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
-			<form class="my-5">
+			<form:form class="my-5" method="GET" action="/list" modelAttribute="artistsFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<h5 class="form-control-label" for="name">Nombre:</h5>
-					<input class="form-control" style="width:60%" type="text" value="" placeholder="Nombre" id="name">
+					<form:label class="form-control-label" path="name">Nombre:</form:label>
+					<form:input class="form-control" style="width:60%" type="text" value="" placeholder="Nombre" path="name" />
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<h5 class="form-control-label">Rol:</h5>
-					<select class="form-control" style="width:60%" id="role">
+					<form:label class="form-control-label" path="role">Rol:</form:label>
+					<form:select class="form-control" style="width:60%" path="role">
 						<c:forEach items="${roles}" var="role">
-							<option value="${role}">${role}</option>
+							<form:option value="${role}">${role}</form:option>
 						</c:forEach>
-					</select>
+					</form:select>
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<h5 class="form-control-label m-0" style="width:fit-content">Experiencia:</h5>
+					<form:label class="form-control-label m-0" style="width:fit-content" path="exp">Experiencia:</form:label>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="form-check form-check-inline m-0">
-							 <input	class="form-check-input" type="radio" value="1" name="exp">
+							 <form:input class="form-check-input" type="radio" value="1" path="exp" />
 						</div>
 						<div class="form-check form-check-inline m-0">
-							 <input	class="form-check-input" type="radio" value="2" name="exp">
+							 <form:input class="form-check-input" type="radio" value="2" path="exp" />
 						</div>
 						<div class="form-check form-check-inline m-0">
-							 <input	class="form-check-input" type="radio" value="3" name="exp">
+							 <form:input class="form-check-input" type="radio" value="3" path="exp" />
 						</div>
 						<div class="form-check form-check-inline m-0">
-							 <input	class="form-check-input" type="radio" value="4" name="exp">
+							 <form:input class="form-check-input" type="radio" value="4" path="exp" />
 						</div>
 						<div class="form-check form-check-inline m-0">
-							 <input	class="form-check-input" type="radio" value="5" name="exp">
+							 <form:input class="form-check-input" type="radio" value="5" path="exp" />
 						</div>
 					</div>
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<h5 class="form-control-label"> Disponibilidad:</h5>
+					<form:label class="form-control-label" path="availability"> Disponibilidad:</form:label>
 					<div class="d-flex flex-column">
 						<div class="form-group">
-							<label><input type="checkbox" class="mx-2" value="morning" id="av-morning">Maï¿½ana</label>
+							<label><form:input type="checkbox" class="mx-2" path="availability" value="morning" id="av-morning" />Mañana</label>
 						</div>
 						<div class="form-group">
-							<label><input type="checkbox" class="mx-2" value="afternoon" id="av-afternoon">Tarde</label>
+							<label><form:input type="checkbox" class="mx-2" path="availability" value="afternoon" id="av-afternoon" />Tarde</label>
 						</div>
 					</div>
 				</div>
 				
 				<div class="form-group d-flex justify-content-center align-items-center my-4">
-					<button class="btn" style="color:white;background-color: #3e3e3e" type="submit">Filtrar</button>
+					<input class="btn" style="color:white;background-color: #3e3e3e" type="submit" value="Submit">Filtrar</input>
 				</div>
 				
-			</form>
+			</form:form>
 		</div>
 
 		<!--  Listado  -->
-		
+		<div class="w-75 p-4 d-flex flex-column justify-content-start align-items-center" style="background-color: #3e3e3e">
 		
 			<!-- Listado Artistas PRO -->
-				<div>
-		      		<c:forEach items="${artistsPro}" var="artistPro">
-		      			<a href="artist/detailsArtist/${artistPro.id}"><img src="https://via.placeholder.com/150/FFFF00/000000"></a>
-		      			<span>${artistPro.name}</span>
-		      			<p>${artistPro.summary}</p>
-		      		</c:forEach>
-		      	</div>
-				
-				
-				<div class="w-75 p-4 d-flex flex-wrap justify-content-center align-items-center" style="background-color: #3e3e3e">
-		      		<c:forEach items="${artists}" var="artist">
-						<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%">
-							<img src="https://via.placeholder.com/150" onClick="location.href='/artists/show/${artist.id}'" class="rounded-circle w-50" style="cursor:pointer">
-							<h4 style="margin: 0">${artist.name}</h4>
-							<p>${artist.summary}</p>
-						</div>
-					</c:forEach>
-				</div>
-
+			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
+	      		<c:forEach items="${artistsPro}" var="artistPro">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
+						<img src="https://via.placeholder.com/150/FFFF00/00000" onClick="location.href='/artists/show/${artistPro.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
+						<h5 style="margin: 0.5vw">${artistPro.name}</h5>
+						<p>${artistPro.summary}</p>
+					</div>
+				</c:forEach>
+	      	</div>
+			
+			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:0">
+			
+			<!-- Listado Artistas normales -->
+			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
+	      		<c:forEach items="${artists}" var="artist">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
+						<img src="https://via.placeholder.com/150" onClick="location.href='/artists/show/${artist.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
+						<h5 style="margin: 0.5vw">${artist.name}</h5>
+						<p>${artist.summary}</p>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
@@ -108,13 +113,10 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--Necesito que el modelo Persona tenga una propiedad "pro" (boolean) para indicar si es de pago o no (HECHO)
+-Necesito que la propiedad artists solo tenga a los artistas NO PRO, los que lo tienen a false
 
--Necesito que se me pase en una variable "artistsPro" (por ej) aquellos usuarios que tienen pro a true (HECHO)
-
--Necesito que el modelo Persona tenga una imagen almacenada en DB para poder mostrar la foto del user (REDIRECCIONADO AL GRUPO QUE LE CORRESPONDE)
-
--Necesito que se me pase en una variable "roles" (por ej) todos los valores del Enum Roles (HECHO)
+-Necesito que en el list se devuelvan los artistas filtrados (en caso de haber filtros), tanto los pro como los normales. Arriba en el form teneis el atributo que
+devuelve el form y los campos que tiene. (O si no lo que haga falta para implementar el filtro)
 
 
 

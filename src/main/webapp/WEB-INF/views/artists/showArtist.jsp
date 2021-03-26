@@ -67,3 +67,9 @@
 
 </body>
 </html>
+
+<!-- COMENTARIOS PARA BACKEND -->
+<!-- 
+
+
+-Necesito que la entidad Artist tenga una lista de los roles que puede tomar
