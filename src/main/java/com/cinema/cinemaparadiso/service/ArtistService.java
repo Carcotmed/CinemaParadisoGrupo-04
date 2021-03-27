@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
 
@@ -48,6 +49,12 @@ public class ArtistService {
 		List<Artist> artistasByRoleAndUsername = new ArrayList<>();
 		artistasByRoleAndUsername = artistRepository.findArtistByRoleAndUsername(filterRole,filterName);
 		return artistasByRoleAndUsername;
+	}
+	
+	public List<Project> projectHistory(Integer id) {
+		List<Project> projectsHistory = new ArrayList<>();
+		projectsHistory = artistRepository.findProjectsHistory(id);
+		return projectsHistory;
 	}
 
 	public void createArtist(Artist artist){

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Role;
 
 @Repository
@@ -29,4 +30,7 @@ public interface ArtistRepository extends CrudRepository<Artist,Integer>{
 	@Query("SELECT artist FROM Artist artist WHERE artist.role =: filterRole AND artist.user.username LIKE '%filterName%'")
 	public List<Artist> findArtistByRoleAndUsername(@RequestParam("filterRole") Role filterRole,@RequestParam("filterName") String filterName);
     
+	
+	@Query("SELECT artist.projectsHistory FROM Artist artist WHERE artist.id =: id")
+	public List<Project> findProjectsHistory(@Param("id") Integer id);
 }

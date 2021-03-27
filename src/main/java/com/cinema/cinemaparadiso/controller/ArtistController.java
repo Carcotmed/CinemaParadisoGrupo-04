@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.service.ArtistService;
 
@@ -79,8 +78,10 @@ public class ArtistController {
 	@GetMapping(value = { "/show/{artistId}" })
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
+		List<Project> projectHistory = artistService.projectHistory(artistId);
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
+		model.addAttribute("projectHistory",projectHistory);
 		return "artists/showArtist";
 	}
 

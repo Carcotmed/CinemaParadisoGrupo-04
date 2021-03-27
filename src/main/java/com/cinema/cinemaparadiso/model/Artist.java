@@ -35,6 +35,10 @@ public class Artist extends Person {
 	@ManyToMany(mappedBy = "team")
 	private List<Project> projects;
 	
+	@Column(name="projects_history")
+	@ManyToMany(mappedBy = "team")
+	private List<Project> projectsHistory;
+	
 
 	@Column(name="summary")
 	private String summary;
