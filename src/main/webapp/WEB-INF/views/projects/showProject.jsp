@@ -39,12 +39,10 @@
 				<p>${project.title}</p>
 				<h5>Géneros</h5>
 				<div class="d-flex flex-wrap">
-				<!-- c:forEach items="${project.genres}" var="pjGenre" -->
-					<span class="p-2" style="background-color:#3e3e3e">Comedia</span><!-- ${pjGenre} -->
-				<!-- c:forEach -->
+					<span class="p-2" style="background-color:#3e3e3e">${project.genre}</span>
 				</div>
 				<h5>Resumen</h5>
-				<p>Dale a tu cuerpo alegria macarena que tu cuerpo es pa darle alegria y cosa buena EEEEEEEEEEEEEEEEEEE macarena</p> <!-- ${project.description} -->
+				<p>${project.description}</p>
 			</div>
 			
 			<!-- Imagen - Video -->
@@ -55,15 +53,15 @@
 		<div class="container-fluid">
 			<h3>Integrantes</h3>
 		</div>
-		<!-- c:forEach items="${members}" var="member" -->
+		<c:forEach items="${members}" var="member">
 			<div class="d-flex">
 				<img src="https://via.placeholder.com/150" class="w-50"><!-- ${member.img} -->
 				<div>
-					<h5>Jose</h5> <!-- ${member.name} -->
-					<p>Guionista</p> <!-- ${member.role} -->
+					<h5>${member.name}</h5>
+					<p>${member.role}</p>
 				</div>
 			</div>
-		<!--  c:forEach -->
+		</c:forEach>
 	</div>
 </body>
 </html>
@@ -71,6 +69,5 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--Necesito que se me pasen los miembros del equipo mediante la propiedad "members" (por ej)  [HECHO]
 
 -->
