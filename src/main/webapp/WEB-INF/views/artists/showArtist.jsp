@@ -26,41 +26,30 @@
 				<h2>${artist.name}</h2>
 				<p>${artist.summary}</p>
 			</div>
-			<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248">+ Invitar a mi equipo</button>
 		</div>
-		<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+		<!-- EL LINK HACIA MENSAJES PROBABLEMENTE ESTE MAL, CAMBIARLO CUANDO ESTE HECHO -->
+		<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248" onClick="location.href='/messages/create/${artistNoPro.id}'">Contactar</button>
 	</div>
 
 	<!-- Info general Artista -->
 	<div class="container" style="margin: 0 5%;max-width:90%">
 		<div class="row">
-			<div class="col-4 p-3" style="border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
+			<div class="col-6 p-3" style="border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
 				<h4 style="margin-bottom: 4%">Sobre mi</h4>
 				<p>${artist.description}</p>
+				<p>${artist.role}</p>
 			</div>
-			<div class="col-4 p-3" style="border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
-				<h4 style="margin-bottom: 4%">Habilidades</h4>
-				<!-- c:forEach items="${artist.roles}" var="role" -->
-					<span class="rounded-pill p-2 m-1" style="background-color: #af3248">Habilidad</span><!-- ${role}-->				
-				<!-- c:forEach -->
-			</div>
-			<div class="col-4 p-3">
+			<div class="col-6 p-3">
 				<h4 style="margin-bottom: 4%">Proyectos</h4>
-				<!-- c:forEach items="${projects}" var="project" -->
+				<c:forEach items="${projects}" var="project">
 					<div class="d-flex justify-content-between">
 						<div>
-							<h6 style="color:#af3248">Nombre proj</h6><!-- ${project.title} -->
-							<ul>
-							<!-- c:forEach items="${projects.roles}" var="pjRole" -->
-									<li>Guionista</li><!-- ${pjRole} -->
-							<!-- /c:forEach -->
-							</ul>
+							<h6 style="color:#af3248">${project.title}</h6>
 						</div>
 						<img src="https://via.placeholder.com/150" class="w-30">
 					</div>
 					<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#af3248">
-						
-				<!-- /c:forEach -->
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -71,5 +60,6 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
+-La entidad artist tiene que tener una columna role con un valor del enum ROLE asignado
+-Necesito variable projects que contenga todos los projects en los que ha participado un artist
 
--Necesito que la entidad Artist tenga una lista de los roles que puede tomar

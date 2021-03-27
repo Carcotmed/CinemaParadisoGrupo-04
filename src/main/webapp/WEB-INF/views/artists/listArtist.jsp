@@ -97,11 +97,11 @@
 			
 			<!-- Listado Artistas normales -->
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
-	      		<c:forEach items="${artists}" var="artist">
+	      		<c:forEach items="${artistsNoPro}" var="artistNoPro">
 					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="https://via.placeholder.com/150" onClick="location.href='/artists/show/${artist.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
-						<h5 style="margin: 0.5vw">${artist.name}</h5>
-						<p>${artist.summary}</p>
+						<img src="https://via.placeholder.com/150" onClick="location.href='/artists/show/${artistNoPro.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
+						<h5 style="margin: 0.5vw">${artistNoPro.name}</h5>
+						<p>${artistNoPro.summary}</p>
 					</div>
 				</c:forEach>
 			</div>
@@ -113,10 +113,7 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--Necesito que la propiedad artists solo tenga a los artistas NO PRO, los que lo tienen a false
-
--Necesito que en el list se devuelvan los artistas filtrados (en caso de haber filtros), tanto los pro como los normales. Arriba en el form teneis el atributo que
-devuelve el form y los campos que tiene. (O si no lo que haga falta para implementar el filtro)
+-Necesito que la entidad artist tenga un atributo availability (enum: MORNING, AFTERNOON, BOTH)
 
 
 
