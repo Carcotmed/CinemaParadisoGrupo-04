@@ -25,10 +25,11 @@
 			<div class="py-3 mx-3" style="width:40%">
 				<h2>${artist.name}</h2>
 				<p>${artist.summary}</p>
+				<p>Rol: ${artist.role}</p>
 			</div>
 		</div>
 		<!-- EL LINK HACIA MENSAJES PROBABLEMENTE ESTE MAL, CAMBIARLO CUANDO ESTE HECHO -->
-		<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248" onClick="location.href='/messages/create/${artistNoPro.id}'">Contactar</button>
+		<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248">Contactar</button> <!-- onClick="location.href='/messages/create/${artistNoPro.id}'" -->
 	</div>
 
 	<!-- Info general Artista -->
@@ -37,7 +38,6 @@
 			<div class="col-6 p-3" style="border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
 				<h4 style="margin-bottom: 4%">Sobre mi</h4>
 				<p>${artist.description}</p>
-				<p>${artist.role}</p>
 			</div>
 			<div class="col-6 p-3">
 				<h4 style="margin-bottom: 4%">Proyectos</h4>
