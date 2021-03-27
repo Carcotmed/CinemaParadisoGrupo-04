@@ -24,7 +24,7 @@
 		<div class="p-4 w-25" style="background-color: #af3248">
 			<h3 class="text-center page-header mb-4" >Filtros</h3>
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
-			<form:form class="my-5" method="GET" action="/list" modelAttribute="artistsFiltered">
+			<form:form class="my-5" method="POST" action="/list" modelAttribute="artistsFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
 					<form:label class="form-control-label" path="name">Nombre:</form:label>
 					<form:input class="form-control" style="width:60%" type="text" value="" placeholder="Nombre" path="name" />
@@ -39,6 +39,7 @@
 					</form:select>
 				</div>
 				
+				<!--  
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
 					<form:label class="form-control-label m-0" style="width:fit-content" path="exp">Experiencia:</form:label>
 					<div class="d-flex justify-content-between align-items-center">
@@ -71,6 +72,8 @@
 						</div>
 					</div>
 				</div>
+				
+				-->
 				
 				<div class="form-group d-flex justify-content-center align-items-center my-4">
 					<input class="btn" style="color:white;background-color: #3e3e3e" type="submit" value="Submit">Filtrar</input>
