@@ -25,7 +25,7 @@
 		<div class="p-4 w-25" style="background-color: #af3248">
 			<h3 class="text-center page-header mb-4" >Filtros</h3>
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
-			<form class="my-5">
+			<form:form class="my-5" action="listFiltered" method="POST" modelAttribute="projectsFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
 					<form:label class="form-control-label" path="title">Título:</form:label>
 					<form:input class="form-control" style="width:60%" type="text" placeholder="Nombre" path="title" />
@@ -33,35 +33,20 @@
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
 					<form:label class="form-control-label" path="genre">Género:</form:label>
-					<form:select class="form-control" style="width:60%" id="genre">
-						<c:forEach items="${genres}" var="genre">
-							<form:option value="${genre}" path="genre">${genre}</form:option>
-						</c:forEach>
-					</form:select>
+					<form:select class="form-control" style="width:60%" items="${genres}" path="genre"></form:select>
 				</div>
-				
-				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="size">Tamaño:</form:label>
-					<form:select class="form-control" style="width:60%" path="size">
-							<form:option value="small">Pequeño (1-4 personas)</form:option>
-							<form:option value="medium">Mediano (5-10 personas)</form:option>
-							<form:option value="big">Grande (10-15 personas)</form:option>
-							<form:option value="large">Enorme (15-20 personas)</form:option>
-					</form:select>
-				</div>
-				
+								
 				<div class="form-group d-flex justify-content-center align-items-center my-4">
-					<form:input class="btn" style="color:white;background-color: #3e3e3e" type="submit" value="Submit">Filtrar</form:input>
+					<form:button class="btn" style="color:white;background-color: #3e3e3e">Filtrar</form:button>
 				</div>
-				
-			</form>
+			</form:form>
 		</div>
 
 		<!--  Listado  -->
 		
 		
-			<!-- Listado Proyectos PRO -->
 				<div class="w-75 p-4 d-flex flex-wrap justify-content-center align-items-center" style="background-color: #3e3e3e">
+					<!-- Listado Proyectos PRO -->
 					<div>
 			      		<c:forEach items="${projectsPro}" var="projectPro">
 							<img src="${projectPro.photo}" onClick="location.href='/projects/show/${project.id}'" class="rounded-circle w-50" style="cursor:pointer">
@@ -69,12 +54,14 @@
 			      		</c:forEach>
 			      	</div>
 					
+					<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:0">
 					
+					<!-- Listado Proyectos No PRO -->
 					<div >
-			      		<c:forEach items="${projects}" var="project">
+			      		<c:forEach items="${projectsNoPro}" var="projectNoPro">
 							<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%">
-								<img src="${project.photo}" onClick="location.href='/projects/show/${project.id}'" class="rounded-circle w-50" style="cursor:pointer">
-								<h4 style="margin: 0">${project.title}</h4>
+								<img src="${projectNoPro.photo}" onClick="location.href='/projects/show/${projectNoPro.id}'" class="rounded-circle w-50" style="cursor:pointer">
+								<h4 style="margin: 0">${projectNoPro.title}</h4>
 							</div>
 						</c:forEach>
 					</div>
