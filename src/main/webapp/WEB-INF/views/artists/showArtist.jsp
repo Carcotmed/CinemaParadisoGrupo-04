@@ -60,6 +60,7 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--La entidad artist tiene que tener una columna role con un valor del enum ROLE asignado
 -Necesito variable projects que contenga todos los projects en los que ha participado un artist
 
+
+-->

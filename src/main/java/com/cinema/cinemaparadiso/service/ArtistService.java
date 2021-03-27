@@ -27,8 +27,10 @@ public class ArtistService {
 		this.artistRepository = artistRepository;
 	}
 
-	public Iterable<Artist> list() {
-		return artistRepository.findAll();
+	public List<Artist> list() {
+		List<Artist> artist = new ArrayList<>();
+		artistRepository.findAll().forEach(a -> artist.add(a));
+		return artist;
 	}
 	
 	public List<Artist> listProArtist() {
