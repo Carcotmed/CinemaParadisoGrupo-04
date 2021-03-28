@@ -14,8 +14,13 @@
     <title>Cinema Paradiso</title>
 </head>
 <body style="height:70vh;background-color:green">
-<%@ include file="navbar.jsp" %>
-<p>Hola</p>
-<%@ include file="footer.jsp" %>
+	<%@ include file="navbar.jsp" %>
+	
+	<video autoplay muted loop class="position-fixed" style="top:0;">
+		<source src="index-video.mp4" type="video/mp4">
+	</video>
+	<p>pipo</p>
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>
