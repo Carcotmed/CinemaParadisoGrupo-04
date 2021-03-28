@@ -15,7 +15,7 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-<title>Artist List</title>
+<title>Descubre Artistas</title>
 </head>
 <body class="h-100" style="color:white">
 	<div class="d-flex h-100">
@@ -78,10 +78,6 @@
 	</div>
 </body>
 </html>
-
-<!-- COMENTARIOS PARA BACKEND -->
-<!-- 
-
 
 
 
