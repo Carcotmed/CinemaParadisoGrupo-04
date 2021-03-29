@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
-	<div style="height:7vh;background-color:#2b2b2b;" class="position-relative d-flex justify-content-between align-items-center w-100">
+	<div style="height:7vh;background-color:#2b2b2b;z-index:99" class="position-fixed d-flex justify-content-between align-items-center w-100">
 		<img src="https://via.placeholder.com/150" onClick="location.href='/'" class="rounded-circle" style="cursor:pointer;width:50px;margin-left:1%">
 		<!-- Botones -->
 		<div class="d-flex justify-content-center align-items-center" style="width:50%">

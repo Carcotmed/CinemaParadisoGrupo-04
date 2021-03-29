@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
-	<div style="height:23vh;background-color:#2b2b2b" class="p-3 d-flex justify-content-center align-items-start w-100">
+	<div style="background-color:#2b2b2b" class="position-relative p-3 d-flex justify-content-center align-items-start w-100">
 		<img src="https://via.placeholder.com/150"  style="width:10%; margin:0 2%">
 		<div class="d-flex flex-column" style="margin:0 1%; width:15%">
 			<h6 style="color:white">Aviso</h6>
