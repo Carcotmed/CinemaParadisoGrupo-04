@@ -39,6 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
 				//PROJECT
 				.antMatchers("/projects/list").permitAll()
+				.antMatchers("/projects/listFiltered").permitAll()
 				.antMatchers("/projects/show/{projectId}").permitAll()
 
 				.antMatchers("/users/list").hasAnyAuthority("admin")

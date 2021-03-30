@@ -10,7 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.repository.ProjectRepository;
 
@@ -24,10 +24,12 @@ public class ProjectService {
 		this.projectRepository = projectRepository;
 	}
 
-	public Iterable<Project> list() {
-		return projectRepository.findAll();
+
+	public List<Project> list() {
+		List<Project> project = new ArrayList<>();
+		projectRepository.findAll().forEach(p -> project.add(p));
+		return project;
 	}
-	
 	public List<Project> listProProjects() {
 		List<Project> proProjects = new ArrayList<>();
 		proProjects = projectRepository.listProProjects();
@@ -38,6 +40,12 @@ public class ProjectService {
 		List<Project> noProProjects = new ArrayList<>();
 		noProProjects = projectRepository.listNoProProjects();
 		return noProProjects;
+	}
+	
+	public List<Project> projectFiltered(Genre filterGenre) {
+		List<Project> projectByGenre = new ArrayList<>();
+		projectByGenre =projectRepository.findProjectByGenre(filterGenre);
+		return projectByGenre;
 	}
 	
 	
