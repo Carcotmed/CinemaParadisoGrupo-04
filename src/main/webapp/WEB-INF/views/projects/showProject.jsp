@@ -19,43 +19,55 @@
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
 	<!-- Header Proyecto -->
-	<div class="d-flex jsutify-content-center p-3" style="margin-bottom: 5%">
-		<img src="https://via.placeholder.com/150" class="rounded-circle w-30">
-		<div class="py-3 mx-3" style="width:40%">
-			<h2>${project.title}</h2>
-		</div>
-		<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248">Contactar con el equipo</button>
-	</div>
-
-	<!-- Info general Proyecto -->
-	<div style="overflow:scroll">
-		<div class="container-fluid">
-			<h3>Ficha técnica</h3>
-		</div>
-		<div class="d-flex justify-content-between" style="margin: 0 5%;max-width:90%">
-			<!-- Datos -->
-			<div>
-				<h5>Título:</h5>
-				<p>${project.title}</p>
-				<h5>Géneros</h5>
-				<div class="d-flex flex-wrap">
-					<span class="p-2" style="background-color:#3e3e3e">${project.genre}</span>
+	<div class="d-flex justify-content-between p-3" style="margin-bottom: 2%">
+			<div class="d-flex jsutify-content-center">
+	
+				<img src="${project.photo}" class="rounded-circle" style="width:10vw;height:10vw">
+				<div class="py-3 mx-3" style="width:40%">
+					<h2>${project.title}</h2>
 				</div>
-				<h5>Resumen</h5>
-				<p>${project.description}</p>
+			</div>
+			<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248">Contactar con el equipo</button>
+	</div>
+	<!-- Info general Proyecto -->
+	<div>
+		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
+			<h3 style="margin:0">Ficha técnica</h3>
+		</div>
+		<div class="d-flex justify-content-between" style="margin: 2% 5%;max-width:90%">
+			<!-- Datos -->
+			<div class="w-100">
+				<div style="margin:1% 0">
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Título</h5>
+					</div>
+					<p style="margin-left: 3%">${project.title}</p>
+				</div>
+				<div style="margin:1% 0">
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Género</h5>
+					</div>
+					<p style="margin-left: 3%">${project.genre}</p>
+				</div style="margin:1% 0">
+				<div>
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Resumen</h5>
+					</div>
+					<p style="margin-left: 3%">${project.description}</p>
+				</div>
 			</div>
 			
 			<!-- Imagen - Video -->
-			<div>
-				<img src="https://via.placeholder.com/150" class="w-50">
+			<div class="d-flex justify-content-center" style="width:100%">
+				<img src="${project.photo}" class="w-50">
 			</div>
 		</div>
-		<div class="container-fluid">
-			<h3>Integrantes</h3>
+		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
+			<h3 style="margin:0">Integrantes</h3>
 		</div>
 		<c:forEach items="${members}" var="member">
 			<div class="d-flex">
-				<img src="https://via.placeholder.com/150" class="w-50"><!-- ${member.img} -->
+			<img src="https://via.placeholder.com/150" class="w-50"><!-- ${member.img} -->
 				<div>
 					<h5>${member.name}</h5>
 					<p>${member.role}</p>

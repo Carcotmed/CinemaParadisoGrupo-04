@@ -44,7 +44,7 @@ public class ProjectController {
 		return "projects/listProject";
 	}
 	
-	@PostMapping("/listFiltered")
+	@PostMapping("/list")
 	public String list(@ModelAttribute("projectsFiltered") Project projectsFiltered,Model model) {
 		List<Genre> genres = Arrays.asList(Genre.values());
 		List<Project> projects = projectService.list();

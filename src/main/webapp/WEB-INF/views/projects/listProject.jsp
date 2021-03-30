@@ -25,15 +25,20 @@
 		<div class="p-4 w-25" style="background-color: #af3248">
 			<h3 class="text-center page-header mb-4" >Filtros</h3>
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
-			<form:form class="my-5" action="listFiltered" method="POST" modelAttribute="projectsFiltered">
+			<form:form class="my-5" action="list" method="POST" modelAttribute="projectsFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
 					<form:label class="form-control-label" path="title">Título:</form:label>
-					<form:input class="form-control" style="width:60%" type="text" placeholder="Nombre" path="title" />
+					<form:input class="form-control" style="width:60%" type="text" placeholder="Título" path="title" />
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
 					<form:label class="form-control-label" path="genre">Género:</form:label>
-					<form:select class="form-control" style="width:60%" items="${genres}" path="genre"></form:select>
+					<form:select class="form-control" style="width:60%" path="genre">
+						<form:option value="" selected="true">Selecciona un género</form:option>
+						<c:forEach items="${genres}" var="genre">
+							<form:option value="${genre}">${genre}</form:option>
+						</c:forEach>
+					</form:select>
 				</div>
 								
 				<div class="form-group d-flex justify-content-center align-items-center my-4">
@@ -43,30 +48,31 @@
 		</div>
 
 		<!--  Listado  -->
+		<div class="w-75 p-4 d-flex flex-column justify-content-start align-items-center" style="background-color: #3e3e3e">
 		
-		
-				<div class="w-75 p-4 d-flex flex-wrap justify-content-center align-items-center" style="background-color: #3e3e3e">
-					<!-- Listado Proyectos PRO -->
-					<div>
-			      		<c:forEach items="${projectsPro}" var="projectPro">
-							<img src="${projectPro.photo}" onClick="location.href='/projects/show/${project.id}'" class="rounded-circle w-50" style="cursor:pointer">
-			      			<span>${projectPro.title}</span>
-			      		</c:forEach>
-			      	</div>
-					
-					<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:0">
-					
-					<!-- Listado Proyectos No PRO -->
-					<div >
-			      		<c:forEach items="${projectsNoPro}" var="projectNoPro">
-							<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%">
-								<img src="${projectNoPro.photo}" onClick="location.href='/projects/show/${projectNoPro.id}'" class="rounded-circle w-50" style="cursor:pointer">
-								<h4 style="margin: 0">${projectNoPro.title}</h4>
-							</div>
-						</c:forEach>
+			<!-- Listado Proyectos PRO -->
+			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
+	      		<c:forEach items="${projectsPro}" var="projectPro">
+	      			<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
+						<img src="${projectPro.photo}" onClick="location.href='/projects/show/${projectPro.id}'" class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
+		      			<h5 style="margin: 0.5vw">${projectPro.title}</h5>
+		      		</div>
+	      		</c:forEach>
+	      	</div>
+			
+			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:0">
+			
+			<!-- Listado Proyectos No PRO -->
+			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
+				<c:forEach items="${projectsNoPro}" var="projectNoPro">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
+						<img src="${projectNoPro.photo}" onClick="location.href='/projects/show/${projectNoPro.id}'" class="rounded-circle w-50" style="cursor:pointer;width:5vw;height:5vw">
+						<h5 style="margin: 0.5vw">${projectNoPro.title}</h5>
 					</div>
-				</div>
-
+				</c:forEach>
+			</div>
+					
+		</div>
 	</div>
 </body>
 </html>
