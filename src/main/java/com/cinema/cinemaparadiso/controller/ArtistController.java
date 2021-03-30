@@ -46,7 +46,7 @@ public class ArtistController {
 		return "artists/listArtist";
 	}
 	
-	@PostMapping("/listFiltered")
+	@PostMapping("/list")
 	public String list(@ModelAttribute("artistsFiltered") Artist artistsFiltered,Model model) {
 		List<Role> roles = Arrays.asList(Role.values());
 		List<Artist> artists = artistService.list();
