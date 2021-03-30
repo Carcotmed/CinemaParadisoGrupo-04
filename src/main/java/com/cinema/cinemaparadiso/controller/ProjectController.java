@@ -30,9 +30,11 @@ public class ProjectController {
 		Iterable<Project> projects = projectService.list();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		List<Project> proProjects = projectService.listProProjects();
+		List<Project> noProProjects = projectService.listNoProProjects();
 		model.addAttribute("projects", projects);
 		model.addAttribute("genres", genres);
 		model.addAttribute("projectsPro", proProjects);
+		model.addAttribute("projectsNoPro", noProProjects);
 		log.info("Listing Projects..." + projects.toString());
 		return "projects/listProject";
 	}

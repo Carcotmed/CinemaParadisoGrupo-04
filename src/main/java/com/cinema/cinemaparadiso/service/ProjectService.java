@@ -34,6 +34,12 @@ public class ProjectService {
 		return proProjects;
 	}
 	
+	public List<Project> listNoProProjects() {
+		List<Project> noProProjects = new ArrayList<>();
+		noProProjects = projectRepository.listNoProProjects();
+		return noProProjects;
+	}
+	
 	
 	
 	@Transactional(readOnly = true)

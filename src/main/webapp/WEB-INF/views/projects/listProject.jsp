@@ -74,7 +74,7 @@
 <!-- COMENTARIOS PARA BACKEND -->
 <!-- 
 
--Necesito que la variable projects contenga los projects NO PRO
+-Necesito que la variable projects contenga los projects NO PRO (HECHO)
 
 
 

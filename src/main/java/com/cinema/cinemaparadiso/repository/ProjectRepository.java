@@ -15,5 +15,8 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	@Query("SELECT project FROM Project project WHERE project.pro = 1")
 	public List<Project> listProProjects();
 	
+	@Query("SELECT project FROM Project project WHERE project.pro = 0")
+	public List<Project> listNoProProjects();
+	
 	
 }
