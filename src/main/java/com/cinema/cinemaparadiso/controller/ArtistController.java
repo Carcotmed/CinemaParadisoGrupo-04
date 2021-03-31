@@ -56,13 +56,13 @@ public class ArtistController {
 
 		List<Artist> artistasProFiltrados = artists.stream()
 				.filter(a -> a.getPro()==true &&
-							a.getName().contains(artistsFiltered.getName()) && 
+							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
 							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
 				).collect(Collectors.toList());
 		
 		List<Artist> artistasNoProFiltrados = artists.stream()
 				.filter(a -> a.getPro()==false &&
-							a.getName().contains(artistsFiltered.getName()) && 
+							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
 							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
 				).collect(Collectors.toList());
 		
