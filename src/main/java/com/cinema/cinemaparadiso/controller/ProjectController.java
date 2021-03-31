@@ -75,7 +75,7 @@ public class ProjectController {
 	@GetMapping(value = { "/show/{projectId}" })
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
-		List<Artist> members = project.getTeam();
+		List<Artist> members = projectService.findMembers(projectId);
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);

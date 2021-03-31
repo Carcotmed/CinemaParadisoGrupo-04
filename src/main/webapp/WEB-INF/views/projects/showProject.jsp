@@ -67,7 +67,7 @@
 		</div>
 		<c:forEach items="${members}" var="member">
 			<div class="d-flex">
-			<img src="https://via.placeholder.com/150" class="w-50"><!-- ${member.img} -->
+			<img src="https://via.placeholder.com/150" class="w-50">
 				<div>
 					<h5>${member.name}</h5>
 					<p>${member.role}</p>

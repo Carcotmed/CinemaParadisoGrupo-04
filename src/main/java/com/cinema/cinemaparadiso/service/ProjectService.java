@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.repository.ProjectRepository;
@@ -48,6 +49,11 @@ public class ProjectService {
 		return projectByGenreAndTitle;
 	}
 	
+	public List<Artist> findMembers(Integer projectId){
+		List<Artist> members = new ArrayList<>();
+		members = projectRepository.findMembers(projectId);
+		return members;
+	}
 	
 	
 	@Transactional(readOnly = true)
