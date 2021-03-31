@@ -1,5 +1,7 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.service.ArtistService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +42,15 @@ public class ArtistController {
 		return "artists/showArtist";
 	}
 
+	@GetMapping(value = { "/myProjects/{artistId}" })
+	public String myProjectsArtist(@PathVariable("artistId") int artistId, Model model) {
+		Artist artist = artistService.findArtistById(artistId);
+		List<Project> myProjects = artistService.findMyProjects(artistId);
+		model.addAttribute("artistId", artistId);
+		model.addAttribute("artist", artist);
+		model.addAttribute("myProjects",myProjects);
+		return "artists/myProjects";
+	}
 
 	@GetMapping("/create")
 	public String initFormCreateArtist(Model model) {

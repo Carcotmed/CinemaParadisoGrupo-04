@@ -35,5 +35,11 @@ public class Project extends BaseEntity {
 			)
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Artist> team;
+	
+	@Column(name="pro")
+	private Boolean pro;
+	
+	@Column(name="photo")
+	private String photo;		
  
 }

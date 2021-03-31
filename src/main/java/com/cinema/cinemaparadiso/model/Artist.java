@@ -21,9 +21,8 @@ import lombok.Setter;
 @Setter
 public class Artist extends Person {
 	
-	@ElementCollection(targetClass=Role.class)
-	@Column(name="roles")
-	private List<Role> roles;
+	@Column(name="role")
+	private Role role;
 	
 
 	@Column(name="projects")
