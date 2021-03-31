@@ -51,11 +51,13 @@
 		<div class="w-75 p-4 d-flex flex-column justify-content-start align-items-center" style="background-color: #3e3e3e">
 		
 			<!-- Listado Proyectos PRO -->
-			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
+			<div class="d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${projectsPro}" var="projectPro">
-	      			<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="${projectPro.photo}" onClick="location.href='/projects/show/${projectPro.id}'" class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
-		      			<h5 style="margin: 0.5vw">${projectPro.title}</h5>
+	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 20%; margin: 1vw;height:70%">
+						<div  class="rounded-circle d-flex" style="border-style:solid;border-color:#edd214;overflow:hidden;height:100%;width:12vh">
+	      					<img src="${projectPro.photo}" onClick="location.href='/projects/show/${projectPro.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+	      				</div>
+		      			<h5 style="margin: 0.5vw; text-align:center">${projectPro.title}</h5>
 		      		</div>
 	      		</c:forEach>
 	      	</div>
@@ -63,11 +65,13 @@
 			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:0">
 			
 			<!-- Listado Proyectos No PRO -->
-			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
+			<div class="d-flex flex-wrap justify-content-center align-items-center">
 				<c:forEach items="${projectsNoPro}" var="projectNoPro">
-					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="${projectNoPro.photo}" onClick="location.href='/projects/show/${projectNoPro.id}'" class="rounded-circle w-50" style="cursor:pointer;width:5vw;height:5vw">
-						<h5 style="margin: 0.5vw">${projectNoPro.title}</h5>
+	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 20%; margin: 1vw;height:110%">
+						<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:12vh">
+							<img src="${projectNoPro.photo}" onClick="location.href='/projects/show/${projectNoPro.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+						</div>
+						<h5 style="margin: 0.5vw; text-align:center">${projectNoPro.title}</h5>
 					</div>
 				</c:forEach>
 			</div>

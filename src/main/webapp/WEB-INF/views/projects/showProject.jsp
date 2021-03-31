@@ -19,10 +19,11 @@
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
 	<!-- Header Proyecto -->
-	<div class="d-flex justify-content-between p-3" style="margin-bottom: 2%">
-			<div class="d-flex jsutify-content-center">
-	
-				<img src="${project.photo}" class="rounded-circle" style="width:10vw;height:10vw">
+	<div class="d-flex justify-content-between p-3" style="height:15%">
+			<div class="d-flex align-items-center" style="width:50%">
+				<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:12vh">
+					<img src="${project.photo}" style="width:100%;height:100%;object-fit:cover">			
+				</div>
 				<div class="py-3 mx-3" style="width:40%">
 					<h2>${project.title}</h2>
 				</div>
@@ -34,9 +35,10 @@
 		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
 			<h3 style="margin:0">Ficha técnica</h3>
 		</div>
-		<div class="d-flex justify-content-between" style="margin: 2% 5%;max-width:90%">
+		
+		<div class="d-flex justify-content-between" style="padding: 2% 5%;height:40vh">
 			<!-- Datos -->
-			<div class="w-100">
+			<div style="width:150%">
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Título</h5>
@@ -58,22 +60,31 @@
 			</div>
 			
 			<!-- Imagen - Video -->
-			<div class="d-flex justify-content-center" style="width:100%">
-				<img src="${project.photo}" class="w-50">
+			<div class="d-flex justify-content-center align-items-center" style="width:100vh">
+				<img src="${project.photo}" style="max-height:100%; max-width:100%">
 			</div>
 		</div>
+		
 		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
 			<h3 style="margin:0">Integrantes</h3>
 		</div>
-		<c:forEach items="${members}" var="member">
-			<div class="d-flex">
-			<img src="https://via.placeholder.com/150" class="w-50">
-				<div>
-					<h5>${member.name}</h5>
-					<p>${member.role}</p>
+			
+		<div style="padding: 2% 0;width:30%;margin:auto">
+			<c:forEach items="${members}" var="member">
+				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
+						<img src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
+					</div>
+					<div style="margin-left: 12%">
+						<h5>${member.name}</h5>
+						<p>${member.role}</p>
+					</div>
 				</div>
-			</div>
-		</c:forEach>
+				
+				<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1% auto">
+			</c:forEach>
+		</div>
+
 	</div>
 </body>
 </html>
