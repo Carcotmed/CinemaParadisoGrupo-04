@@ -20,6 +20,6 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	@Query("SELECT project FROM Project project WHERE project.pro = 0")
 	public List<Project> listNoProProjects();
 	
-	@Query("SELECT project FROM Project project WHERE project.genre =: filterGenre")
-	public List<Project> findProjectByGenre(@RequestParam("filterGenre") Genre filterGenre);
+	@Query("SELECT project FROM Project project WHERE project.genre =: filterGenre AND project.title LIKE '%filterTitle%'")
+	public List<Project> findProjectByGenreAndTitle(@RequestParam("filterGenre") Genre filterGenre,@RequestParam("filterTitle") String title);
 }

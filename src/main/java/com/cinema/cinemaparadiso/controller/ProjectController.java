@@ -53,13 +53,15 @@ public class ProjectController {
 		model.addAttribute("projectsFiltered", projectsFiltered);
 
 		List<Project> projectsProFiltrados = projects.stream()
-				.filter(a -> a.getPro()==true &&
-							(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
+				.filter(a -> a.getPro()==true
+				&& a.getTitle().contains(projectsFiltered.getTitle()) 
+				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
-				.filter(a -> a.getPro()==false &&
-							(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
+				.filter(a -> a.getPro()==false
+				&& a.getTitle().contains(projectsFiltered.getTitle()) 
+				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
 		
 		

@@ -42,10 +42,10 @@ public class ProjectService {
 		return noProProjects;
 	}
 	
-	public List<Project> projectFiltered(Genre filterGenre) {
-		List<Project> projectByGenre = new ArrayList<>();
-		projectByGenre =projectRepository.findProjectByGenre(filterGenre);
-		return projectByGenre;
+	public List<Project> projectFiltered(Genre filterGenre,String filterTitle) {
+		List<Project> projectByGenreAndTitle = new ArrayList<>();
+		projectByGenreAndTitle =projectRepository.findProjectByGenreAndTitle(filterGenre,filterTitle);
+		return projectByGenreAndTitle;
 	}
 	
 	
