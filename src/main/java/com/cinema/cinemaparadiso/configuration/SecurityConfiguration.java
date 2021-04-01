@@ -25,23 +25,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
+				//USERS
 				.antMatchers("/users/create").permitAll()
-				//artist
+				.antMatchers("/users/list").hasAnyAuthority("admin")
+				//ARTISTS
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
+				.antMatchers("/artists/update/{artistId}").permitAll()
+				.antMatchers("/artists/delete/{artistId}").permitAll()
+				.antMatchers("/artists/show/{artistId}").permitAll()
+				.antMatchers("/artists/myProjects").permitAll()
+				//MESSAGES
 				.antMatchers("/mensaje").permitAll()
 				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/artists/update/{artistId}").permitAll()
-				.antMatchers("/artists/delete/{artistId}").permitAll()
-				.antMatchers("/artists/show/{artistId}").permitAll()
-				.antMatchers("/users/list").hasAnyAuthority("admin")
+				//POST
 				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
+				//PROJECTS
+				.antMatchers("/projects/list").permitAll()
+				.antMatchers("/projects/create").permitAll()
+				.antMatchers("/projects/update/{projectId}").permitAll()
+				.antMatchers("/projects/delete/{projectId}").permitAll()
+				.antMatchers("/projects/show/{projectId}").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()

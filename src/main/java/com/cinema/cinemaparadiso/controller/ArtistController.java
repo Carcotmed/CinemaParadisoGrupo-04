@@ -42,9 +42,10 @@ public class ArtistController {
 		return "artists/showArtist";
 	}
 
-	@GetMapping(value = { "/myProjects/{artistId}" })
-	public String myProjectsArtist(@PathVariable("artistId") int artistId, Model model) {
-		Artist artist = artistService.findArtistById(artistId);
+	@GetMapping(value = { "/myProjects" })
+	public String myProjectsArtist(Model model) {
+		Artist artist = artistService.getPrincipal();
+		Integer artistId = artist.getId();
 		List<Project> myProjects = artistService.findMyProjects(artistId);
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
