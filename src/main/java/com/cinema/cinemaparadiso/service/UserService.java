@@ -26,6 +26,12 @@ public class UserService {
     @Autowired
     private AuthoritiesRepository authoritiesRepository;
 
+    
+
+    public long countUsers(){
+        return userRepository.count();
+    }
+
     public Iterable<User> list(){
         return userRepository.findAll();
     }
@@ -71,7 +77,7 @@ public class UserService {
     	userRepository.save(retrievedUser);
     }
     
-    //LO USO PARA COMPROBAR ARTISTA LOGUEADO (OSCAR)
+    //Comprobar user logeado
     
 	public User getPrincipal() {
 		User res = null;

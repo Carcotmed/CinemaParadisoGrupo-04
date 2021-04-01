@@ -1,8 +1,3 @@
-CREATE TABLE users(
-	username varchar_ignorecase(255) NOT NULL PRIMARY KEY,
-	password varchar_ignorecase(255) NOT NULL,
-	enabled BOOLEAN NOT NULL
-);
 
 CREATE TABLE projects(
 	id INTEGER NOT NULL PRIMARY KEY,
@@ -36,12 +31,10 @@ CREATE TABLE rel_projects_artists(
     UNIQUE (artist_id, project_id)
 );
 
-INSERT INTO users(username,password,enabled) VALUES ('admin','admin',TRUE),
-('adminTest','adminTest',TRUE),
-('ivanlot','ivanlot',TRUE),
-('user','user',TRUE),
-('artist','artist',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('adminTest','adminTest',TRUE), ('ivanlot','ivanlot',TRUE), ('user','user',TRUE), ('artist','artist',TRUE);
 
+INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
+INSERT INTO authorities(username,authority) VALUES ('admin','admin');
 
 INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (1,'De miedo','Miedo','https://i.pinimg.com/originals/73/09/3f/73093ff700637e9ce2aed290b9be255c.jpg',TRUE,2);
 INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (2,'Ciencia ficcion','Ciencia Ficcion','https://miro.medium.com/max/2400/1*onNN4P1jCC8DyS9GxUAm1w.jpeg',TRUE,1);
@@ -78,5 +71,4 @@ INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (6,1);
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (7,1);
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (5,2);
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (8,2);
---INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
---INSERT INTO authorities(username,authority) VALUES ('admin','admin');
+
