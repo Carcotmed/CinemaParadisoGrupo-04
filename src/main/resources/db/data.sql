@@ -1,36 +1,4 @@
 
-CREATE TABLE projects(
-	id INTEGER NOT NULL PRIMARY KEY,
-	description varchar_ignorecase(255) NOT NULL,
-	title varchar_ignorecase(255) NOT NULL,
-	photo varchar_ignorecase(255) NOT NULL,
-	pro BOOLEAN NOT NULL,
-	genre ENUM('ACTION',
-	'SCIFI',
-	'TERROR',
-	'PSYCHOLOGIC',
-	'HUMORISTIC',
-	'FICTION') NOT NULL
-);
-CREATE TABLE artists(
-	id INTEGER NOT NULL  PRIMARY KEY,
-	description varchar_ignorecase(255) NOT NULL,
-	name varchar_ignorecase(255) NOT NULL,
-	sur_name varchar_ignorecase(255) NOT NULL,
-	pro BOOLEAN NOT NULL,
-	summary varchar_ignorecase(255) NOT NULL,
-	username varchar_ignorecase(255) NOT NULL,
-	role ENUM('CAMERA','WRITER','ACTOR','DIRECTOR') NOT NULL
-);
-
-CREATE TABLE rel_projects_artists(
-	artist_id INTEGER NOT NULL,
-	project_id INTEGER NOT NULL,
-	FOREIGN KEY (artist_id) REFERENCES artists(id), 
-    FOREIGN KEY (project_id) REFERENCES projects(id),
-    UNIQUE (artist_id, project_id)
-);
-
 INSERT INTO users(username,password,enabled) VALUES ('adminTest','adminTest',TRUE), ('ivanlot','ivanlot',TRUE), ('user','user',TRUE), ('artist','artist',TRUE);
 
 INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
