@@ -18,21 +18,32 @@
 <title>Mis Proyectos</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
-	<div class="d-flex">
-		<div  class="d-flex flex-column justify-content-center">
-			<div>
-				<h4>Mis Proyectos</h4>
-				<button class="btn rounded-circle">+</button>
-			</div>
-			<c:forEach items="${myProjects}" var="myProject">
-				<div onClick="location.href='/artists/myProjects/${myProject.id}'">
-					<img src="${myProject.photo}" class="w-30">
-					<h6>${myProject.title}</h6>
-					<button onClick="location.href='/projects/delete/${myProject.id}'">Borrar</button>
-					<button onClick="location.href='/projects/update/${myProject.id}'">Editar</button>
-				</div>
-			</c:forEach>
+	<div  class="d-flex flex-column justify-content-center">
+	
+		<div class="d-flex justify-content-between" style="background-color:#4c4c4c; padding:1%">
+			<h4>Mis Proyectos</h4>
+			<button class="btn rounded-circle" style="background-color:#af3248" onClick="location.href='/projects/create'"><strong style="color:white">+</strong></button>
 		</div>
+		
+		<c:forEach items="${myProjects}" var="myProject">
+			<div class="d-flex justify-content-between align-items-evenly" style="padding:1% 2%;width:70%;height:12vh;margin:auto">
+				<div class="d-flex align-items-center" style="width:100%">
+					<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:10%">
+						<img src="${myProject.photo}" onClick="location.href='/projects/show/${myProject.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+					</div>
+					<h5 style="margin:0 2%">${myProject.title}</h5>
+				</div>
+				
+				<div class="d-flex justify-content-between align-items-center" style="width:18%">
+					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill" onClick="location.href='/projects/update/${myProject.id}'">Editar</button>
+					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill" onClick="location.href='/projects/delete/${myProject.id}'">Borrar</button>
+				</div>
+				
+			</div>
+			
+			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e81a1a; width:60%; margin:1% auto">
+			
+		</c:forEach>
 	</div>
 </body>
 </html>

@@ -98,6 +98,8 @@ public class ProjectController {
 	@GetMapping("/create")
 	public String initFormCreateProject(Model model) {
 		Project project = new Project();
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
 		return "projects/createOrUpdateProjectForm";
 	}
@@ -116,6 +118,8 @@ public class ProjectController {
 	@GetMapping("/update/{projectId}")
 	public String initFormUpdateProject(Model model, @PathVariable("projectId") Integer projectId) {
 		Project project = projectService.findProjectById(projectId);
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres", genres);
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		return "projects/createOrUpdateProjectForm";

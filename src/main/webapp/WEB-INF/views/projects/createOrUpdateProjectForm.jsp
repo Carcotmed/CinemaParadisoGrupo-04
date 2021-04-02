@@ -20,39 +20,23 @@
 <title>Mis Proyectos</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
-	<div class="d-flex">
-		<div  class="d-flex flex-column justify-content-center">
-			<div>
-				<h4>Mis Proyectos</h4>
-				<button class="btn rounded-circle">+</button>
-			</div>
-			<c:forEach items="${myProjects}" var="myProject">
-				<div onClick="location.href='/artists/myProjects/${myProject.id}'">
-					<img src="${myProject.photo}" class="w-30">
-					<h6>${myProject.title}</h6>
-				</div>
-			</c:forEach>
-		</div>
+	<div class="d-flex justify-content-center align-items-center" style="padding:2%">
 		
 		<!-- Info general Proyecto -->
-		<div>
-			<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
-				<h3 style="margin:0">Ficha técnica</h3>
-			</div>
 			
-			<div class="d-flex justify-content-between" style="padding: 2% 5%;height:40vh">
-				<form:form method="POST" action="create" modelAttribute="project">
+			<div class="d-flex justify-content-between" style="width:40%;">
+				<form:form method="POST" action="createOrUpdate" modelAttribute="project" style="width:100%">
 					<!-- Datos -->
-					<div style="width:150%">
-						<div style="margin:1% 0">
+					<div>
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#3e3e3e" path="title">Título</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="title">Título</form:label>
 							</div>
-							<form:input class="form-control" value="${project.title}" placeholder="Título" style="margin-left: 3%" type="text" path="title"></form:input>
+							<form:input class="form-control" value="${project.title}" placeholder="Título" style="margin-left: 3%;width:60%" type="text" path="title"></form:input>
 						</div>
-						<div style="margin:1% 0">
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#3e3e3e">Género</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" path="genre" style="background-color:#828282">Género</form:label>
 							</div>
 							<form:select class="form-control" style="width:60%" path="genre">
 								<form:option value="${project.genre}" selected="true">Selecciona un género</form:option>
@@ -61,27 +45,26 @@
 								</c:forEach>
 							</form:select>
 						</div>
-						<div>
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#3e3e3e" path="description">Resumen</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="description">Resumen</form:label>
 							</div>
-							<form:textarea class="form-control" value="${project.description}" placeholder="Descripción" style="margin-left: 3%" type="text" path="description"></form:textarea>
+							<form:textarea class="form-control" value="${project.description}" placeholder="Descripción" style="margin-left: 3%;width:60%" type="text" path="description"></form:textarea>
 						</div>
-						<div>
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#3e3e3e" path="photo">Url imagen</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="photo">Url imagen</form:label>
 							</div>
-							<form:input class="form-control" value="${project.photo}" placeholder="url" style="margin-left: 3%" type="text" path="photo"></form:input>
+							<form:input class="form-control" value="${project.photo}" placeholder="url" style="margin-left: 3%;width:60%" type="text" path="photo"></form:input>
 						</div>
 						
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
-							<form:button class="btn" style="color:white;background-color: #3e3e3e">Guardar</form:button>
+							<form:button class="btn" style="color:white;background-color: #af3248">Guardar</form:button>
 						</div>
 					</div>
 				</form:form>
 			</div>
 		
 		</div>
-	</div>
 </body>
 </html>
