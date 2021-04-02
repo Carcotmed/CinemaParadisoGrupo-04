@@ -25,7 +25,16 @@
 		<!-- Info general Proyecto -->
 			
 			<div class="d-flex justify-content-between" style="width:40%;">
-				<form:form method="POST" action="createOrUpdate" modelAttribute="project" style="width:100%">
+				<c:choose>
+					<c:when test="${buttonCreate == false}">
+						<c:set var="formAction" value="${project.id}" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="formAction" value="create" />
+					</c:otherwise>
+				</c:choose>
+				<form:form method="POST" action="${formAction}" modelAttribute="project" style="width:100%">
+				
 					<!-- Datos -->
 					<div>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
