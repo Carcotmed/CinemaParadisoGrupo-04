@@ -52,7 +52,7 @@ public class ArtistController {
 		model.addAttribute("myProjects",myProjects);
 		return "artists/myProjects";
 	}
-
+	
 	@GetMapping("/create")
 	public String initFormCreateArtist(Model model) {
 		Artist artist = new Artist();

@@ -1,5 +1,5 @@
 
-INSERT INTO users(username,password,enabled) VALUES ('adminTest','adminTest',TRUE), ('ivanlot','ivanlot',TRUE), ('user','user',TRUE), ('artist','artist',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('adminTest','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE), ('ivanlot','ivanlot',TRUE), ('user','user',TRUE), ('artist','artist',TRUE);
 
 INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
 INSERT INTO authorities(username,authority) VALUES ('admin','admin');
@@ -19,14 +19,14 @@ INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (11,'Para par
 INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (12,'Ficcion total','Futurismo','https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/gallery/5c0fc5e35cafe803d35b883b/peliculas-2019_0.jpg',FALSE,5);
 
 INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (1,'pepitod','pepito1','pepito1sur',TRUE,'pepito1sum','admin','CAMERA');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (2,'pepito2d','pepito2','pepito2sur',TRUE,'pepito2sum','admin','DIRECTOR');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (3,'pepito3d','pepito3','pepito3sur',FALSE,'pepito3sum','admin','WRITER');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (4,'pepito4d','pepito4','pepito4sur',FALSE,'pepito4sum','admin','ACTOR');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (2,'pepito2d','pepito2','pepito2sur',TRUE,'pepito2sum','adminTest','DIRECTOR');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (3,'pepito3d','pepito3','pepito3sur',FALSE,'pepito3sum','adminTest','WRITER');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (4,'pepito4d','pepito4','pepito4sur',FALSE,'pepito4sum','adminTest','ACTOR');
 
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (5,'juanitod','juanito1','juanito1sur',TRUE,'juanito1sum','admin','CAMERA');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (6,'juanito2d','juanito2','juanito2sur',TRUE,'juanito2sum','admin','DIRECTOR');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (7,'juanito3d','juanito3','juanito3sur',FALSE,'juanito3sum','admin','WRITER');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (8,'juanito4d','juanito4','juanito4sur',FALSE,'juanito4sum','admin','ACTOR');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (5,'juanitod','juanito1','juanito1sur',TRUE,'juanito1sum','adminTest','CAMERA');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (6,'juanito2d','juanito2','juanito2sur',TRUE,'juanito2sum','adminTest','DIRECTOR');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (7,'juanito3d','juanito3','juanito3sur',FALSE,'juanito3sum','adminTest','WRITER');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (8,'juanito4d','juanito4','juanito4sur',FALSE,'juanito4sum','adminTest','ACTOR');
 
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (1,1);
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (2,1);
