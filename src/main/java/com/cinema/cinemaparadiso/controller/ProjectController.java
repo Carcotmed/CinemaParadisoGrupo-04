@@ -99,6 +99,7 @@ public class ProjectController {
 	public String initFormCreateProject(Model model) {
 		Project project = new Project();
 		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("buttonCreate",true);
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
 		return "projects/createOrUpdateProjectForm";
@@ -119,6 +120,7 @@ public class ProjectController {
 	public String initFormUpdateProject(Model model, @PathVariable("projectId") Integer projectId) {
 		Project project = projectService.findProjectById(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("buttonCreate",false);
 		model.addAttribute("genres", genres);
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
