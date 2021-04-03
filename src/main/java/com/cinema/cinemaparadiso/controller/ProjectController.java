@@ -107,7 +107,9 @@ public class ProjectController {
 	}
 
 	@PostMapping("/create")
-	public String createProject(@Valid Project project, BindingResult result) {
+	public String createProject(@Valid Project project, BindingResult result, Model model) {
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres", genres);
 		if(!result.hasErrors()) {
 			projectService.createProject(project);
 
@@ -129,15 +131,19 @@ public class ProjectController {
 	}
 
 	@PostMapping("/update/{projectId}")
-	public String updateProject(Project project, @PathVariable("projectId") Integer projectId) {
-		try {
-			project.setId(projectId);
+	public String updateProject(@Valid Project project, @PathVariable("projectId") Integer projectId,BindingResult result, Model model) {
+//		Project pr = this.projectService.findProjectById(projectId);
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres", genres);
+		model.addAttribute("project", project);
+		if(!result.hasErrors()) {
 			projectService.editProject(project);
 			log.info("Project Updated Successfully");
-		} catch (Exception e) {
-			log.error("Error Updating Project", e);
+			return "redirect:/artists/myProjects";
+		} else {
+			return "projects/createOrUpdateProjectForm";
 		}
-		return "redirect:/artists/myProjects";
+		
 	}
 
 

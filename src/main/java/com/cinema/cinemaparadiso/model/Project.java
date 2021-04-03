@@ -11,6 +11,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.URL;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +25,7 @@ import lombok.Setter;
 public class Project extends BaseEntity {
     
 	@Column(name="title")
-	@NotEmpty(message="Es necesario añadir un título")
+	@Size(min=3,max=30,message="Es necesario que el titulo tenga entre 3 y 30 caracteres")
     private String title;
 	
 	@Column(name="genre")
@@ -43,6 +46,8 @@ public class Project extends BaseEntity {
 	@Column(name="pro")
 	private Boolean pro;
 	
+	@NotEmpty
+	@URL(message = "Es necesario añadir la URL de la imagen")
 	@Column(name="photo")
 	private String photo;	
 	

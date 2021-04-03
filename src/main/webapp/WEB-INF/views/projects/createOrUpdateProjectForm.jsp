@@ -67,6 +67,7 @@
 								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="photo">Url imagen</form:label>
 							</div>
 							<form:input class="form-control" value="${project.photo}" placeholder="url" style="margin-left: 3%;width:60%" type="text" path="photo"></form:input>
+							<form:errors path="photo"/>
 						</div>
 						
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
