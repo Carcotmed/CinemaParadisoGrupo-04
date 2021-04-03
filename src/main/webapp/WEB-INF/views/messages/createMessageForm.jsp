@@ -27,9 +27,9 @@
                     <td><input type="text" name="body" /></td>
                 </tr>
                 <tr>
-                    <td><fmt:formatDate value="${message.date}" type="date" pattern="yyyy/MM/dd HH:mm" var="date"/>
-           			 <input type="hidden" name="date" value="${date}"/></td>
-                    <td><input type="date" name="date" /></td>
+                    <td><fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>
+           			 <input type="hidden" name="messageDate" value="${messageDate}"/></td>
+                    <td><input type="date" name="messageDate" /></td>
                 </tr>
                     <td>
                         <button class="btn btn-default" type="submit">Crear</button>

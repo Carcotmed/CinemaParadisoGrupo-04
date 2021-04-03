@@ -35,7 +35,7 @@ public class Message extends BaseEntity{
 	@NotNull
 	//@PastOrPresent
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-	private Date date;
+	private Date messageDate;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "emisor_id")

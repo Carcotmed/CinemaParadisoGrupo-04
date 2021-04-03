@@ -32,8 +32,8 @@
                 <tr>
                   <td><c:out value="${message.issue}" /></td>
                   <td><c:out value="${message.body}" /></td>
-				  <fmt:formatDate value="${message.date}" type="date" pattern="yyyy/MM/dd HH:mm" var="date"/>
-				  <td><c:out value="${date}" /></td>
+				  <fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>
+				  <td><c:out value="${messageDate}" /></td>
 				  <td><c:out value="${message.emisor_id}" /></td>
 				  <td><c:out value="${message.receptor_id}" /></td>
 				  <td>
