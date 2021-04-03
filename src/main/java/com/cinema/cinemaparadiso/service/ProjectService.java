@@ -99,7 +99,13 @@ public class ProjectService {
 	
 	@Transactional
 	public void editProject(Project project) throws DataAccessException{
-			saveProject(project);	
+			Project project2 =findProjectById(project.getId());
+			project2.setId(project.getId());
+			project2.setTitle(project.getTitle());
+			project2.setGenre(project.getGenre());
+			project2.setDescription(project.getDescription());
+			project2.setPhoto(project.getPhoto());
+			saveProject(project2);	
 		
 	}
 

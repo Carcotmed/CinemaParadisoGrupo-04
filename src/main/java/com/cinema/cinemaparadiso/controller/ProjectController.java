@@ -132,11 +132,8 @@ public class ProjectController {
 	@PostMapping("/update/{projectId}")
 	public String updateProject(Project project, @PathVariable("projectId") Integer projectId) {
 		try {
-			Project proyectaso = this.projectService.findProjectById(projectId);
-			proyectaso.setId(projectId);
-			proyectaso.setTitle(project.getTitle());
-			System.out.println("-----------------------==========_----BEUNAS TRADES  "+ proyectaso.getTitle());
-			projectService.editProject(proyectaso);
+			project.setId(projectId);
+			projectService.editProject(project);
 			log.info("Project Updated Successfully");
 		} catch (Exception e) {
 			log.error("Error Updating Project", e);

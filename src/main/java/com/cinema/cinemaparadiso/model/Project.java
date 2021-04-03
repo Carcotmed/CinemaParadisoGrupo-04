@@ -10,6 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,10 +21,12 @@ import lombok.Setter;
 @Setter
 public class Project extends BaseEntity {
     
-	@Column(name="title")
+	@Column(name="title",unique = true)
+	@NotNull
     private String title;
 	
 	@Column(name="genre")
+	@NotNull
     private Genre genre;
 	
 	@Column(name="description")
