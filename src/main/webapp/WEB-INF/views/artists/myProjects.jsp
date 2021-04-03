@@ -36,7 +36,7 @@
 				
 				<div class="d-flex justify-content-between align-items-center" style="width:18%">
 					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill" onClick="location.href='/projects/update/${myProject.id}'">Editar</button>
-					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill" onClick="location.href='/projects/delete/${myProject.id}'">Borrar</button>
+					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill"  onClick="location.href='/projects/delete/${myProject.id}'">Borrar</button>
 				</div>
 				
 			</div>

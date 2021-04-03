@@ -8,17 +8,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 import com.cinema.cinemaparadiso.repository.ProjectRepository;
 
 @Service
 public class ProjectService {
 
 	private ProjectRepository projectRepository;
+	
+	@Autowired
+	private ArtistService artistService;
+	
+	@Autowired
+	private Rel_projects_artistsService rel_projects_artistsService;
 
 	@Autowired
 	public ProjectService(ProjectRepository projectRepository) {
@@ -61,25 +69,37 @@ public class ProjectService {
 		return projectRepository.findById(id).get();
 	}
 	
+	@Transactional
+	public void deleteRelation(Integer projectId) throws DataAccessException{
+		Integer actualId = artistService.getPrincipal().getId();
+		Integer relacionId = rel_projects_artistsService.findRelation(actualId, projectId).getId();
+		rel_projects_artistsService.delete(relacionId);
+	}
 	
 	@Transactional
 	public void deleteProject(Integer projectId) throws DataAccessException{
-			projectRepository.deleteById(projectId);	
+		projectRepository.deleteById(projectId);	
 	}
 	
 	public void createProject(Project project){
-	       saveProject(project);
+		saveProject(project);
+		//Creamos la relación
+		Integer actualId = artistService.getPrincipal().getId();
+		Integer projectId = project.getId();
+		Rel_projects_artists relacion = new Rel_projects_artists();
+		relacion.setArtist_id(actualId);
+		relacion.setProject_id(projectId);
+		rel_projects_artistsService.create(relacion);
 	}
 	
 	@Transactional
 	public void saveProject(Project project) throws DataAccessException{
-			projectRepository.save(project);		
+			projectRepository.save(project);
 	}
 	
 	@Transactional
-	public void editProject(Integer projectId) throws DataAccessException{
-			Project project = findProjectById(projectId);
-			projectRepository.save(project);	
+	public void editProject(Project project) throws DataAccessException{
+			saveProject(project);	
 		
 	}
 

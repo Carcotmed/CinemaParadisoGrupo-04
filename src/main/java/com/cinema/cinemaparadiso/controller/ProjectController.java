@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
@@ -84,15 +86,15 @@ public class ProjectController {
 		return "projects/showProject";
 	}
 	
-	@PostMapping("/delete/{projectId}")
-	public String deleteProject(@PathVariable("projectId") Integer projectId, BindingResult result) {
+	@GetMapping("/delete/{projectId}")
+	public String deleteProject(@PathVariable("projectId") Integer projectId) {
 		try {
-			projectService.deleteProject(projectId);
+			projectService.deleteRelation(projectId);
 			log.info("Project Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Project", e);
 		}
-		return "project/listProject";
+		return "redirect:/artists/myProjects";
 	}
 	
 	@GetMapping("/create")
@@ -113,7 +115,7 @@ public class ProjectController {
 		} catch (Exception e) {
 			log.error("Error Create Project", e);
 		}
-		return "project/listProject";
+		return "redirect:/artists/myProjects";
 	}
 	
 	@GetMapping("/update/{projectId}")
@@ -128,14 +130,18 @@ public class ProjectController {
 	}
 
 	@PostMapping("/update/{projectId}")
-	public String updateProject(@PathVariable("projectId") Integer projectId, BindingResult result) {
+	public String updateProject(Project project, @PathVariable("projectId") Integer projectId) {
 		try {
-			projectService.editProject(projectId);
+			Project proyectaso = this.projectService.findProjectById(projectId);
+			proyectaso.setId(projectId);
+			proyectaso.setTitle(project.getTitle());
+			System.out.println("-----------------------==========_----BEUNAS TRADES  "+ proyectaso.getTitle());
+			projectService.editProject(proyectaso);
 			log.info("Project Updated Successfully");
 		} catch (Exception e) {
 			log.error("Error Updating Project", e);
 		}
-		return "project/listProject";
+		return "redirect:/artists/myProjects";
 	}
 
 
