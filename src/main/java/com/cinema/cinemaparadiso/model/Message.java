@@ -30,11 +30,19 @@ public class Message extends BaseEntity{
 	@NotNull
 	private String body;
 	
-	@Column(name = "date")
+	@Column(name = "messagedate")
 	@NotNull
 	//@PastOrPresent
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-	private Date date;
+	private Date messagedate;
+	
+	@NotNull
+	@Column(name = "emisor_id")
+	private Integer emisor_id;
+	
+	@NotNull
+	@Column(name = "recepetor_id")
+	private Integer recepetor_id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
