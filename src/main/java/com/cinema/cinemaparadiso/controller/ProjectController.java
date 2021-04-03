@@ -132,7 +132,7 @@ public class ProjectController {
 
 	@PostMapping("/update/{projectId}")
 	public String updateProject(@Valid Project project, @PathVariable("projectId") Integer projectId,BindingResult result, Model model) {
-//		Project pr = this.projectService.findProjectById(projectId);
+		project.setId(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
@@ -143,6 +143,7 @@ public class ProjectController {
 		} else {
 			return "projects/createOrUpdateProjectForm";
 		}
+		
 		
 	}
 
