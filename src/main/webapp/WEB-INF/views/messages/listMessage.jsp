@@ -23,6 +23,7 @@
                     <th>FECHA</th>
                     <th>ID DEL EMISOR</th>
                     <th>ID DEL RECEPTOR</th>
+                    <th>             </th>
                 </tr>
             </thead>
             
@@ -33,19 +34,21 @@
 				  <fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>
 				  <td><c:out value="${messageDate}" /></td>
 				  <td>
-				  <td><c:out value="${message.emisor_id}" /></td>
-				  <td><c:out value="${message.receptor_id}" /></td>
-				  <spring:url value="/messages/show/{messageId}" var="showUrl">
-				  <spring:param name="messageId" value="${message.id}"/>
-				  <a href="${fn:escapeXml(showUrl)}" class="btn btn-danger">Mostrar</a>
-				  
-				 </spring:url>
-				 
-				 <spring:url value="/messages/delete/{messageId}" var="deleteUrl">
-				<spring:param name="messageId" value="${message.id}"/>
-				<a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Borrar</a>
-			
-				</spring:url>
+				  <td><c:out value="${message.emisor.username}" /></td>
+				  <td><c:out value="${message.receptor.username}" /></td>
+                  <td>
+                    <spring:url value="/messages/show/{messageId}" var="showUrl">
+                        <spring:param name="messageId" value="${message.id}"/>
+                    </spring:url>
+
+                    <a href="${fn:escapeXml(showUrl)}" class="btn btn-danger">Mostrar</a>
+                   
+                    <spring:url value="/messages/delete/{messageId}" var="deleteUrl">
+                        <spring:param name="messageId" value="${message.id}"/>              
+                    </spring:url>
+                    <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Borrar</a>
+
+                </td>
                 </tr>
                 </c:forEach>
             </tbody>

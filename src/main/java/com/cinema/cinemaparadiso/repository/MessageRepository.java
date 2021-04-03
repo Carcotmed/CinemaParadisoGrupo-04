@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MessageRepository extends CrudRepository<Message,String>{
 
-	@Query("SELECT message FROM Message message WHERE message.emisor.username =: username")
-	public Iterable<Message> findByUsername(@Param("username") String username);
+	@Query("SELECT ALL m FROM Message m WHERE m.emisor.username = :usernameQuery")
+	public Iterable<Message> findByUsername(@Param("usernameQuery") String username);
 	
 }

@@ -50,7 +50,7 @@ public class MessageController {
         return "messages/showMessage";
     }
 
-    @PostMapping("/create/{userId}")
+    @PostMapping("/create")
     public String create(Model model, String userId, Message message){
     	try {
     		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -62,7 +62,7 @@ public class MessageController {
     		model.addAttribute("Estado", "Error, entidad incorrecta");
 		}
         log.info("Creating Messages..."+message.toString());
-        return "messages/createMessage";
+        return "messages/createMessageForm";
     }
 
     @DeleteMapping("/delete/{messageId}")
@@ -76,6 +76,6 @@ public class MessageController {
     		model.addAttribute("Estado", "Error, identificador incorrecto");
             log.error("Error Deleting Message..."+messageId);
 		}
-        return "messages/deleteMessage";
+        return "messages/listMessage";
     }
 }
