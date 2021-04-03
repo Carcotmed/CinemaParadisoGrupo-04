@@ -4,18 +4,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
@@ -102,18 +101,18 @@ public class ProjectController {
 		Project project = new Project();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("buttonCreate",true);
-		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
+		model.addAttribute("genres", genres);
 		return "projects/createOrUpdateProjectForm";
 	}
 
 	@PostMapping("/create")
-	public String createProject(@Validated Project project, BindingResult result) {
-		try {
+	public String createProject(@Valid Project project, BindingResult result) {
+		if(!result.hasErrors()) {
 			projectService.createProject(project);
-			log.info("Project Created Successfully");
-		} catch (Exception e) {
-			log.error("Error Create Project", e);
+
+		}else {
+			return "projects/createOrUpdateProjectForm";
 		}
 		return "redirect:/artists/myProjects";
 	}

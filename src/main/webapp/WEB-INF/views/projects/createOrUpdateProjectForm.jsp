@@ -42,6 +42,7 @@
 								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="title">Título</form:label>
 							</div>
 							<form:input class="form-control" value="${project.title}" placeholder="Título" style="margin-left: 3%;width:60%" type="text" path="title"></form:input>
+							<form:errors path="title"/>
 						</div>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
@@ -53,6 +54,7 @@
 									<form:option value="${genre}">${genre}</form:option>
 								</c:forEach>
 							</form:select>
+							<form:errors path="genre"/>
 						</div>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">

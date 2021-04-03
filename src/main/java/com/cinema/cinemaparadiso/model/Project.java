@@ -9,8 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,12 +21,12 @@ import lombok.Setter;
 @Setter
 public class Project extends BaseEntity {
     
-	@Column(name="title",unique = true)
-	@NotNull
+	@Column(name="title")
+	@NotEmpty(message="Es necesario añadir un título")
     private String title;
 	
 	@Column(name="genre")
-	@NotNull
+	@NotNull (message = "Es necesario seleccionar un genero")
     private Genre genre;
 	
 	@Column(name="description")
@@ -44,6 +44,7 @@ public class Project extends BaseEntity {
 	private Boolean pro;
 	
 	@Column(name="photo")
-	private String photo;		
+	private String photo;	
+	
  
 }
