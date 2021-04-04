@@ -24,6 +24,19 @@ public class StoryService {
 	public void editStory(Integer storyId) throws DataAccessException{
 			Story story = findStoryById(storyId);
 			storyRepository.save(story);	
+  }
+
+	public void createStory(Story story){
+	       saveStory(story);
+	}
+	
+	@Transactional
+	public void saveStory(Story story) throws DataAccessException{
+			storyRepository.save(story);	
+	}
+
+	public Iterable<Story> list() {
+		return storyRepository.findAll();
 	}
 	
 	@Transactional(readOnly = true)
