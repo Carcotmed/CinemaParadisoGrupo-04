@@ -25,7 +25,7 @@ import lombok.Setter;
 public class Project extends BaseEntity {
     
 	@Column(name="title")
-	@Size(min=3,max=30,message="Es necesario que el título tenga entre 3 y 30 carácteres")
+	@Size(min=3,max=30,message="Es necesario que el título tenga entre 3 y 30 caracteres")
     private String title;
 	
 	@Column(name="genre")
@@ -33,6 +33,7 @@ public class Project extends BaseEntity {
     private Genre genre;
 	
 	@Column(name="description")
+	@Size(max=900,message="Use una url con menos de 900 caracteres")
     private String description;
 
 	@JoinTable(
@@ -48,6 +49,7 @@ public class Project extends BaseEntity {
 	
 	@URL(message = "Debe ser una url válida")
 	@NotEmpty(message = "Debe introducir una url")
+	@Size(max=200,message="Use una url con menos de 200 caracteres")
 	@Column(name="photo")
 	private String photo;	
 	
