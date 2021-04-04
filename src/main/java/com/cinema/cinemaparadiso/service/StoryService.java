@@ -20,6 +20,17 @@ public class StoryService {
 		this.storyRepository = storyRepository;
 	}
 
+	public void createStory(Story story){
+	       saveStory(story);
+	}
+	
+	@Transactional
+	public void saveStory(Story story) throws DataAccessException{
+
+			storyRepository.save(story);	
+		
+	}
+
 	public Iterable<Story> list() {
 		return storyRepository.findAll();
 	}
@@ -28,7 +39,5 @@ public class StoryService {
 	public Story findStoryById(int id) throws DataAccessException {
 		return storyRepository.findById(id).get();
 	}
-
-
 
 }

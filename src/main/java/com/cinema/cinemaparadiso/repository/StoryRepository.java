@@ -7,5 +7,5 @@ import com.cinema.cinemaparadiso.model.Story;
 
 @Repository
 public interface StoryRepository extends CrudRepository<Story,Integer>{
-	    
+
 }
