@@ -19,30 +19,44 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>NIF</th>
-                    <th>DESCRIPTION</th>
+                    <th>NAME</th>
+                    <th>SURNAME</th>
+                    <th>USERNAME</th>
+                    <th>            </th>
                 </tr>
             </thead>
             
             <tbody>
                 <c:forEach items="${producers}" var="producer">
                 <tr>
-                  <td><c:out value="${producer.nif}" /></td>
-                  <td><c:out value="${producer.description}" /></td>
-                  
-				 <%--  <spring:url value="/producers/list/{producerNIF}/show" var="showUrl">
-				  <spring:param name="producerNIF" value="${producer.NIF}"/>
+                  <td><c:out value="${producer.name}" /></td>
+                  <td><c:out value="${producer.surName}" /></td>
+                  <td><c:out value="${producer.user.username}" /></td>
+                  <td>
+				  <spring:url value="/producers/show/{producerUsername}" var="showUrl">
+				  <spring:param name="producerUsername" value="${producer.user.username}"/>
+				
+				 </spring:url> 
 				  <a href="${fn:escapeXml(showUrl)}" class="btn btn-danger">Mostrar</a>
-				  
-				 </spring:url> --%>
 				 
-				<%--  <spring:url value="/producers/delete/{producerNIF}" var="deleteUrl">
-				  <spring:param name="producerNIF" value="${producer.NIF}"/>
-				<a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Borrar</a>
-			
-				</spring:url> --%>
+				 
+				 <spring:url value="/producers/delete/{producerUsername}" var="deleteUrl">
+				  <spring:param name="producerNIF" value="${producer.user.username}"/>
+
+				</spring:url> 
+				  <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Borrar</a>
+				  
+				  <spring:url value="/producers/update/{producerUsername}" var="deleteUrl">
+				  <spring:param name="producerNIF" value="${producer.user.username}"/>
+				  </spring:url> 
+				  	<a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Actualizar</a>
+				  
+				  
+				</td>
                 </tr>
+                 
                 </c:forEach>
+                
             </tbody>
         </table>
         
@@ -50,10 +64,8 @@
 		</spring:url>
 	
 		<a href="${fn:escapeXml(createUrl)}" class="btn btn-danger">Crear</a>
+		<button class="btn btn-danger" onclick="location.href = '/';">Volver</button> 
    	    </div>
-   	    
-     	<button class="btn btn-default" onclick="location.href = '/';">Volver</button>    		
-    
-    
+
 </body>
 </html>

@@ -18,12 +18,12 @@
             <legend>Datos del productor</legend>
             <table>
                 <tr>
-                    <td><label>NIF: </label></td>
-                    <td><input type="text" name="nif" /></td>
+                    <td><label>NAME: </label></td>
+                    <td><input type="text" name="name" /></td>
                 </tr>
                 <tr>
-                    <td><label>Description: </label></td>
-                    <td><input type="text" name="description" /></td>
+                    <td><label>SURNAME: </label></td>
+                    <td><input type="text" name="surName" /></td>
                 </tr>
                 <tr>
                     <td>
@@ -31,10 +31,10 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <c:choose>
                         <c:when test="${isNew}">
-                            <button class="btn btn-default" type="submit">Crear</button>
+                            <button class="btn btn-danger" type="submit">Crear</button>
                         </c:when>
                         <c:otherwise>
-                            <button class="btn btn-default" type="submit">Actualizar</button>
+                            <button class="btn btn-danger" type="submit">Actualizar</button>
                         </c:otherwise>
                     </c:choose>
 
@@ -43,7 +43,7 @@
                     </td>
                 </tr>
             </table>
-            <button class="btn btn-default" onclick="location.href = '/producers/list';">Cancelar</button>
+            <button class="btn btn-danger" onclick="location.href = '/producers/list';">Cancelar</button>
         </fieldset>
     </form>
 </body>
