@@ -35,7 +35,7 @@
             </tbody>
         </table>
 
-     	<button class="btn btn-danger" onclick="location.href = '/messages/list';">Volver</button>    		
+     	<button class="btn btn-danger" onclick="location.href = '/producers/list';">Volver</button>    		
     </div>
 </body>
 </html>

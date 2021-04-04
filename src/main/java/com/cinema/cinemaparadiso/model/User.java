@@ -17,6 +17,10 @@ public class User {
     private String username;
     private String password;
     private boolean enabled;
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", enabled=" + enabled + "]";
+	}
     
  
 }

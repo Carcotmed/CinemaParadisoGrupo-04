@@ -15,17 +15,17 @@
     <title>Nuevo Productor</title>
 </head>
 <body>
-    <form:form action = ""  modelAttribute="producer" method = "post">
+    <form:form action = "" modelAttribute="producer" method = "post">
         <fieldset>
             <legend>Datos del productor</legend>
             <table>
                 <tr>
-                    <td><form:label path="name">NAME: </form:label></td>
-                    <td><form:input path="name" /></td>
+                    <td><form:label path="nif">Nif: </form:label></td>
+                    <td><form:input path="nif" /></td>
                 </tr>
                 <tr>
-                    <td><form:label path="surName">SURNAME: </form:label></td>
-                    <td><form:input path="surName" /></td>
+                    <td><form:label path="description">Description: </form:label></td>
+                    <td><form:input path="description" /></td>
                 </tr>
                 <tr>
                     <td>

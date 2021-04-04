@@ -7,6 +7,7 @@ import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,9 @@ public class ProducerController {
     @Autowired
     private ProducerService producerService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/list")
     public String list(Model model){
         Iterable<Producer> producers = producerService.list();
@@ -48,13 +52,17 @@ public class ProducerController {
     public String initFormCreateProducer(Model model){
         Producer producer = new Producer();
         model.addAttribute("producer", producer);
-    	System.out.println("Hola, entré-------------------------------------------------");
         return "producers/createUpdateProducerForm";
     }
 
     @PostMapping("/create")
-    public String createProducer(@Validated Producer producer, BindingResult result){
+    public String createProducer(Model model, @ModelAttribute("producer") @Validated Producer producer, BindingResult result){
         try{
+        	String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        	User user = userService.getUserByUsername(username);
+        	producer.setUser(user);
+        	System.out.println(producer.toString());
+        	System.out.println("-------------------------------------------------------------------------------------------------");
             producerService.saveProducer(producer);
             log.info("Producer Created Successfully");
         }catch(Exception e){
@@ -74,6 +82,9 @@ public class ProducerController {
     @PostMapping("/update/{producerUsername}")
     public String updateProducer(@Validated @ModelAttribute("producer") Producer producer, BindingResult result, @PathVariable("producerUsername") String producerUsername){
         try{
+        	String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        	User user = userService.getUserByUsername(username);
+        	producer.setUser(user);
             producerService.saveProducer(producer);
             log.info("Producer Updated Successfully");
         }catch(Exception e){
