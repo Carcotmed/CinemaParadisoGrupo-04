@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/list").authenticated() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/show/{messageId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/delete/**").permitAll() //hasAnyAuthority("authenticated")
+				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/artists/update/{artistId}").permitAll()
 				.antMatchers("/artists/delete/{artistId}").permitAll()
 				.antMatchers("/artists/show/{artistId}").permitAll()
@@ -43,6 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.anyRequest().denyAll()
+				//.anyRequest().permitAll()
 				.and()
 				 	.formLogin()
 				 	/*.loginPage("/login")*/

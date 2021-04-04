@@ -37,11 +37,11 @@ public class Message extends BaseEntity{
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private Date messageDate;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "emisor_id")
 	private User emisor;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "receptor_id")
 	private User receptor;
 }

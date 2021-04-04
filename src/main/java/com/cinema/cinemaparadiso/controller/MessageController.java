@@ -82,8 +82,9 @@ public class MessageController {
         return "messages/createMessageForm";
     }
 
-    @PostMapping("/delete/{messageId}")
-    public String delete(Model model, @PathVariable("messageId") Integer messageId){
+    @GetMapping("/delete/{messageId}")
+    public String initDelete(Model model, @PathVariable("messageId") Integer messageId){
+
     	try {
     		Message message = messageService.findById(messageId);
     		messageService.delete(message);
@@ -93,13 +94,6 @@ public class MessageController {
     		model.addAttribute("Estado", "Error, identificador incorrecto");
             log.error("Error Deleting Message..."+messageId);
 		}
-        return "messages/listMessage";
-    }
-
-    @GetMapping("/delete/{messageId}")
-    public String initDelete(Model model, @PathVariable("messageId") Integer messageId){
-        Message message = messageService.findById(messageId);
-        model.addAttribute("message", message);
-        return "messages/showMessage";
+        return "redirect:/messages/list";
     }
 }
