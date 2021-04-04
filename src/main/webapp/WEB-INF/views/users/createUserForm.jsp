@@ -14,30 +14,40 @@
     <title>Nuevo Usuario</title>
 </head>
 <body>
-    <form:form action = "/users/create"  modelAttribute="user" method = "post">
+<form action="create" method="get">
+<select id="tipoUser">
+  <option value="artist">Artista</option>
+  <option value="producer" selected>Productor</option>
+  <option value="writer">Escritor</option>
+</select>
+</form>
+<p> ${tipoUser}</p>
+    <form:form action = "create"  modelAttribute="user" method = "post">
         <fieldset>
             <legend>Datos del usuario</legend>
             <table>
                 <tr>
                     <td><form:label path="username">Usuario: </form:label></td>
-                    <td><form:input type="text" path="username" /></td>
+                    <td><form:input value="${user.username}" placeholder="example" type="text" path="username" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="password">Clave: </form:label></td>
-                    <td><form:input type="text" path="password" /></td>
+                    <td><form:input value="${user.password}" type="password" path="password" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="email">Email: </form:label></td>
-                    <td><form:input type="text" path="email" /></td>
+                    <td><form:input value="${user.email}" placeholder="example@example.com" type="text" path="email" /></td>
                 </tr>
-                <td><form:label>Tipo de usuario: </form:label></td>
-                <button onClick="<c:set var='tipoUser' value='artist'  /> "> Artista<br>
-                <button onClick="<c:set var='tipoUser' value='producer'  /> "> Productor<br>
-                <button onClick="<c:set var='tipoUser' value='writer'  /> "> Escritor<br>
                 <tr>
+                <td><h1>Tipo de usuario:</h1></td><br>
+                 <td><button onClick="<c:set var='tipoUser' value='artist'  /> ">Artista</button>
+                 <button onClick="<c:set var='tipoUser' value='producer'  /> ">Productor</button>
+                 <button onClick="<c:set var='tipoUser' value='writer'  /> ">Escritor</button></td>
+                </tr>
+                
                 <c:choose>
 					<c:when test="${tipoUser == artist}">
-						<form:form action = "/artist/create"  modelAttribute="artist" method = "post">
+						<form:form action = "/artists/create"  modelAttribute="artist" method = "post">
 						    <form:label path="name">Nombre: </form:label>
                             <form:input value="${artist.name}" placeholder="Nombre"  type="text" path="username" /><br>
 						    <form:label path="username">Apellidos: </form:label>
@@ -74,7 +84,7 @@
 							</form:form>
 					</c:when>
 					<c:when test="${tipoUser == producer}">
-					<form:form action = "/producer/create"  modelAttribute="producer" method = "post">
+					<form:form action = "/producers/create"  modelAttribute="producer" method = "post">
 						<form:label path="name">Nombre: </form:label>
                             <form:input value="${producer.name}" placeholder="Nombre"  type="text" path="username" /><br>
 						    <form:label path="username">Apellidos: </form:label>
@@ -98,7 +108,7 @@
                             <form:input value="${producer.nif}" placeholder="NIF"  type="text" path="nif" /><br>
                             </form:form>
 					</c:when>
-					<c:otherwise>
+					<c:when test="${tipoUser == writer}">
 						<form:form action = "/writer/create"  modelAttribute="writer" method = "post">
 						<form:label path="name">Nombre: </form:label>
                             <form:input value="${writer.name}" placeholder="Nombre"  type="text" path="username" /><br>
@@ -120,7 +130,7 @@
 							</div>
 							<form:input class="form-control" value="${writer.photo}" placeholder="url" style="margin-left: 3%;width:60%" type="text" path="photo"></form:input>
 							</form:form>
-					</c:otherwise>
+					</c:when>
 				</c:choose>
               </tr> 
               <tr>

@@ -44,7 +44,7 @@ public class ArtistController {
 	public String initFormCreateArtist(Model model) {
 		Artist artist = new Artist();
 		model.addAttribute("artist", artist);
-		return "artists/createOrUpdateArtistForm";
+		return "artists/createOrUpdateUserForm";
 	}
 
 	@PostMapping("/create")
@@ -55,7 +55,7 @@ public class ArtistController {
 		} catch (Exception e) {
 			log.error("Error Create Artist", e);
 		}
-		return "artist/listArtist";
+		return "index";
 	}
 
 	@GetMapping("/update/{artistId}")

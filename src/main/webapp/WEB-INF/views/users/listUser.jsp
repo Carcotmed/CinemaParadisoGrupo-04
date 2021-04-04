@@ -27,9 +27,9 @@
             <tbody>
                 <c:forEach items="${users}" var="user">
                 <tr>
-                    <th></c:out value = "${user.username}" ></th>
+                    <%-- <th></c:out value = "${user.username}" ></th>
                     <th></c:out value = "${user.password}" ></th>
-                    <th></c:out value = "${user.enabled}" ></th>
+                    <th></c:out value = "${user.enabled}" ></th> --%>
                 </tr>
                 </c:forEach>
             </tbody>
