@@ -20,7 +20,6 @@ public class Producer extends Person {
 	
 	@NotBlank
 	@Pattern(regexp = "^[0-9]{8}[A-Z]$")
-	// Falta poner patrón que conste de 9 números seguido de una letra, no deja poner la anotación @Pattern (regx =)
 	@Column(name="nif")
 	private String nif;
 	

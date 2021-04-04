@@ -20,9 +20,17 @@
             <legend>Datos del productor</legend>
             <table>
                 <tr>
-                    <td><form:label path="nif">Nif: </form:label></td>
+                    <td><form:label path="nif">NIF: </form:label></td>
                     <td><form:input path="nif" /></td>
                 </tr>
+                  <tr>
+                    <td><form:label path="name">NAME: </form:label></td>
+                    <td><form:input path="name" /></td>
+                </tr>
+                 <tr>
+                    <td><form:label path="surName">SURNAME: </form:label></td>
+                    <td><form:input path="surName" /></td>
+                </tr> 
                 <tr>
                     <td><form:label path="description">Description: </form:label></td>
                     <td><form:input path="description" /></td>
