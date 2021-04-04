@@ -28,35 +28,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/users/create").permitAll()
 				//Producer
 				.antMatchers("/producers/list").permitAll()
-				.antMatchers("/producers/create").permitAll()
+				.antMatchers("/producers/create").authenticated()
 				.antMatchers("/producers/show/**").permitAll()
-				.antMatchers("/producers/update/**").permitAll()
-
+				.antMatchers("/producers/update/**").authenticated()
+				.antMatchers("/producers/delete/**").authenticated()
 				//artist
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
+				.antMatchers("/artists/update/{artistId}").permitAll()
+				.antMatchers("/artists/delete/{artistId}").permitAll()
+				.antMatchers("/artists/show/{artistId}").permitAll()
+				//message
 				.antMatchers("/mensaje").permitAll()
 				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/producers/list").permitAll()
-				.antMatchers("/producers/create").permitAll()
-				.antMatchers("/producers/update/**").permitAll()
-				.antMatchers("/producers/delete/**").permitAll()
 				.antMatchers("/messages/list").authenticated() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/create/{userId}").authenticated() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/delete/{messageId}").authenticated() //hasAnyAuthority("authenticated")
-				.antMatchers("/artists/update/{artistId}").permitAll()
-				.antMatchers("/artists/delete/{artistId}").permitAll()
-				.antMatchers("/artists/show/{artistId}").permitAll()
+				//user
 				.antMatchers("/users/list").hasAnyAuthority("admin")
+				//post
 				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
+				//writer
 				.antMatchers("/writers/list").permitAll()
 				.antMatchers("/writers/show/{writerId}").permitAll()
+				//story
 				.antMatchers("/stories/update/{storyId}").permitAll()
 				.antMatchers("/stories/create").permitAll()
 				.antMatchers("/stories/list").permitAll()

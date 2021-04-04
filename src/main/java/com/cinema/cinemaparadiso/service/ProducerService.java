@@ -1,14 +1,11 @@
 package com.cinema.cinemaparadiso.service;
 
-import com.cinema.cinemaparadiso.model.Authorities;
 import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ProducerRepository;
 
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +13,11 @@ public class ProducerService {
     
     @Autowired
     private ProducerRepository producerRepository;
+    
+    public boolean existeProducerByUsername(String username) {
+    	Integer count = producerRepository.countByUsername(username);
+    	return count != 0;
+    }
     
     public long countProducers(){
         return producerRepository.count();
@@ -31,6 +33,10 @@ public class ProducerService {
     
     public Producer getProducerByUsername(String username) throws NoSuchElementException {
     	return producerRepository.findByUser(username);
+    }
+    
+    public Producer getProducerById(Integer id) throws NoSuchElementException {
+    	return producerRepository.findById(id).get();
     }
     
     public void saveProducer(Producer producer){

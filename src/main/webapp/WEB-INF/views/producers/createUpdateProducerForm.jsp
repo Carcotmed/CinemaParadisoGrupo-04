@@ -26,6 +26,7 @@
                 <tr>
                     <td><form:label path="description">Description: </form:label></td>
                     <td><form:input path="description" /></td>
+                    <td><form:hidden path="id"/></td>
                 </tr>
                 <tr>
                     <td>
@@ -45,8 +46,8 @@
                     </td>
                 </tr>
             </table>
-            <button class="btn btn-danger" onclick="location.href = '/producers/list';">Cancelar</button>
         </fieldset>
     </form:form>
+    <button class="btn btn-danger" onclick="location.href = '/producers/list'">Cancelar</button>
 </body>
 </html>

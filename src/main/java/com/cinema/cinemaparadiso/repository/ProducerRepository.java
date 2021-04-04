@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProducerRepository extends CrudRepository<Producer,String>{
+public interface ProducerRepository extends CrudRepository<Producer,Integer>{
 	
 	@Query("SELECT producer FROM Producer producer WHERE producer.user.username = :usernameQuery")
 	Producer findByUser(@Param("usernameQuery") String username);
@@ -17,5 +17,8 @@ public interface ProducerRepository extends CrudRepository<Producer,String>{
 	//List<User> findByEnabled(Boolean enabled);
 
 	Optional<Producer> findByNif(String nif);
+
+	@Query("SELECT COUNT(*) FROM Producer producer WHERE producer.user.username = :usernameQuery")
+	Integer countByUsername(@Param("usernameQuery") String username);
     
 }
