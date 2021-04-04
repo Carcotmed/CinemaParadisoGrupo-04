@@ -1,16 +1,23 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.service.ArtistService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,17 +32,56 @@ public class ArtistController {
 
 	@GetMapping("/list")
 	public String list(Model model) {
+		List<Role> roles = Arrays.asList(Role.values());
+		Artist artistsFiltered = new Artist();
 		Iterable<Artist> artists = artistService.list();
+		
 		model.addAttribute("artists", artists);
+		model.addAttribute("artistsPro", artistService.listProArtist());
+		model.addAttribute("artistsNoPro", artistService.listNoProArtist());
+		model.addAttribute("roles", roles);
+		model.addAttribute("artistsFiltered", artistsFiltered);
+		
 		log.info("Listing Artists..." + artists.toString());
+		return "artists/listArtist";
+	}
+	
+	@PostMapping("/list")
+	public String list(@ModelAttribute("artistsFiltered") Artist artistsFiltered,Model model) {
+		List<Role> roles = Arrays.asList(Role.values());
+		List<Artist> artists = artistService.list();
+		
+		model.addAttribute("artists", artists);
+		model.addAttribute("artistsFiltered", artistsFiltered);
+
+		List<Artist> artistasProFiltrados = artists.stream()
+				.filter(a -> a.getPro()==true &&
+							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
+							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
+				).collect(Collectors.toList());
+		
+		List<Artist> artistasNoProFiltrados = artists.stream()
+				.filter(a -> a.getPro()==false &&
+							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
+							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
+				).collect(Collectors.toList());
+		
+		
+		model.addAttribute("artistsPro", artistasProFiltrados);
+		model.addAttribute("artistsNoPro", artistasNoProFiltrados);
+		model.addAttribute("roles", roles);
+		
+		log.info("Listando artists..." + artistsFiltered.toString());
 		return "artists/listArtist";
 	}
 	
 	@GetMapping(value = { "/show/{artistId}" })
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
+		//List<Project> projectHistory = artistService.projectHistory(artistId);
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
+		//model.addAttribute("projectHistory",projectHistory);
 		return "artists/showArtist";
 	}
 
