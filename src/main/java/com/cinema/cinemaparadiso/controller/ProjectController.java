@@ -107,12 +107,11 @@ public class ProjectController {
 	}
 
 	@PostMapping("/create")
-	public String createProject(@Valid Project project, BindingResult result, Model model) {
+	public String createProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model) {
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("genres", genres);
 		if(!result.hasErrors()) {
 			projectService.createProject(project);
-
 		}else {
 			return "projects/createOrUpdateProjectForm";
 		}
@@ -131,11 +130,12 @@ public class ProjectController {
 	}
 
 	@PostMapping("/update/{projectId}")
-	public String updateProject(@Valid Project project, @PathVariable("projectId") Integer projectId,BindingResult result, Model model) {
+	public String updateProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model, @PathVariable("projectId") Integer projectId) {
 		project.setId(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
+		model.addAttribute("buttonCreate",false);
 		if(!result.hasErrors()) {
 			projectService.editProject(project);
 			log.info("Project Updated Successfully");
@@ -143,8 +143,6 @@ public class ProjectController {
 		} else {
 			return "projects/createOrUpdateProjectForm";
 		}
-		
-		
 	}
 
 

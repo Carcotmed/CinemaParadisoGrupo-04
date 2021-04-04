@@ -25,11 +25,11 @@ import lombok.Setter;
 public class Project extends BaseEntity {
     
 	@Column(name="title")
-	@Size(min=3,max=30,message="Es necesario que el titulo tenga entre 3 y 30 caracteres")
+	@Size(min=3,max=30,message="Es necesario que el título tenga entre 3 y 30 carácteres")
     private String title;
 	
 	@Column(name="genre")
-	@NotNull (message = "Es necesario seleccionar un genero")
+	@NotNull (message = "Es necesario seleccionar un género")
     private Genre genre;
 	
 	@Column(name="description")
@@ -46,8 +46,8 @@ public class Project extends BaseEntity {
 	@Column(name="pro")
 	private Boolean pro;
 	
-	@NotEmpty
-	@URL(message = "Es necesario añadir la URL de la imagen")
+	@URL(message = "Debe ser una url válida")
+	@NotEmpty(message = "Debe introducir una url")
 	@Column(name="photo")
 	private String photo;	
 	
