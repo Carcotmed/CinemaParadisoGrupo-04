@@ -48,29 +48,31 @@ public class ProducerController {
     public String initFormCreateProducer(Model model){
         Producer producer = new Producer();
         model.addAttribute("producer", producer);
+    	System.out.println("Hola, entré-------------------------------------------------");
         return "producers/createUpdateProducerForm";
     }
 
     @PostMapping("/create")
-    public String createUser(@Validated @ModelAttribute("producer") Producer producer, BindingResult result){
+    public String createProducer(@Validated Producer producer, BindingResult result){
         try{
             producerService.saveProducer(producer);
             log.info("Producer Created Successfully");
         }catch(Exception e){
             log.error("Error Create Producer", e);
         }
-        return "index";
+        return "redirect:/producers/list";
     }
     
     @GetMapping("/update/{producerUsername}")
-    public String initFormUpdateProducer(Model model, @RequestAttribute String producerUsername){
+    public String initFormUpdateProducer(Model model, @PathVariable("producerUsername") String producerUsername){
         Producer producer = producerService.getProducerByUsername(producerUsername);
+        log.info(producer.toString());
         model.addAttribute("producer", producer);
         return "producers/createUpdateProducerForm";
     }
 
     @PostMapping("/update/{producerUsername}")
-    public String updateProducer(@Validated @ModelAttribute("producer") Producer producer, BindingResult result, @RequestAttribute String producerUsername){
+    public String updateProducer(@Validated @ModelAttribute("producer") Producer producer, BindingResult result, @PathVariable("producerUsername") String producerUsername){
         try{
             producerService.saveProducer(producer);
             log.info("Producer Updated Successfully");
@@ -80,14 +82,14 @@ public class ProducerController {
         return "index";
     }
     
-    @PostMapping("/delete/{producerUsername}")
-	public String deleteArtist(@PathVariable("producerUsername") String producerUsername, BindingResult result) {
+    @GetMapping("/delete/{producerUsername}")
+	public String deleteProducer(@PathVariable("producerUsername") String producerUsername) {
 		try {
 			producerService.deleteProducer(producerUsername);
 			log.info("Producer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Producer", e);
 		}
-		return "producer/listProducer";
+		return "redirect:/producers/list";
 	}
 }

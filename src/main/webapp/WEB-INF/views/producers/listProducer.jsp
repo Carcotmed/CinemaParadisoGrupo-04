@@ -47,7 +47,7 @@
 				  <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Borrar</a>
 				  
 				  <spring:url value="/producers/update/{producerUsername}" var="deleteUrl">
-				  <spring:param name="producerNIF" value="${producer.user.username}"/>
+				  <spring:param name="producerUsername" value="${producer.user.username}"/>
 				  </spring:url> 
 				  	<a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Actualizar</a>
 				  

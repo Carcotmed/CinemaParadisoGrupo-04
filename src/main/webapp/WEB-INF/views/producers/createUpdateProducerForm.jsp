@@ -13,7 +13,7 @@
     <title>Nuevo Productor</title>
 </head>
 <body>
-    <form action = "/producers/create"  modelAttribute="producer" method = "post">
+    <form action = ""  modelAttribute="producer" method = "post">
         <fieldset>
             <legend>Datos del productor</legend>
             <table>

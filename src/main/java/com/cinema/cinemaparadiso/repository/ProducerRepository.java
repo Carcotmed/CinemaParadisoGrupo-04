@@ -1,18 +1,18 @@
 package com.cinema.cinemaparadiso.repository;
 
 import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.User;
-
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProducerRepository extends CrudRepository<Producer,String>{
 	
-	Producer findByUser(String userName);
+	@Query("SELECT producer FROM Producer producer WHERE producer.user.username = :usernameQuery")
+	Producer findByUser(@Param("usernameQuery") String username);
 
 	//List<User> findByEnabled(Boolean enabled);
 
