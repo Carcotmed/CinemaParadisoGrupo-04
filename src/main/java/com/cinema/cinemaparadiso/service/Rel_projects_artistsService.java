@@ -2,6 +2,8 @@ package com.cinema.cinemaparadiso.service;
 
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -19,10 +21,16 @@ public class Rel_projects_artistsService {
 	public Rel_projects_artistsService(Rel_projects_artistsRepository rel_projects_artistsRepository) {
 		this.rel_projects_artistsRepository = rel_projects_artistsRepository;
 	}
+	
+
 
 
 	public void create(Rel_projects_artists rel_projects_artists){
+		if(rel_projects_artists.getArtist_id()==null || rel_projects_artists.getProject_id()==null) {
+			throw new IllegalAccessError();
+		}else {
 	       save(rel_projects_artists);
+		}
 	}
 
 	@Transactional
@@ -45,6 +53,12 @@ public class Rel_projects_artistsService {
 		Rel_projects_artists relacion = rel_projects_artistsRepository.findRelacion(artistId, projectId);
 	       return relacion;
 	}
+	
+	@Transactional
+	public Long count(){
+		return this.rel_projects_artistsRepository.count();
+	}
+
 
 
 }

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,9 +24,11 @@ public class Rel_projects_artists{
     protected Integer id;
 	
 	@Column(name="artist_id")
+	@NotNull
 	private Integer artist_id;
 	
 	@Column(name="project_id")
+	@NotNull
 	private Integer project_id;
   
 }

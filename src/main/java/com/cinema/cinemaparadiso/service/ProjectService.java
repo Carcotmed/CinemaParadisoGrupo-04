@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
-import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 import com.cinema.cinemaparadiso.repository.ProjectRepository;
@@ -49,13 +48,7 @@ public class ProjectService {
 		noProProjects = projectRepository.listNoProProjects();
 		return noProProjects;
 	}
-	
-	public List<Project> projectFiltered(Genre filterGenre,String filterTitle) {
-		List<Project> projectByGenreAndTitle = new ArrayList<>();
-		projectByGenreAndTitle =projectRepository.findProjectByGenreAndTitle(filterGenre,filterTitle);
-		return projectByGenreAndTitle;
-	}
-	
+
 	public List<Artist> findMembers(Integer projectId){
 		List<Artist> members = new ArrayList<>();
 		members = projectRepository.findMembers(projectId);
@@ -76,10 +69,6 @@ public class ProjectService {
 	}
 	
 	@Transactional
-	public void deleteProject(Integer projectId) throws DataAccessException{
-		projectRepository.deleteById(projectId);	
-	}
-	
 	public void createProject(Project project){
 		Boolean isPro = this.artistService.getPrincipal().getPro();
 		project.setPro(isPro);
@@ -107,6 +96,13 @@ public class ProjectService {
 			project2.setDescription(project.getDescription());
 			project2.setPhoto(project.getPhoto());
 			saveProject(project2);	
+		
+	}
+	
+	@Transactional
+	public Long count(){
+
+		return this.projectRepository.count();
 		
 	}
 
