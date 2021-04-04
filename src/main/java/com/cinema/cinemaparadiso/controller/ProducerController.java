@@ -1,5 +1,6 @@
 package com.cinema.cinemaparadiso.controller;
 
+import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,14 @@ public class ProducerController {
         log.info("Listing Producers..."+producers.toString());
         return "producers/listProducer";
     }
+    
+    @GetMapping(value = { "/show/{producerUsername}" })
+	public String showArtist(@PathVariable("producerUsername") String producerUsername, Model model) {
+		Producer producer = producerService.getProducerByUsername(producerUsername);
+		model.addAttribute("producerUsername", producerUsername);
+		model.addAttribute("producer", producer);
+		return "producers/showProducer";
+	}
 
     @GetMapping("/create")
     public String initFormCreateProducer(Model model){
@@ -52,15 +62,15 @@ public class ProducerController {
         return "index";
     }
     
-    @GetMapping("/update/{producerNif}")
-    public String initFormUpdateProducer(Model model, @RequestAttribute String producerNif){
-        Producer producer = producerService.getProducerByNif(producerNif);
+    @GetMapping("/update/{producerUsername}")
+    public String initFormUpdateProducer(Model model, @RequestAttribute String producerUsername){
+        Producer producer = producerService.getProducerByUsername(producerUsername);
         model.addAttribute("producer", producer);
         return "producers/createUpdateProducerForm";
     }
 
-    @PostMapping("/update/{producerNif}")
-    public String updateProducer(@Validated @ModelAttribute("producer") Producer producer, BindingResult result, @RequestAttribute String producerNif){
+    @PostMapping("/update/{producerUsername}")
+    public String updateProducer(@Validated @ModelAttribute("producer") Producer producer, BindingResult result, @RequestAttribute String producerUsername){
         try{
             producerService.saveProducer(producer);
             log.info("Producer Updated Successfully");
@@ -69,4 +79,15 @@ public class ProducerController {
         }
         return "index";
     }
+    
+    @PostMapping("/delete/{producerUsername}")
+	public String deleteArtist(@PathVariable("producerUsername") String producerUsername, BindingResult result) {
+		try {
+			producerService.deleteProducer(producerUsername);
+			log.info("Producer Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting Producer", e);
+		}
+		return "producer/listProducer";
+	}
 }

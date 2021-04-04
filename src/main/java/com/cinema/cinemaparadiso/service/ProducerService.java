@@ -26,20 +26,22 @@ public class ProducerService {
     }
     
     public Producer getProducerByNif(String nif) throws NoSuchElementException {
-    	return producerRepository.findById(nif).get();
+    	return producerRepository.findByNif(nif).get();
     }
     
     public Producer getProducerByUsername(String username) throws NoSuchElementException {
-    	return producerRepository.findByUserName(username);
+    	return producerRepository.findByUser(username);
     }
     
     public void saveProducer(Producer producer){
     	producerRepository.save(producer);
     }
     
-    public void deleteProducer(Producer producer) {
-    	producerRepository.delete(producer);
-    }
+	public void deleteProducer(String producerUsername) throws NoSuchElementException {
+		Producer producerToDelete = producerRepository.findByUser(producerUsername);
+    	producerRepository.delete(producerToDelete);
+		
+	}
     
 
     

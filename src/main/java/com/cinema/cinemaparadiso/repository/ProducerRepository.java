@@ -4,6 +4,7 @@ import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProducerRepository extends CrudRepository<Producer,String>{
 	
-	Producer findByUserName(String userName);
+	Producer findByUser(String userName);
 
-	List<User> findByEnabled(Boolean enabled);
+	//List<User> findByEnabled(Boolean enabled);
+
+	Optional<Producer> findByNif(String nif);
     
 }
