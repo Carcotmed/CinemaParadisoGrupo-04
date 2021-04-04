@@ -24,12 +24,10 @@ import lombok.Setter;
 @Setter
 public class Artist extends Person {
 	
-	//@ElementCollection(targetClass=Role.class)
 	@Enumerated(EnumType.STRING)
 	@Column(name="role")
 	@NotNull
 	private Role role;
-	
 
 	@Column(name="projects")
 	@ManyToMany(mappedBy = "team")

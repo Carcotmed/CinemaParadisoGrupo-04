@@ -5,7 +5,6 @@ INSERT INTO users(username,password,enabled) VALUES ('artist','$2a$10$lAuC/wtbSo
 INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
 INSERT INTO authorities(username,authority) VALUES ('admin','admin');
 
-
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (1,'De miedo','Miedo','https://i.pinimg.com/originals/73/09/3f/73093ff700637e9ce2aed290b9be255c.jpg',TRUE,2,0);
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (2,'Ciencia ficcion','Ciencia Ficcion','https://miro.medium.com/max/2400/1*onNN4P1jCC8DyS9GxUAm1w.jpeg',TRUE,1,0);
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (3,'De accion','Accion','https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/john-wick-chapter-3-parabellum-1558983194.jpg',TRUE,0,0);
@@ -41,5 +40,3 @@ INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (6,1);
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (7,1);
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (5,2);
 INSERT INTO rel_projects_artists (artist_id, project_id) VALUES (8,2);
---INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
---INSERT INTO authorities(username,authority) VALUES ('admin','admin');
