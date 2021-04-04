@@ -24,9 +24,11 @@ public class Producer extends Person {
 	private String nif;
 	
 	// Pongo not null aunque no esté en el UML para que tenga que tener una descripción obligatoria el productor.
-	@NotNull
-	@Column(name="description")
-	private String description;
+//	@NotNull
+//	@Column(name="description")
+//	private String description;
+	
+	//Extiende de persona y persona ya tiene description.
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
