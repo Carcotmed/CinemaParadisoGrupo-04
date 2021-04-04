@@ -29,11 +29,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				//artist
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
-				.antMatchers("/mensaje").permitAll()
-				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
+				.antMatchers("/messages/list").authenticated() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/show/{messageId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
+				.antMatchers("/messages/delete/**").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/artists/update/{artistId}").permitAll()
 				.antMatchers("/artists/delete/{artistId}").permitAll()
 				.antMatchers("/artists/show/{artistId}").permitAll()

@@ -42,6 +42,9 @@
 
                     <a href="${fn:escapeXml(showUrl)}" class="btn btn-danger">Mostrar</a>
                    
+                   	<form action="/messages/delete/${message.id}" method="post">
+                   		<button type="submit">Borrar2</button>
+                   	</form>
                     <spring:url value="/messages/delete/{messageId}" var="deleteUrl">
                         <spring:param name="messageId" value="${message.id}"/>              
                     </spring:url>

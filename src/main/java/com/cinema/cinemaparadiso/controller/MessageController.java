@@ -11,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,8 +52,22 @@ public class MessageController {
         return "messages/showMessage";
     }
 
-    @PostMapping("/create")
-    public String create(Model model, String userId, Message message){
+    @GetMapping("/create/{userId}")
+    public String initFormCreateMessage(Model model, @PathVariable("userId") String userId){
+    	try {
+    		Message message = new Message();
+            model.addAttribute("message", message);
+    		model.addAttribute("Estado", "Exito");
+            return "users/createUserForm";
+    	}catch (IllegalArgumentException e) {
+    		model.addAttribute("Estado", "Error al iniciar la entidad");
+		}
+        log.info("Initializing Messages to..."+userId.toString());
+        return "messages/createMessageForm";
+    }
+
+    @PostMapping("/create/{userId}")
+    public String create(Model model, @PathVariable("userId") String userId, @Validated @ModelAttribute("message") Message message){
     	try {
     		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
     		message.setEmisor(userService.getUserByUsername(emisor_username));
@@ -61,13 +76,14 @@ public class MessageController {
     		model.addAttribute("Estado", "Exito");
     	}catch (IllegalArgumentException e) {
     		model.addAttribute("Estado", "Error, entidad incorrecta");
+    		model.addAttribute(message);
 		}
         log.info("Creating Messages..."+message.toString());
         return "messages/createMessageForm";
     }
 
-    @DeleteMapping("/delete/{messageId}")
-    public String delete(Model model,  @PathVariable("messageId") Integer messageId){
+    @PostMapping("/delete/{messageId}")
+    public String delete(Model model, @PathVariable("messageId") Integer messageId){
     	try {
     		Message message = messageService.findById(messageId);
     		messageService.delete(message);
@@ -78,5 +94,12 @@ public class MessageController {
             log.error("Error Deleting Message..."+messageId);
 		}
         return "messages/listMessage";
+    }
+
+    @GetMapping("/delete/{messageId}")
+    public String initDelete(Model model, @PathVariable("messageId") Integer messageId){
+        Message message = messageService.findById(messageId);
+        model.addAttribute("message", message);
+        return "messages/showMessage";
     }
 }

@@ -3,7 +3,7 @@
 
 INSERT INTO users(username,password,enabled) VALUES ('adminTest','$2a$10$xpgy46/5c/UsKgD1/UQNWuze5c//nH/d5ff8cigK0saMtoznD8x0K',TRUE);
 INSERT INTO users(username,password,enabled) VALUES ('ivanlot','$2a$10$lD0WmxowSo/xSsd6rPwPQevaIu7G4UhtocWiQrLwd9bOvMF5N40Ay',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('user','$2a$10$2B0fDl/04SUIhlcpDoLHOunMq4JPIzv2AqRM6DKrjWVRL.8EQUSBe',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('user','$2a$10$fh87ipUGUnejGmRZxCsau.6m0GXFsryWXSx55TAPFTZ.OpZTERN3y',TRUE);
 INSERT INTO users(username,password,enabled) VALUES ('artist','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1pICCzZe',TRUE);
 INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
 INSERT INTO authorities(username,authority) VALUES ('admin','admin');
