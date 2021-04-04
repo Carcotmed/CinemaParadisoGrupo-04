@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,17 +15,17 @@
     <title>Nuevo Productor</title>
 </head>
 <body>
-    <form action = ""  modelAttribute="producer" method = "post">
+    <form:form action = ""  modelAttribute="producer" method = "post">
         <fieldset>
             <legend>Datos del productor</legend>
             <table>
                 <tr>
-                    <td><label>NAME: </label></td>
-                    <td><input type="text" name="name" /></td>
+                    <td><form:label path="name">NAME: </form:label></td>
+                    <td><form:input path="name" /></td>
                 </tr>
                 <tr>
-                    <td><label>SURNAME: </label></td>
-                    <td><input type="text" name="surName" /></td>
+                    <td><form:label path="surName">SURNAME: </form:label></td>
+                    <td><form:input path="surName" /></td>
                 </tr>
                 <tr>
                     <td>
@@ -31,10 +33,10 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <c:choose>
                         <c:when test="${isNew}">
-                            <button class="btn btn-danger" type="submit">Crear</button>
+                            <input class="btn btn-danger" type="submit" value="Crear"/>
                         </c:when>
                         <c:otherwise>
-                            <button class="btn btn-danger" type="submit">Actualizar</button>
+                            <input class="btn btn-danger" type="submit" value="Actualizar"/>
                         </c:otherwise>
                     </c:choose>
 
@@ -45,6 +47,6 @@
             </table>
             <button class="btn btn-danger" onclick="location.href = '/producers/list';">Cancelar</button>
         </fieldset>
-    </form>
+    </form:form>
 </body>
 </html>
