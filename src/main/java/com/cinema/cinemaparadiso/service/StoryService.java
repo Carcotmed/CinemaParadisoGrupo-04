@@ -31,5 +31,13 @@ public class StoryService {
 		
 	}
 
+	public Iterable<Story> list() {
+		return storyRepository.findAll();
+	}
+	
+	@Transactional(readOnly = true)
+	public Story findStoryById(int id) throws DataAccessException {
+		return storyRepository.findById(id).get();
+	}
 
 }

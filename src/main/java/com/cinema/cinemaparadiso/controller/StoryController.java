@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Story;
@@ -40,6 +42,20 @@ public class StoryController {
 		return "story/listStory";
 	}
 
-
+	@GetMapping("/list")
+	public String list(Model model) {
+		Iterable<Story> stories = storyService.list();
+		model.addAttribute("stories", stories);
+		log.info("Listing Stories..." + stories.toString());
+		return "storys/listStory";
+	}
+	
+	@GetMapping(value = { "/show/{storyId}" })
+	public String showStory(@PathVariable("storyId") int storyId, Model model) {
+		Story story = storyService.findStoryById(storyId);
+		model.addAttribute("storyId", storyId);
+		model.addAttribute("story", story);
+		return "storys/showStory";
+	}
 
 }
