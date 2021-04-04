@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,7 +40,7 @@ public class MessageController {
     }
 
     @GetMapping("/show/{messageId}")
-    public String show(Model model, String messageId){
+    public String show(Model model, @PathVariable("messageId") Integer messageId){
     	try {
 	        Message message = messageService.findById(messageId);
 	        model.addAttribute("message", message);
@@ -66,7 +67,7 @@ public class MessageController {
     }
 
     @DeleteMapping("/delete/{messageId}")
-    public String delete(Model model, String messageId){
+    public String delete(Model model,  @PathVariable("messageId") Integer messageId){
     	try {
     		Message message = messageService.findById(messageId);
     		messageService.delete(message);

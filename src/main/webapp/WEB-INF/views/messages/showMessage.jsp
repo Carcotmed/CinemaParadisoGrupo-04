@@ -28,18 +28,17 @@
             </thead>
             
             <tbody>
-                <c:forEach items="${messages}" var="message">
                 <tr>
                   <td><c:out value="${message.issue}" /></td>
                   <td><c:out value="${message.body}" /></td>
 				  <fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>
 				  <td><c:out value="${messageDate}" /></td>
-				  <td><c:out value="${message.emisor_id}" /></td>
-				  <td><c:out value="${message.receptor_id}" /></td>
+				  <td><c:out value="${message.emisor.username}" /></td>
+				  <td><c:out value="${message.receptor.username}" /></td>
 				  <td>
 				  
                 </tr>
-                </c:forEach>
+                
             </tbody>
         </table>
 

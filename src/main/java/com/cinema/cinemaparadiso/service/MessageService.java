@@ -14,7 +14,7 @@ public class MessageService {
 	@Autowired
     private MessageRepository messageRepository;
 
-    public Message findById(String id) throws NoSuchElementException{
+    public Message findById(Integer id) throws NoSuchElementException{
         return messageRepository.findById(id).get();
     }
 

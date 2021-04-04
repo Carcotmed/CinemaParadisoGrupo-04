@@ -23,7 +23,7 @@
                     <th>FECHA</th>
                     <th>ID DEL EMISOR</th>
                     <th>ID DEL RECEPTOR</th>
-                    <th>             </th>
+                    <th>             </th> 
                 </tr>
             </thead>
             
@@ -32,8 +32,7 @@
                 <tr>
                   <td><c:out value="${message.issue}" /></td>
 				  <fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>
-				  <td><c:out value="${messageDate}" /></td>
-				  <td>
+				  <td><c:out value="${messageDate}" /></td>	
 				  <td><c:out value="${message.emisor.username}" /></td>
 				  <td><c:out value="${message.receptor.username}" /></td>
                   <td>
@@ -59,10 +58,10 @@
 		</spring:url>
 	
 		<a href="${fn:escapeXml(createUrl)}" class="btn btn-danger">Crear</a>
+		<button class="btn btn-danger" onclick="location.href = '/';">Volver</button>   
    	    </div>
    	    
-     	<button class="btn btn-default" onclick="location.href = '/';">Volver</button>    		
-    
+     	 	
     
 </body>
 </html>
