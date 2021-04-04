@@ -85,7 +85,17 @@ public class ArtistController {
 		return "artists/showArtist";
 	}
 
-
+	@GetMapping(value = { "/myProjects" })
+	public String myProjectsArtist(Model model) {
+		Artist artist = artistService.getPrincipal();
+		Integer artistId = artist.getId();
+		List<Project> myProjects = artistService.findMyProjects(artistId);
+		model.addAttribute("artistId", artistId);
+		model.addAttribute("artist", artist);
+		model.addAttribute("myProjects",myProjects);
+		return "artists/myProjects";
+	}
+	
 	@GetMapping("/create")
 	public String initFormCreateArtist(Model model) {
 		Artist artist = new Artist();

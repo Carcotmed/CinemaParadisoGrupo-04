@@ -25,6 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
+				//USERS
 				.antMatchers("/users/create").permitAll()
 				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
@@ -32,28 +33,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/artists/update/{artistId}").permitAll()
 				.antMatchers("/artists/delete/{artistId}").permitAll()
 				.antMatchers("/artists/show/{artistId}").permitAll()
-				//MENSAJES
+				.antMatchers("/artists/myProjects").permitAll()
+				.antMatchers("/artists/myProjects/**").permitAll()
+				//MESSAGES
 				.antMatchers("/mensaje").permitAll()
 				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
-				//PROJECT
-				.antMatchers("/projects/list").permitAll()
-				.antMatchers("/projects/listFiltered").permitAll()
-				.antMatchers("/projects/show/{projectId}").permitAll()
-
-				.antMatchers("/users/list").hasAnyAuthority("admin")
+				//POST
 				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/writers/list").permitAll()
-				.antMatchers("/writers/show/{writerId}").permitAll()
-				.antMatchers("/stories/update/{storyId}").permitAll()
-				.antMatchers("/stories/create").permitAll()
-				.antMatchers("/stories/list").permitAll()
-				.antMatchers("/stories/show/{storyId}").permitAll()
+				//PROJECTS
+				.antMatchers("/projects/list").permitAll()
+				.antMatchers("/projects/create").permitAll()
+				.antMatchers("/projects/update/{projectId}").permitAll()
+				.antMatchers("/projects/delete/{projectId}").permitAll()
+				.antMatchers("/projects/show/{projectId}").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()

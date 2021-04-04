@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,6 +83,66 @@ public class ProjectController {
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
 		return "projects/showProject";
+	}
+	
+	@GetMapping("/delete/{projectId}")
+	public String deleteProject(@PathVariable("projectId") Integer projectId) {
+		try {
+			projectService.deleteRelation(projectId);
+			log.info("Project Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting Project", e);
+		}
+		return "redirect:/artists/myProjects";
+	}
+	
+	@GetMapping("/create")
+	public String initFormCreateProject(Model model) {
+		Project project = new Project();
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("buttonCreate",true);
+		model.addAttribute("project", project);
+		model.addAttribute("genres", genres);
+		return "projects/createOrUpdateProjectForm";
+	}
+
+	@PostMapping("/create")
+	public String createProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model) {
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres", genres);
+		if(!result.hasErrors()) {
+			projectService.createProject(project);
+		}else {
+			return "projects/createOrUpdateProjectForm";
+		}
+		return "redirect:/artists/myProjects";
+	}
+	
+	@GetMapping("/update/{projectId}")
+	public String initFormUpdateProject(Model model, @PathVariable("projectId") Integer projectId) {
+		Project project = projectService.findProjectById(projectId);
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("buttonCreate",false);
+		model.addAttribute("genres", genres);
+		model.addAttribute("projectId", projectId);
+		model.addAttribute("project", project);
+		return "projects/createOrUpdateProjectForm";
+	}
+
+	@PostMapping("/update/{projectId}")
+	public String updateProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model, @PathVariable("projectId") Integer projectId) {
+		project.setId(projectId);
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres", genres);
+		model.addAttribute("project", project);
+		model.addAttribute("buttonCreate",false);
+		if(!result.hasErrors()) {
+			projectService.editProject(project);
+			log.info("Project Updated Successfully");
+			return "redirect:/artists/myProjects";
+		} else {
+			return "projects/createOrUpdateProjectForm";
+		}
 	}
 
 
