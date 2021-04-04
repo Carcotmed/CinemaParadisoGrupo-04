@@ -58,7 +58,6 @@ public class MessageController {
     		Message message = new Message();
             model.addAttribute("message", message);
     		model.addAttribute("Estado", "Exito");
-            return "users/createUserForm";
     	}catch (IllegalArgumentException e) {
     		model.addAttribute("Estado", "Error al iniciar la entidad");
 		}
