@@ -1,17 +1,22 @@
 package com.cinema.cinemaparadiso.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +33,8 @@ public class Artist extends Person {
 	private Role role;
 
 	@Column(name="projects")
-	@ManyToMany(mappedBy = "team")
+	@ManyToMany(mappedBy = "team", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Project> projects;
 	
 	@Column(name="projects_history")
@@ -49,5 +55,4 @@ public class Artist extends Person {
   @OneToOne()
   @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
-	  
 }

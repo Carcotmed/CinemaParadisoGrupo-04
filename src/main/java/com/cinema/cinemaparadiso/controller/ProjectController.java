@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.ProjectService;
+import com.cinema.cinemaparadiso.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +33,12 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectService projectService;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private ArtistService artistService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -73,7 +82,25 @@ public class ProjectController {
 		model.addAttribute("genres", genres);
 		
 		return "projects/listProject";
-	}	
+	}
+	
+	@GetMapping("/join/{projectId}")
+	public String joinProject(Model model, @PathVariable("projectId") int projectId) {
+    	Artist artist;
+    	try {
+    		artist = artistService.getPrincipal();
+    	}catch(Exception e) {artist = null;}
+    	if(artist==null) {
+    		model.addAttribute("Error", "No eres un artista");
+			return "/error/error";
+    	}
+		if(artist.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+			model.addAttribute("Error", "Ya perteneces a este equipo");
+			return "/error";
+		}
+		projectService.addRelationShip(projectId, artist.getId());
+		return "redirect:/artists/myProjects";
+	}
 	
 	@GetMapping(value = { "/show/{projectId}" })
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
@@ -82,6 +109,17 @@ public class ProjectController {
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
+		Artist artist;
+    	try {
+    		artist = artistService.getPrincipal();
+    	}catch(Exception e) {artist = null;}
+    	if(artist==null) {
+			model.addAttribute("pertenece", true);
+    	}else if(artist.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+			model.addAttribute("pertenece", true);
+		}else {
+			model.addAttribute("pertenece", false);
+		}
 		return "projects/showProject";
 	}
 	
