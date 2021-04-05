@@ -1,36 +1,4 @@
 
-INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('1','Christopher','Nolan','12345678D','Productor exitoso y feliz con ganas de trabajar con un equipo de trabajo apasionado por el cine de terror', 'adminTest');
-INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('2','Woody','Allen','19876543W','Productor con larga experiencia en películas de ciencia ficción', 'ivanlot');
-INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('3','Mel','Gibson','34587666Y','Productora con ganas de realizar un cortometraje acerca del covid y su repercusión en la vida de las personas','user');
-
-
-INSERT INTO stories (id,version,title,body,genre) VALUES (1,0,'La historia interminable','MUCHO TEXTO',0);
-INSERT INTO stories (id,version,title,body,genre) VALUES (2,0, 'Piratas del Caribe','MUCHO TEXTO',1);
-INSERT INTO stories (id,version,title,body,genre) VALUES (3,0, 'Harry Potter y la piedra filosofal','MUCHO TEXTO',3);
-INSERT INTO stories (id,version,title,body,genre) VALUES (4,0, 'En mundo de Gullyver','MUCHO TEXTO',4);
-INSERT INTO stories (id,version,title,body,genre) VALUES (5,0, 'Jurassic Park','MUCHO TEXTO',3);
-INSERT INTO stories (id,version,title,body,genre) VALUES (6,0, 'SlumDog Millionaire','MUCHO TEXTO',2);
-INSERT INTO stories (id,version,title,body,genre) VALUES (7,0, 'Cadena Perpetua','MUCHO TEXTO',1);
-
-
-INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (1,0,'adminTest','Sergio','Perez','Me gusta escribir','https://www.ecured.cu/images/6/65/Escritor_3.jpeg');
-INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (2,0,'admin','Pedro','Jimenez','Me gusta escribir','https://elcorreoweb.es/binrepository/675x507/0c54/675d400/none/10703/DYTH/escribir-tu-histroria-1024x769_20332201_20200104232241.jpg');
-INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (3,0,'ivanlot','Joe','Jones','Me gusta escribir','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKMMTcbWEZDOQPwhHeLSmpCgcBlG98OmYrQ&usqp=CAU');
-
-
-INSERT INTO rel_story_writers (story_id, writer_id) VALUES (1,1);
-INSERT INTO rel_story_writers (story_id, writer_id) VALUES (2,1);
-INSERT INTO rel_story_writers (story_id, writer_id) VALUES (3,1);
-INSERT INTO rel_story_writers (story_id, writer_id) VALUES (4,1);
-INSERT INTO rel_story_writers (story_id, writer_id) VALUES (5,2);
-INSERT INTO rel_story_writers (story_id, writer_id) VALUES (6,2);
-INSERT INTO rel_story_writers (story_id, writer_id) VALUES (7,3);
-
-
-INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (1,0,'Bienvenido','He escuchado que acabas de entrar en la pagina, que tal te va?',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin0', 'admin1');
-INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (4,0,'Si','Si',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin1', 'admin0');
-INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (2,0,'Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'admin2', 'admin3');
-INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (3,0,'Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'admin4', 'admin5');
 
 
 INSERT INTO users(username,password,enabled,email) VALUES ('admin0','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE,'user1@ejemplo.com');
@@ -51,6 +19,41 @@ INSERT INTO authorities(username,authority) VALUES ('admin4','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin5','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin6','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin7','admin');
+
+INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('1','Christopher','Nolan','12345678D','Productor exitoso y feliz con ganas de trabajar con un equipo de trabajo apasionado por el cine de terror', 'admin0');
+INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('2','Woody','Allen','19876543W','Productor con larga experiencia en películas de ciencia ficción', 'admin1');
+INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('3','Mel','Gibson','34587666Y','Productora con ganas de realizar un cortometraje acerca del covid y su repercusión en la vida de las personas','admin2');
+
+
+INSERT INTO stories (id,version,title,body,genre) VALUES (1,0,'La historia interminable','MUCHO TEXTO',0);
+INSERT INTO stories (id,version,title,body,genre) VALUES (2,0, 'Piratas del Caribe','MUCHO TEXTO',1);
+INSERT INTO stories (id,version,title,body,genre) VALUES (3,0, 'Harry Potter y la piedra filosofal','MUCHO TEXTO',3);
+INSERT INTO stories (id,version,title,body,genre) VALUES (4,0, 'En mundo de Gullyver','MUCHO TEXTO',4);
+INSERT INTO stories (id,version,title,body,genre) VALUES (5,0, 'Jurassic Park','MUCHO TEXTO',3);
+INSERT INTO stories (id,version,title,body,genre) VALUES (6,0, 'SlumDog Millionaire','MUCHO TEXTO',2);
+INSERT INTO stories (id,version,title,body,genre) VALUES (7,0, 'Cadena Perpetua','MUCHO TEXTO',1);
+
+
+INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (1,0,'admin0','Sergio','Perez','Me gusta escribir','https://www.ecured.cu/images/6/65/Escritor_3.jpeg');
+INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (2,0,'admin1','Pedro','Jimenez','Me gusta escribir','https://elcorreoweb.es/binrepository/675x507/0c54/675d400/none/10703/DYTH/escribir-tu-histroria-1024x769_20332201_20200104232241.jpg');
+INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (3,0,'admin2','Joe','Jones','Me gusta escribir','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKMMTcbWEZDOQPwhHeLSmpCgcBlG98OmYrQ&usqp=CAU');
+
+
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (1,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (2,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (3,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (4,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (5,2);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (6,2);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (7,3);
+
+
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (1,0,'Bienvenido','He escuchado que acabas de entrar en la pagina, que tal te va?',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin0', 'admin1');
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (4,0,'Si','Si',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin1', 'admin0');
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (2,0,'Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'admin2', 'admin3');
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (3,0,'Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'admin4', 'admin5');
+
+
 
 
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (1,'De miedo','Miedo','https://i.pinimg.com/originals/73/09/3f/73093ff700637e9ce2aed290b9be255c.jpg',TRUE,2,0);
