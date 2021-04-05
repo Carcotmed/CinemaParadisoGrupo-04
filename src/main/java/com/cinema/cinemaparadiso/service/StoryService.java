@@ -32,6 +32,12 @@ public class StoryService {
 	public StoryService(StoryRepository storyRepository) {
 		this.storyRepository = storyRepository;
 	}
+	
+	@Transactional
+	public void editStory(Integer storyId) throws DataAccessException{
+			Story story = findStoryById(storyId);
+			storyRepository.save(story);	
+  }
 
 	public void createStory(Story story){
 	       saveStory(story);
@@ -50,9 +56,7 @@ public class StoryService {
 	
 	@Transactional
 	public void saveStory(Story story) throws DataAccessException{
-
 			storyRepository.save(story);	
-		
 	}
 	@Transactional
 	public Writer findMyWriter(Integer storyId) {

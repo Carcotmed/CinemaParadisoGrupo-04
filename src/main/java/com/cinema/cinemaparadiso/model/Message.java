@@ -31,17 +31,32 @@ public class Message extends BaseEntity{
 	@NotNull
 	private String body;
 	
-	@Column(name = "date")
+	@Column(name = "messagedate")
 	@NotNull
 	//@PastOrPresent
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-	private Date date;
+	private Date messageDate;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "emisor_id")
 	private User emisor;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "receptor_id")
 	private User receptor;
+
+	public Message(String issue, String body, Date messageDate, User emisor, User receptor) {
+		super();
+		this.issue = issue;
+		this.body = body;
+		this.messageDate = messageDate;
+		this.emisor = emisor;
+		this.receptor = receptor;
+	}
+
+	public Message() {
+		super();
+	}
+	
+	
 }

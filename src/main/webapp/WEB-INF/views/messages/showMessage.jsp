@@ -12,28 +12,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>User List</title>
+    <title>Muestra de Mensaje</title>
 </head>
 <body>
     <div class="container mt-4">
         <table class="table">
             <thead>
                 <tr>
-                    <th>USERNAME</th>
-                    <th>PASSWORD</th>
-                    <th>ENABLED</th>
+                    <th>ASUNTO</th>
+                    <th>CUERPO</th>
+                    <th>FECHA</th>
+                    <th>ID DEL EMISOR</th>
+                    <th>ID DEL RECEPTOR</th>
                 </tr>
             </thead>
+            
             <tbody>
-                <c:forEach items="${users}" var="user">
                 <tr>
-                    <th></c:out value = "${user.username}" ></th>
-                    <th></c:out value = "${user.password}" ></th>
-                    <th></c:out value = "${user.enabled}" ></th>
+                  <td><c:out value="${message.issue}" /></td>
+                  <td><c:out value="${message.body}" /></td>
+				  <fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>
+				  <td><c:out value="${messageDate}" /></td>
+				  <td><c:out value="${message.emisor.username}" /></td>
+				  <td><c:out value="${message.receptor.username}" /></td>
+				  <td>
+				  
                 </tr>
-                </c:forEach>
+                
             </tbody>
         </table>
-    </div>
+
+     	<button class="btn btn-danger" onclick="location.href = '/messages/listReceived';">Volver</button>    		
+    
 </body>
 </html>

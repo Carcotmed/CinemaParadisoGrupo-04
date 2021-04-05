@@ -1,10 +1,10 @@
 package com.cinema.cinemaparadiso.model;
 
 public enum Genre {
-	ACTION,
-	SCIFI,
+	ACCION,
+	CIENCIA_FICCION,
 	TERROR,
-	PSYCHOLOGIC,
-	HUMORISTIC,
-	FICTION
+	PSICOLOGICO,
+	HUMORISTICO,
+	FICCION
 }

@@ -52,7 +52,7 @@
 				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripci�n</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">DescripciÃ³n</h5>
 					</div>
 					<p style="margin-left: 3%">${writer.description}</p>
 				</div>

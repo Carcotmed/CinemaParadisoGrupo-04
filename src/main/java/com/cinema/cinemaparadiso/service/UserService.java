@@ -11,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+
 
 import com.cinema.cinemaparadiso.model.Authorities;
 import com.cinema.cinemaparadiso.model.User;
@@ -30,6 +32,10 @@ public class UserService {
     public long countUsers(){
         return userRepository.count();
     }
+    
+    public void deleteUser(User user) {
+    	userRepository.delete(user);
+    }
 
     public Iterable<User> list(){
         return userRepository.findAll();
@@ -48,8 +54,7 @@ public class UserService {
         user.setPassword(encryptedPassword);
         user.setEnabled(true);
         userRepository.save(user);
-        Authorities authorities = new Authorities(user.getUsername(),"admin");
-        authoritiesRepository.save(authorities);
+       
     }
     
     public void changePassword (String userName, String oldPassword, String newPassword) throws Exception, NoSuchElementException{
@@ -76,6 +81,9 @@ public class UserService {
     	userRepository.save(retrievedUser);
     }
     
+
+    //Comprobar user logeado
+
 	public User getPrincipal() {
 		User res = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -90,6 +98,7 @@ public class UserService {
 		
 		return res;
 	}
+  
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
 	}

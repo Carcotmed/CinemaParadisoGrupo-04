@@ -1,5 +1,10 @@
 package com.cinema.cinemaparadiso.model;
 
+
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,9 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Writer extends Person {
-	
 
-	
 	@OneToOne()
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;

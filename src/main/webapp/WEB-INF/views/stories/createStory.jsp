@@ -32,9 +32,9 @@
 					<div>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="title">Título</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="title">TÃ­tulo</form:label>
 							</div>
-							<form:input class="form-control" value="${story.title}" placeholder="Título" style="margin-left: 3%;width:60%" type="text" path="title"></form:input>
+							<form:input class="form-control" value="${story.title}" placeholder="TÃ­tulo" style="margin-left: 3%;width:60%" type="text" path="title"></form:input>
 						</div>
 						<form:errors style="color:red" path="title"/>
 						
@@ -49,10 +49,10 @@
 					
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" path="genre" style="background-color:#828282">Género</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" path="genre" style="background-color:#828282">GÃ©nero</form:label>
 							</div>
 							<form:select value="${story.genre}" class="form-control" style="width:60%" path="genre">
-								<form:option value="" selected="true">Selecciona un género</form:option>
+								<form:option value="" selected="true">Selecciona un gÃ©nero</form:option>
 								<c:forEach items="${genres}" var="genre">
 									<form:option value="${genre}">${genre}</form:option>
 								</c:forEach>

@@ -16,6 +16,8 @@ import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
+import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.repository.UserRepository;
 import com.cinema.cinemaparadiso.repository.WriterRepository;
 
 @Service
@@ -80,3 +82,4 @@ public class WriterService {
 		return res;
 	}
 }
+

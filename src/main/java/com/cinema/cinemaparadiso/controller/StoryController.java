@@ -30,6 +30,25 @@ public class StoryController {
 	@Autowired
 	private StoryService storyService;
 
+	@GetMapping("/update/{storyId}")
+	public String initFormUpdateStory(Model model, @PathVariable("storyId") Integer storyId) {
+		Story story = storyService.findStoryById(storyId);
+		model.addAttribute("storyId", storyId);
+		model.addAttribute("story", story);
+		return "stories/createOrUpdateStoryForm";
+	}
+
+	@PostMapping("/update/{storyId}")
+	public String updateStory(@PathVariable("storyId") Integer storyId, BindingResult result) {
+		try {
+			storyService.editStory(storyId);
+			log.info("Story Updated Successfully");
+		} catch (Exception e) {
+			log.error("Error Updating Story", e);
+    }
+    return "/";
+  }
+      
 	@GetMapping("/create")
 	public String initFormCreateStory(Model model) {
 		Story story = new Story();
@@ -65,6 +84,7 @@ public class StoryController {
 		model.addAttribute("storiesFiltered",storiesFiltered);
 		log.info("Listing Stories..." + stories.toString());
 		return "stories/listStory";
+
 	}
 	
 	@PostMapping("/list")
@@ -85,6 +105,7 @@ public class StoryController {
 		model.addAttribute("genres", genres);
 		
 		return "stories/listStory";
+
 	}
 	
 	@GetMapping(value = { "/show/{storyId}" })

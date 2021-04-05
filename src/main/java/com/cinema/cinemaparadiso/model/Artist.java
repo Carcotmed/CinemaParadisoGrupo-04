@@ -3,14 +3,15 @@ package com.cinema.cinemaparadiso.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,21 +22,32 @@ import lombok.Setter;
 @Setter
 public class Artist extends Person {
 	
-	@ElementCollection(targetClass=Role.class)
-	@Column(name="roles")
-	private List<Role> roles;
-	
+	@Enumerated(EnumType.STRING)
+	@Column(name="role")
+	@NotNull(message = "Debes escoger un rol")
+	private Role role;
 
 	@Column(name="projects")
 	@ManyToMany(mappedBy = "team")
 	private List<Project> projects;
 	
+	@Column(name="projects_history")
+	@ManyToMany(mappedBy = "team")
+	private List<Project> projectsHistory;
+	
 
 	@Column(name="summary")
 	private String summary;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", referencedColumnName = "username")
+
+	
+	@Column(name="pro")
+	@NotNull(message = "Elige una opción")
+	private Boolean pro;
+	
+	
+  @OneToOne()
+  @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
-  
+	  
 }

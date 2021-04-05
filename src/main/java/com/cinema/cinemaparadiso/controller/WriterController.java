@@ -36,7 +36,6 @@ public class WriterController {
 	public String list(Model model) {
 		Iterable<Writer> writers = writerService.list();
 		Writer writersFiltered = new Writer();
-		
 		model.addAttribute("writers", writers);
 		model.addAttribute("writersFiltered",writersFiltered);
 		return "/writers/listWriter";
@@ -91,13 +90,10 @@ public class WriterController {
     	model.addAttribute("skill", skill);
           log.info("================================"+ writer.getName());
           if(!result.hasErrors()) {
-        	 
               writerService.createWriter(writer);
           }else {
               return "writers/createOrUpdateWriterForm";
           }
           return "index";
       }
-       
-    
 }
