@@ -17,22 +17,21 @@ public class UserServiceTests {
 
     @Test
     public void shouldCountUsers(){
-		/* 
+
         long count = userService.countUsers();
-		assertThat(count).isEqualTo(5L);
-		*/
+		assertThat(count).isEqualTo(1L);
     }
 
 	@Test
 	public void shouldCreateUser() {
-		/*
+		
         User user = new User();
 		user.setUsername("admin");
 		user.setPassword("admin");
 		user.setEnabled(true);
         userService.createUser(user);
-		assertThat(userService.countUsers()).isEqualTo(5L);
-		*/
+		assertThat(userService.countUsers()).isEqualTo(1L);
+		
 	}
 
 }
