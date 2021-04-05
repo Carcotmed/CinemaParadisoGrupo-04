@@ -35,6 +35,11 @@ INSERT INTO stories (id,version,title,body,genre) VALUES (5,0, 'Jurassic Park','
 INSERT INTO stories (id,version,title,body,genre) VALUES (6,0, 'SlumDog Millionaire','MUCHO TEXTO',2);
 INSERT INTO stories (id,version,title,body,genre) VALUES (7,0, 'Cadena Perpetua','MUCHO TEXTO',1);
 
+INSERT INTO writers (id,version,username,name,sur_Name,description) VALUES (1,0,'adminTest','Sergio','Perez','Me gusta escribir');
+INSERT INTO writers (id,version,username,name,sur_Name,description) VALUES (2,0,'admin','Pedro','Jimenez','Me gusta escribir');
+INSERT INTO writers (id,version,username,name,sur_Name,description) VALUES (3,0,'ivanlot','Joe','Jones','Me gusta escribir');
+
+
 --INSERT INTO rel_story_projects (story_id, project_id) VALUES (1,1);
 --INSERT INTO rel_story_projects (story_id, project_id) VALUES (2,2);
 --INSERT INTO rel_story_projects (story_id, project_id) VALUES (3,3);

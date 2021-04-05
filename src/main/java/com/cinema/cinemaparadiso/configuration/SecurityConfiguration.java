@@ -43,6 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/stories/create").permitAll()
 				.antMatchers("/stories/list").permitAll()
+				.antMatchers("/writers/show/{writerId}").permitAll()
+				.antMatchers("/writers/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
 				.anyRequest().denyAll()
 				.and()
