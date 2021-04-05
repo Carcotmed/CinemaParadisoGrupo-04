@@ -27,14 +27,14 @@ INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (10,'Una vide
 INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (11,'Para partirte de risa','Mortadelo y Filemon Indie','https://estaticos.muyhistoria.es/media/cache/1140x_thumb/uploads/images/ephemeris/5e04bfc55cafe8c5f6f862fe/mortadelo-filemon_0.jpg',FALSE,4);
 INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (12,'Ficcion total','Futurismo','https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/gallery/5c0fc5e35cafe803d35b883b/peliculas-2019_0.jpg',FALSE,5);
 
---INSERT INTO stories (id,version,title,body,genre,storylength) VALUE (1,1,'La historia interminable','MUCHO TEXTO','SCIFI',10);
---INSERT INTO stories (id,version,title,body,genre,storylength) VALUE	(2,2, 'Piratas del Caribe','MUCHO TEXTO','ACTIONN',2);
---INSERT INTO stories (id,version,title,body,genre,storylength) VALUE	(3,3, 'Harry Potter y la piedra filosofal','MUCHO TEXTO','FICTION',2);
---INSERT INTO stories (id,version,title,body,genre,storylength) VALUE	(4,4, 'En mundo de Gullyver','MUCHO TEXTO','FICTION',1);
---INSERT INTO stories (id,version,title,body,genre,storylength) VALUE	(5,5, 'Jurassic Park','MUCHO TEXTO','SCIFI',2);
---INSERT INTO stories (id,version,title,body,genre,storylength) VALUE	(6,6, 'SlumDog Millionaire','MUCHO TEXTO','PSYCHOLOGIC',3);
---INSERT INTO stories (id,version,title,body,genre,storylength) VALUE	(7,7, 'Cadena Perpetua','MUCHO TEXTO','PSYCHOLOGIC',2);
---
+INSERT INTO stories (id,version,title,body,genre) VALUES (1,0,'La historia interminable','MUCHO TEXTO',0);
+INSERT INTO stories (id,version,title,body,genre) VALUES (2,0, 'Piratas del Caribe','MUCHO TEXTO',1);
+INSERT INTO stories (id,version,title,body,genre) VALUES (3,0, 'Harry Potter y la piedra filosofal','MUCHO TEXTO',3);
+INSERT INTO stories (id,version,title,body,genre) VALUES (4,0, 'En mundo de Gullyver','MUCHO TEXTO',4);
+INSERT INTO stories (id,version,title,body,genre) VALUES (5,0, 'Jurassic Park','MUCHO TEXTO',3);
+INSERT INTO stories (id,version,title,body,genre) VALUES (6,0, 'SlumDog Millionaire','MUCHO TEXTO',2);
+INSERT INTO stories (id,version,title,body,genre) VALUES (7,0, 'Cadena Perpetua','MUCHO TEXTO',1);
+
 --INSERT INTO rel_story_projects (story_id, project_id) VALUES (1,1);
 --INSERT INTO rel_story_projects (story_id, project_id) VALUES (2,2);
 --INSERT INTO rel_story_projects (story_id, project_id) VALUES (3,3);

@@ -2,6 +2,9 @@ package com.cinema.cinemaparadiso.service;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -31,8 +34,10 @@ public class StoryService {
 		
 	}
 
-	public Iterable<Story> list() {
-		return storyRepository.findAll();
+	public List<Story> list() {
+		List<Story> story = new ArrayList<>();
+		storyRepository.findAll().forEach(s->story.add(s));
+		return story;
 	}
 	
 	@Transactional(readOnly = true)

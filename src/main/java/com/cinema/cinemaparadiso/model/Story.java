@@ -26,6 +26,7 @@ public class Story extends BaseEntity {
 	
 	//@ElementCollection(targetClass=Genre.class)
 	@Column(name="genre")
+	@NotNull
     private Genre genre;
 	
 	@Column(name="storylength")
