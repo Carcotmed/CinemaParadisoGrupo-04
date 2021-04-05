@@ -89,7 +89,7 @@ public class ArtistController {
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
 		//List<Project> projectHistory = artistService.projectHistory(artistId);
-		model.addAttribute("artistId", artistId);
+		model.addAttribute("artistUsername", artist.getUser().getUsername());
 		model.addAttribute("artist", artist);
 		//model.addAttribute("projectHistory",projectHistory);
 		return "artists/showArtist";

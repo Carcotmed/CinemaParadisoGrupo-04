@@ -1,11 +1,10 @@
 package com.cinema.cinemaparadiso.model;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,15 +16,16 @@ import lombok.Setter;
 public class Story extends BaseEntity {
 	
 	@Column(name = "title")
-	@NotNull
+	@Size(min=3,max=50,message="El titulo tiene que tener entre 3 y 50 caracteres")
 	private String title;
 	
 	@Column(name = "body")
-	@NotNull
+	@Size(min=10,max=1500,message="El resumen debe tener entre 10 y 1500 caracteres")
 	private String body;
 	
 	//@ElementCollection(targetClass=Genre.class)
 	@Column(name="genre")
+	@NotNull(message="Seleccione un género")
     private Genre genre;
 	
 	@Column(name="storylength")

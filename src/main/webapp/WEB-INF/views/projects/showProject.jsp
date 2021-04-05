@@ -40,7 +40,7 @@
 			<h3 style="margin:0">Ficha técnica</h3>
 		</div>
 		
-		<div class="d-flex justify-content-between" style="padding: 2% 5%;height:40vh">
+		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
 			<!-- Datos -->
 			<div style="width:150%">
 				<div style="margin:1% 0">

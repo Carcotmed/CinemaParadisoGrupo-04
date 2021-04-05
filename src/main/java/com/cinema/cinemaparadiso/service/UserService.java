@@ -1,22 +1,23 @@
 package com.cinema.cinemaparadiso.service;
 
-import com.cinema.cinemaparadiso.model.Authorities;
-import com.cinema.cinemaparadiso.model.User;
-import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
-import com.cinema.cinemaparadiso.repository.UserRepository;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
 
+
+import com.cinema.cinemaparadiso.model.Authorities;
+import com.cinema.cinemaparadiso.model.User;
+import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
+import com.cinema.cinemaparadiso.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -30,6 +31,10 @@ public class UserService {
 
     public long countUsers(){
         return userRepository.count();
+    }
+    
+    public void deleteUser(User user) {
+    	userRepository.delete(user);
     }
 
     public Iterable<User> list(){
@@ -76,8 +81,9 @@ public class UserService {
     	userRepository.save(retrievedUser);
     }
     
+
     //Comprobar user logeado
-    
+
 	public User getPrincipal() {
 		User res = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -92,8 +98,9 @@ public class UserService {
 		
 		return res;
 	}
-	
+  
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
 	}
+
 }

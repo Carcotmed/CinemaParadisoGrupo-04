@@ -23,10 +23,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/resources/**","/webjars/**","/h2-console/**").permitAll()
+				.antMatchers("/resources/**","/webjars/**","/h2-console/**","/error/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
-				//USERS
-				.antMatchers("/users/select").permitAll()
+
+				.antMatchers("/users/create").permitAll()
+				//PRODUCER
+				.antMatchers("/producers/list").permitAll()
+				.antMatchers("/producers/create").permitAll()
+				.antMatchers("/producers/show/**").permitAll()
+				.antMatchers("/producers/update/**").authenticated()
+				.antMatchers("/producers/delete/**").permitAll()
 				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
@@ -36,32 +42,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/artists/myProjects").permitAll()
 				.antMatchers("/artists/myProjects/**").permitAll()
 				//MESSAGES
-				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
+				.antMatchers("/messages/listReceived").authenticated()
+				.antMatchers("/messages/listSend").authenticated()
+				.antMatchers("/messages/show/{messageId}").authenticated()
+				.antMatchers("/messages/create/{userId}").authenticated()
+				.antMatchers("/messages/delete/{messageId}").authenticated()
+				//USER
+				.antMatchers("/users/list").hasAnyAuthority("admin")
+				.antMatchers("/users/select").permitAll()
 				//POST
 				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
+		     //WRITERS
+		    .antMatchers("/writers/list").permitAll()
+		    .antMatchers("/writers/create").permitAll()
+				.antMatchers("/writers/show/{writerId}").permitAll()
+		     //STORIES
+				.antMatchers("/stories/list").permitAll()
+				.antMatchers("/stories/show/{storyId}").permitAll()
 				//PROJECTS
 				.antMatchers("/projects/list").permitAll()
 				.antMatchers("/projects/create").permitAll()
 				.antMatchers("/projects/update/{projectId}").permitAll()
 				.antMatchers("/projects/delete/{projectId}").permitAll()
 				.antMatchers("/projects/show/{projectId}").permitAll()
-        //WRITERS
-        .antMatchers("/writers/list").permitAll()
-        .antMatchers("/writers/create").permitAll()
-				.antMatchers("/writers/show/{writerId}").permitAll()
-        //STORIES
-        .antMatchers("/stories/update/{storyId}").permitAll()
-				.antMatchers("/stories/create").permitAll()
-				.antMatchers("/stories/list").permitAll()
-				.antMatchers("/stories/show/{storyId}").permitAll()
-      //PRODUCERS
-        .antMatchers("/producers/create").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
@@ -99,4 +106,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 }
-

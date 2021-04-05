@@ -32,7 +32,7 @@
 					<p>Rol: ${artist.role}</p>
 				</div>
 			</div>
-			<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistId}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+			<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 		</div>
 	
 		<!-- Info general Artista -->

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -29,7 +30,7 @@ public class Person extends BaseEntity  {
 	@NotEmpty(message = "El apellido no puede estar vacío")
 	protected String surName;
 	
-	@ElementCollection(targetClass=Skill.class)
+	@ElementCollection(targetClass=Skill.class, fetch = FetchType.EAGER)
 	@Column(name = "skills")
 	@NotNull(message="Debe escoger al menos una habilidad")
 	protected List<Skill> skills;
@@ -38,9 +39,8 @@ public class Person extends BaseEntity  {
 	@NotEmpty(message = "Indique una descripion propia")
 	protected String description;
 	
-	@Column(name="photo")
-	@NotEmpty(message = "Debe indicar una URL")
-	@URL(message = "Debe indicar una URL")
-	private String photo;
-
+  @Column(name="photo")
+  @NotEmpty(message = "Debe indicar una URL")
+  @URL(message = "Debe indicar una URL")
+  private String photo;
 }

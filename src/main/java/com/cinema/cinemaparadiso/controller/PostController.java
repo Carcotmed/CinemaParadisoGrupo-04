@@ -21,8 +21,8 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/find/{postId}")
-    public String list(Model model, Integer postId){
+    @GetMapping("/show/{postId}")
+    public String show(Model model, Integer postId){
     	try {
 	        Post post = postService.findById(postId);
 	        model.addAttribute("post", post);
