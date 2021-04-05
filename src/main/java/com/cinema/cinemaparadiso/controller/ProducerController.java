@@ -77,6 +77,8 @@ public class ProducerController {
     @PostMapping("/create")
     public String createProducer(Model model, @ModelAttribute("producer") @Valid Producer producer, BindingResult result){
 		if (result.hasErrors()) {
+			System.out.println("--------------------------------------------------");
+			System.out.println(result.getAllErrors());
     		return "/error";
         }
         producerService.createProducer(producer);

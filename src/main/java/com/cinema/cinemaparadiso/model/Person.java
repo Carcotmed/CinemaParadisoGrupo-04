@@ -32,7 +32,6 @@ public class Person extends BaseEntity  {
 	
 	@ElementCollection(targetClass=Skill.class, fetch = FetchType.EAGER)
 	@Column(name = "skills")
-	@NotNull(message="Debe escoger al menos una habilidad")
 	protected List<Skill> skills;
 	
 	@Column(name = "description")
@@ -40,7 +39,6 @@ public class Person extends BaseEntity  {
 	protected String description;
 	
   @Column(name="photo")
-  @NotEmpty(message = "Debe indicar una URL")
   @URL(message = "Debe indicar una URL")
   private String photo;
 }
