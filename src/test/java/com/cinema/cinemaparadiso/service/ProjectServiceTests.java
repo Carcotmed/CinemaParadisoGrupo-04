@@ -15,7 +15,7 @@ import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 
 
 @SpringBootTest
-@Sql("/db/data.sql")
+//@Sql("/db/data.sql")
 @Transactional
 public class ProjectServiceTests {
 	
