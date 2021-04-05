@@ -18,43 +18,50 @@
 <title>Datos Artista</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
-	<!-- Header Artista -->
-	<div class="d-flex justify-content-between p-3" style="margin-bottom: 5%">
-		<div class="d-flex jsutify-content-center">
-			<img src="https://via.placeholder.com/150" class="rounded-circle w-30">
-			<div class="py-3 mx-3" style="width:40%">
-				<h3>${artist.name}</h3>
-				<p>${artist.summary}</p>
-				<p>Rol: ${artist.role}</p>
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+	<div>
+		<!-- Header Artista -->
+		<div class="d-flex justify-content-between p-3" style="margin-bottom: 5%">
+			<div class="d-flex jsutify-content-center">
+				<img src="https://via.placeholder.com/150" class="rounded-circle w-30">
+				<div class="py-3 mx-3" style="width:40%">
+					<h3>${artist.name}</h3>
+					<p>${artist.summary}</p>
+					<p>Rol: ${artist.role}</p>
+				</div>
 			</div>
+			<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistId}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 		</div>
-		<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistId}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
-	</div>
-
-	<!-- Info general Artista -->
-	<div class="container" style="margin: 0 5%;max-width:90%">
-		<div class="row">
-			<div class="col-6 p-3" style="border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
-				<h4 style="margin-bottom: 4%">Sobre mi</h4>
-				<p>${artist.description}</p>
-			</div>
-			<div class="col-6 p-3">
-				<h4 style="margin-bottom: 4%">Proyectos</h4>
-				<p>En construccion</p>
-				<!--
-				c:forEach items="${projects}" var="project"
-					<div class="d-flex justify-content-between">
-						<div>
-							<h6 style="color:#af3248">${project.title}</h6>
+	
+		<!-- Info general Artista -->
+		<div class="container" style="margin: 0 5%;max-width:90%">
+			<div class="row">
+				<div class="col-6 p-3" style="border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
+					<h4 style="margin-bottom: 4%">Sobre mi</h4>
+					<p>${artist.description}</p>
+				</div>
+				<div class="col-6 p-3">
+					<h4 style="margin-bottom: 4%">Proyectos</h4>
+					<p>En construccion</p>
+					<!--
+					c:forEach items="${projects}" var="project"
+						<div class="d-flex justify-content-between">
+							<div>
+								<h6 style="color:#af3248">${project.title}</h6>
+							</div>
+							<img src="https://via.placeholder.com/150" class="w-30">
 						</div>
-						<img src="https://via.placeholder.com/150" class="w-30">
-					</div>
-					<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#af3248">
-				/c:forEach
-				-->
+						<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#af3248">
+					/c:forEach
+					-->
+				</div>
 			</div>
 		</div>
+		
 	</div>
+		
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+	
 
 </body>
 </html>

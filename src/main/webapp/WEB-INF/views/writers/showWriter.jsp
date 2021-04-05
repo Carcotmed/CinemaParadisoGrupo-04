@@ -18,6 +18,8 @@
 <title>Datos Escritor</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+
 	<!-- Header Escritor -->
 	<div class="d-flex justify-content-between p-3" style="margin-bottom: 5%">
 		<div class="d-flex jsutify-content-center">
@@ -54,6 +56,7 @@
 			</div>
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 
 </body>
 </html>

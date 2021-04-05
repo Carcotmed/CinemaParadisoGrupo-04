@@ -18,6 +18,8 @@
 <title>Descubre Escritores</title>
 </head>
 <body class="h-100" style="color:white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+
 	<div class="d-flex h-100">
 
 		<!--  Filtros -->
@@ -43,5 +45,7 @@
 		
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+	
 </body>
 </html>

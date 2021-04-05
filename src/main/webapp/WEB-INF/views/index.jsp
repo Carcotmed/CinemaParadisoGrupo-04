@@ -11,13 +11,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
+	<link rel="shorcut icon" type="image/ico" href="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/develop/src/main/webapp/static/faivon.ico?raw=true" />
     <title>Cinema Paradiso</title>
 </head>
-<body style="height:70vh;background-color:green">
-	<%@ include file="navbar.jsp" %>
-	<video autoplay muted loop style="position:fixed;width:100vw;height:100vh;object-fit:cover" src="/static/index-video.mp4" type="video/mp4">	</video>
-	<div class="d-flex justify-content-center align-items-center position-relative w-100" style="height:100%">
+<body style="height:70vh;background-color:#af3248">
+	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
+	
+
+	<div class="d-flex justify-content-center align-items-center position-relative w-100" style="height:100%; overflow:hidden">
+			<video autoplay muted loop style="position:absolute;width:100vw;height:100vh;object-fit:cover" src="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/develop/src/main/webapp/static/index-video.mp4?raw=true" type="video/mp4">
+		   </video>
 		<div class="d-flex justify-content-center align-items-center" style="margin:auto">			
 			<div class="d-flex flex-column justify-content-center align-items-center" style="z-index:2">
 				<h1 class="text-center" style="color:white">Cinema Paradiso</h1>
@@ -59,6 +62,6 @@
 		</div>
 	</div>
 	
-	<%@ include file="footer.jsp" %>
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </body>
 </html>
