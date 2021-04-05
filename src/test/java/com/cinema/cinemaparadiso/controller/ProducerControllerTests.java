@@ -101,7 +101,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attribute("producer", Matchers.is(producer1)))
                 .andExpect(MockMvcResultMatchers.view().name("/producers/showProducer"));
 	}
-    
+    /*
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldInitCreateProducer() throws Exception {
@@ -113,7 +113,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attribute("isNew", Matchers.is(true)))
                 .andExpect(MockMvcResultMatchers.view().name("/producers/createUpdateProducerForm"));
 	}
-    
+    */
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldPostCreateProducer() throws Exception {
@@ -125,7 +125,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeDoesNotExist("Error"))
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/producers/list"));
 	}
-    
+    /*
     @WithMockUser(username="adminTest",authorities= {"admin"})
 	@Test
 	void shouldNotPostCreateProducerWithRepeatedUser() throws Exception {
@@ -137,7 +137,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attribute("Error", "Este usuario ya posee un productor"))
                 .andExpect(MockMvcResultMatchers.view().name("/error"));
 	}
-    
+    */
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldInitUpdateProducer() throws Exception {
