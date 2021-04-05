@@ -107,4 +107,12 @@ public class ProjectService {
 	}
 
 
+	public void addRelationShip(int projectId, Integer artistId) {
+		Rel_projects_artists relation = new Rel_projects_artists();
+		relation.setArtist_id(artistId);
+		relation.setProject_id(projectId);
+		rel_projects_artistsService.save(relation);
+	}
+
+
 }

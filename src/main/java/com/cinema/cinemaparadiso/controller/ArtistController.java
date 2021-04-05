@@ -127,6 +127,7 @@ public class ArtistController {
 	public String createArtist(@Validated Artist artist, BindingResult result, Model model) {
 		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
+		artist.setPro(false);
 		
 		model.addAttribute("roles", role);
 		model.addAttribute("skill", skill);
@@ -138,7 +139,7 @@ public class ArtistController {
 			log.info(artist.getPro().toString());
 			return "artists/createOrUpdateArtistForm";
 		}
-		return "index";
+		return "redirect:/artists/list";
 	}
 
 	@GetMapping("/update/{artistId}")
