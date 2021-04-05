@@ -15,6 +15,10 @@
     <title>Lista de Mensajes</title>
 </head>
 <body>
+	<h3>
+   	    <c:if test="${ tipo=='received' }">Recibidos</c:if>
+   	    <c:if test="${ tipo=='send' }">Enviados</c:if>
+	</h3>
     <div class="container mt-4">
         <table class="table">
             <thead>
@@ -46,22 +50,36 @@
                         <spring:param name="messageId" value="${message.id}"/>              
                     </spring:url>
                     <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Borrar</a>
-
+                    
+        			<c:if test="${ tipo=='received' }">
+					<spring:url value="/messages/create/{userId}" var="createUrl">
+					<spring:param name="userId" value="${message.emisor.username}"/>
+					</spring:url>
+				
+					<a href="${fn:escapeXml(createUrl)}" class="btn btn-danger">Responder</a>
+					</c:if>
+                    
+        			<c:if test="${ tipo=='send' }">
+					<spring:url value="/messages/create/{userId}" var="createUrl">
+					<spring:param name="userId" value="${message.receptor.username}"/>
+					</spring:url>
+				
+					<a href="${fn:escapeXml(createUrl)}" class="btn btn-danger">Volver a escribir</a>
+					</c:if>
                 </td>
                 </tr>
                 </c:forEach>
             </tbody>
-        </table>
-        
-		<spring:url value="/messages/create/{userId}" var="createUrl">
-		<spring:param name="userId" value="${user.id}"/>
-		</spring:url>
-	
-		<a href="${fn:escapeXml(createUrl)}" class="btn btn-danger">Crear</a>
-		<button class="btn btn-danger" onclick="location.href = '/';">Volver</button>   
+        </table>   
    	    </div>
+   	    <c:if test="${ tipo=='received' }">
+		<button class="btn btn-danger" onclick="location.href = '/';">Volver</button>
+		<button class="btn btn-danger" onclick="location.href = '/messages/listSend';">Enviados</button>
+		</c:if>
+   	    <c:if test="${ tipo=='send' }">
+		<button class="btn btn-danger" onclick="location.href = '/';">Volver</button>
+		<button class="btn btn-danger" onclick="location.href = '/messages/listReceived';">Recibidos</button>
+		</c:if>
    	    
-     	 	
-    
 </body>
 </html>

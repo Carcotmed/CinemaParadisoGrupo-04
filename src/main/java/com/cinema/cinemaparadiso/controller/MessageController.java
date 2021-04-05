@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -34,11 +35,22 @@ public class MessageController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/list")
-    public String list(Model model){
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Iterable<Message> messages = messageService.findByUsername(username);
+    @GetMapping("/listSend")
+    public String listSend(Model model){
+		String username = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        Iterable<Message> messages = messageService.findByEmisorUsername(username);
         model.addAttribute("messages", messages);
+        model.addAttribute("tipo", "send");
+        log.info("Listing Messages..."+messages.toString());
+        return "messages/listMessage";
+    }
+
+    @GetMapping("/listReceived")
+    public String listReceived(Model model){
+		String username = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        Iterable<Message> messages = messageService.findByReceptorUsername(username);
+        model.addAttribute("messages", messages);
+        model.addAttribute("tipo", "received");
         log.info("Listing Messages..."+messages.toString());
         return "messages/listMessage";
     }
@@ -83,7 +95,7 @@ public class MessageController {
     		model.addAttribute(message);
 		}
         log.info("Creating Messages..."+message.toString());
-        return "redirect:/messages/list";
+        return "redirect:/messages/listReceived";
     }
 
     @GetMapping("/delete/{messageId}")
@@ -91,6 +103,11 @@ public class MessageController {
 
     	try {
     		Message message = messageService.findById(messageId);
+    		String username = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+    		if(message.getEmisor().getUsername()!=username && message.getReceptor().getUsername()!=username) {
+    			model.addAttribute("Error", "No tienes relacion con esta entidad");
+    			return "/error";
+    		}
     		messageService.delete(message);
     		model.addAttribute("Estado", "Exito");
             log.info("Deleting Messages..."+message.toString());
@@ -98,6 +115,6 @@ public class MessageController {
     		model.addAttribute("Estado", "Error, identificador incorrecto");
             log.error("Error Deleting Message..."+messageId);
 		}
-        return "redirect:/messages/list";
+        return "redirect:/messages/listReceived";
     }
 }

@@ -102,7 +102,7 @@ public class MessageControllerTests {
 				.andExpect(view().name("users/createUserForm"));
 */
 	}
-    
+    /*
     @Test
     @WithMockUser(username="newTestUser1",authorities= {"admin"})
     public void testMessageList() throws Exception {
@@ -122,7 +122,7 @@ public class MessageControllerTests {
     	.andExpect(model().attributeExists("message"))
     	.andExpect(view().name("messages/showMessage"));
     	
-    }
+    }*/
     
     @Test
     @WithMockUser(username="newTestUser1",authorities= {"admin"})
@@ -136,7 +136,7 @@ public class MessageControllerTests {
     	.andExpect(view().name("messages/createMessageForm"));
     	
     }
-    
+    /*
     @Test
     @WithMockUser(username="newTestUser1",authorities= {"admin"})
     public void testCreate() throws Exception {    	
@@ -158,6 +158,6 @@ public class MessageControllerTests {
     	.andExpect(model().attributeExists("Estado"))
     	.andExpect(view().name("messages/createMessageForm"));
     	
-    }
+    }*/
    
 }
