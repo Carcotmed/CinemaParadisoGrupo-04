@@ -87,6 +87,5 @@ INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (7,6,1);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (8,7,1);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (9,5,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (10,8,2);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,1,13);
 
-INSERT INTO authorities(username,authority) VALUES ('admin0','producer'); INSERT INTO authorities(username,authority) VALUES ('admin0','writer'); INSERT INTO authorities(username,authority) VALUES ('admin0','artist');
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,1,13);
