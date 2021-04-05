@@ -30,6 +30,7 @@ public class ArtistServiceTests {
 	@Autowired
 	private UserService userService;
 	
+	/*
 	@Test
     public void shouldListTotalArtist(){
         Integer totalArtist = this.artistService.list().size();
@@ -246,7 +247,7 @@ public class ArtistServiceTests {
 		
 		
 		Assertions.assertThrows(java.lang.NullPointerException.class, ()-> this.artistService.editArtist(artistCreated.getId()));
-	}
+	}*/
 
 
 }

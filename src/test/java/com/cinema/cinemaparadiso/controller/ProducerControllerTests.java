@@ -113,7 +113,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attribute("isNew", Matchers.is(true)))
                 .andExpect(MockMvcResultMatchers.view().name("/producers/createUpdateProducerForm"));
 	}
-    */
+	
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldPostCreateProducer() throws Exception {
@@ -125,7 +125,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeDoesNotExist("Error"))
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/producers/list"));
 	}
-    /*
+	
     @WithMockUser(username="adminTest",authorities= {"admin"})
 	@Test
 	void shouldNotPostCreateProducerWithRepeatedUser() throws Exception {
