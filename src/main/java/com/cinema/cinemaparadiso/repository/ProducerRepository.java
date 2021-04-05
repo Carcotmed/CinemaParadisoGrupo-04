@@ -14,8 +14,6 @@ public interface ProducerRepository extends CrudRepository<Producer,Integer>{
 	@Query("SELECT producer FROM Producer producer WHERE producer.user.username = :usernameQuery")
 	Producer findByUser(@Param("usernameQuery") String username);
 
-	//List<User> findByEnabled(Boolean enabled);
-
 	Optional<Producer> findByNif(String nif);
 
 	@Query("SELECT COUNT(*) FROM Producer producer WHERE producer.user.username = :usernameQuery")

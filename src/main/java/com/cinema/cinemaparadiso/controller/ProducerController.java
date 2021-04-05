@@ -5,7 +5,6 @@ import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.UserService;
 
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,8 +79,7 @@ public class ProducerController {
 		if (result.hasErrors()) {
     		return "/error";
         }
-		userService.createUser(producer.getUser());
-        producerService.saveProducer(producer);
+        producerService.createProducer(producer);
         log.info("Producer Created Successfully");
         return "redirect:/producers/list";
     }
@@ -131,8 +129,7 @@ public class ProducerController {
 	    		return "/error";
 	    	}
 			Producer producer = producerService.getProducerByUsername(producerUsername);
-			producerService.deleteProducer(producerUsername);
-			userService.deleteUser(producer.getUser());
+			producerService.deleteProducer(producer);
 			log.info("Producer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Producer", e);

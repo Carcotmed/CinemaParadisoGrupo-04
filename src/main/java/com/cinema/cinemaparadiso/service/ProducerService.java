@@ -1,6 +1,8 @@
 package com.cinema.cinemaparadiso.service;
 
+import com.cinema.cinemaparadiso.model.Authorities;
 import com.cinema.cinemaparadiso.model.Producer;
+import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.ProducerRepository;
 
 import java.util.NoSuchElementException;
@@ -14,11 +16,18 @@ public class ProducerService {
     @Autowired
     private ProducerRepository producerRepository;
     
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private AuthoritiesRepository authoritiesRepository;
+    
     public boolean existeProducerByUsername(String username) {
     	Integer count = producerRepository.countByUsername(username);
     	return count != 0;
     }
     
+
     public long countProducers(){
         return producerRepository.count();
     }
@@ -42,12 +51,20 @@ public class ProducerService {
     public void saveProducer(Producer producer){
     	producerRepository.save(producer);
     }
-    
-	public void deleteProducer(String producerUsername) throws NoSuchElementException {
-		Producer producerToDelete = producerRepository.findByUser(producerUsername);
-    	producerRepository.delete(producerToDelete);
-		
-	}
+
+    public void createProducer(Producer producer){
+    	userService.createUser(producer.getUser());
+		 Authorities authorities = new Authorities(producer.getUser().getUsername(),"producer");
+	     authoritiesRepository.save(authorities);
+	    saveProducer(producer);
+    }
+
+    public void deleteProducer(Producer producer){
+    	authoritiesRepository.delete(authoritiesRepository.findByUsername(producer.getUser().getUsername()));
+    	producerRepository.delete(producer);
+    	userService.deleteUser(producer.getUser());
+	    saveProducer(producer);
+    }
     
 
     
@@ -55,3 +72,4 @@ public class ProducerService {
     
 
 }
+

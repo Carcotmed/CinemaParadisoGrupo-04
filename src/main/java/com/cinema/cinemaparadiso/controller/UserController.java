@@ -1,6 +1,9 @@
 package com.cinema.cinemaparadiso.controller;
 
+import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
+import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,19 @@ public class UserController {
     public String initFormCreateUser(Model model){
         User user = new User();
         model.addAttribute("user", user);
+        Artist artist = new Artist();
+        model.addAttribute("artist", artist);
+        Producer producer = new Producer();
+        model.addAttribute("producer", producer);
+        Writer writer = new Writer();
+        model.addAttribute("writer", writer);
+        model.addAttribute("tipoUser", "artist");
         return "users/createUserForm";
+    }
+    
+    @GetMapping("/select")
+    public String selectUser(Model model){
+        return "users/selectUser";
     }
 
     @PostMapping("/create")
@@ -46,6 +61,6 @@ public class UserController {
         }catch(Exception e){
             log.error("Error Create User", e);
         }
-        return "index";
+        return "users/createUserForm";
     }
 }

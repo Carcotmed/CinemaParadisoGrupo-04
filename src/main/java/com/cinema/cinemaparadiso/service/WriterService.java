@@ -7,13 +7,21 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Authorities;
+import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
+import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
+import com.cinema.cinemaparadiso.repository.UserRepository;
 import com.cinema.cinemaparadiso.repository.WriterRepository;
 
 @Service
 public class WriterService {
-
+	@Autowired
 	private WriterRepository writerRepository;
+	
+	@Autowired
+    private AuthoritiesRepository authoritiesRepository;
 
 	@Autowired
 	private UserService userService;
@@ -32,5 +40,18 @@ public class WriterService {
 		return writerRepository.findById(id).get();
 	}
 
+	public void createWriter(Writer writer){
+		userService.createUser(writer.getUser());
+		 Authorities authorities = new Authorities(writer.getUser().getUsername(),"writer");
+	     authoritiesRepository.save(authorities);
+	    saveWriter(writer);
+	        
 
+	    }
+	@Transactional
+	public void saveWriter(Writer writer) throws DataAccessException{
+
+			writerRepository.save(writer);	
+		
+	}
 }
