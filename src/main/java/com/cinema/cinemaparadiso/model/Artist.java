@@ -41,12 +41,15 @@ public class Artist extends Person {
 	@Column(name="summary")
 	private String summary;
 	
+
+	
 	@Column(name="pro")
 	@NotNull
 	private Boolean pro;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", referencedColumnName = "username")
+	
+  @OneToOne()
+  @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	  
 }

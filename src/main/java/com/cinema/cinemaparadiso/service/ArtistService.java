@@ -12,17 +12,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
+
+import com.cinema.cinemaparadiso.model.Authorities;
+
 import com.cinema.cinemaparadiso.model.Project;
+
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
+import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
+import com.cinema.cinemaparadiso.repository.UserRepository;
 
 @Service
 public class ArtistService {
-
+	@Autowired
 	private ArtistRepository artistRepository;
 
 	@Autowired
-	private UserService userService;
+    private UserRepository userRepository;
+	 
+	@Autowired
+    private AuthoritiesRepository authoritiesRepository;
+	
+	@Autowired
+    private UserService userService;
 
 	@Autowired
 	public ArtistService(ArtistRepository artistRepository) {
@@ -54,8 +66,14 @@ public class ArtistService {
 		return projectsHistory;
 	}
 
-	public void createArtist(Artist artist){
-	       saveArtist(artist);
+
+public void createArtist(Artist artist){
+		userService.createUser(artist.getUser());
+		 Authorities authorities = new Authorities(artist.getUser().getUsername(),"artist");
+	     authoritiesRepository.save(authorities);
+	    saveArtist(artist);
+	       
+
 	    }
 	
 	public List<Project> findMyProjects(Integer artistId){
