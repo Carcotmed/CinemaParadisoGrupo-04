@@ -18,9 +18,9 @@ INSERT INTO authorities(username,authority) VALUES ('admin6','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin7','admin');
 
 
-INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('1','Christopher','Nolan','12345678D','Productor exitoso y feliz con ganas de trabajar con un equipo de trabajo apasionado por el cine de terror', 'admin0');
-INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('2','Woody','Allen','19876543W','Productor con larga experiencia en películas de ciencia ficción', 'admin1');
-INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('3','Mel','Gibson','34587666Y','Productora con ganas de realizar un cortometraje acerca del covid y su repercusión en la vida de las personas','admin2');
+INSERT INTO producers(id,version,name,sur_Name,nif, description, username, photo) VALUES (1,0,'Christopher','Nolan','12345678D','Productor exitoso y feliz con ganas de trabajar con un equipo de trabajo apasionado por el cine de terror', 'admin0','http://pxsports.com/wp-content/uploads/2016/12/francia-1.jpg');
+INSERT INTO producers(id,version,name,sur_Name,nif, description, username, photo) VALUES (2,0,'Woody','Allen','19876543W','Productor con larga experiencia en películas de ciencia ficción', 'admin1','https://cdn.shopify.com/s/files/1/0229/0839/files/Busqueda_de_imagenes_3_large.jpg?v=1578328497');
+INSERT INTO producers(id,version,name,sur_Name,nif, description, username, photo) VALUES (3,0,'Mel','Gibson','34587666Y','Productora con ganas de realizar un cortometraje acerca del covid y su repercusión en la vida de las personas','admin2','https://i.blogs.es/5efe2c/cap_001/450_1000.jpg');
 
 
 INSERT INTO stories (id,version,title,body,genre) VALUES (1,0,'La historia interminable','MUCHO TEXTO',0);
@@ -88,4 +88,5 @@ INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (7,6,1);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (8,7,1);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (9,5,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (10,8,2);
+
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,1,13);

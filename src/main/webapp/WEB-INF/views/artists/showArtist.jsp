@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html class="h-100">
+<html style="height:100%">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,13 +19,13 @@
 
 <title>Datos Artista</title>
 </head>
-<body class="h-100" style="background-color: #272727; color: white">
+<body class="position-relative" style="color:white;height:100%;background-color: #272727; color: white">
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
-	<div>
+	<div class="d-flex position-relative flex-column" style="min-height:70%">
 		<!-- Header Artista -->
 		<div class="d-flex justify-content-between p-3" style="margin-bottom: 5%">
-			<div class="d-flex jsutify-content-center">
-				<img src="https://via.placeholder.com/150" class="rounded-circle w-30">
+			<div class="d-flex" style="width:60%">
+				<img src="${artist.photo}" class="rounded-circle" style="width:20%">
 				<div class="py-3 mx-3" style="width:40%">
 					<h3>${artist.name}</h3>
 					<p>${artist.summary}</p>

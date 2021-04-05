@@ -72,6 +72,8 @@ public class WriterController {
 		model.addAttribute("writer", writer);
 		model.addAttribute("stories",stories);
 		model.addAttribute("sameWriter",sameWriter);
+		model.addAttribute("writerUsername", writer.getUser().getUsername());
+
 		return "writers/showWriter";
 	}
 	@GetMapping("/create")

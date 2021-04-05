@@ -59,7 +59,7 @@
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${artistsPro}" var="artistPro">
 					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="https://via.placeholder.com/150/FFFF00/00000" onClick="location.href='/artists/show/${artistPro.id}'" class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
+						<img src="${artistPro.photo}" onClick="location.href='/artists/show/${artistPro.id}'" class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
 						<h5 style="margin: 0.5vw">${artistPro.name}</h5>
 						<p>${artistPro.summary}</p>
 					</div>
@@ -72,7 +72,7 @@
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${artistsNoPro}" var="artistNoPro">
 					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="https://via.placeholder.com/150" onClick="location.href='/artists/show/${artistNoPro.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
+						<img src="${artistNoPro.photo}" onClick="location.href='/artists/show/${artistNoPro.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
 						<h5 style="margin: 0.5vw">${artistNoPro.name}</h5>
 						<p>${artistNoPro.summary}</p>
 					</div>

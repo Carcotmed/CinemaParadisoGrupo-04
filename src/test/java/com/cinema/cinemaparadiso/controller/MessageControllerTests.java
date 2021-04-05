@@ -1,36 +1,15 @@
 package com.cinema.cinemaparadiso.controller;
 
-import static org.mockito.Mockito.when;
 /*
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 */
 //import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.cinema.cinemaparadiso.model.Message;
-import com.cinema.cinemaparadiso.model.User;
-import com.cinema.cinemaparadiso.service.MessageService;
-import com.cinema.cinemaparadiso.service.UserService;
-
-import jdk.jfr.ContentType;
-
-import org.assertj.core.util.Arrays;
-//import org.junit.Assert;
-//import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.mockito.BDDMockito;
@@ -38,13 +17,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 //import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.cinema.cinemaparadiso.service.MessageService;
+import com.cinema.cinemaparadiso.service.UserService;
 
 @WebMvcTest(controllers = MessageController.class,
 excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, 
