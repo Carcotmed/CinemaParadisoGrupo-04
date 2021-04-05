@@ -79,7 +79,7 @@
 			<c:forEach items="${members}" var="member">
 				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-						<img src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
+						<img onclick="location.href='/artists/show/${ member.id }'" src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
 					</div>
 					<div style="margin-left: 12%">
 						<h5>${member.name}</h5>
