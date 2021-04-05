@@ -1,4 +1,10 @@
 
+INSERT INTO users(username,password,enabled) VALUES ('userTest1','userTest1',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('userTest2','userTest2',TRUE);
+
+INSERT INTO messages(version,issue,body,messageDate,emisor_id,receptor_id) VALUES (0,'Test Issue 1','Test Body 1',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'userTest1', 'userTest2');
+
+
 --INSERT INTO users(username,password,enabled) VALUES ('adminTest','adminTest',TRUE), ('ivanlot','ivanlot',TRUE), ('user','user',TRUE), ('artist','artist',TRUE);
 
 INSERT INTO users(username,password,enabled) VALUES ('adminTest','$2a$10$xpgy46/5c/UsKgD1/UQNWuze5c//nH/d5ff8cigK0saMtoznD8x0K',TRUE);
@@ -46,4 +52,5 @@ INSERT INTO projects (id,description,title,photo,pro,genre) VALUES (12,'Ficcion 
 INSERT INTO messages(issue,body,date,emisor_id,receptor_id) VALUES ('Bienvenido','He escuchado que acabas de entrar en la pagina, que tal te va?',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'user', 'ivanlot');
 INSERT INTO messages(issue,body,date,emisor_id,receptor_id) VALUES ('Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'ivanlot', 'user');
 INSERT INTO messages(issue,body,date,emisor_id,receptor_id) VALUES ('Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'user', 'ivanlot');
+
 
