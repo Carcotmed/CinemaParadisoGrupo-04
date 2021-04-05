@@ -18,8 +18,12 @@ public class MessageService {
         return messageRepository.findById(id).get();
     }
 
-    public Iterable<Message> list(){
-        return messageRepository.findAll();
+    public Iterable<Message> findByUsername(String username) throws NoSuchElementException{
+            return messageRepository.findByUsername(username);
+    }
+
+    public Iterable<Message> list(String username){
+        return messageRepository.findByUsername(username);
     }
 
     public Message create(Message message) throws IllegalArgumentException{
