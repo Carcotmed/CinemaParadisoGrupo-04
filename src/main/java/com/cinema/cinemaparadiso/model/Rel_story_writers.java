@@ -11,10 +11,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="rel_story_projects")
+@Table(name="rel_story_writers")
 @Getter
 @Setter
-public class Rel_story_projects {
+public class Rel_story_writers {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,13 +23,10 @@ public class Rel_story_projects {
     @Column(name="story_id")
     private Integer story_id;
 
-    @Column(name="project_id")
-    private Integer project_id;
+    @Column(name="writer_id")
+    private Integer writer_id;
 
-	@Override
-	public String toString() {
-		return "Rel_story_projects [id=" + id + ", story_id=" + story_id + ", project_id=" + project_id + "]";
-	}
+	
     
     
 }
