@@ -30,7 +30,7 @@ public class Producer extends Person {
 	
 	//Extiende de persona y persona ya tiene description.
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 
