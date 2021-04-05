@@ -114,10 +114,10 @@ public class ArtistController {
 		User user = new User();
 		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
-    model.addAttribute("user",user);
+		model.addAttribute("user",user);
 		model.addAttribute("artist", artist);
 		model.addAttribute("skill", skill);
-		model.addAttribute("role", role);
+		model.addAttribute("roles", role);
 
 		return "artists/createOrUpdateArtistForm";
 	}
@@ -127,14 +127,13 @@ public class ArtistController {
 		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
 
-		model.addAttribute("role", role);
+		model.addAttribute("roles", role);
 		model.addAttribute("skill", skill);
-		try {
+		if(!result.hasErrors()) {
 			artistService.createArtist(artist);
 			log.info("Artist Created Successfully");
-		} catch (Exception e) {
-			log.info(artist.getUser().getUsername()+"/"+artist.getUser().getEmail()+"/"+artist.getUser().getPassword()+"/"+ artist.getUser().isEnabled());
-			log.error("Error Create Artist", e);
+		} else {
+			return "artists/createOrUpdateArtistForm";
 		}
 		return "index";
 	}
