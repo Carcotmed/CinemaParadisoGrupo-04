@@ -79,14 +79,15 @@ INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,phot
 
 
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (1,1,1);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (2,2,1);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (3,3,1);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (4,1,2);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (2,2,3);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (3,3,4);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (4,1,5);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (5,4,2);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (6,5,1);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (7,6,1);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (8,7,1);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (9,5,2);
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (10,8,2);
-
-INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,1,13);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (6,5,6);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (7,6,7);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (8,7,8);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (9,5,9);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (10,8,10);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,8,11);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (12,8,12);
+INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (13,1,13);
