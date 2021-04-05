@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
-<html class="h-100">
+<html style="height:100%">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,10 +21,10 @@
 
 <title>Mis Proyectos</title>
 </head>
-<body class="h-100" style="background-color: #272727; color: white">
+<body class="position-relative" style="color:white;height:100%;background-color: #272727; color: white">
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
 
-	<div class="d-flex justify-content-center align-items-center" style="padding:2%">
+	<div class="d-flex position-relative justify-content-center align-items-center" style="min-height:70%;padding:2%">
 		
 		<!-- Info general Proyecto -->
 			

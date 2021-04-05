@@ -101,16 +101,16 @@
 						<form:errors style="color:red" path="photo"/>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" path="roles" style="background-color:#828282">Rol</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" path="role" style="background-color:#828282">Rol</form:label>
 							</div>
-							<form:select value="${artist.roles}" class="form-control" style="width:60%" path="roles">
+							<form:select value="${artist.role}" class="form-control" style="width:60%" path="role">
 								<form:option value="" selected="true">Selecciona un rol</form:option>
-								<c:forEach items="${role}" var="roles">
-									<form:option value="${roles}">${roles}</form:option>
+								<c:forEach items="${roles}" var="role">
+									<form:option value="${role}">${role}</form:option>
 								</c:forEach>
 							</form:select>
 						</div>
-						<form:errors style="color:red" path="roles"/>
+						<form:errors style="color:red" path="role"/>
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
 							<form:button class="btn" style="color:white;background-color: #af3248">Guardar</form:button>
 						</div>

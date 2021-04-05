@@ -3,7 +3,6 @@ package com.cinema.cinemaparadiso.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,8 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +24,7 @@ public class Artist extends Person {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="role")
-	@NotNull
+	@NotNull(message = "Debes escoger un rol")
 	private Role role;
 
 	@Column(name="projects")
@@ -44,7 +42,7 @@ public class Artist extends Person {
 
 	
 	@Column(name="pro")
-	@NotNull
+	@NotNull(message = "Elige una opción")
 	private Boolean pro;
 	
 	

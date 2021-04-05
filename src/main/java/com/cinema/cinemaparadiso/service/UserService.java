@@ -31,6 +31,10 @@ public class UserService {
     public long countUsers(){
         return userRepository.count();
     }
+    
+    public void deleteUser(User user) {
+    	userRepository.delete(user);
+    }
 
     public Iterable<User> list(){
         return userRepository.findAll();
