@@ -16,7 +16,7 @@ import com.cinema.cinemaparadiso.model.User;
 
 
 @SpringBootTest
-//@Sql("/db/data.sql")
+@Sql("/db/data.sql")
 @Transactional
 public class ArtistServiceTests {
 	
@@ -67,12 +67,12 @@ public class ArtistServiceTests {
 		Integer id = 1;
 		
 		User userCreated = new User();
-		userCreated.setUsername("admin");
+		userCreated.setUsername("admin0");
 		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
 		userCreated.setEnabled(true);
 		
 		Authorities authorityCreated = new Authorities();
-		authorityCreated.setUsername("admin");
+		authorityCreated.setUsername("admin0");
 		authorityCreated.setAuthority("admin");
 		
 		Artist artistCreated = new Artist();
@@ -187,12 +187,12 @@ public class ArtistServiceTests {
 //		Integer id = 1;
 //		
 //		User userCreated = new User();
-//		userCreated.setUsername("admin");
+//		userCreated.setUsername("admin0");
 //		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
 //		userCreated.setEnabled(true);
 //		
 //		Authorities authorityCreated = new Authorities();
-//		authorityCreated.setUsername("admin");
+//		authorityCreated.setUsername("admin0");
 //		authorityCreated.setAuthority("admin");
 //		
 //		Artist artistCreated = new Artist();
@@ -219,12 +219,12 @@ public class ArtistServiceTests {
 	@Test
 	public void shouldEditArtistWithError() {		
 		User userCreated = new User();
-		userCreated.setUsername("admin");
+		userCreated.setUsername("admin0");
 		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
 		userCreated.setEnabled(true);
 		
 		Authorities authorityCreated = new Authorities();
-		authorityCreated.setUsername("admin");
+		authorityCreated.setUsername("admin0");
 		authorityCreated.setAuthority("admin");
 		
 		Artist artistCreated = new Artist();
