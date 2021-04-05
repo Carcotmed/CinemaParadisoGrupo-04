@@ -70,6 +70,7 @@ public class ArtistController {
 			artistService.createArtist(artist);
 			log.info("Artist Created Successfully");
 		} catch (Exception e) {
+			log.info(artist.getUser().getUsername()+"/"+artist.getUser().getEmail()+"/"+artist.getUser().getPassword()+"/"+ artist.getUser().isEnabled());
 			log.error("Error Create Artist", e);
 		}
 		return "index";
