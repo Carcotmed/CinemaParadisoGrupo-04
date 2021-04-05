@@ -1,13 +1,11 @@
 package com.cinema.cinemaparadiso.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,8 +16,7 @@ import lombok.Setter;
 @Setter
 public class Producer extends Person {
 	
-	@NotNull
-	// Falta poner patrón que conste de 9 números seguido de una letra, no deja poner la anotación @Pattern (regx =)
+	@NotEmpty(message = "El campo NIF no puede estar vacio")
 	@Column(name="nif")
 	private String nif;
 	

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
@@ -67,7 +66,6 @@ public class WriterController {
     	model.addAttribute("skill", skill);
           log.info("================================"+ writer.getName());
           if(!result.hasErrors()) {
-        	 
               writerService.createWriter(writer);
           }else {
               return "writers/createOrUpdateWriterForm";

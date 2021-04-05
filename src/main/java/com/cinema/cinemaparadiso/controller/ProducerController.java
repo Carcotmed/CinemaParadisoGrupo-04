@@ -56,13 +56,12 @@ public class ProducerController {
     	List<Skill> skill = Arrays.asList(Skill.values());
     	model.addAttribute("skill", skill);
           log.info("================================"+ producer.getName());
-          try {
+          if(!result.hasErrors()) {
   			producerService.createProducer(producer);
-  			log.info("Artist Created Successfully");
-  		} catch (Exception e) {
-  			log.info(producer.getUser().getUsername()+"/"+producer.getUser().getEmail()+"/"+producer.getUser().getPassword()+"/"+ producer.getUser().isEnabled());
-  			log.error("Error Create Producer", e);
-  		}
+  			log.info("Producer Created Successfully");
+  		} else {
+			return "producers/createOrUpdateProducerForm";
+		}
   		return "index";
     }
 }
