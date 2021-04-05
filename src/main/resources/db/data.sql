@@ -89,3 +89,8 @@ INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (9,5,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (10,8,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,1,13);
 
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (1,0,'Bienvenido','He escuchado que acabas de entrar en la pagina, que tal te va?',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin0', 'admin1');
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (4,0,'Si','Si',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin1', 'admin0');
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (2,0,'Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'admin2', 'admin3');
+INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (3,0,'Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'admin4', 'admin5');
+

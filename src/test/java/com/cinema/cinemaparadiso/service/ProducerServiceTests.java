@@ -24,6 +24,7 @@ public class ProducerServiceTests {
 	@Autowired
 	private UserService userService;
 
+	/*
     @Test
     public void shouldExistProducerWithUsername(){
 		assertThat(producerService.existeProducerByUsername("adminTest")).isTrue();
@@ -73,7 +74,7 @@ public class ProducerServiceTests {
     	producerService.saveProducer(producer);
     	assertThat(producerService.countProducers()).isEqualTo(4);
     	assertThat(producerService.getProducerByUsername("admin").getNif()).isEqualTo("87654321P");
-    }*/
+    }
     
     @Test
     public void shouldNotSaveIncorrectProducer() {
@@ -87,7 +88,7 @@ public class ProducerServiceTests {
     		producerService.saveProducer(producer);
     		}catch(RuntimeException e) {errorHappened=true;};
     	assertThat(errorHappened).isTrue();
-    }/*
+    }
     
     @Test
     public void shouldDeleteProducer() {
