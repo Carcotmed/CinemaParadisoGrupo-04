@@ -47,6 +47,11 @@ public class UserController {
         model.addAttribute("tipoUser", "artist");
         return "users/createUserForm";
     }
+    
+    @GetMapping("/select")
+    public String selectUser(Model model){
+        return "users/selectUser";
+    }
 
     @PostMapping("/create")
     public String createUser(@Validated @ModelAttribute("user") User user, BindingResult result){
@@ -56,6 +61,6 @@ public class UserController {
         }catch(Exception e){
             log.error("Error Create User", e);
         }
-        return "index";
+        return "users/createUserForm";
     }
 }

@@ -8,15 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
+import com.cinema.cinemaparadiso.repository.UserRepository;
 
 @Service
 public class ArtistService {
-
+	@Autowired
 	private ArtistRepository artistRepository;
 
 	@Autowired
-	private UserService userService;
+    private UserRepository userRepository;
+	
 
 	@Autowired
 	public ArtistService(ArtistRepository artistRepository) {
@@ -28,7 +31,13 @@ public class ArtistService {
 	}
 
 	public void createArtist(Artist artist){
-	       saveArtist(artist);
+		User user= new User();
+    	user.setEmail(artist.getUser().getEmail());
+    	user.setEnabled(true);
+    	user.setPassword(artist.getUser().getPassword());
+    	user.setUsername(artist.getUser().getUsername());
+    	userRepository.save(user);
+	    saveArtist(artist);
 	        
 
 	    }

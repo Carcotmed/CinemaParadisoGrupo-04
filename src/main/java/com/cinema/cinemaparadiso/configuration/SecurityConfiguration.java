@@ -25,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
-				.antMatchers("/users/create").permitAll()
+				.antMatchers("/users/select").permitAll()
 				//artist
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()

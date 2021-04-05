@@ -144,3 +144,104 @@
     
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+<tr>
+                    <td><form:label path="user.username">Usuario: </form:label></td>
+                    <td><form:input value="${artist.user.username}" placeholder="example" type="text" path="username" /></td>
+                </tr>
+                <tr>
+                    <td><form:label path="user.password">Clave: </form:label></td>
+                    <td><form:input value="${artist.user.password}" type="password" path="password" /></td>
+                </tr>
+                <tr>
+                    <td><form:label path="user.email">Email: </form:label></td>
+                    <td><form:input value="${artist.user.email}" placeholder="example@example.com" type="text" path="email" /></td>
+                </tr>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <%@ page session="false" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Usuario</title>
+</head>
+<body>
+<form:form action = "create"  modelAttribute="artist" method = "post">
+        <fieldset>
+            <legend>Datos del usuario</legend>
+            <table>
+                
+                            <form:label path="name">Nombre: </form:label>
+                            <form:input value="${artist.name}" placeholder="Nombre"  type="text" path="name" /><br>
+                            
+						    <form:label path="surName">Apellidos: </form:label>
+                            <form:input value="${artist.surName}" type="text" placeholder="Apellidos" path="surName" /><br>
+                            
+			                <form:select value="${artist.skills}" class="form-control" style="width:60%" path="skills">
+							<form:option value="" selected="true">Selecciona una habilidad</form:option>
+							<c:forEach items="${skills}" var="skills">
+							<form:option value="${skills}">${skills}</form:option>
+							</c:forEach>
+							</form:select>
+							
+							<form:label path="description">Descripción: </form:label>
+                            <form:input value="${artist.description}" type="text" placeholder="Cuenta algo de ti..." path="description" /><br>
+                            
+                         <div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+						<div class="d-flex flex-wrap ">
+						<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="photo">Url imagen</form:label>
+						</div>
+						<form:input class="form-control" value="${artist.photo}" placeholder="url" style="margin-left: 3%;width:60%" type="text" path="photo"></form:input>
+						</div>
+						
+						<form:select value="${artist.roles}" class="form-control" style="width:60%" path="roles">
+						<form:option value="" selected="true">Selecciona un rol</form:option>
+						<c:forEach items="${roles}" var="roles">
+						<form:option value="${roles}">${roles}</form:option>
+						</c:forEach>
+						</form:select>
+					    
+						
+						<form:label path="summary">Resumen: </form:label>
+                        <form:input value="${artist.summary}" type="text" placeholder="Cuenta tu experiencia..." path="summary" /><br>
+                
+                </table>
+                </fieldset>
+                </form:form>
