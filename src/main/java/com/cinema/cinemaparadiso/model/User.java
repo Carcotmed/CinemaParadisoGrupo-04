@@ -16,6 +16,7 @@ public class User {
     @Id
     private String username;
     private String password;
+    private String email;
     private boolean enabled;
 	@Override
 	public String toString() {

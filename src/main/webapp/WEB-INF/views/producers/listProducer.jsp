@@ -39,10 +39,9 @@
 				 </spring:url> 
 				  <a href="${fn:escapeXml(showUrl)}" class="btn btn-danger">Mostrar</a>
 				 
-				 
+				 <c:if test="${ username!=null && producer.user.username==username }">
 				 <spring:url value="/producers/delete/{producerUsername}" var="deleteUrl">
 				  <spring:param name="producerUsername" value="${producer.user.username}"/>
-
 				</spring:url> 
 				  <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-danger">Borrar</a>
 				  
@@ -50,6 +49,7 @@
 				  <spring:param name="producerUsername" value="${producer.user.username}"/>
 				  </spring:url> 
 				  	<a href="${fn:escapeXml(updateUrl)}" class="btn btn-danger">Actualizar</a>
+				</c:if>
 				  
 				  
 				</td>

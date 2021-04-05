@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
@@ -26,7 +27,7 @@ public class Person extends BaseEntity  {
 	@NotNull
 	protected String surName;
 	
-	@ElementCollection(targetClass=Skill.class)
+	@ElementCollection(targetClass=Skill.class, fetch = FetchType.EAGER)
 	@Column(name = "skills")
 	@NotNull
 	protected List<Skill> skills;

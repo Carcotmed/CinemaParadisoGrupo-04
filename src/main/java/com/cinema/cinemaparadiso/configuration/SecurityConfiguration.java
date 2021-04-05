@@ -28,10 +28,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/users/create").permitAll()
 				//Producer
 				.antMatchers("/producers/list").permitAll()
-				.antMatchers("/producers/create").authenticated()
+				.antMatchers("/producers/create").permitAll()
 				.antMatchers("/producers/show/**").permitAll()
 				.antMatchers("/producers/update/**").authenticated()
-				.antMatchers("/producers/delete/**").authenticated()
+				.antMatchers("/producers/delete/**").permitAll()
 				//artist
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()

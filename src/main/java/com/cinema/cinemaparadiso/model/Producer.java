@@ -23,6 +23,8 @@ public class Producer extends Person {
 	@Column(name="nif")
 	private String nif;
 	
+	private String photo;
+	
 	@OneToOne
 	@NotNull
     @JoinColumn(name = "username", referencedColumnName = "username")
