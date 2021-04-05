@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Skill;
+import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.WriterService;
@@ -60,8 +61,10 @@ public class WriterController {
 	@GetMapping(value = { "/show/{writerId}" })
 	public String showWriter(@PathVariable("writerId") int writerId, Model model) {
 		Writer writer = writerService.findWriterById(writerId);
+		List<Story> stories = writerService.findMyStories(writerId);
 		model.addAttribute("writerId", writerId);
 		model.addAttribute("writer", writer);
+		model.addAttribute("stories",stories);
 		return "writers/showWriter";
 	}
 	@GetMapping("/create")
@@ -92,4 +95,6 @@ public class WriterController {
           }
           return "index";
       }
+       
+    
 }

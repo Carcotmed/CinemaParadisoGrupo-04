@@ -40,13 +40,13 @@ INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES
 INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (3,0,'ivanlot','Joe','Jones','Me gusta escribir','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKMMTcbWEZDOQPwhHeLSmpCgcBlG98OmYrQ&usqp=CAU');
 
 
---INSERT INTO rel_story_projects (story_id, project_id) VALUES (1,1);
---INSERT INTO rel_story_projects (story_id, project_id) VALUES (2,2);
---INSERT INTO rel_story_projects (story_id, project_id) VALUES (3,3);
---INSERT INTO rel_story_projects (story_id, project_id) VALUES (4,5);
---INSERT INTO rel_story_projects (story_id, project_id) VALUES (5,4);
---INSERT INTO rel_story_projects (story_id, project_id) VALUES (6,6);
---INSERT INTO rel_story_projects (story_id, project_id) VALUES (7,7);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (1,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (2,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (3,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (4,1);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (5,2);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (6,2);
+INSERT INTO rel_story_writers (story_id, writer_id) VALUES (7,3);
 
 INSERT INTO messages(issue,body,date,emisor_id,receptor_id) VALUES ('Bienvenido','He escuchado que acabas de entrar en la pagina, que tal te va?',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'user', 'ivanlot');
 INSERT INTO messages(issue,body,date,emisor_id,receptor_id) VALUES ('Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'ivanlot', 'user');

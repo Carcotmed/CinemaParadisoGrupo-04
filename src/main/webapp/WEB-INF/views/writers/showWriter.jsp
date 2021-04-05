@@ -49,7 +49,7 @@
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre</h5>
 					</div>
 					<p style="margin-left: 3%">${writer.name}</p>
-				</div style="margin:1% 0">
+				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripción</h5>
@@ -57,6 +57,21 @@
 					<p style="margin-left: 3%">${writer.description}</p>
 				</div>
 			</div>
+			<div style="padding: 2% 0;width:30%;margin:auto">
+			<c:forEach items="${stories}" var="story">
+				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
+						<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg" onClick="location.href='/stories/show/${story.id}'" style="width:100%;height:100%;object-fit:cover">
+					</div>
+					<div style="margin-left: 12%">
+						<h5>${story.title}</h5>
+						<p>${story.genre}</p>
+					</div>
+				</div>
+				
+				
+			</c:forEach>
+		</div>
 			
 		</div>
 	</div>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Authorities;
+import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.WriterRepository;
@@ -55,5 +56,10 @@ public class WriterService {
 
 			writerRepository.save(writer);	
 		
+	}
+	
+	@Transactional
+	public List<Story> findMyStories(Integer writerId){
+		return this.writerRepository.findMyStories(writerId);
 	}
 }
