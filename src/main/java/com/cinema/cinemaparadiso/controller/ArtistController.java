@@ -133,15 +133,4 @@ public class ArtistController {
 		return "artist/listArtist";
 	}
 
-	@PostMapping("/delete/{artistId}")
-	public String deleteArtist(@PathVariable("artistId") Integer artistId, BindingResult result) {
-		try {
-			artistService.deleteArtist(artistId);
-			log.info("Artist Deleted Successfully");
-		} catch (Exception e) {
-			log.error("Error Deleting Artist", e);
-		}
-		return "artist/listArtist";
-	}
-
 }
