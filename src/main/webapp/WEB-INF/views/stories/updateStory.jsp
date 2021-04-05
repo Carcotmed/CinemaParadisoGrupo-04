@@ -18,6 +18,8 @@
 <title>Update Story</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+
 	<div class="d-flex">
 		<div class="d-flex flex-column justify-content-center">
 			<h4>Mis Historias</h4>
@@ -78,5 +80,7 @@
 
 
 	</div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+	
 </body>
 </html>
