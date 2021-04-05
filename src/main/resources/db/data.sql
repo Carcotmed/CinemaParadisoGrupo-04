@@ -22,6 +22,9 @@ INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES (
 INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('2','Woody','Allen','19876543W','Productor con larga experiencia en películas de ciencia ficción', 'admin1');
 INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('3','Mel','Gibson','34587666Y','Productora con ganas de realizar un cortometraje acerca del covid y su repercusión en la vida de las personas','admin2');
 
+INSERT INTO authorities(username,authority) VALUES ('admin0','producer');
+INSERT INTO authorities(username,authority) VALUES ('admin0','writer');
+INSERT INTO authorities(username,authority) VALUES ('admin0','artist');
 
 INSERT INTO stories (id,version,title,body,genre) VALUES (1,0,'La historia interminable','MUCHO TEXTO',0);
 INSERT INTO stories (id,version,title,body,genre) VALUES (2,0, 'Piratas del Caribe','MUCHO TEXTO',1);
