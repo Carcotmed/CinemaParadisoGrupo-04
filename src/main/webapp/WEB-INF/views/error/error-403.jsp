@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>You don't seem to have the permission to be here!</h1>
-<a href="/">Go Home</a>
+<h1>¡Parece que no tienes los permisos necesarios!</h1>
+<a href="/">Volver al Inicio</a>
 </body>
 </html>
