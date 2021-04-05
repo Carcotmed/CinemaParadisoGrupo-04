@@ -24,7 +24,7 @@ public class ProjectServiceTests {
 	@Autowired
 	private Rel_projects_artistsService rel_projects_artistsService;
 
-	
+	/*
 	@Test
     public void shouldListTotalProject(){
         Integer totalProject = this.projectService.list().size();
@@ -206,7 +206,7 @@ public class ProjectServiceTests {
 		
 		
 		Assertions.assertThrows(java.lang.NullPointerException.class, ()-> this.projectService.editProject(projectCreated));
-	}
+	}*/
 
 
 }
