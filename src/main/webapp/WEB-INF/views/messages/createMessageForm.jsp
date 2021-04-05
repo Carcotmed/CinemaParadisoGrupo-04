@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,23 +14,18 @@
     <title>Nuevo Mensaje</title>
 </head>
 <body>
-    <form action = "/messages/create/{user.id}"  modelAttribute="user" method = "post">
-	<input type="hidden" name="id" value="${user.id}" />    
+    <form:form action = "/messages/create/${userName}"  modelAttribute="message" method = "post">
+	<input type="hidden" name="username" value="${user}" />    
 	   <fieldset>
             <legend>Datos del mensaje</legend>
             <table>
                 <tr>
-                    <td><label>Asunto: </label></td>
-                    <td><input type="text" name="issue" /></td>
+                    <td><form:label path="issue">Asunto: </form:label></td>
+                    <td><form:input type="text" path="issue" /></td>
                 </tr>
                 <tr>
-                    <td><label>Cuerpo: </label></td>
-                    <td><input type="text" name="body" /></td>
-                </tr>
-                <tr>
-                    <td><fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>
-           			 <input type="hidden" name="messageDate" value="${messageDate}"/></td>
-                    <td><input type="date" name="messageDate" /></td>
+                    <td><form:label path="body">Cuerpo: </form:label></td>
+                    <td><form:input type="text" path="body" /></td>
                 </tr>
                     <td>
                         <button class="btn btn-default" type="submit">Crear</button>
@@ -40,6 +36,6 @@
              <button class="btn btn-default" type="reset" onclick="location.href = '/messages/list';">Cancelar</button>    		
             
         </fieldset>
-    </form>
+    </form:form>
 </body>
 </html>

@@ -5,6 +5,9 @@ import com.cinema.cinemaparadiso.model.Post;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.UserService;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,25 +55,27 @@ public class MessageController {
         return "messages/showMessage";
     }
 
-    @GetMapping("/create/{userId}")
-    public String initFormCreateMessage(Model model, @PathVariable("userId") String userId){
+    @GetMapping("/create/{userName}")
+    public String initFormCreateMessage(Model model, @PathVariable("userName") String userName){
     	try {
     		Message message = new Message();
             model.addAttribute("message", message);
+            model.addAttribute("userName", userName);
     		model.addAttribute("Estado", "Exito");
     	}catch (IllegalArgumentException e) {
     		model.addAttribute("Estado", "Error al iniciar la entidad");
 		}
-        log.info("Initializing Messages to..."+userId.toString());
+        log.info("Initializing Messages to..."+userName.toString());
         return "messages/createMessageForm";
     }
 
-    @PostMapping("/create/{userId}")
-    public String create(Model model, @PathVariable("userId") String userId, @Validated @ModelAttribute("message") Message message){
+    @PostMapping("/create/{userName}")
+    public String create(Model model, @PathVariable("userName") String userName, @Validated @ModelAttribute("message") Message message){
     	try {
     		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
     		message.setEmisor(userService.getUserByUsername(emisor_username));
-    		message.setReceptor(userService.getUserByUsername(userId));
+    		message.setReceptor(userService.getUserByUsername(userName));
+    		message.setMessageDate(Date.from(Instant.now()));
     		messageService.create(message);
     		model.addAttribute("Estado", "Exito");
     	}catch (IllegalArgumentException e) {
@@ -78,7 +83,7 @@ public class MessageController {
     		model.addAttribute(message);
 		}
         log.info("Creating Messages..."+message.toString());
-        return "messages/createMessageForm";
+        return "redirect:/messages/list";
     }
 
     @GetMapping("/delete/{messageId}")
