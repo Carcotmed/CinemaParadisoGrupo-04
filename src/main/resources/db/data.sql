@@ -22,9 +22,6 @@ INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES (
 INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('2','Woody','Allen','19876543W','Productor con larga experiencia en películas de ciencia ficción', 'admin1');
 INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('3','Mel','Gibson','34587666Y','Productora con ganas de realizar un cortometraje acerca del covid y su repercusión en la vida de las personas','admin2');
 
-INSERT INTO authorities(username,authority) VALUES ('admin0','producer');
-INSERT INTO authorities(username,authority) VALUES ('admin0','writer');
-INSERT INTO authorities(username,authority) VALUES ('admin0','artist');
 
 INSERT INTO stories (id,version,title,body,genre) VALUES (1,0,'La historia interminable','MUCHO TEXTO',0);
 INSERT INTO stories (id,version,title,body,genre) VALUES (2,0, 'Piratas del Caribe','MUCHO TEXTO',1);
@@ -53,6 +50,7 @@ INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VA
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (4,0,'Si','Si',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin1', 'admin0');
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (2,0,'Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'admin2', 'admin3');
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (3,0,'Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'admin4', 'admin5');
+
 
 
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (1,'De miedo','Miedo','https://i.pinimg.com/originals/73/09/3f/73093ff700637e9ce2aed290b9be255c.jpg',TRUE,2,0);
@@ -91,4 +89,3 @@ INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (8,7,1);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (9,5,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (10,8,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,1,13);
-
