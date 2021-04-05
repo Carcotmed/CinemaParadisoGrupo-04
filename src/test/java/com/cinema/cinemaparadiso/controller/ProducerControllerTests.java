@@ -91,16 +91,16 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.view().name("/producers/listProducer"));
 	}
     
-    @WithMockUser(username="admin",authorities= {"admin"})
-	@Test
-	void shouldShowProducers() throws Exception {
-		
-		mockMvc.perform(get("/producers/show/user1"))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.model().attributeExists("producer"))
-                .andExpect(MockMvcResultMatchers.model().attribute("producer", Matchers.is(producer1)))
-                .andExpect(MockMvcResultMatchers.view().name("/producers/showProducer"));
-	}
+//    @WithMockUser(username="admin",authorities= {"admin"})
+//	@Test
+//	void shouldShowProducers() throws Exception {
+//		
+//		mockMvc.perform(get("/producers/show/user1"))
+//                .andExpect(status().isOk())
+//                .andExpect(MockMvcResultMatchers.model().attributeExists("producer"))
+//                .andExpect(MockMvcResultMatchers.model().attribute("producer", Matchers.is(producer1)))
+//                .andExpect(MockMvcResultMatchers.view().name("/producers/showProducer"));
+//	}
     /*
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
