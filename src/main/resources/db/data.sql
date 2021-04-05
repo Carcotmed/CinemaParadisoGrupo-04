@@ -18,7 +18,6 @@ INSERT INTO authorities(username,authority) VALUES ('admin6','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin7','admin');
 
 
-
 INSERT INTO users(username,password,enabled,email) VALUES ('admin0','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE,'user1@ejemplo.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('admin1','$2a$10$xpgy46/5c/UsKgD1/UQNWuze5c//nH/d5ff8cigK0saMtoznD8x0K',TRUE,'user2@ejemplo.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('admin2','$2a$10$lD0WmxowSo/xnSsd6rPwPQevaIu7G4UhtocWiQrLwd9bOvMF5N40Ay',TRUE,'user3@ejemplo.com');
