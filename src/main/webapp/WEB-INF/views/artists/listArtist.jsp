@@ -5,11 +5,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<html class="h-100">
+<html style="height:100%">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shorcut icon" type="image/ico" href="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/feature/fix-general/src/main/webapp/WEB-INF/views/static/favicon.ico?raw=true" />
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -17,8 +19,10 @@
 	crossorigin="anonymous">
 <title>Descubre Artistas</title>
 </head>
-<body class="h-100" style="color:white">
-	<div class="d-flex h-100">
+<body style="color:white;height:100%;" class="position-relative">
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+
+	<div class="d-flex position-relative" style="min-height:70%">
 
 		<!--  Filtros -->
 		<div class="p-4 w-25" style="background-color: #af3248">
@@ -76,16 +80,7 @@
 			</div>
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
- -->

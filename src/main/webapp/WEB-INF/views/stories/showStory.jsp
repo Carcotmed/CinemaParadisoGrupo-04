@@ -18,6 +18,8 @@
 <title>Story</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+
 	<!-- Header Historia -->
 	<div class="d-flex justify-content-between p-3" style="height:15%">
 			<div class="d-flex align-items-center" style="width:50%">
@@ -65,5 +67,7 @@
 			</div>
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+	
 </body>
 </html>

@@ -29,7 +29,7 @@ public class StoryController {
 		Story story = storyService.findStoryById(storyId);
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
-		return "storys/createOrUpdateStoryForm";
+		return "stories/createOrUpdateStoryForm";
 	}
 
 	@PostMapping("/update/{storyId}")
@@ -66,7 +66,7 @@ public class StoryController {
 		Iterable<Story> stories = storyService.list();
 		model.addAttribute("stories", stories);
 		log.info("Listing Stories..." + stories.toString());
-		return "storys/listStory";
+		return "stories/listStory";
 	}
 	
 	@GetMapping(value = { "/show/{storyId}" })
@@ -74,7 +74,7 @@ public class StoryController {
 		Story story = storyService.findStoryById(storyId);
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
-		return "storys/showStory";
+		return "stories/showStory";
 	}
 
 }
