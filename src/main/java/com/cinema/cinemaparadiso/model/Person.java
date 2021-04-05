@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.sun.istack.NotNull;
 
@@ -19,7 +20,7 @@ import lombok.Setter;
 public class Person extends BaseEntity  {
 
 	@Column(name = "name")
-	@NotNull
+	@NotEmpty
 	protected String name;
 	
 	@Column(name = "surName")
