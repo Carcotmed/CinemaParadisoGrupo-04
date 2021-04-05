@@ -25,7 +25,7 @@
 		<!-- Header Artista -->
 		<div class="d-flex justify-content-between p-3" style="margin-bottom: 5%">
 			<div class="d-flex jsutify-content-center">
-				<img src="https://via.placeholder.com/150" class="rounded-circle w-30">
+				<img src="${artist.photo}" class="rounded-circle w-30">
 				<div class="py-3 mx-3" style="width:40%">
 					<h3>${artist.name}</h3>
 					<p>${artist.summary}</p>
