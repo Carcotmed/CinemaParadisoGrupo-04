@@ -52,6 +52,7 @@ INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VA
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (3,0,'Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'admin4', 'admin5');
 
 
+
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (1,'De miedo','Miedo','https://i.pinimg.com/originals/73/09/3f/73093ff700637e9ce2aed290b9be255c.jpg',TRUE,2,0);
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (2,'Ciencia ficcion','Ciencia Ficcion','https://miro.medium.com/max/2400/1*onNN4P1jCC8DyS9GxUAm1w.jpeg',TRUE,1,0);
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (3,'De accion','Accion','https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/john-wick-chapter-3-parabellum-1558983194.jpg',TRUE,0,0);
