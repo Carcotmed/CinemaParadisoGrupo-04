@@ -50,12 +50,21 @@
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Género</h5>
 					</div>
 					<p style="margin-left: 3%">${story.genre}</p>
-				</div style="margin:1% 0">
+				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripción</h5>
 					</div>
 					<p style="margin-left: 3%">${story.body}</p>
+				</div>
+								<div>
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Writer</h5>
+					</div>
+					<p style="margin-left: 3%">${myWriter.user.username}</p>
+					<div style="width:20vh;height:20vh;overflow:hidden" class="rounded-circle">
+					<img src="${myWriter.photo}" onClick="location.href='/writers/show/${myWriter.id}'" style="width:100%;height:100%;object-fit:cover">
+					</div>
 				</div>
 			</div>
 			

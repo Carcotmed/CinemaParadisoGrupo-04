@@ -52,7 +52,7 @@
 	      		</c:forEach>
 	      	</div>
 			
-			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1%">
+			
 			
 		</div>
 	</div>

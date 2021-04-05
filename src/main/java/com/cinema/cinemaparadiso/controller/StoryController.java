@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Story;
+import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.StoryService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,12 +41,15 @@ public class StoryController {
 	}
 
 	@PostMapping("/create")
-	public String createStory(@Validated Story story, BindingResult result) {
+	public String createStory(@Validated Story story, BindingResult result,Model model) {
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres",genres);
 		try {
 			storyService.createStory(story);
 			log.info("Story Created Successfully");
 		} catch (Exception e) {
 			log.error("Error Create Story", e);
+			return "stories/createStory";
 		}
 		return "redirect:/stories/list";
 	}
@@ -86,8 +90,10 @@ public class StoryController {
 	@GetMapping(value = { "/show/{storyId}" })
 	public String showStory(@PathVariable("storyId") int storyId, Model model) {
 		Story story = storyService.findStoryById(storyId);
+		Writer myWriter = storyService.findMyWriter(storyId);
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
+		model.addAttribute("myWriter",myWriter);
 		return "stories/showStory";
 	}
 

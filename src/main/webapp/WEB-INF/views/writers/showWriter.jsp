@@ -56,6 +56,12 @@
 					</div>
 					<p style="margin-left: 3%">${writer.description}</p>
 				</div>
+				<c:choose>
+					<c:when test="${sameWriter == true}">
+						<button class="btn" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
+					</c:when>
+				</c:choose>
+				
 			</div>
 			<div style="padding: 2% 0;width:30%;margin:auto">
 			<c:forEach items="${stories}" var="story">
