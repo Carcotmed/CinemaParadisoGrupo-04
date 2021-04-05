@@ -23,13 +23,6 @@ public class Producer extends Person {
 	@Column(name="nif")
 	private String nif;
 	
-	// Pongo not null aunque no esté en el UML para que tenga que tener una descripción obligatoria el productor.
-//	@NotNull
-//	@Column(name="description")
-//	private String description;
-	
-	//Extiende de persona y persona ya tiene description.
-	
 	@OneToOne()
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
