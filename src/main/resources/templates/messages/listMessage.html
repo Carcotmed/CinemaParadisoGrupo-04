@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>List Messages </title>
+</head>
+<body style="display: flex;color:white;">
+	
+	<div style="width: 15%;background-color: green">
+		<p>Messages</p>
+		</br>
+		<form>
+			<label>Issue:</label>
+			<input type="text" value="" id="issue">
+			
+			<label>Body:</label>
+			<input type="text" value="" id="body">
+			
+			<label>Date:</label>
+			<input type="date" placeholder="yyyy/MM/dd HH:mm" value="1" id="date">
+
+		</form>
+	</div>
+    <div>
+      	<hr>
+      	<div>
+      		<c:forEach items="${messages}" var="message">
+      			<a href="messages/list"></a>
+      			<span>${message.issue}</span>
+      			<p>${message.body}</p>
+      			<p>${message.date}</p>
+      		</c:forEach>
+      	</div>
+    </div>
+    
+    
+   <!--Botones -->
+   
+      <c:forEach items="${messages}" var="message">
+     <button type="button"> <a class="btn btn-default" href="/create/${message.user.Id}"> Create</button>
+   	 <button type="button"> <a class="btn btn-default" href="/delete/${message.user.Id}"> Delete</button>
+   	 <button type="button" class="btn btn-default" onclick="location.href = '/';"> Return</button>    		
+   	 
+   	
+</body>
+</html>
