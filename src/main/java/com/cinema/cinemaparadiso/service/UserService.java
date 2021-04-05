@@ -7,10 +7,16 @@ import com.cinema.cinemaparadiso.repository.UserRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+
 
 @Service
 public class UserService {
@@ -24,6 +30,10 @@ public class UserService {
 
     public long countUsers(){
         return userRepository.count();
+    }
+    
+    public void deleteUser(User user) {
+    	userRepository.delete(user);
     }
 
     public Iterable<User> list(){
@@ -43,8 +53,7 @@ public class UserService {
         user.setPassword(encryptedPassword);
         user.setEnabled(true);
         userRepository.save(user);
-        Authorities authorities = new Authorities(user.getUsername(),"admin");
-        authoritiesRepository.save(authorities);
+       
     }
     
     public void changePassword (String userName, String oldPassword, String newPassword) throws Exception, NoSuchElementException{
@@ -70,5 +79,25 @@ public class UserService {
     	retrievedUser.setEnabled(false);
     	userRepository.save(retrievedUser);
     }
-
+    
+    //Comprobar user logeado
+    
+	public User getPrincipal() {
+		User res = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			Optional<User> currentUser = findUser(userDetail.getUsername());
+			
+			if(currentUser.isPresent()) {
+				res = currentUser.get();
+			}
+		}
+		
+		return res;
+	}
+	
+	public Optional<User> findUser(String username) {
+		return userRepository.findById(username);
+	}
 }

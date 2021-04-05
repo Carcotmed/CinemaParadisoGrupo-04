@@ -12,28 +12,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>User List</title>
+    <title>Muestra de Productor</title>
 </head>
 <body>
     <div class="container mt-4">
         <table class="table">
             <thead>
                 <tr>
-                    <th>USERNAME</th>
-                    <th>PASSWORD</th>
-                    <th>ENABLED</th>
+                    <th>NIF</th>
+                    <th>DESCRIPTION</th>
+                    <th>            </th>
+
                 </tr>
             </thead>
+            
             <tbody>
-                <c:forEach items="${users}" var="user">
                 <tr>
-                    <th></c:out value = "${user.username}" ></th>
-                    <th></c:out value = "${user.password}" ></th>
-                    <th></c:out value = "${user.enabled}" ></th>
+                 <td><c:out value="${producer.nif}" /></td>
+                 <td><c:out value="${producer.description}" /></td>
                 </tr>
-                </c:forEach>
+                
             </tbody>
         </table>
+
+     	<button class="btn btn-danger" onclick="location.href = '/producers/list';">Volver</button>    		
     </div>
 </body>
 </html>

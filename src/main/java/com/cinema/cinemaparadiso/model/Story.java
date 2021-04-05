@@ -1,6 +1,7 @@
 package com.cinema.cinemaparadiso.model;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -23,10 +24,11 @@ public class Story extends BaseEntity {
 	@NotNull
 	private String body;
 	
+	//@ElementCollection(targetClass=Genre.class)
 	@Column(name="genre")
     private Genre genre;
 	
-	@Column(name="length")
-    private Integer length;
+	@Column(name="storylength")
+    private Integer storylength;
 
 }

@@ -26,22 +26,48 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**","/error/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/create").permitAll()
-				//artist
+				//PRODUCER
+				.antMatchers("/producers/list").permitAll()
+				.antMatchers("/producers/create").permitAll()
+				.antMatchers("/producers/show/**").permitAll()
+				.antMatchers("/producers/update/**").authenticated()
+				.antMatchers("/producers/delete/**").permitAll()
+				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
-				.antMatchers("/mensaje").permitAll()
-				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
-				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/artists/update/{artistId}").permitAll()
 				.antMatchers("/artists/delete/{artistId}").permitAll()
 				.antMatchers("/artists/show/{artistId}").permitAll()
+				.antMatchers("/artists/myProjects").permitAll()
+				.antMatchers("/artists/myProjects/**").permitAll()
+				//MESSAGES
+				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
+				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
+				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
+				//user
 				.antMatchers("/users/list").hasAnyAuthority("admin")
+				.antMatchers("/users/select").permitAll()
+				//POST
 				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
+		        //WRITERS
+		        .antMatchers("/writers/list").permitAll()
+		        .antMatchers("/writers/create").permitAll()
+				.antMatchers("/writers/show/{writerId}").permitAll()
+		        //STORIES
+		        .antMatchers("/stories/update/{storyId}").permitAll()
+				.antMatchers("/stories/create").permitAll()
+				.antMatchers("/stories/list").permitAll()
+				.antMatchers("/stories/show/{storyId}").permitAll()
+				//PROJECTS
+				.antMatchers("/projects/list").permitAll()
+				.antMatchers("/projects/create").permitAll()
+				.antMatchers("/projects/update/{projectId}").permitAll()
+				.antMatchers("/projects/delete/{projectId}").permitAll()
+				.antMatchers("/projects/show/{projectId}").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
