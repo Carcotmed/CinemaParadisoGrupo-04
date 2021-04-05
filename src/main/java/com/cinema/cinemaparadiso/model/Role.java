@@ -1,8 +1,8 @@
 package com.cinema.cinemaparadiso.model;
 
 public enum Role {
-	CAMERA,
-	WRITER,
+	CAMARA,
+	GUIONISTA,
 	ACTOR,
 	DIRECTOR
 }
