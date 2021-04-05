@@ -42,7 +42,7 @@
             </tbody>
         </table>
 
-     	<button class="btn btn-default" onclick="location.href = '/messages/list';">Volver</button>    		
+     	<button class="btn btn-danger" onclick="location.href = '/messages/list';">Volver</button>    		
     
 </body>
 </html>

@@ -63,25 +63,25 @@ public class MessageControllerTests {
     @MockBean
     private UserService userService;
 
-    @BeforeEach
-	void setup() {
-    	
-    	User user1 = new User ("newTestUser1", "newTestUser1", true);
-    	User user2 = new User ("newTestUser2", "newTestUser2", true);
-    	
-    	Message message1 = new Message("New Test Issue", "New Test Body", Date.from(Instant.now()), user1, user2);
-    	List <Message> list = new ArrayList();
-    	list.add(message1);
-    	
-    	when(messageService.findById(1)).thenReturn(message1);
-    	
-    	when(userService.getUserByUsername("newTestUser1")).thenReturn(user1);
-    	when(userService.getUserByUsername("newTestUser2")).thenReturn(user2);
-
-    	when(messageService.findById(1)).thenReturn(message1);
-    	when(messageService.findByUsername("newTestUser1")).thenReturn((Iterable)list);
-	
-    }
+//    @BeforeEach
+//	void setup() {
+//    	
+//    	User user1 = new User ("newTestUser1", "newTestUser1", true);
+//    	User user2 = new User ("newTestUser2", "newTestUser2", true);
+//    	
+//    	Message message1 = new Message("New Test Issue", "New Test Body", Date.from(Instant.now()), user1, user2);
+//    	List <Message> list = new ArrayList();
+//    	list.add(message1);
+//    	
+//    	when(messageService.findById(1)).thenReturn(message1);
+//    	
+//    	when(userService.getUserByUsername("newTestUser1")).thenReturn(user1);
+//    	when(userService.getUserByUsername("newTestUser2")).thenReturn(user2);
+//
+//    	when(messageService.findById(1)).thenReturn(message1);
+//    	when(messageService.findByUsername("newTestUser1")).thenReturn((Iterable)list);
+//	
+//    }
 
     // He metido estos test como prueba para ver si el contexto carga correctamente.
 
