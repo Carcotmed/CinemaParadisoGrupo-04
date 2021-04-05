@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.URL;
 
 import com.sun.istack.NotNull;
 
@@ -34,5 +37,10 @@ public class Person extends BaseEntity  {
 	@Column(name = "description")
 	@NotNull
 	protected String description;
+	
+    @Column(name="photo")
+    @NotEmpty(message = "Debe indicar una URL")
+    @URL(message = "Debe indicar una URL")
+    private String photo;
 
 }

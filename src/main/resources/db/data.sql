@@ -35,9 +35,9 @@ INSERT INTO stories (id,version,title,body,genre) VALUES (5,0, 'Jurassic Park','
 INSERT INTO stories (id,version,title,body,genre) VALUES (6,0, 'SlumDog Millionaire','MUCHO TEXTO',2);
 INSERT INTO stories (id,version,title,body,genre) VALUES (7,0, 'Cadena Perpetua','MUCHO TEXTO',1);
 
-INSERT INTO writers (id,version,username,name,sur_Name,description) VALUES (1,0,'adminTest','Sergio','Perez','Me gusta escribir');
-INSERT INTO writers (id,version,username,name,sur_Name,description) VALUES (2,0,'admin','Pedro','Jimenez','Me gusta escribir');
-INSERT INTO writers (id,version,username,name,sur_Name,description) VALUES (3,0,'ivanlot','Joe','Jones','Me gusta escribir');
+INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (1,0,'adminTest','Sergio','Perez','Me gusta escribir','https://www.ecured.cu/images/6/65/Escritor_3.jpeg');
+INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (2,0,'admin','Pedro','Jimenez','Me gusta escribir','https://elcorreoweb.es/binrepository/675x507/0c54/675d400/none/10703/DYTH/escribir-tu-histroria-1024x769_20332201_20200104232241.jpg');
+INSERT INTO writers (id,version,username,name,sur_Name,description,photo) VALUES (3,0,'ivanlot','Joe','Jones','Me gusta escribir','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKMMTcbWEZDOQPwhHeLSmpCgcBlG98OmYrQ&usqp=CAU');
 
 
 --INSERT INTO rel_story_projects (story_id, project_id) VALUES (1,1);
