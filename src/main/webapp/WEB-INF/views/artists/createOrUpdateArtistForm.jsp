@@ -94,7 +94,7 @@
 						<form:errors style="color:red" path="description"/>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="photo">Url imagen</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="photo">Añade tu foto</form:label>
 							</div>
 							<form:input class="form-control" value="${artist.photo}" placeholder="url" style="margin-left: 3%;width:60%" type="text" path="photo"></form:input>
 						</div>
@@ -115,7 +115,8 @@
 							<form:button class="btn" style="color:white;background-color: #af3248">Guardar</form:button>
 						</div>
 					</div>
-					
+					<br>
+					<a href="/users/select" style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill">Volver</a>
 				</form:form>
 			</div>
 		
