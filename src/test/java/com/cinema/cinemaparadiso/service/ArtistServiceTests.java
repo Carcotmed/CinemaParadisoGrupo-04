@@ -16,7 +16,7 @@ import com.cinema.cinemaparadiso.model.User;
 
 
 @SpringBootTest
-@Sql("/db/test.sql")
+@Sql("/db/data.sql")
 @Transactional
 public class ArtistServiceTests {
 	
