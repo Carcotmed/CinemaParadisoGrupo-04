@@ -42,7 +42,7 @@ public class Artist extends Person {
 
 	
 	@Column(name="pro")
-	@NotNull(message = "Elige una opción")
+//	@NotNull(message = "Elige una opción")
 	private Boolean pro;
 	
 	
