@@ -111,7 +111,7 @@
 						style="margin: 1% 0">
 						<div class="d-flex flex-wrap ">
 							<form:label class="p-2 rounded-pill form-control-label"
-								style="background-color:#828282" path="photo">Url imagen</form:label>
+								style="background-color:#828282" path="photo">Añade tu foto</form:label>
 						</div>
 						<form:input class="form-control" value="${writer.photo}"
 							placeholder="url" style="margin-left: 3%;width:60%" type="text"
@@ -124,7 +124,8 @@
 							style="color:white;background-color: #af3248">Guardar</form:button>
 					</div>
 				</div>
-
+				<br>
+              <a href="/users/select" style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill">Volver</a>
 			</form:form>
 		</div>
 

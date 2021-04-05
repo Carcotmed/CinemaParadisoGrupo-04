@@ -68,6 +68,7 @@ public void createArtist(Artist artist){
 		userService.createUser(artist.getUser());
 		 Authorities authorities = new Authorities(artist.getUser().getUsername(),"artist");
 	     authoritiesRepository.save(authorities);
+	     artist.setPro(false);
 	    saveArtist(artist);
 	       
 

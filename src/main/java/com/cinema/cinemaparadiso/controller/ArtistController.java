@@ -114,6 +114,7 @@ public class ArtistController {
 		User user = new User();
 		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
+		
 		model.addAttribute("user",user);
 		model.addAttribute("artist", artist);
 		model.addAttribute("skill", skill);
@@ -126,13 +127,15 @@ public class ArtistController {
 	public String createArtist(@Validated Artist artist, BindingResult result, Model model) {
 		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
-
+		
 		model.addAttribute("roles", role);
 		model.addAttribute("skill", skill);
 		if(!result.hasErrors()) {
 			artistService.createArtist(artist);
+			log.info(artist.getPro().toString());
 			log.info("Artist Created Successfully");
 		} else {
+			log.info(artist.getPro().toString());
 			return "artists/createOrUpdateArtistForm";
 		}
 		return "index";
