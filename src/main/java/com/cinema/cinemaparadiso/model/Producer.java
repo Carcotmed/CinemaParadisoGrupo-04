@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,8 +19,8 @@ import lombok.Setter;
 @Setter
 public class Producer extends Person {
 	
-	@NotBlank
 	@Pattern(regexp = "^[0-9]{8}[A-Z]$")
+	@NotEmpty(message = "El campo NIF no puede estar vacio")
 	@Column(name="nif")
 	private String nif;
 	

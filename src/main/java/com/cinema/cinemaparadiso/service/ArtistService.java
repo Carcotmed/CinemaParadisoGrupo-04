@@ -12,11 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
-
 import com.cinema.cinemaparadiso.model.Authorities;
-
 import com.cinema.cinemaparadiso.model.Project;
-
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;

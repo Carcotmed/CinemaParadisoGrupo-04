@@ -87,7 +87,7 @@ public class ArtistServiceTests {
 		artistCreated.setId(id);
 		artistCreated.setPro(true);
 		artistCreated.setSummary("pepito1sum");
-		artistCreated.setRole(Role.CAMERA);
+		artistCreated.setRole(Role.CAMARA);
 		artistCreated.setUser(userCreated);
 		
 		Artist artistBDD = this.artistService.findArtistById(id);
@@ -132,38 +132,30 @@ public class ArtistServiceTests {
 	
 	
 
-//	@Test
-//	public void shouldCreateArtist() {
-//		Integer id = 9;
-//		
-//		User userCreated = new User();
-//		userCreated.setUsername("mdoblado");
-//		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
-//		userCreated.setEnabled(true);
-//		
-//		Authorities authorityCreated = new Authorities();
-//		authorityCreated.setUsername("mdoblado");
-//		authorityCreated.setAuthority("admin");
-//		
-//		Artist artistCreated = new Artist();
-//		artistCreated.setDescription("Amante del cine tailandés");
-//		artistCreated.setName("Manolo");
-//		artistCreated.setSurName("Doblado");
-//		artistCreated.setId(id);
-//		artistCreated.setPro(true);
-//		artistCreated.setSummary("Fervoroso amante de peliculas de combate karateka");
-//		artistCreated.setRole(Role.ACTOR);
-//		List<Skill> skill = new ArrayList<>();
-//		skill.add(Skill.DOBLE);
-//		artistCreated.setSkills(Skill.DOBLE);
-//		artistCreated.setPhoto("https://dam.ngenespanol.com/wp-content/uploads/2019/03/luna-colores-nuevo.png");
-//		artistCreated.setUser(userCreated);	
-//
-//		
-//		assertThat(this.artistService.count()).isEqualTo(8L);
-//		this.artistService.saveArtist(artistCreated);
-//		assertThat(this.artistService.count()).isEqualTo(9L);
-//	}
+	@Test
+	public void shouldCreateArtist() {
+		Integer id = 9;
+		
+		User userCreated = this.userService.findUser("admin0").get();
+		
+		Artist artistCreated = new Artist();
+		artistCreated.setName("Manolo");
+		artistCreated.setSurName("Doblado");
+		List<Skill> skills = new ArrayList<>();
+		skills.add(Skill.DOBLE);
+		artistCreated.setSkills(skills);
+		artistCreated.setDescription("Amante del cine tailandés");
+		artistCreated.setPhoto("https://dam.ngenespanol.com/wp-content/uploads/2019/03/luna-colores-nuevo.png");
+		artistCreated.setId(id);
+		artistCreated.setRole(Role.ACTOR);
+		artistCreated.setSummary("Fervoroso amante de peliculas de combate karateka");
+		artistCreated.setPro(true);
+		artistCreated.setUser(userCreated);	
+
+		assertThat(this.artistService.count()).isEqualTo(8L);
+		this.artistService.saveArtist(artistCreated);
+		assertThat(this.artistService.count()).isEqualTo(9L);
+	}
 	
 	@Test
 	public void shouldCreateArtistWithError() {
@@ -242,7 +234,7 @@ public class ArtistServiceTests {
 		artistCreated.setSurName("pepito1sur");
 		artistCreated.setPro(true);
 		artistCreated.setSummary("pepito1sum");
-		artistCreated.setRole(Role.CAMERA);
+		artistCreated.setRole(Role.CAMARA);
 		artistCreated.setUser(userCreated);	
 		
 		
