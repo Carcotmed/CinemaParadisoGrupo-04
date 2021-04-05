@@ -61,7 +61,12 @@ public class WriterController {
 	public String showWriter(@PathVariable("writerId") int writerId, Model model) {
 		Writer writer = writerService.findWriterById(writerId);
 		List<Story> stories = writerService.findMyStories(writerId);
-		Boolean sameWriter = writerService.getPrincipal().getId().equals(writerId);
+		Boolean sameWriter = false;
+		try {
+			sameWriter = writerService.getPrincipal().getId().equals(writerId);
+				}
+		catch(Exception e) {
+		}
 		log.info("------------------------------------------------------------------"+sameWriter);
 		model.addAttribute("writerId", writerId);
 		model.addAttribute("writer", writer);

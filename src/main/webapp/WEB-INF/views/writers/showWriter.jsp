@@ -18,6 +18,7 @@
 <title>Writer</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
+<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<!-- Header Historia -->
 	<div class="d-flex justify-content-between p-3" style="height:15%">
 			<div class="d-flex align-items-center" style="width:50%">
@@ -35,7 +36,7 @@
 			<h3 style="margin:0">Datos</h3>
 		</div>
 		
-		<div class="d-flex justify-content-between" style="padding: 2% 5%;height:40vh">
+		<div class="d-flex justify-content-between" style="padding: 2% 5%">
 			<!-- Datos -->
 			<div style="width:150%">
 				<div style="margin:1% 0">
@@ -82,4 +83,5 @@
 		</div>
 	</div>
 </body>
+<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </html>
