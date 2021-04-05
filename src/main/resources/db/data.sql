@@ -1,3 +1,21 @@
+INSERT INTO users(username,password,enabled,email) VALUES ('admin0','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE,'user1@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin1','$2a$10$xpgy46/5c/UsKgD1/UQNWuze5c//nH/d5ff8cigK0saMtoznD8x0K',TRUE,'user2@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin2','$2a$10$lD0WmxowSo/xnSsd6rPwPQevaIu7G4UhtocWiQrLwd9bOvMF5N40Ay',TRUE,'user3@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin3','$2a$10$2B0fDl/04SUIhlcpDoLHOuMq4JPIzv2AqRM6DKrjWVRL.8EQUSBe',TRUE,'user4@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin4','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1pICCzZe',TRUE,'user5@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin5','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p3CCzZe',TRUE,'user6@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin6','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p2CCzZe',TRUE,'user7@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin7','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p1CCzZe',TRUE,'user8@ejemplo.com');
+
+
+INSERT INTO authorities(username,authority) VALUES ('admin0','admin');
+INSERT INTO authorities(username,authority) VALUES ('admin1','admin');
+INSERT INTO authorities(username,authority) VALUES ('admin2','admin');
+INSERT INTO authorities(username,authority) VALUES ('admin3','admin');
+INSERT INTO authorities(username,authority) VALUES ('admin4','admin');
+INSERT INTO authorities(username,authority) VALUES ('admin5','admin');
+INSERT INTO authorities(username,authority) VALUES ('admin6','admin');
+INSERT INTO authorities(username,authority) VALUES ('admin7','admin');
 
 
 
@@ -52,8 +70,6 @@ INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VA
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (4,0,'Si','Si',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin1', 'admin0');
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (2,0,'Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'admin2', 'admin3');
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (3,0,'Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'admin4', 'admin5');
-
-
 
 
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (1,'De miedo','Miedo','https://i.pinimg.com/originals/73/09/3f/73093ff700637e9ce2aed290b9be255c.jpg',TRUE,2,0);
