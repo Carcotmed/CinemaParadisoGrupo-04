@@ -36,7 +36,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/artists/myProjects").permitAll()
 				.antMatchers("/artists/myProjects/**").permitAll()
 				//MESSAGES
-				.antMatchers("/mensaje").permitAll()
 				.antMatchers("/messages/list").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/create/{userId}").permitAll() //hasAnyAuthority("authenticated")
 				.antMatchers("/messages/delete/{messageId}").permitAll() //hasAnyAuthority("authenticated")
@@ -52,6 +51,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/update/{projectId}").permitAll()
 				.antMatchers("/projects/delete/{projectId}").permitAll()
 				.antMatchers("/projects/show/{projectId}").permitAll()
+        //WRITERS
+        .antMatchers("/writers/list").permitAll()
+				.antMatchers("/writers/show/{writerId}").permitAll()
+        //STORIES
+        .antMatchers("/stories/update/{storyId}").permitAll()
+				.antMatchers("/stories/create").permitAll()
+				.antMatchers("/stories/list").permitAll()
+				.antMatchers("/stories/show/{storyId}").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
@@ -89,5 +96,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 }
-
-
