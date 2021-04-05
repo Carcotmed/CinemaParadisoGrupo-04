@@ -23,10 +23,6 @@ public class Producer extends Person {
 	@Column(name="nif")
 	private String nif;
 	
-	@NotBlank
-	@Column(name="description")
-	private String description;
-	
 	@OneToOne
 	@NotNull
     @JoinColumn(name = "username", referencedColumnName = "username")
@@ -36,6 +32,14 @@ public class Producer extends Person {
 	public String toString() {
 		return "Producer (" + id + ") [nif=" + nif + ", description=" + description + ", user=" + user + "]";
 	}
+	
+	public Producer(String nif, String description, User user) {
+		this.nif = nif;
+		this.description = description;
+		this.user = user;
+	}
+	
+	public Producer() {}
 	
 	
   

@@ -38,24 +38,23 @@ public class ProducerController {
 
     @GetMapping("/list")
     public String list(Model model){
-    	System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         Iterable<Producer> producers = producerService.list();
         model.addAttribute("producers", producers);
         log.info("Listing Producers..."+producers.toString());
-        return "producers/listProducer";
+        return "/producers/listProducer";
     }
     
     @GetMapping(value = { "/show/{producerUsername}" })
-	public String showArtist(@PathVariable("producerUsername") String producerUsername, Model model) {
+	public String showProducer(@PathVariable("producerUsername") String producerUsername, Model model) {
 		Producer producer = producerService.getProducerByUsername(producerUsername);
 		model.addAttribute("producerUsername", producerUsername);
 		model.addAttribute("producer", producer);
-		return "producers/showProducer";
+		return "/producers/showProducer";
 	}
 
     @GetMapping("/create")
     public String initFormCreateProducer(Model model){
-    	String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    	String username = ((org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
     	if(producerService.existeProducerByUsername(username)) {
             return "redirect:/producers/list";
     	}else {
@@ -69,14 +68,19 @@ public class ProducerController {
     @PostMapping("/create")
     public String createProducer(Model model, @ModelAttribute("producer") @Valid Producer producer, BindingResult result){
         try{
-        	String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        	User user = userService.getUserByUsername(username);
-        	producer.setUser(user);
-        	if (result.hasErrors()) {
-                return "error";
-            }
-            producerService.saveProducer(producer);
-            log.info("Producer Created Successfully");
+        	String username = ((org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        	if(producerService.existeProducerByUsername(username)) {
+        		model.addAttribute("Error", "Este usuario ya posee un productor");
+                return "/error";
+        	}else{
+	        	User user = userService.getUserByUsername(username);
+	        	producer.setUser(user);
+	        	if (result.hasErrors()) {
+	        		return "/error";
+	            }
+	            producerService.saveProducer(producer);
+	            log.info("Producer Created Successfully");
+        	}
         }catch(Exception e){
             log.error("Error Create Producer", e);
         }
@@ -86,14 +90,14 @@ public class ProducerController {
     @GetMapping("/update/{producerUsername}")
     public String initFormUpdateProducer(Model model, @PathVariable("producerUsername") String producerUsername){
         Producer producer = producerService.getProducerByUsername(producerUsername);
-    	String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    	String username = ((org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
     	if(!producer.getUser().getUsername().equals(username)) {
     		model.addAttribute("Error", "No posees esta entidad");
     		return "redirect:/producers/list";
     	}
         model.addAttribute("producer", producer);
         model.addAttribute("isNew", false);
-        return "producers/createUpdateProducerForm";
+        return "/producers/createUpdateProducerForm";
     }
     
     @InitBinder
@@ -105,13 +109,14 @@ public class ProducerController {
     public String updateProducer(Model model, @Valid @ModelAttribute("producer") Producer producer, BindingResult result, @PathVariable("producerUsername") String producerUsername){
         try{
         	if (result.hasErrors()) {
-                return "error";
+        		System.out.println(result.getAllErrors());
+                return "/error";
             }
-        	String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        	String username = ((org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         	Producer oldProducer = producerService.getProducerById(producer.getId());
         	if(!oldProducer.getUser().getUsername().equals(username)) {
         		model.addAttribute("Error", "No posees esta entidad");
-        		return "redirect:/producers/list";
+        		return "/error";
         	}
         	oldProducer.setNif(producer.getNif());
         	oldProducer.setDescription(producer.getDescription());
@@ -126,7 +131,7 @@ public class ProducerController {
     @GetMapping("/delete/{producerUsername}")
 	public String deleteProducer(Model model, @PathVariable("producerUsername") String producerUsername) {
 		try {
-	    	String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        	String username = ((org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 	    	if(!producerUsername.equals(username)) {
 	    		model.addAttribute("Error", "No posees esta entidad");
 	    		return "redirect:/producers/list";
