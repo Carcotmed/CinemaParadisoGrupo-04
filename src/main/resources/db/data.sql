@@ -1,6 +1,3 @@
-
-
-
 INSERT INTO users(username,password,enabled,email) VALUES ('admin0','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE,'user1@ejemplo.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('admin1','$2a$10$xpgy46/5c/UsKgD1/UQNWuze5c//nH/d5ff8cigK0saMtoznD8x0K',TRUE,'user2@ejemplo.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('admin2','$2a$10$lD0WmxowSo/xnSsd6rPwPQevaIu7G4UhtocWiQrLwd9bOvMF5N40Ay',TRUE,'user3@ejemplo.com');
@@ -19,6 +16,7 @@ INSERT INTO authorities(username,authority) VALUES ('admin4','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin5','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin6','admin');
 INSERT INTO authorities(username,authority) VALUES ('admin7','admin');
+
 
 INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('1','Christopher','Nolan','12345678D','Productor exitoso y feliz con ganas de trabajar con un equipo de trabajo apasionado por el cine de terror', 'admin0');
 INSERT INTO producers(version,name,sur_Name,nif, description, username) VALUES ('2','Woody','Allen','19876543W','Productor con larga experiencia en películas de ciencia ficción', 'admin1');
@@ -52,7 +50,6 @@ INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VA
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (4,0,'Si','Si',TO_DATE('28/03/2021', 'DD/MM/YYYY'),'admin1', 'admin0');
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (2,0,'Me encanta esto','Bastante bien, me esta encantando como funciona, cuanto tiempo llevas aqui?',TO_DATE('29/03/2021', 'DD/MM/YYYY'),'admin2', 'admin3');
 INSERT INTO messages(id,version,issue,body,messageDate,emisor_id,receptor_id) VALUES (3,0,'Pues si','Llevo aqui apenas 2 semanas, pero es como si llevara toda la vida de lo facil de usar que es',TO_DATE('30/03/2021', 'DD/MM/YYYY'),'admin4', 'admin5');
-
 
 
 
