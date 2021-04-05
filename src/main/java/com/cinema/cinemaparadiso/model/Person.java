@@ -39,9 +39,8 @@ public class Person extends BaseEntity  {
 	@NotEmpty(message = "Indique una descripion propia")
 	protected String description;
 	
-	@Column(name="photo")
-	@NotEmpty(message = "Debe indicar una URL")
-	@URL(message = "Debe indicar una URL")
-	private String photo;
-
+  @Column(name="photo")
+  @NotEmpty(message = "Debe indicar una URL")
+  @URL(message = "Debe indicar una URL")
+  private String photo;
 }

@@ -24,7 +24,7 @@
 	<div class="d-flex justify-content-between p-3" style="height:15%">
 			<div class="d-flex align-items-center" style="width:50%">
 				<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:12vh">
-					<img src="${story.photo}" style="width:100%;height:100%;object-fit:cover">			
+					<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg" style="width:100%;height:100%;object-fit:cover">			
 				</div>
 				<div class="py-3 mx-3" style="width:40%">
 					<h2>${story.title}</h2>
@@ -52,19 +52,24 @@
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Género</h5>
 					</div>
 					<p style="margin-left: 3%">${story.genre}</p>
-				</div style="margin:1% 0">
+				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripción</h5>
 					</div>
-					<p style="margin-left: 3%">${story.description}</p>
+					<p style="margin-left: 3%">${story.body}</p>
+				</div>
+								<div>
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Writer</h5>
+					</div>
+					<p style="margin-left: 3%">${myWriter.user.username}</p>
+					<div style="width:20vh;height:20vh;overflow:hidden" class="rounded-circle">
+					<img src="${myWriter.photo}" onClick="location.href='/writers/show/${myWriter.id}'" style="width:100%;height:100%;object-fit:cover">
+					</div>
 				</div>
 			</div>
 			
-			<!-- Imagen - Video -->
-			<div class="d-flex justify-content-center align-items-center" style="width:100vh">
-				<img src="${story.photo}" style="max-height:100%; max-width:100%">
-			</div>
 		</div>
 	</div>
 		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>

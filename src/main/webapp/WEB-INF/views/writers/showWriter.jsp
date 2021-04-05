@@ -15,48 +15,71 @@
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
 
-<title>Datos Escritor</title>
+<title>Writer</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
-	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
-
-	<!-- Header Escritor -->
-	<div class="d-flex justify-content-between p-3" style="margin-bottom: 5%">
-		<div class="d-flex jsutify-content-center">
-			<img src="https://via.placeholder.com/150" class="rounded-circle w-30">
-			<div class="py-3 mx-3" style="width:40%">
-				<h3>${writer.name}</h3>
-				<p>${writer.sur_name}</p>
+	<!-- Header Historia -->
+	<div class="d-flex justify-content-between p-3" style="height:15%">
+			<div class="d-flex align-items-center" style="width:50%">
+				<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:12vh">
+					<img src="${writer.photo}" style="width:100%;height:100%;object-fit:cover">			
+				</div>
+				<div class="py-3 mx-3" style="width:40%">
+					<h2>${writer.user.username}</h2>
+				</div>
 			</div>
-		</div>
-		<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerId}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 	</div>
-
-	<!-- Info general Escritor -->
-	<div class="container" style="margin: 0 5%;max-width:90%">
-		<div class="row">
-			<div class="col-6 p-3" style="border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
-				<h4 style="margin-bottom: 4%">Sobre mi</h4>
-				<p>${writer.description}</p>
-			</div>
-			<div class="col-6 p-3">
-				<h4 style="margin-bottom: 4%">Historias</h4>
-				<p>En construccion</p>
-				<!--
-				c:forEach items="${stories}" var="story"
-					<div class="d-flex justify-content-between">
-						<div>
-							<h6 style="color:#af3248">${story.title}</h6>
-						</div>
-						<img src="https://via.placeholder.com/150" class="w-30">
+	<!-- Info general Historia -->
+	<div>
+		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
+			<h3 style="margin:0">Datos</h3>
+		</div>
+		
+		<div class="d-flex justify-content-between" style="padding: 2% 5%;height:40vh">
+			<!-- Datos -->
+			<div style="width:150%">
+				<div style="margin:1% 0">
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Username</h5>
 					</div>
-					<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#af3248">
-				/c:forEach
-				-->
+					<p style="margin-left: 3%">${writer.user.username}</p>
+				</div>
+				<div style="margin:1% 0">
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre</h5>
+					</div>
+					<p style="margin-left: 3%">${writer.name}</p>
+				</div>
+				<div>
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">DescripciÃ³n</h5>
+					</div>
+					<p style="margin-left: 3%">${writer.description}</p>
+				</div>
+				<c:choose>
+					<c:when test="${sameWriter == true}">
+						<button class="btn" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
+					</c:when>
+				</c:choose>
+				
 			</div>
+			<div style="padding: 2% 0;width:30%;margin:auto">
+			<c:forEach items="${stories}" var="story">
+				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
+						<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg" onClick="location.href='/stories/show/${story.id}'" style="width:100%;height:100%;object-fit:cover">
+					</div>
+					<div style="margin-left: 12%">
+						<h5>${story.title}</h5>
+						<p>${story.genre}</p>
+					</div>
+				</div>
+				
+				
+			</c:forEach>
+		</div>
+			
 		</div>
 	</div>
-		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
-
 </body>
 </html>

@@ -47,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/show/{messageId}").authenticated()
 				.antMatchers("/messages/create/{userId}").authenticated()
 				.antMatchers("/messages/delete/{messageId}").authenticated()
-				//user
+				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/users/select").permitAll()
 				//POST
@@ -56,13 +56,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
-		        //WRITERS
-		        .antMatchers("/writers/list").permitAll()
-		        .antMatchers("/writers/create").permitAll()
+		     //WRITERS
+		    .antMatchers("/writers/list").permitAll()
+		    .antMatchers("/writers/create").permitAll()
 				.antMatchers("/writers/show/{writerId}").permitAll()
-		        //STORIES
-		        .antMatchers("/stories/update/{storyId}").permitAll()
-				.antMatchers("/stories/create").permitAll()
+		     //STORIES
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
 				//PROJECTS
