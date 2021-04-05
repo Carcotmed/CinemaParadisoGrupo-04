@@ -115,6 +115,8 @@ public class StoryController {
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
 		model.addAttribute("myWriter",myWriter);
+		model.addAttribute("writerUsername", myWriter.getUser().getUsername());
+
 		return "stories/showStory";
 	}
 

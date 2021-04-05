@@ -13,7 +13,7 @@
 		</div>
 
 		<!-- Botones -->
-		<div class="d-flex justify-content-center align-items-center" style="width:100%">
+		<div class="d-flex justify-content-center align-items-center" style="width:50%">
 			<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/stories/list'">Historias</button>
 			<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/writers/list'">Escritores</button>
 			<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/artists/list'">Artistas</button>
@@ -27,12 +27,12 @@
 			<button class="btn rounded-pill" style="color:white;background-color:#e8c71a;margin:0 1%;color:black"><strong>PRO</strong></button>
 		</div>
 		<!-- User menu -->
-		<div style="width: 13%;margin-right:1%" class="d-flex justify-content-end align-items-center">
+		<div style="width: 15%;margin-right:1%" class="d-flex justify-content-between align-items-center">
 			<!-- Imagen lleva a perfil del user, se necesita en el modelo? -->
 			<!--  <img src="https://via.placeholder.com/150" onClick="location.href='/messages/list/${user.id}'" class="rounded-circle" style="cursor:pointer;margin: 0 9%;width:10px"> -->
 			<sec:authorize access="!isAuthenticated()">
-				<button onClick="location.href='/login'" style="margin: 0 9%;color:white;background-color:#af3248" class="btn rounded-pill">Inicia sesión</button>
-				<button onClick="location.href='/users/select'" style="margin: 0 9%;color:white;background-color:#af3248" class="btn rounded-pill">Registrate</button>
+				<button onClick="location.href='/login'" style="color:white;background-color:#af3248" class="btn rounded-pill">Inicia sesión</button>
+				<button onClick="location.href='/users/select'" style="color:white;background-color:#af3248" class="btn rounded-pill">Registrate</button>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 			<button onClick="location.href='/logout'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesión</button>

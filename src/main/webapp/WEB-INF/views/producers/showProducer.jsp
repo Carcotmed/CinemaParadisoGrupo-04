@@ -12,30 +12,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>Muestra de Productor</title>
+<title>Datos Producer</title>
 </head>
-<body>
-    <div class="container mt-4">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>NIF</th>
-                    <th>DESCRIPTION</th>
-                    <th>            </th>
+<body class="position-relative" style="color:white;height:100%;background-color: #272727; color: white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+	<div class="d-flex position-relative flex-column" style="min-height:70%">
+		<!-- Header producer -->
+		<div class="d-flex justify-content-between p-3" style="margin-bottom: 5%">
+			<div class="d-flex" style="width:60%">
+				<img src="${producer.photo}" class="rounded-circle" style="width:20%">
+				<div class="py-3 mx-3" style="width:40%">
+					<h3>${producer.name}</h3>
+					<h3>${producer.surName}</h3>
+					
+				</div>
+			</div>
+			<button class="btn rounded-pill" onClick="location.href='/messages/create/${producerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+		</div>		
+	</div>
+		
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+	
 
-                </tr>
-            </thead>
-            
-            <tbody>
-                <tr>
-                 <td><c:out value="${producer.nif}" /></td>
-                 <td><c:out value="${producer.description}" /></td>
-                </tr>
-                
-            </tbody>
-        </table>
-
-     	<button class="btn btn-danger" onclick="location.href = '/producers/list';">Volver</button>    		
-    </div>
 </body>
 </html>

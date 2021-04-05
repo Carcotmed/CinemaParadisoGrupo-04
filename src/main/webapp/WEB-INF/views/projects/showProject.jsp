@@ -32,7 +32,7 @@
 					<h2>${project.title}</h2>
 				</div>
 			</div>
-			<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248">Contactar con el equipo</button>
+			<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el equipo</button>
 	</div>
 	<!-- Info general Proyecto -->
 	<div>

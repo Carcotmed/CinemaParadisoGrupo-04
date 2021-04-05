@@ -26,7 +26,6 @@
 
 	<div class="d-flex position-relative justify-content-center align-items-center" style="min-height:70%;padding:2%">
 		
-		<!-- Info general Proyecto -->
 			
 			<div class="d-flex justify-content-between" style="width:40%;">
 				<c:choose>

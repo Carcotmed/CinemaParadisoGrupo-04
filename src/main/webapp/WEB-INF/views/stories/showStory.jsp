@@ -30,7 +30,7 @@
 					<h2>${story.title}</h2>
 				</div>
 			</div>
-			<button class="btn rounded-pill" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
+			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
 	</div>
 	<!-- Info general Historia -->
 	<div>

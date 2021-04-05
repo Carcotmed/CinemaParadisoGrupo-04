@@ -48,10 +48,10 @@ public class ProducerController {
         return "/producers/listProducer";
     }
     
-    @GetMapping(value = { "/show/{producerUsername}" })
-	public String showProducer(@PathVariable("producerUsername") String producerUsername, Model model) {
-		Producer producer = producerService.getProducerByUsername(producerUsername);
-		model.addAttribute("producerUsername", producerUsername);
+    @GetMapping(value = { "/show/{producerId}" })
+	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
+		Producer producer = producerService.getProducerById(producerId);
+		model.addAttribute("producerUsername", producer.getUser().getUsername());
 		model.addAttribute("producer", producer);
 		return "/producers/showProducer";
 	}

@@ -82,6 +82,8 @@ public class ProjectController {
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
+		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
+
 		return "projects/showProject";
 	}
 	
