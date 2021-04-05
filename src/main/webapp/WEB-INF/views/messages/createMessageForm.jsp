@@ -33,7 +33,7 @@
                 </tr>
             </table>
             
-             <button class="btn btn-default" type="reset" onclick="location.href = '/messages/list';">Cancelar</button>    		
+             <button class="btn btn-default" type="reset" onclick="location.href = '/messages/listReceived';">Cancelar</button>    		
             
         </fieldset>
     </form:form>
