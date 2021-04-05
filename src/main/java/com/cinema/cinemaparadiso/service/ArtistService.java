@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Project;
-import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
 
@@ -47,12 +46,8 @@ public class ArtistService {
 		artistasNoPro = artistRepository.findNoProArtists();
 		return artistasNoPro;
 	}
-	public List<Artist> artistsFiltered(Role filterRole, String filterName) {
-		List<Artist> artistasByRoleAndUsername = new ArrayList<>();
-		artistasByRoleAndUsername = artistRepository.findArtistByRoleAndUsername(filterRole,filterName);
-		return artistasByRoleAndUsername;
-	}
-	
+
+	//FUTURA MEJORA
 	public List<Project> projectHistory(Integer id) {
 		List<Project> projectsHistory = new ArrayList<>();
 		projectsHistory = artistRepository.findProjectsHistory(id);
@@ -61,26 +56,19 @@ public class ArtistService {
 
 	public void createArtist(Artist artist){
 	       saveArtist(artist);
-	        
-
 	    }
+	
 	public List<Project> findMyProjects(Integer artistId){
 		List<Project> myProjects = new ArrayList<>();
 		myProjects = artistRepository.findMyProjects(artistId);
 		return myProjects;
 	}
+	
 	@Transactional
 	public void saveArtist(Artist artist) throws DataAccessException{
 
 			artistRepository.save(artist);	
 		}
-	
-	
-	@Transactional
-	public void deleteArtist(Integer artistId) throws DataAccessException{
-			artistRepository.deleteById(artistId);	
-		
-	}
 	
 	@Transactional
 	public void editArtist(Integer artistId) throws DataAccessException{
@@ -117,6 +105,10 @@ public class ArtistService {
 	@Transactional(readOnly = true)
 	public Boolean isPrincipalArtist() {
 		return getPrincipal() != null;
+	}
+
+	public long count() {
+		return this.artistRepository.count();
 	}
 
 }
