@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				//USERS
-				.antMatchers("/users/create").permitAll()
+				.antMatchers("/users/select").permitAll()
 				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
@@ -53,12 +53,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/show/{projectId}").permitAll()
         //WRITERS
         .antMatchers("/writers/list").permitAll()
+        .antMatchers("/writers/create").permitAll()
 				.antMatchers("/writers/show/{writerId}").permitAll()
         //STORIES
         .antMatchers("/stories/update/{storyId}").permitAll()
 				.antMatchers("/stories/create").permitAll()
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
+      //PRODUCERS
+        .antMatchers("/producers/create").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
@@ -96,3 +99,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 }
+

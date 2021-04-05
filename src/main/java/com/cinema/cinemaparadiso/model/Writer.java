@@ -23,7 +23,7 @@ public class Writer extends Person {
 	@Column(name = "stories")
 	private List<Story> stories;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
   

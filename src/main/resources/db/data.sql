@@ -1,11 +1,11 @@
-INSERT INTO users(username,password,enabled) VALUES ('admin0','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('admin1','$2a$10$xpgy46/5c/UsKgD1/UQNWuze5c//nH/d5ff8cigK0saMtoznD8x0K',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('admin2','$2a$10$lD0WmxowSo/xnSsd6rPwPQevaIu7G4UhtocWiQrLwd9bOvMF5N40Ay',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('admin3','$2a$10$2B0fDl/04SUIhlcpDoLHOuMq4JPIzv2AqRM6DKrjWVRL.8EQUSBe',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('admin4','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1pICCzZe',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('admin5','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p3CCzZe',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('admin6','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p2CCzZe',TRUE);
-INSERT INTO users(username,password,enabled) VALUES ('admin7','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p1CCzZe',TRUE);
+INSERT INTO users(username,password,enabled,email) VALUES ('admin0','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE,'user1@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin1','$2a$10$xpgy46/5c/UsKgD1/UQNWuze5c//nH/d5ff8cigK0saMtoznD8x0K',TRUE,'user2@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin2','$2a$10$lD0WmxowSo/xnSsd6rPwPQevaIu7G4UhtocWiQrLwd9bOvMF5N40Ay',TRUE,'user3@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin3','$2a$10$2B0fDl/04SUIhlcpDoLHOuMq4JPIzv2AqRM6DKrjWVRL.8EQUSBe',TRUE,'user4@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin4','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1pICCzZe',TRUE,'user5@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin5','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p3CCzZe',TRUE,'user6@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin6','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p2CCzZe',TRUE,'user7@ejemplo.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('admin7','$2a$10$lAuC/wtbSo22eMCtSgDgxe/N3q2QnNjYxIhvTKzudFhtH1p1CCzZe',TRUE,'user8@ejemplo.com');
 
 
 INSERT INTO authorities(username,authority) VALUES ('admin0','admin');
@@ -33,14 +33,14 @@ INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (12,'
 INSERT INTO projects (id,description,title,photo,pro,genre,version) VALUES (13,'Locuras Extremas','Futurismo','http://pxsports.com/wp-content/uploads/2016/12/francia-1.jpg',FALSE,5,0);
 
 
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (1,'pepitod','pepito1','pepito1sur',TRUE,'pepito1sum','admin0','CAMERA');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (2,'pepito2d','pepito2','pepito2sur',TRUE,'pepito2sum','admin1','DIRECTOR');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (3,'pepito3d','pepito3','pepito3sur',FALSE,'pepito3sum','admin2','WRITER');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (4,'pepito4d','pepito4','pepito4sur',FALSE,'pepito4sum','admin3','ACTOR');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (5,'juanitod','juanito1','juanito1sur',TRUE,'juanito1sum','admin4','CAMERA');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (6,'juanito2d','juanito2','juanito2sur',TRUE,'juanito2sum','admin5','DIRECTOR');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (7,'juanito3d','juanito3','juanito3sur',FALSE,'juanito3sum','admin6','WRITER');
-INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role) VALUES (8,'juanito4d','juanito4','juanito4sur',FALSE,'juanito4sum','admin7','ACTOR');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (1,'pepitod','pepito1','pepito1sur',TRUE,'pepito1sum','admin0','CAMERA','https://i.blogs.es/5efe2c/cap_001/450_1000.jpg');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (2,'pepito2d','pepito2','pepito2sur',TRUE,'pepito2sum','admin1','DIRECTOR','https://empresas.blogthinkbig.com/wp-content/uploads/2019/11/Imagen3-245003649.jpg?w=800');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (3,'pepito3d','pepito3','pepito3sur',FALSE,'pepito3sum','admin2','WRITER','https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/04/08/15863374252712.jpg');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (4,'pepito4d','pepito4','pepito4sur',FALSE,'pepito4sum','admin3','ACTOR','https://3.bp.blogspot.com/-JfL1o7oSnKI/VmodObHF9cI/AAAAAAAABLY/nKKRXw0-yiU/s1600/homero_456_336.jpg');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (5,'juanitod','juanito1','juanito1sur',TRUE,'juanito1sum','admin4','CAMERA','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3pGX4MsvahQ6lazFvLB5q5gM1hutnF_erdg&usqp=CAU');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (6,'juanito2d','juanito2','juanito2sur',TRUE,'juanito2sum','admin5','DIRECTOR','https://cdn.shopify.com/s/files/1/0229/0839/files/Busqueda_de_imagenes_3_large.jpg?v=1578328497');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (7,'juanito3d','juanito3','juanito3sur',FALSE,'juanito3sum','admin6','WRITER','https://imagenes.milenio.com/frnpuakaet1zMB01a5O8Fl9YbRk=/958x596/https://www.milenio.com/uploads/media/2020/06/26/la-imagen-completa-esta-mas-2_0_167_319_198.jpg');
+INSERT INTO artists (id,description,name,sur_name,pro,summary,username,role,photo) VALUES (8,'juanito4d','juanito4','juanito4sur',FALSE,'juanito4sum','admin7','ACTOR','https://dam.ngenespanol.com/wp-content/uploads/2019/03/luna-colores-nuevo.png');
 
 
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (1,1,1);
@@ -54,3 +54,4 @@ INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (8,7,1);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (9,5,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (10,8,2);
 INSERT INTO rel_projects_artists (id,artist_id, project_id) VALUES (11,1,13);
+

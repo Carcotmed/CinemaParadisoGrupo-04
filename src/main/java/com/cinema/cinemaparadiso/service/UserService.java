@@ -49,8 +49,7 @@ public class UserService {
         user.setPassword(encryptedPassword);
         user.setEnabled(true);
         userRepository.save(user);
-        Authorities authorities = new Authorities(user.getUsername(),"admin");
-        authoritiesRepository.save(authorities);
+       
     }
     
     public void changePassword (String userName, String oldPassword, String newPassword) throws Exception, NoSuchElementException{
