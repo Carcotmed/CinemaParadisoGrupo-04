@@ -11,11 +11,11 @@ ISPP Group 4
 
 Master:
 
-[![Build Status](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04.svg?token=eRyUu1vNYWXwcHGXDak4&branch=master)](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04)
+[![Build Status](https://travis-ci.com/Carcotmed/CinemaParadisoGrupo-04.svg?token=eRyUu1vNYWXwcHGXDak4&branch=master)](https://travis-ci.com/Carcotmed/CinemaParadisoGrupo-04)
 
 Develop:
 
-[![Build Status](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04.svg?token=eRyUu1vNYWXwcHGXDak4&branch=develop)](https://travis-ci.com/ivan-desing-testing/CinemaParadisoGrupo-04)
+[![Build Status](https://travis-ci.com/Carcotmed/CinemaParadisoGrupo-04.svg?token=eRyUu1vNYWXwcHGXDak4&branch=develop)](https://travis-ci.com/Carcotmed/CinemaParadisoGrupo-04)
 ## Running cinemaparadiso locally
 Cinema Paradiso is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
