@@ -23,28 +23,28 @@ project:
       githubUsername: 'Pabcalper'
       email: 'pabcalper@alum.us.es'
     member3:
-      name: 'Iván'
-      surname: 'Cárdenas Meneses' 
+      name: 'Ivan'
+      surname: 'Cardenas Meneses' 
       githubUsername: 'ivan-desing-testing'
       email: 'ivacarmen@alum.us.es'
     member4:
       name: 'Sergio'
-      surname: 'Pérez Capitán' 
+      surname: 'Perez Capitan' 
       githubUsername: 'Capi9888'
       email: 'serpercap@alum.us.es'
     member5:
-      name: 'Óscar'
-      surname: 'Dorado Abadías' 
+      name: 'oscar'
+      surname: 'Dorado Abadias' 
       githubUsername: 'oscdoraba'
       email: 'oscdoraba@alum.us.es'
     member6:
-      name: 'Adrián'
+      name: 'Adrian'
       surname: 'Gracia Barroso' 
       githubUsername: 'adrgrabar'
       email: 'adriaingra@gmail.com'
     member7:
       name: 'Moises'
-      surname: 'Pantión Loza' 
+      surname: 'Pantion Loza' 
       githubUsername: 'Moipanloz'
       email: 'moipanloz@alum.us.es'
     member8:
@@ -59,6 +59,6 @@ project:
       email: 'luicamigl@alum.us.es'
     member10:
       name: 'David'
-      surname: 'Gañán García' 
+      surname: 'Ganyan Garcia' 
       githubUsername: 'DavidGananGarcia'
       email: 'davgangar@alum.us.es'
