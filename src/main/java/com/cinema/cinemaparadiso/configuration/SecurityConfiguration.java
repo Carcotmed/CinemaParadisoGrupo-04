@@ -59,12 +59,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		     //WRITERS
 		    .antMatchers("/writers/list").permitAll()
 		    .antMatchers("/writers/create").permitAll()
-				.antMatchers("/writers/show/{writerId}").permitAll()
+			.antMatchers("/writers/show/{writerId}").permitAll()
 		     //STORIES
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
 				.antMatchers("/stories/create").permitAll()
 				.antMatchers("/stories/update/{storyId}").permitAll()
+				.antMatchers("/stories/delete/{storyId}").permitAll()
 				
 				//PROJECTS
 				.antMatchers("/projects/list").permitAll()
