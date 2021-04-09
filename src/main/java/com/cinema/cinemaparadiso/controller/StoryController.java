@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,21 +34,35 @@ public class StoryController {
 
 	@GetMapping("/update/{storyId}")
 	public String initFormUpdateStory(Model model, @PathVariable("storyId") Integer storyId) {
+		if(!storyService.isMyWriter(storyId)) {
+			return "error/error-403";
+		}
 		Story story = storyService.findStoryById(storyId);
+		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
-		return "stories/createOrUpdateStoryForm";
+		model.addAttribute("genres", genres);
+		return "stories/updateStory";
 	}
 
 	@PostMapping("/update/{storyId}")
-	public String updateStory(@PathVariable("storyId") Integer storyId, BindingResult result) {
-		try {
-			storyService.editStory(storyId);
+	public String updateStory(@ModelAttribute("story") @Valid Story story,BindingResult result, Model model, @PathVariable("storyId") Integer storyId) {
+		story.setId(storyId);
+		if(!storyService.isMyWriter(storyId)) {
+			return "error/error-403";
+		}
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("genres", genres);
+		model.addAttribute("story", story);
+		model.addAttribute("storyId", storyId);
+		if(!result.hasErrors()) {
+			storyService.editStory(story);
 			log.info("Story Updated Successfully");
-		} catch (Exception e) {
-			log.error("Error Updating Story", e);
-    }
-    return "/";
+			return "redirect:/stories/show/{storyId}";
+		} else {
+			return "stories/updateStory";
+		}
+ 
   }
       
 	@GetMapping("/create")
@@ -112,10 +128,12 @@ public class StoryController {
 	public String showStory(@PathVariable("storyId") int storyId, Model model) {
 		Story story = storyService.findStoryById(storyId);
 		Writer myWriter = storyService.findMyWriter(storyId);
+		Boolean showButton = storyService.isMyWriter(storyId);
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
 		model.addAttribute("myWriter",myWriter);
 		model.addAttribute("writerUsername", myWriter.getUser().getUsername());
+		model.addAttribute("showButton",showButton);
 
 		return "stories/showStory";
 	}

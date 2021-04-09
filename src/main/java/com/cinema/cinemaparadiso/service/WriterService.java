@@ -72,7 +72,6 @@ public class WriterService {
 		Writer res = null;
 		
 		User currentUser = userService.getPrincipal();
-		System.out.println(currentUser.getUsername()+"-------------------------------------------------------------------------------");
 		if(currentUser != null) {
 			Optional<Writer> optionalWriter = writerRepository.findByUserUsername(currentUser.getUsername());
 			if(optionalWriter.isPresent()) {
