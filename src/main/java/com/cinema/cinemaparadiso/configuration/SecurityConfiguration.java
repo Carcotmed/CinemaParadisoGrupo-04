@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/producers/list").permitAll()
 				.antMatchers("/producers/create").permitAll()
 				.antMatchers("/producers/show/**").permitAll()
-				.antMatchers("/producers/update/**").authenticated()
+				.antMatchers("/producers/update/**").permitAll()
 				.antMatchers("/producers/delete/**").permitAll()
 				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
