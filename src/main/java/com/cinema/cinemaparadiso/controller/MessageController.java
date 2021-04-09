@@ -1,12 +1,6 @@
 package com.cinema.cinemaparadiso.controller;
 
-import com.cinema.cinemaparadiso.model.Message;
-import com.cinema.cinemaparadiso.model.Post;
-import com.cinema.cinemaparadiso.service.MessageService;
-import com.cinema.cinemaparadiso.service.UserService;
-
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.NoSuchElementException;
 
@@ -15,12 +9,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.cinema.cinemaparadiso.model.Message;
+import com.cinema.cinemaparadiso.service.MessageService;
+import com.cinema.cinemaparadiso.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -82,20 +81,20 @@ public class MessageController {
     }
 
     @PostMapping("/create/{userName}")
-    public String create(Model model, @PathVariable("userName") String userName, @Validated @ModelAttribute("message") Message message){
-    	try {
+    public String create(@PathVariable("userName") String userName, @Validated @ModelAttribute("message") Message message, BindingResult result, Model model){
+		if(!result.hasErrors()) {
     		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
     		message.setEmisor(userService.getUserByUsername(emisor_username));
     		message.setReceptor(userService.getUserByUsername(userName));
     		message.setMessageDate(Date.from(Instant.now()));
     		messageService.create(message);
     		model.addAttribute("Estado", "Exito");
-    	}catch (IllegalArgumentException e) {
+            return "redirect:/messages/listReceived";
+    	}else {
     		model.addAttribute("Estado", "Error, entidad incorrecta");
     		model.addAttribute(message);
+            return "messages/createMessageForm";
 		}
-        log.info("Creating Messages..."+message.toString());
-        return "redirect:/messages/listReceived";
     }
 
     @GetMapping("/delete/{messageId}")
