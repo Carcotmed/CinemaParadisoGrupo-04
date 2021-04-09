@@ -87,9 +87,16 @@ public void createArtist(Artist artist){
 		}
 	
 	@Transactional
-	public void editArtist(Integer artistId) throws DataAccessException{
-			Artist artist = findArtistById(artistId);
-			artistRepository.save(artist);	
+	public void editArtist(Artist artist) throws DataAccessException{
+		Artist artist2 = findArtistById(artist.getId());
+		artist2.setId(artist.getId());
+		artist2.setName(artist.getName());
+		artist2.setSurName(artist.getSurName());
+		artist2.setSkills(artist.getSkills());
+		artist2.setDescription(artist.getDescription());
+		artist2.setPhoto(artist.getPhoto());
+		artist2.setRole(artist.getRole());
+		saveArtist(artist2);
 		}
 	
 	@Transactional(readOnly = true)
@@ -125,6 +132,14 @@ public void createArtist(Artist artist){
 
 	public long count() {
 		return this.artistRepository.count();
+	}
+	
+	@Transactional
+	public Boolean isActualArtist(Integer artistId) {
+		Artist artist = findArtistById(artistId);
+		Artist actualArtist = getPrincipal();
+
+		return artist.equals(actualArtist);
 	}
 
 }
