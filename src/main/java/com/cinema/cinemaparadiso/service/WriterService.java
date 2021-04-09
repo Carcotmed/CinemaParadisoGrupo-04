@@ -16,8 +16,6 @@ import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
-import com.cinema.cinemaparadiso.model.Artist;
-import com.cinema.cinemaparadiso.repository.UserRepository;
 import com.cinema.cinemaparadiso.repository.WriterRepository;
 
 @Service
@@ -80,5 +78,39 @@ public class WriterService {
 		}
 		return res;
 	}
+	
+	@Transactional
+	public void editWriter(Writer writer) throws DataAccessException{
+			Writer writer2 = findWriterById(writer.getId());
+			writer2.setId(writer.getId());
+			writer2.setName(writer.getName());
+			writer2.setSurName(writer.getSurName());
+			writer2.setSkills(writer.getSkills());
+			writer2.setDescription(writer.getDescription());
+			writer2.setPhoto(writer.getPhoto());
+			writer2.setUser(findMyUser(writer.getId()));
+			saveWriter(writer2);	
+  }
+	
+	@Transactional
+	public Boolean isActualWriter(Integer writerId) {
+		Writer writer = findWriterById(writerId);
+		Writer actualWriter = getPrincipal();
+		
+		return writer.equals(actualWriter);
+	}
+	
+	
+	@Transactional
+	public User findMyUser(Integer writerId) {
+		
+		
+		return writerRepository.findUserByWriterUsername(findWriterById(writerId)
+				.getUser().getUsername()).get();
+	}
+	
+	
+	
+
 }
 
