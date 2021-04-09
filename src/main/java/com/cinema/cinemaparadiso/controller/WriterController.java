@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -132,4 +134,21 @@ public class WriterController {
 		}
  
   }
+	
+
+	@GetMapping("/delete/{writerId}")
+	public String deleteWriter(@PathVariable("writerId") Integer writerId) {
+		if(!writerService.isActualWriter(writerId)) {
+			return "error/error-403";
+		}
+		try {
+			writerService.deleteWriter(writerId);
+			SecurityContextHolder.clearContext();
+			log.info("Writer Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting Writer", e);
+		}
+		return "redirect:/";
+	}
+
 }
