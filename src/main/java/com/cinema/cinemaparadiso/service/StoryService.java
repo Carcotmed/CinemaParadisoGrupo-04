@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Rel_story_writers;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
@@ -34,10 +35,15 @@ public class StoryService {
 	}
 	
 	@Transactional
-	public void editStory(Integer storyId) throws DataAccessException{
-			Story story = findStoryById(storyId);
-			storyRepository.save(story);	
+	public void editStory(Story story) throws DataAccessException{
+			Story story2 = findStoryById(story.getId());
+			story2.setId(story.getId());
+			story2.setTitle(story.getTitle());
+			story2.setBody(story.getBody());
+			story2.setGenre(story.getGenre());
+			saveStory(story);	
   }
+	
 
 	public void createStory(Story story){
 	       saveStory(story);
@@ -73,5 +79,13 @@ public class StoryService {
 	public Story findStoryById(int id) throws DataAccessException {
 		return storyRepository.findById(id).get();
 	}
+	@Transactional
+	public Boolean isMyWriter(Integer storyId) {
+		Writer writerHistory = findMyWriter(storyId);
+		Writer actualWriter = writerService.getPrincipal();
+		
+		return writerHistory.equals(actualWriter);
+	}
+	
 
 }

@@ -64,6 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
 				.antMatchers("/stories/create").permitAll()
+				.antMatchers("/stories/update/{storyId}").permitAll()
+				
 				//PROJECTS
 				.antMatchers("/projects/list").permitAll()
 				.antMatchers("/projects/create").permitAll()
