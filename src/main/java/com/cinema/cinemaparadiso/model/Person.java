@@ -8,10 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.URL;
-
 
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +36,8 @@ public class Person extends BaseEntity  {
 	@NotEmpty(message = "Indique una descripion propia")
 	protected String description;
 	
-  @Column(name="photo")
-  @URL(message = "Debe indicar una URL")
-  private String photo;
+	@Column(name="photo")
+	@URL(message = "Debe indicar una URL")
+	@NotEmpty(message="Debe rellenar el campo")
+	private String photo;
 }

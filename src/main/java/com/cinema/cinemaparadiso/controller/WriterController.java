@@ -100,7 +100,7 @@ public class WriterController {
           }else {
               return "writers/createOrUpdateWriterForm";
           }
-          return "index";
+          return "writers/listWriter";
       }
     
     @GetMapping("/update/{writerId}")
