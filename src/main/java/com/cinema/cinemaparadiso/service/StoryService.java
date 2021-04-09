@@ -10,7 +10,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Rel_story_writers;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
@@ -41,7 +40,7 @@ public class StoryService {
 			story2.setTitle(story.getTitle());
 			story2.setBody(story.getBody());
 			story2.setGenre(story.getGenre());
-			saveStory(story);	
+			saveStory(story2);	
   }
 	
 

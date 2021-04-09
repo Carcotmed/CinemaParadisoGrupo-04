@@ -60,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		    .antMatchers("/writers/list").permitAll()
 		    .antMatchers("/writers/create").permitAll()
 			.antMatchers("/writers/show/{writerId}").permitAll()
+			.antMatchers("/writers/update/{writerId}").permitAll()
 		     //STORIES
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
