@@ -32,6 +32,9 @@ public class ArtistService {
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+    private ProjectService projectService;
 
 	@Autowired
 	public ArtistService(ArtistRepository artistRepository) {
@@ -64,7 +67,7 @@ public class ArtistService {
 	}
 
 
-public void createArtist(Artist artist){
+	public void createArtist(Artist artist){
 		userService.createUser(artist.getUser());
 		 Authorities authorities = new Authorities(artist.getUser().getUsername(),"artist");
 	     authoritiesRepository.save(authorities);
@@ -141,5 +144,25 @@ public void createArtist(Artist artist){
 
 		return artist.equals(actualArtist);
 	}
+	
+
+	@Transactional
+	public User findMyUser(Integer artistId) {
+
+		return artistRepository.findUserByArtistUsername(findArtistById(artistId).getUser().getUsername()).get();
+	}
+	
+	@Transactional
+	public void deleteArtist(Integer artistId) {
+
+		List<Project> projects = findMyProjects(artistId);
+		for (Project p : projects) {
+				projectService.deleteRelation(p.getId());
+			}
+		User user = findMyUser(artistId);
+		artistRepository.delete(findArtistById(artistId));
+		userService.deleteUser(user);
+	}
+
 
 }

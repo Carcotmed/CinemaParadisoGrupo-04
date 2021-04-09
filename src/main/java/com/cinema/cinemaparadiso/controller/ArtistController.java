@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -173,5 +174,18 @@ public class ArtistController {
 			return "artists/updateArtist";
 		}
 	}
-
+	@GetMapping("/delete/{artistId}")
+	public String deleteArtist(@PathVariable("artistId") Integer artistId) {
+		if(!artistService.isActualArtist(artistId)) {
+			return "error/error-403";
+		}
+		try {
+			artistService.deleteArtist(artistId);
+			SecurityContextHolder.clearContext();
+			log.info("Artist Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting Artist", e);
+		}
+		return "redirect:/";
+	}
 }

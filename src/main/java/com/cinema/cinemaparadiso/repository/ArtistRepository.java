@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.User;
 
 @Repository
 public interface ArtistRepository extends CrudRepository<Artist,Integer>{
@@ -36,4 +37,7 @@ public interface ArtistRepository extends CrudRepository<Artist,Integer>{
 	
 	@Query("SELECT artist.projectsHistory FROM Artist artist WHERE artist.id =: id")
 	public List<Project> findProjectsHistory(@Param("id") Integer id);
+	
+	@Query("SELECT user FROM User user WHERE user.username = :username")
+	public Optional<User> findUserByArtistUsername(String username);
 }
