@@ -28,7 +28,6 @@
 				<img src="${artist.photo}" class="rounded-circle" style="width:20%">
 				<div class="py-3 mx-3" style="width:40%">
 					<h3>${artist.name}</h3>
-					<p>${artist.summary}</p>
 					<p>Rol: ${artist.role}</p>
 				</div>
 			</div>

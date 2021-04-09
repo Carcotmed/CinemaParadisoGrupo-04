@@ -2,9 +2,9 @@ package com.cinema.cinemaparadiso.controller;
 
 import java.util.Arrays;
 import java.util.List;
-
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,14 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
-
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.User;
-
-import com.cinema.cinemaparadiso.model.Project;
-
-
 import com.cinema.cinemaparadiso.service.ArtistService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -88,9 +84,11 @@ public class ArtistController {
 	@GetMapping(value = { "/show/{artistId}" })
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
+		Boolean showButtom = artistService.isActualArtist(artistId);
 		//List<Project> projectHistory = artistService.projectHistory(artistId);
 		model.addAttribute("artistUsername", artist.getUser().getUsername());
 		model.addAttribute("artist", artist);
+		model.addAttribute("showButtom",showButtom);
 		//model.addAttribute("projectHistory",projectHistory);
 		return "artists/showArtist";
 	}
@@ -144,21 +142,36 @@ public class ArtistController {
 
 	@GetMapping("/update/{artistId}")
 	public String initFormUpdateArtist(Model model, @PathVariable("artistId") Integer artistId) {
+		if(!artistService.isActualArtist(artistId)) {
+			return "error/error-403";
+		}
 		Artist artist = artistService.findArtistById(artistId);
+		List<Skill> skill = Arrays.asList(Skill.values());
+		List<Role> roles = Arrays.asList(Role.values());
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
-		return "artists/createOrUpdateArtistForm";
+		model.addAttribute("skill",skill);
+		model.addAttribute("roles",roles);
+		return "artists/updateArtist";
 	}
 
+
 	@PostMapping("/update/{artistId}")
-	public String updateArtist(@PathVariable("artistId") Integer artistId, BindingResult result) {
-		try {
-			artistService.editArtist(artistId);
-			log.info("Artist Updated Successfully");
-		} catch (Exception e) {
-			log.error("Error Updating Artist", e);
+	public String updateArtist(@ModelAttribute("artist") @Valid Artist artist, BindingResult result,Model model, @PathVariable("artistId") Integer artistId) {
+		artist.setId(artistId);
+		if(!artistService.isActualArtist(artistId)) {
+			return "error/error-403";
 		}
-		return "artist/listArtist";
+		List<Skill> skill = Arrays.asList(Skill.values());
+		List<Role> roles = Arrays.asList(Role.values());
+		model.addAttribute("skill",skill);
+		model.addAttribute("roles",roles);
+		if(!result.hasErrors()) {
+			artistService.editArtist(artist);
+			return "redirect:/artists/show/{artistId}";
+		}else {
+			return "artists/updateArtist";
+		}
 	}
 
 }
