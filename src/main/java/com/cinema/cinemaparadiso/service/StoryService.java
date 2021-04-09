@@ -87,5 +87,11 @@ public class StoryService {
 		return writerHistory.equals(actualWriter);
 	}
 	
+	@Transactional
+	public void deleteStory(Integer storyId) {
+		
+		storyRepository.delete(findStoryById(storyId));
+	}
+	
 
 }

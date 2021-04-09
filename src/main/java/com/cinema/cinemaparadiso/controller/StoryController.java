@@ -137,5 +137,19 @@ public class StoryController {
 
 		return "stories/showStory";
 	}
+	
+	@GetMapping("/delete/{storyId}")
+	public String deleteStory(@PathVariable("storyId") Integer storyId) {
+		if(!storyService.isMyWriter(storyId)) {
+			return "error/error-403";
+		}
+		try {
+			storyService.deleteStory(storyId);
+			log.info("Project Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting Project", e);
+		}
+		return "redirect:/writers/show/{storyId}";
+	}
 
 }
