@@ -6,7 +6,7 @@ project:
     github:
       url: 'https://github.com/Carcotmed/CinemaParadisoGrupo-04'
     heroku:
-      url: 'https://cinema-paradiso-develop.herokuapp.com/'
+      url: 'https://cinema-paradiso.herokuapp.com/'
     travis:
       url: 'https://travis-ci.com/github/Carcotmed/CinemaParadisoGrupo-04'
     codeclimate:
@@ -32,7 +32,6 @@ project:
       name: 'oscar'
       surname: 'Dorado Abadias' 
       githubUsername: 'oscdoraba'
-      email: 'oscdoraba@alum.us.es'
     member6:
       name: 'Adrian'
       surname: 'Gracia Barroso' 
@@ -51,5 +50,5 @@ project:
       githubUsername: 'LuisCamposIglesia'
     member10:
       name: 'David'
-      surname: 'Ganyan Garcia' 
+      surname: 'Gañan Garcia' 
       githubUsername: 'DavidGananGarcia'
