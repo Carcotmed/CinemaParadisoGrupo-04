@@ -106,6 +106,8 @@ public class ArtistController {
 		return "artists/myProjects";
 	}
 	
+	
+	
 
 	@GetMapping("/create")
 	public String initFormCreateArtist(Model model) {

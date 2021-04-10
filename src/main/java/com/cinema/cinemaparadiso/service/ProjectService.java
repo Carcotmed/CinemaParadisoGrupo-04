@@ -70,11 +70,13 @@ public class ProjectService {
 	
 	@Transactional
 	public void createProject(Project project){
-		Boolean isPro = this.artistService.getPrincipal().getPro();
+		Artist artist = artistService.getPrincipal();
+		Boolean isPro = artist.getPro();
+		project.setMyAdmin(artist.getUser().getUsername());
 		project.setPro(isPro);
 		saveProject(project);
 		//Creamos la relación
-		Integer actualId = artistService.getPrincipal().getId();
+		Integer actualId = artist.getId();
 		Integer projectId = project.getId();
 		Rel_projects_artists relacion = new Rel_projects_artists();
 		relacion.setArtist_id(actualId);
@@ -112,6 +114,13 @@ public class ProjectService {
 		relation.setArtist_id(artistId);
 		relation.setProject_id(projectId);
 		rel_projects_artistsService.save(relation);
+	}
+	
+	public Boolean isAdminProject(Integer projectId) {
+		String artistUsername = artistService.getPrincipal().getUser().getUsername();
+		String projectAdminUsername = findProjectById(projectId).getMyAdmin();
+		
+		return artistUsername.equals(projectAdminUsername);
 	}
 
 

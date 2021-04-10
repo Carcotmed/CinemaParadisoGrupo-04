@@ -53,5 +53,8 @@ public class Project extends BaseEntity {
 	@Column(name="photo")
 	private String photo;	
 	
+	@Column(name="my_admin")
+	private String myAdmin;
+	
  
 }
