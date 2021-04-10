@@ -30,7 +30,14 @@
 					<h2>${story.title}</h2>
 				</div>
 			</div>
-			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
+			<c:choose>
+				<c:when test="${showButton == false}">
+					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
+				</c:when>
+				<c:when test="${showButton == true}">
+					<button class="btn rounded-pill" onClick="location.href='/stories/delete/${story.id}'" style="color:white;height: fit-content;background-color: #af3248">Borrar</button>
+				</c:when>
+			</c:choose>
 	</div>
 	<!-- Info general Historia -->
 	<div>
