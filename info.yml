@@ -5,6 +5,8 @@ project:
   identities:
     github:
       url: 'https://github.com/Carcotmed/CinemaParadisoGrupo-04'
+    heroku:
+      url: 'https://cinema-paradiso.herokuapp.com/'
     travis:
       url: 'https://travis-ci.com/github/Carcotmed/CinemaParadisoGrupo-04'
     codeclimate:
