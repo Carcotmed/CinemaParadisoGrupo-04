@@ -22,7 +22,7 @@ INSERT INTO users (username,password,enabled,email) VALUES ('AmberWiley','AUM46C
 INSERT INTO users (username,password,enabled,email) VALUES ('MicahBurch','JHE50XUC0VC','False','diam.Proin@ultricesDuisvolutpat.com');
 INSERT INTO users (username,password,enabled,email) VALUES ('JaredAvery','PYS46DGG8PM','True','metus.In@sodalesMauris.net');
 
-
+--User Producers
 INSERT INTO users (username,password,enabled,email) VALUES ('FrancisHolder','CNJ24FCJ9UN','True','lacus.Nulla@ametultricies.ca');
 INSERT INTO users (username,password,enabled,email) VALUES ('EmiLogan','IJZ37VCR9OM','False','vehicula.et@sedfacilisis.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('LeeRobertson','HBJ62ZVA8ET','False','feugiat.Sed@aliquamarcuAliquam.ca');
@@ -64,6 +64,8 @@ INSERT INTO users (username,password,enabled,email) VALUES ('IfeomaMiles','NNT78
 INSERT INTO users (username,password,enabled,email) VALUES ('EleanorCrane','EVW15RTT0IC','False','Suspendisse.ac.metus@faucibusMorbivehicula.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('DesiraeBuchanan','HPZ62CON7AR','False','Phasellus.elit@Utsemperpretium.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('RudyardDiaz','QUB12BUN0NR','True','consectetuer@necquam.com');
+
+--User Writers
 INSERT INTO users (username,password,enabled,email) VALUES ('GradyManning','WAG13POL9KJ','False','odio.a@musAeneaneget.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('KyleConway','TZM49YZL1NB','False','non@enim.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('MelyssaMedina','EOL71UCB8PZ','False','Phasellus.fermentum.convallis@pede.ca');
