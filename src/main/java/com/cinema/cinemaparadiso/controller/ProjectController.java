@@ -105,10 +105,12 @@ public class ProjectController {
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
+		Boolean isAdminProject = projectService.isAdminProject(projectId);
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
+		model.addAttribute("isAdminProject", isAdminProject);
 		Artist artist;
     	try {
     		artist = artistService.getPrincipal();
@@ -160,6 +162,9 @@ public class ProjectController {
 	public String initFormUpdateProject(Model model, @PathVariable("projectId") Integer projectId) {
 		Project project = projectService.findProjectById(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
+		if(!projectService.isAdminProject(projectId)) {
+			return "error/error-403";
+		}
 		model.addAttribute("buttonCreate",false);
 		model.addAttribute("genres", genres);
 		model.addAttribute("projectId", projectId);
