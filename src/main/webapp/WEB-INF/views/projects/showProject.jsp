@@ -34,8 +34,12 @@
 			</div>
 
 			<c:if test="${ !pertenece }">
-			<button class="btn rounded-pill" onclick="location.href='/projects/join/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
+				<button class="btn rounded-pill" onclick="location.href='/projects/join/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
 			</c:if>
+			<c:if test="${ isAdminProject == true }">
+				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+			</c:if>
+			
 	</div>
 	<!-- Info general Proyecto -->
 	<div>
