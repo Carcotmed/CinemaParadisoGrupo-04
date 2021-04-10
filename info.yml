@@ -1,12 +1,10 @@
 project:
-  name: 'Cinema Paradiso'
+  name: 'CinemaParadisoGrupo-04'
   owner: 'morning'
   teamId: '4'
   identities:
-    heroku-develop:
+    heroku:
       url: 'https://cinema-paradiso-develop.herokuapp.com/'
-    heroku-sprint-1:
-      url: 'https://cinema-paradiso-sprint-1.herokuapp.com'
     travis:
       url: 'https://travis-ci.com/github/Carcotmed/CinemaParadisoGrupo-04'
     codacy:
@@ -16,22 +14,18 @@ project:
       name: 'Carlos'
       surname: 'Cote Medina' 
       githubUsername: 'Carcotmed'
-      email: 'carcotmed@gmail.com'
     member2:
       name: 'Pablo'
       surname: 'Calle Perez' 
       githubUsername: 'Pabcalper'
-      email: 'pabcalper@alum.us.es'
     member3:
       name: 'Ivan'
       surname: 'Cardenas Meneses' 
       githubUsername: 'ivan-desing-testing'
-      email: 'ivacarmen@alum.us.es'
     member4:
       name: 'Sergio'
       surname: 'Perez Capitan' 
       githubUsername: 'Capi9888'
-      email: 'serpercap@alum.us.es'
     member5:
       name: 'oscar'
       surname: 'Dorado Abadias' 
@@ -41,24 +35,19 @@ project:
       name: 'Adrian'
       surname: 'Gracia Barroso' 
       githubUsername: 'adrgrabar'
-      email: 'adriaingra@gmail.com'
     member7:
       name: 'Moises'
       surname: 'Pantion Loza' 
       githubUsername: 'Moipanloz'
-      email: 'moipanloz@alum.us.es'
     member8:
       name: 'Bogdan-Marian'
       surname: 'Stefan' 
       githubUsername: 'bogdanstefan'
-      email: 'sbogdanm26@hotmail.com'
     member9:
       name: 'Luis'
       surname: 'Campos Iglesia' 
       githubUsername: 'LuisCamposIglesia'
-      email: 'luicamigl@alum.us.es'
     member10:
       name: 'David'
       surname: 'Ganyan Garcia' 
       githubUsername: 'DavidGananGarcia'
-      email: 'davgangar@alum.us.es'
