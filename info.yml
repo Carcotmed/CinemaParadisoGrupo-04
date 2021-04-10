@@ -1,14 +1,16 @@
 project:
-  name: 'CinemaParadisoGrupo-04'
+  name: 'CinemaParadiso'
   owner: 'morning'
   teamId: '4'
   identities:
+    github:
+      url: 'https://github.com/Carcotmed/CinemaParadisoGrupo-04'
     heroku:
       url: 'https://cinema-paradiso-develop.herokuapp.com/'
     travis:
       url: 'https://travis-ci.com/github/Carcotmed/CinemaParadisoGrupo-04'
-    codacy:
-      url: 'https://app.codacy.com/gh/ivan-desing-testing/CinemaParadisoGrupo-04/dashboard?utm_source=github.com&utm_medium=referral&utm_content=ivan-desing-testing/CinemaParadisoGrupo-04'
+    codeclimate:
+      url: 'https://app.codacy.com/gh/ivan-desing-testing/CinemaParadisoGrupo-04/dashboard'
   members:
     member1:
       name: 'Carlos'
