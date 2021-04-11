@@ -31,7 +31,10 @@
 			</div>
 			<c:choose>
 				<c:when test="${sameWriter == false}">
-			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+				</c:when>
+				<c:when test="${sameWriter == true}">
+					<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
 				</c:when>
 			</c:choose>
 			
@@ -64,7 +67,7 @@
 				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripción</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">DescripciÃ³n</h5>
 					</div>
 					<p style="margin-left: 3%">${writer.description}</p>
 				</div>

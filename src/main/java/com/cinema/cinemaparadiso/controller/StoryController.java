@@ -149,7 +149,7 @@ public class StoryController {
 		} catch (Exception e) {
 			log.error("Error Deleting Project", e);
 		}
-		return "redirect:/writers/show/{storyId}";
+		return "redirect:/stories/list";
 	}
 
 }

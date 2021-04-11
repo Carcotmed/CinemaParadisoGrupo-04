@@ -85,7 +85,7 @@ public class ArtistController {
 	@GetMapping(value = { "/show/{artistId}" })
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
-		Boolean showButtom = artistService.isActualArtist(artistId);
+		Boolean showButton = artistService.isActualArtist(artistId);
 		List<Project> myProjects = artistService.findMyProjects(artistId);
 		Integer projectsLeft = artistService.leftProjects(artistId);
 		model.addAttribute("projectsLeft",projectsLeft);
@@ -93,7 +93,7 @@ public class ArtistController {
 		model.addAttribute("artistUsername", artist.getUser().getUsername());
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
-		model.addAttribute("showButtom",showButtom);
+		model.addAttribute("showButton",showButton);
 		return "artists/showArtist";
 	}	
 
