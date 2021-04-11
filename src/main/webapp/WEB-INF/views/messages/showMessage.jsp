@@ -27,6 +27,9 @@
                     <th style="color:white">FECHA</th>
                     <th style="color:white">ID DEL EMISOR</th>
                     <th style="color:white">ID DEL RECEPTOR</th>
+                    <c:if test="${isRequest != 0}">
+                    	<th style="color:white">PETICIÓN</th>
+                    </c:if>
                 </tr>
             </thead>
             
@@ -39,7 +42,12 @@
 				  <td style="color:white"><c:out value="${message.emisor.username}" /></td>
 				  <td style="color:white"><c:out value="${message.receptor.username}" /></td>
 				  <td style="color:white">
-				  
+				  <c:if test="${isRequest != 0}">
+                    	<td style="color:white">
+							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequest'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
+                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequest'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
+                    	</td>
+                   </c:if>
                 </tr>
                 
             </tbody>
