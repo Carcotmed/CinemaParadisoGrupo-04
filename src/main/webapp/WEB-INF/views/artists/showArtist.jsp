@@ -36,7 +36,7 @@
 					<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 				</c:when>
 				<c:when test="${showButton == true}">
-					<button class="btn rounded-pill" onClick="location.href='/artists/delete/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Borrar</button>
+					<button class="btn rounded-pill" onClick="location.href='/artists/update/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
 				</c:when>
 			</c:choose>
 		</div>
