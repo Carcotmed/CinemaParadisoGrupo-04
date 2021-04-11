@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
+import com.cinema.cinemaparadiso.model.Message;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.UserService;
 
@@ -38,6 +40,9 @@ public class ProjectController {
 
 	@Autowired
 	private ArtistService artistService;
+	
+	@Autowired
+	private MessageService messageService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -97,18 +102,20 @@ public class ProjectController {
 			model.addAttribute("Error", "Ya perteneces a este equipo");
 			return "/error";
 		}
-		projectService.addRelationShip(projectId, artist.getId());
-		return "redirect:/artists/myProjects";
+		messageService.requestToEnterProject(projectId, artist.getId());
+		return "redirect:/projects/list";
 	}
 	
 	@GetMapping(value = { "/show/{projectId}" })
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
+		Boolean isAdminProject = projectService.isAdminProject(projectId);
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
+		model.addAttribute("isAdminProject", isAdminProject);
 		Artist artist;
     	try {
     		artist = artistService.getPrincipal();
@@ -136,6 +143,11 @@ public class ProjectController {
 	
 	@GetMapping("/create")
 	public String initFormCreateProject(Model model) {
+		Integer artistId = artistService.getPrincipal().getId();
+		Integer projectsLeft = artistService.leftProjects(artistId);
+		if(projectsLeft<=0) {
+			return "error/error-403";
+		}
 		Project project = new Project();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("buttonCreate",true);
@@ -160,6 +172,9 @@ public class ProjectController {
 	public String initFormUpdateProject(Model model, @PathVariable("projectId") Integer projectId) {
 		Project project = projectService.findProjectById(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
+		if(!projectService.isAdminProject(projectId)) {
+			return "error/error-403";
+		}
 		model.addAttribute("buttonCreate",false);
 		model.addAttribute("genres", genres);
 		model.addAttribute("projectId", projectId);

@@ -15,6 +15,7 @@ import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.WriterRepository;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 @Service
 public class WriterService {
@@ -46,12 +47,27 @@ public class WriterService {
 	public Writer findWriterById(int id) throws DataAccessException {
 		return writerRepository.findById(id).get();
 	}
-
-	public void createWriter(Writer writer) {
-		userService.createUser(writer.getUser());
-		Authorities authorities = new Authorities(writer.getUser().getUsername(), "writer");
+	
+	public Boolean isUniqueUsername(String username) {
+		Boolean res = null;
+		Optional<User> optionalUser = this.writerRepository.findUserByWriterUsername(username);
+		res = !optionalUser.isPresent();
+		return res;
+	}
+	
+	@Transactional(rollbackFor = UserUniqueException.class)
+	public void createWriter(Writer writer) throws UserUniqueException {
+		User user = writer.getUser();
+		String nuevoUsername = user.getUsername();
+		if(!isUniqueUsername(nuevoUsername)) {
+			throw new UserUniqueException();
+		}
+		else {
+		userService.createUser(user);
+		Authorities authorities = new Authorities(user.getUsername(), "writer");
 		authoritiesRepository.save(authorities);
 		saveWriter(writer);
+		}
 
 	}
 

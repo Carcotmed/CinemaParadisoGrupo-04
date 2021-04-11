@@ -31,7 +31,10 @@
 			</div>
 			<c:choose>
 				<c:when test="${sameWriter == false}">
-			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+				</c:when>
+				<c:when test="${sameWriter == true}">
+					<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Borrar</button>
 				</c:when>
 			</c:choose>
 			

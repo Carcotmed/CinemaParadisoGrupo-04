@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/producers/list").permitAll()
 				.antMatchers("/producers/create").permitAll()
 				.antMatchers("/producers/show/**").permitAll()
-				.antMatchers("/producers/update/**").authenticated()
+				.antMatchers("/producers/update/**").permitAll()
 				.antMatchers("/producers/delete/**").permitAll()
 				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
@@ -47,6 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/show/{messageId}").authenticated()
 				.antMatchers("/messages/create/{userId}").authenticated()
 				.antMatchers("/messages/delete/{messageId}").authenticated()
+				.antMatchers("/messages/show/{messageId}/acceptRequest").authenticated()
+				.antMatchers("/messages/show/{messageId}/rejectRequest").authenticated()
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/users/select").permitAll()

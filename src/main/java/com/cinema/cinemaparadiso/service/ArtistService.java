@@ -18,6 +18,7 @@ import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.UserRepository;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 @Service
 public class ArtistService {
@@ -32,6 +33,9 @@ public class ArtistService {
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+    private ProjectService projectService;
 
 	@Autowired
 	public ArtistService(ArtistRepository artistRepository) {
@@ -62,17 +66,32 @@ public class ArtistService {
 		projectsHistory = artistRepository.findProjectsHistory(id);
 		return projectsHistory;
 	}
+	
+	public Boolean isUniqueUsername(String username) {
+		Boolean res = null;
+		Optional<User> optionalUser = this.artistRepository.findUserByArtistUsername(username);
+		res = !optionalUser.isPresent();
+		return res;
+	}
 
-
-public void createArtist(Artist artist){
-		userService.createUser(artist.getUser());
-		 Authorities authorities = new Authorities(artist.getUser().getUsername(),"artist");
+	@Transactional(rollbackFor = UserUniqueException.class)
+	public void createArtist(Artist artist) throws UserUniqueException{
+		User user = artist.getUser();
+		String nuevoUsername = user.getUsername();
+		if(!isUniqueUsername(nuevoUsername)) {
+			throw new UserUniqueException();
+		}
+		else {
+		 userService.createUser(artist.getUser());
+		 Authorities authorities = new Authorities(user.getUsername(),"artist");
 	     authoritiesRepository.save(authorities);
-	     artist.setPro(false);
-	    saveArtist(artist);
-	       
-
+	     artist.setPro(false);	
+	     artist.setLeftProjects(1);
+	     saveArtist(artist);
+			}
 	    }
+	
+
 	
 	public List<Project> findMyProjects(Integer artistId){
 		List<Project> myProjects = new ArrayList<>();
@@ -140,6 +159,31 @@ public void createArtist(Artist artist){
 		Artist actualArtist = getPrincipal();
 
 		return artist.equals(actualArtist);
+	}
+	
+
+	@Transactional
+	public User findMyUser(Integer artistId) {
+
+		return artistRepository.findUserByArtistUsername(findArtistById(artistId).getUser().getUsername()).get();
+	}
+	
+	@Transactional
+	public void deleteArtist(Integer artistId) {
+
+		List<Project> projects = findMyProjects(artistId);
+		for (Project p : projects) {
+				projectService.deleteRelation(p.getId());
+			}
+		User user = findMyUser(artistId);
+		artistRepository.delete(findArtistById(artistId));
+		userService.deleteUser(user);
+	}
+
+	@Transactional
+	public Integer leftProjects(Integer artistId) {
+		Integer leftProjectsOfMyArtist = artistRepository.findProjectsLeft(artistId);
+		return leftProjectsOfMyArtist;
 	}
 
 }

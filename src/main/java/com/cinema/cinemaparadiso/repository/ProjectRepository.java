@@ -22,4 +22,6 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	
 	@Query("SELECT artist FROM Artist artist INNER JOIN Rel_projects_artists rel_projects_artists ON artist.id = rel_projects_artists.artist_id AND rel_projects_artists.project_id = :projectId")
 	public List<Artist> findMembers(@Param("projectId") Integer projectId);
+	
+	
 }
