@@ -86,6 +86,7 @@ public class ArtistService {
 		 Authorities authorities = new Authorities(user.getUsername(),"artist");
 	     authoritiesRepository.save(authorities);
 	     artist.setPro(false);	
+	     artist.setLeftProjects(1);
 	     saveArtist(artist);
 			}
 	    }
@@ -179,5 +180,10 @@ public class ArtistService {
 		userService.deleteUser(user);
 	}
 
+	@Transactional
+	public Integer leftProjects(Integer artistId) {
+		Integer leftProjectsOfMyArtist = artistRepository.findProjectsLeft(artistId);
+		return leftProjectsOfMyArtist;
+	}
 
 }

@@ -100,7 +100,9 @@ public class ArtistController {
 		Artist artist = artistService.getPrincipal();
 		Integer artistId = artist.getId();
 		List<Project> myProjects = artistService.findMyProjects(artistId);
+		Integer projectsLeft = artistService.leftProjects(artistId);
 		model.addAttribute("artistId", artistId);
+		model.addAttribute("projectsLeft",projectsLeft);
 		model.addAttribute("artist", artist);
 		model.addAttribute("myProjects",myProjects);
 		return "artists/myProjects";
@@ -128,22 +130,20 @@ public class ArtistController {
 	public String createArtist(@Valid Artist artist, BindingResult result, Model model) throws UserUniqueException{
 		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
-		artist.setPro(false);
 		model.addAttribute("roles", role);
 		model.addAttribute("skill", skill);
 		if(!result.hasErrors()) {
 			//Unique artist exception
 			try{
+				
 				this.artistService.createArtist(artist);
 			}
 			catch(UserUniqueException ex) {
 				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
 				return "artists/createOrUpdateArtistForm";
 			}
-			log.info(artist.getPro().toString());
 			log.info("Artist Created Successfully");
 		} else {
-			log.info(artist.getPro().toString());
 			return "artists/createOrUpdateArtistForm";
 		}
 		return "redirect:/artists/list";

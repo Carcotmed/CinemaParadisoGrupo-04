@@ -45,6 +45,9 @@ public class Artist extends Person {
 	@Column(name="summary")
 	private String summary;
 	
+	@Column(name="left_projects")
+	private Integer leftProjects;
+	
 
 	
 	@Column(name="pro")
