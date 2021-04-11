@@ -14,6 +14,7 @@ import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.ProducerRepository;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 @Service
 public class ProducerService {
@@ -37,12 +38,27 @@ public class ProducerService {
 	public Producer findProducerById(int id) throws DataAccessException {
 		return producerRepository.findById(id).get();
 	}
+	
+	public Boolean isUniqueUsername(String username) {
+		Boolean res = null;
+		Optional<User> optionalUser = this.producerRepository.findUserByProducerUsername(username);
+		res = !optionalUser.isPresent();
+		return res;
+	}
 
-	public void createProducer(Producer producer) {
-		userService.createUser(producer.getUser());
-		Authorities authorities = new Authorities(producer.getUser().getUsername(), "producer");
+	@Transactional(rollbackFor = UserUniqueException.class)
+	public void createProducer(Producer producer) throws UserUniqueException {
+		User user = producer.getUser();
+		String nuevoUsername = user.getUsername();
+		if(!isUniqueUsername(nuevoUsername)) {
+			throw new UserUniqueException();
+		}
+		else {
+		userService.createUser(user);
+		Authorities authorities = new Authorities(user.getUsername(), "producer");
 		authoritiesRepository.save(authorities);
 		saveProducer(producer);
+		}
 
 	}
 

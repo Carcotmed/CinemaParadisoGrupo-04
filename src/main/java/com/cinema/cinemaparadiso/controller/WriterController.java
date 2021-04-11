@@ -22,6 +22,7 @@ import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.WriterService;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -91,13 +92,22 @@ public class WriterController {
 
     @PostMapping("/create")
     public String createWriter(Model model, @ModelAttribute("writer") @Valid Writer writer,
-              BindingResult result) {
+              BindingResult result) throws UserUniqueException{
   
     	List<Skill> skill = Arrays.asList(Skill.values());
     	model.addAttribute("skill", skill);
           if(!result.hasErrors()) {
-              writerService.createWriter(writer);
-          }else {
+			try{
+				
+				this.writerService.createWriter(writer);
+			}
+			catch(UserUniqueException ex) {
+				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
+				return "writers/createOrUpdateWriterForm";
+			}
+			log.info("Writer Created Successfully");          
+			}
+          else {
               return "writers/createOrUpdateWriterForm";
           }
           return "index";
