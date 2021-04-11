@@ -86,30 +86,16 @@ public class ArtistController {
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
 		Boolean showButtom = artistService.isActualArtist(artistId);
-		//List<Project> projectHistory = artistService.projectHistory(artistId);
-		model.addAttribute("artistUsername", artist.getUser().getUsername());
-		model.addAttribute("artist", artist);
-		model.addAttribute("showButtom",showButtom);
-		//model.addAttribute("projectHistory",projectHistory);
-		return "artists/showArtist";
-	}
-
-
-	@GetMapping(value = { "/myProjects" })
-	public String myProjectsArtist(Model model) {
-		Artist artist = artistService.getPrincipal();
-		Integer artistId = artist.getId();
 		List<Project> myProjects = artistService.findMyProjects(artistId);
 		Integer projectsLeft = artistService.leftProjects(artistId);
-		model.addAttribute("artistId", artistId);
 		model.addAttribute("projectsLeft",projectsLeft);
-		model.addAttribute("artist", artist);
 		model.addAttribute("myProjects",myProjects);
-		return "artists/myProjects";
-	}
-	
-	
-	
+		model.addAttribute("artistUsername", artist.getUser().getUsername());
+		model.addAttribute("artistId", artistId);
+		model.addAttribute("artist", artist);
+		model.addAttribute("showButtom",showButtom);
+		return "artists/showArtist";
+	}	
 
 	@GetMapping("/create")
 	public String initFormCreateArtist(Model model) {
