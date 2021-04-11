@@ -28,14 +28,13 @@
 		</div>
 		<!-- User menu -->
 		<div style="width: 15%;margin-right:1%" class="d-flex justify-content-between align-items-center">
-			<!-- Imagen lleva a perfil del user, se necesita en el modelo? -->
-			<!--  <img src="https://via.placeholder.com/150" onClick="location.href='/messages/list/${user.id}'" class="rounded-circle" style="cursor:pointer;margin: 0 9%;width:10px"> -->
 			<sec:authorize access="!isAuthenticated()">
 				<button onClick="location.href='/login'" style="color:white;background-color:#af3248" class="btn rounded-pill">Inicia sesión</button>
 				<button onClick="location.href='/users/select'" style="color:white;background-color:#af3248" class="btn rounded-pill">Registrate</button>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-			<button onClick="location.href='/logout'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesión</button>
+				<button onClick="location.href='/users/miPerfil'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Mi perfil</button>
+				<button onClick="location.href='/logout'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesión</button>
 			</sec:authorize>
 			
 		</div>

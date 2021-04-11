@@ -15,7 +15,7 @@
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
 
-<title>Writer</title>
+<title>Escritor</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
 <jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
@@ -38,8 +38,13 @@
 	</div>
 	<!-- Info general Historia -->
 	<div>
-		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
+		<div class="d-flex justify-content-between w-100" style="background-color:#4c4c4c; padding:1%">
 			<h3 style="margin:0">Datos</h3>
+			<c:choose>
+				<c:when test="${sameWriter == true}">
+					<button class="btn" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
+				</c:when>
+			</c:choose>
 		</div>
 		
 		<div class="d-flex justify-content-between" style="padding: 2% 5%">
@@ -63,18 +68,13 @@
 					</div>
 					<p style="margin-left: 3%">${writer.description}</p>
 				</div>
-				<c:choose>
-					<c:when test="${sameWriter == true}">
-						<button class="btn" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
-					</c:when>
-				</c:choose>
 				
 			</div>
 			<div style="padding: 2% 0;width:30%;margin:auto">
 			<c:forEach items="${stories}" var="story">
-				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0;cursor: pointer" onClick="location.href='/stories/show/${story.id}'">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-						<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg" onClick="location.href='/stories/show/${story.id}'" style="width:100%;height:100%;object-fit:cover">
+						<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"  style="width:100%;height:100%;object-fit:cover">
 					</div>
 					<div style="margin-left: 12%">
 						<h5>${story.title}</h5>
