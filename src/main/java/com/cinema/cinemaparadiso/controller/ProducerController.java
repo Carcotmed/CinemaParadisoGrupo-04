@@ -21,6 +21,7 @@ import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -65,12 +66,20 @@ public class ProducerController {
 
     @PostMapping("/create")
     public String createProducer(Model model, @ModelAttribute("producer") @Valid Producer producer,
-              BindingResult result) {
+              BindingResult result) throws UserUniqueException{
   
     	List<Skill> skill = Arrays.asList(Skill.values());
     	model.addAttribute("skill", skill);
           if(!result.hasErrors()) {
-              this.producerService.createProducer(producer);
+			try{
+				
+				this.producerService.createProducer(producer);
+			}
+			catch(UserUniqueException ex) {
+				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
+				return "producers/createUpdateProducerForm";
+			}
+			log.info("Producer Created Successfully");
           }else {
         	  return "producers/createUpdateProducerForm";
           }
