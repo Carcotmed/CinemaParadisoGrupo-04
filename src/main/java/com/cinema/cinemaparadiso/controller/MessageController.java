@@ -64,9 +64,6 @@ public class MessageController {
     	try {
     		
 	        Message message = messageService.findById(messageId);
-	        if(message.getIsRequest()==null) {
-	        	message.setIsRequest(0);
-	        }
 	        model.addAttribute("isRequest",message.getIsRequest());
 	        model.addAttribute("message", message);
 	        log.info("Showing Message..."+message.toString());
@@ -83,7 +80,7 @@ public class MessageController {
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
-        return "messages/listReceived";
+        return "redirect:/messages/listReceived";
     }
     
     @GetMapping("/show/{messageId}/rejectRequest")
@@ -93,7 +90,7 @@ public class MessageController {
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
-        return "messages/listReceived";
+        return "redirect:/messages/listReceived";
     }
 
     @GetMapping("/create/{userName}")

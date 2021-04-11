@@ -103,7 +103,6 @@ public class ProjectController {
 			return "/error";
 		}
 		messageService.requestToEnterProject(projectId, artist.getId());
-		projectService.addRelationShip(projectId, artist.getId());
 		return "redirect:/messages/listSend";
 	}
 	

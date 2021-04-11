@@ -45,6 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/show/{messageId}").authenticated()
 				.antMatchers("/messages/create/{userId}").authenticated()
 				.antMatchers("/messages/delete/{messageId}").authenticated()
+				.antMatchers("/messages/show/{messageId}/acceptRequest").authenticated()
+				.antMatchers("/messages/show/{messageId}/rejectRequest").authenticated()
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/users/select").permitAll()
