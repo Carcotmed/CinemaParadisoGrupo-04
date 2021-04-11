@@ -44,6 +44,9 @@ public class Message extends BaseEntity{
 	@OneToOne
 	@JoinColumn(name = "receptor_id")
 	private User receptor;
+	
+	@JoinColumn(name = "is_request")
+	private Integer isRequest;
 
 	public Message(String issue, String body, Date messageDate, User emisor, User receptor) {
 		super();
