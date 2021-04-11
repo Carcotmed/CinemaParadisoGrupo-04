@@ -32,19 +32,10 @@ public class User {
     @Column(name = "email")
 	@NotEmpty(message = "El correo no puede estar vacío")
     private String email;
+    
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", enabled=" + enabled + "]";
 	}
 	
-	public User(String username, String password, boolean enabled) {
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-	}
-	
-	public User() {}
-    
-    
- 
 }
