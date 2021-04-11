@@ -39,7 +39,6 @@ public class MessageService {
     }
 
     public Message create(Message message) throws IllegalArgumentException{
-    	message.setIsRequest(0);
         return messageRepository.save(message);
     }
 
@@ -71,7 +70,7 @@ public class MessageService {
     	Message message = findById(messageId);
     	Integer projectId = message.getIsRequest();
     	Project project = projectService.findProjectById(projectId);
-    	message.setIsRequest(0);
+    	message.setIsRequest(null);
     	Artist artistAccepted = artistService.findArtistByUsername(message.getEmisor().getUsername());
     	Artist artistOwnerProject = artistService.findArtistByUsername(message.getReceptor().getUsername());
     	projectService.addRelationShip(projectId, artistAccepted.getId());
@@ -84,7 +83,7 @@ public class MessageService {
     	message2.setReceptor(artistService.findMyUser(artistAccepted.getId()));
     	message2.setEmisor(artistService.findMyUser(artistOwnerProject.getId()));
     	message2.setMessageDate(Date.from(Instant.now()));
-    	message2.setIsRequest(0);
+    	message2.setIsRequest(null);
     	
     	create(message2);  
     }
@@ -95,20 +94,18 @@ public class MessageService {
     	Message message = findById(messageId);
     	Integer projectId = message.getIsRequest();
     	Project project = projectService.findProjectById(projectId);
-    	message.setIsRequest(0);
+    	message.setIsRequest(null);
     	Artist artistRejected = artistService.findArtistByUsername(message.getEmisor().getUsername());
     	Artist artistOwnerProject = artistService.findArtistByUsername(message.getReceptor().getUsername());
-    	projectService.addRelationShip(projectId, artistRejected.getId());
     	
     	Message message2 = new Message();
     	
-
     	message2.setIssue("Has sido rechazado.");
     	message2.setBody("El admin de "+ project.getTitle()+" ha rechazado su solicitud.");
     	message2.setReceptor(artistService.findMyUser(artistRejected.getId()));
     	message2.setEmisor(artistService.findMyUser(artistOwnerProject.getId()));
     	message2.setMessageDate(Date.from(Instant.now()));
-    	message2.setIsRequest(0);
+    	message2.setIsRequest(null);
     	
     	create(message2);  
     }

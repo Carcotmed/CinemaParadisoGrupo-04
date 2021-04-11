@@ -103,8 +103,7 @@ public class ProjectController {
 			return "/error";
 		}
 		messageService.requestToEnterProject(projectId, artist.getId());
-		projectService.addRelationShip(projectId, artist.getId());
-		return "redirect:/artists/myProjects";
+		return "redirect:/projects/list";
 	}
 	
 	@GetMapping(value = { "/show/{projectId}" })
