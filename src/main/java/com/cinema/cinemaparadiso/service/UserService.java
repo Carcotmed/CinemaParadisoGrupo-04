@@ -11,11 +11,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.Authentication;
 
-
-import com.cinema.cinemaparadiso.model.Authorities;
+import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
+import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.UserRepository;
 
@@ -101,6 +101,18 @@ public class UserService {
   
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
+	}
+	
+	public Optional<Artist> findArtistByUserUsername(String username){
+		return this.userRepository.findArtistByUserUsername(username);
+	}
+	
+	public Optional<Writer> findWriterByUserUsername(String username){
+		return this.userRepository.findWriterByUserUsername(username);
+	}
+	
+	public Optional<Producer> findProducerByUserUsername(String username){
+		return this.userRepository.findProducerByUserUsername(username);
 	}
 
 }

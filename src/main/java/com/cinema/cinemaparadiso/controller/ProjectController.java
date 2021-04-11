@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
-import com.cinema.cinemaparadiso.model.Message;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
@@ -103,14 +102,19 @@ public class ProjectController {
 			return "/error";
 		}
 		messageService.requestToEnterProject(projectId, artist.getId());
-		return "redirect:/projects/list";
+		return "redirect:/messages/listSend";
 	}
 	
 	@GetMapping(value = { "/show/{projectId}" })
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
-		Boolean isAdminProject = projectService.isAdminProject(projectId);
+		Boolean isAdminProject = false;
+		try {
+		 isAdminProject = projectService.isAdminProject(projectId);
+		}catch (Exception e){
+			
+		}
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
@@ -132,20 +136,21 @@ public class ProjectController {
 	
 	@GetMapping("/delete/{projectId}")
 	public String deleteProject(@PathVariable("projectId") Integer projectId) {
+		Integer actualId = this.artistService.getPrincipal().getId();
 		try {
 			projectService.deleteRelation(projectId);
 			log.info("Project Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Project", e);
 		}
-		return "redirect:/artists/myProjects";
+		return "redirect:/artists/show/"+actualId;
 	}
 	
 	@GetMapping("/create")
 	public String initFormCreateProject(Model model) {
 		Integer artistId = artistService.getPrincipal().getId();
 		Integer projectsLeft = artistService.leftProjects(artistId);
-		if(projectsLeft<=0) {
+		if(projectsLeft == null) {
 			return "error/error-403";
 		}
 		Project project = new Project();
@@ -159,13 +164,14 @@ public class ProjectController {
 	@PostMapping("/create")
 	public String createProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model) {
 		List<Genre> genres = Arrays.asList(Genre.values());
+		Integer actualId = this.artistService.getPrincipal().getId();
 		model.addAttribute("genres", genres);
 		if(!result.hasErrors()) {
 			projectService.createProject(project);
 		}else {
 			return "projects/createOrUpdateProjectForm";
 		}
-		return "redirect:/artists/myProjects";
+		return "redirect:/artists/show/"+actualId;
 	}
 	
 	@GetMapping("/update/{projectId}")
@@ -185,6 +191,7 @@ public class ProjectController {
 	@PostMapping("/update/{projectId}")
 	public String updateProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model, @PathVariable("projectId") Integer projectId) {
 		project.setId(projectId);
+		Integer actualId = this.artistService.getPrincipal().getId();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
@@ -192,9 +199,9 @@ public class ProjectController {
 		if(!result.hasErrors()) {
 			projectService.editProject(project);
 			log.info("Project Updated Successfully");
-			return "redirect:/artists/myProjects";
+			return "redirect:/artists/show/"+actualId;
 		} else {
-			return "projects/createOrUpdateProjectForm";
+			return "redirect:/artists/show/"+actualId;
 		}
 	}
 
