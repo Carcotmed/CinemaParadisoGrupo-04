@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
+import com.cinema.cinemaparadiso.model.Message;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.UserService;
 
@@ -38,6 +40,9 @@ public class ProjectController {
 
 	@Autowired
 	private ArtistService artistService;
+	
+	@Autowired
+	private MessageService messageService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -97,8 +102,8 @@ public class ProjectController {
 			model.addAttribute("Error", "Ya perteneces a este equipo");
 			return "/error";
 		}
-		projectService.addRelationShip(projectId, artist.getId());
-		return "redirect:/artists/myProjects";
+		messageService.requestToEnterProject(projectId, artist.getId());
+		return "redirect:/projects/list";
 	}
 	
 	@GetMapping(value = { "/show/{projectId}" })

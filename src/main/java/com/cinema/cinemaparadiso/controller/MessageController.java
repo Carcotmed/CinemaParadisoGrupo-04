@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Message;
+import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.UserService;
 
@@ -33,6 +35,9 @@ public class MessageController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private ArtistService artistService;
 
     @GetMapping("/listSend")
     public String listSend(Model model){
@@ -57,13 +62,35 @@ public class MessageController {
     @GetMapping("/show/{messageId}")
     public String show(Model model, @PathVariable("messageId") Integer messageId){
     	try {
+    		
 	        Message message = messageService.findById(messageId);
+	        model.addAttribute("isRequest",message.getIsRequest());
 	        model.addAttribute("message", message);
 	        log.info("Showing Message..."+message.toString());
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
         return "messages/showMessage";
+    }
+    
+    @GetMapping("/show/{messageId}/acceptRequest")
+    public String showAccept(Model model, @PathVariable("messageId") Integer messageId){
+    	try {
+	        messageService.acceptRequest(messageId);
+    	}catch (NoSuchElementException e) {
+	        log.error("Error Showing Message..."+messageId.toString());
+		}
+        return "redirect:/messages/listReceived";
+    }
+    
+    @GetMapping("/show/{messageId}/rejectRequest")
+    public String showReject(Model model, @PathVariable("messageId") Integer messageId){
+    	try {
+	        messageService.rejectRequest(messageId);
+    	}catch (NoSuchElementException e) {
+	        log.error("Error Showing Message..."+messageId.toString());
+		}
+        return "redirect:/messages/listReceived";
     }
 
     @GetMapping("/create/{userName}")
