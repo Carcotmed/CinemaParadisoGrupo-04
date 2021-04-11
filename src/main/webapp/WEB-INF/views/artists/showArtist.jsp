@@ -28,11 +28,17 @@
 				<img src="${artist.photo}" class="rounded-circle" style="width:20%">
 				<div class="py-3 mx-3" style="width:40%">
 					<h3>${artist.name}</h3>
-					<p>${artist.summary}</p>
 					<p>Rol: ${artist.role}</p>
 				</div>
 			</div>
-			<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+			<c:choose>
+				<c:when test="${showButton == false}">
+					<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+				</c:when>
+				<c:when test="${showButton == true}">
+					<button class="btn rounded-pill" onClick="location.href='/artists/update/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+				</c:when>
+			</c:choose>
 		</div>
 	
 		<!-- Info general Artista -->

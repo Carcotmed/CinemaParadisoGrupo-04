@@ -65,56 +65,56 @@ public class MessageControllerTests {
     // He metido estos test como prueba para ver si el contexto carga correctamente.
 
     //@WithMockUser(username="admin",authorities= {"admin"})
-	@Test
-	void testInitial() throws Exception {
-		
-		mockMvc.perform(get("/"))
-                .andExpect(status().is4xxClientError());
-	}
-
-    @Test
-	void testInitial2() throws Exception {
-/*
-		mockMvc.perform(get("/users/create"))
-                .andExpect(status().is4xxClientError())
-                .andExpect(model().attributeExists("user"))
-				.andExpect(view().name("users/createUserForm"));
-*/
-	}
-    /*
-    @Test
-    @WithMockUser(username="newTestUser1",authorities= {"admin"})
-    public void testMessageList() throws Exception {
-    	mockMvc.perform(get("/messages/list"))
-    	.andExpect(status().is2xxSuccessful())
-    	.andExpect(model().attributeExists("messages"))
-    	.andExpect(view().name("messages/listMessage"));
-    }
-    
-    @Test
-    @WithMockUser(username="newTestUser1",authorities= {"admin"})
-    public void testShowMessage() throws Exception {
-    	Integer testMessageId = 1;
-    	
-    	mockMvc.perform(get("/messages/show/"+testMessageId))
-    	.andExpect(status().is2xxSuccessful())
-    	.andExpect(model().attributeExists("message"))
-    	.andExpect(view().name("messages/showMessage"));
-    	
-    }*/
-    
-    @Test
-    @WithMockUser(username="newTestUser1",authorities= {"admin"})
-    public void testInitCreate() throws Exception {    	
-    	String testUserName = "newTestUser1";
-    	
-    	mockMvc.perform(get("/messages/create/"+testUserName))
-    	.andExpect(status().is2xxSuccessful())
-    	.andExpect(model().attributeExists("message"))
-    	.andExpect(model().attributeExists("Estado"))
-    	.andExpect(view().name("messages/createMessageForm"));
-    	
-    }
+//	@Test
+//	void testInitial() throws Exception {
+//		
+//		mockMvc.perform(get("/"))
+//                .andExpect(status().is4xxClientError());
+//	}
+//
+//    @Test
+//	void testInitial2() throws Exception {
+///*
+//		mockMvc.perform(get("/users/create"))
+//                .andExpect(status().is4xxClientError())
+//                .andExpect(model().attributeExists("user"))
+//				.andExpect(view().name("users/createUserForm"));
+//*/
+//	}
+//    /*
+//    @Test
+//    @WithMockUser(username="newTestUser1",authorities= {"admin"})
+//    public void testMessageList() throws Exception {
+//    	mockMvc.perform(get("/messages/list"))
+//    	.andExpect(status().is2xxSuccessful())
+//    	.andExpect(model().attributeExists("messages"))
+//    	.andExpect(view().name("messages/listMessage"));
+//    }
+//    
+//    @Test
+//    @WithMockUser(username="newTestUser1",authorities= {"admin"})
+//    public void testShowMessage() throws Exception {
+//    	Integer testMessageId = 1;
+//    	
+//    	mockMvc.perform(get("/messages/show/"+testMessageId))
+//    	.andExpect(status().is2xxSuccessful())
+//    	.andExpect(model().attributeExists("message"))
+//    	.andExpect(view().name("messages/showMessage"));
+//    	
+//    }*/
+//    
+//    @Test
+//    @WithMockUser(username="newTestUser1",authorities= {"admin"})
+//    public void testInitCreate() throws Exception {    	
+//    	String testUserName = "newTestUser1";
+//    	
+//    	mockMvc.perform(get("/messages/create/"+testUserName))
+//    	.andExpect(status().is2xxSuccessful())
+//    	.andExpect(model().attributeExists("message"))
+//    	.andExpect(model().attributeExists("Estado"))
+//    	.andExpect(view().name("messages/createMessageForm"));
+//    	
+//    }
     /*
     @Test
     @WithMockUser(username="newTestUser1",authorities= {"admin"})

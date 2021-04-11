@@ -33,7 +33,7 @@ public class Project extends BaseEntity {
     private Genre genre;
 	
 	@Column(name="description")
-	@Size(max=900,message="Use una url con menos de 900 caracteres")
+	@Size(max=900,message="Use una descripción con menos de 900 carácteres")
     private String description;
 
 	@JoinTable(
@@ -52,6 +52,9 @@ public class Project extends BaseEntity {
 	@Size(max=200,message="Use una url con menos de 200 caracteres")
 	@Column(name="photo")
 	private String photo;	
+	
+	@Column(name="my_admin")
+	private String myAdmin;
 	
  
 }
