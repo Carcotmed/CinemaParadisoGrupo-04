@@ -34,10 +34,15 @@ public class StoryService {
 	}
 	
 	@Transactional
-	public void editStory(Integer storyId) throws DataAccessException{
-			Story story = findStoryById(storyId);
-			storyRepository.save(story);	
+	public void editStory(Story story) throws DataAccessException{
+			Story story2 = findStoryById(story.getId());
+			story2.setId(story.getId());
+			story2.setTitle(story.getTitle());
+			story2.setBody(story.getBody());
+			story2.setGenre(story.getGenre());
+			saveStory(story2);	
   }
+	
 
 	public void createStory(Story story){
 	       saveStory(story);
@@ -73,5 +78,19 @@ public class StoryService {
 	public Story findStoryById(int id) throws DataAccessException {
 		return storyRepository.findById(id).get();
 	}
+	@Transactional
+	public Boolean isMyWriter(Integer storyId) {
+		Writer writerHistory = findMyWriter(storyId);
+		Writer actualWriter = writerService.getPrincipal();
+		
+		return writerHistory.equals(actualWriter);
+	}
+	
+	@Transactional
+	public void deleteStory(Integer storyId) {
+		
+		storyRepository.delete(findStoryById(storyId));
+	}
+	
 
 }

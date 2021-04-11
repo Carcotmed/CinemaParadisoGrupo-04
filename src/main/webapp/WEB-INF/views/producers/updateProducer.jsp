@@ -27,34 +27,8 @@
 
 		<div class="d-flex justify-content-between" style="width: 40%;">
 
-			<form:form method="POST" action="create" modelAttribute="producer"
+			<form:form method="POST" action="${producer.id}" modelAttribute="producer"
 				style="width:100%">
-				<!--  USUARIO -->
-                     <div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
-							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="user.username">Usuario</form:label>
-							</div>
-							<form:input class="form-control" value="${producer.user.username}" placeholder="Usuario" style="margin-left: 3%;width:60%" type="text" path="user.username"></form:input>
-						</div>
-						<form:errors style="color:red" path="user.username"/>
-						
-						
-						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
-							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="user.password">Clave</form:label>
-							</div>
-							<form:input class="form-control" value="${producer.user.password}" placeholder="Clave" style="margin-left: 3%;width:60%" type="password" path="user.password"></form:input>
-						</div>
-						<form:errors style="color:red" path="user.password"/>
-						
-						
-				<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
-							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="user.email">Email</form:label>
-							</div>
-							<form:input class="form-control" value="${producer.user.email}" placeholder="example@example.com" style="margin-left: 3%;width:60%" type="text" path="user.email"></form:input>
-						</div>
-						<form:errors style="color:red" path="user.email"/>
 
 
 				<!-- Datos -->

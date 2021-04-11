@@ -32,9 +32,12 @@
                     <td><form:label path="issue">Asunto: </form:label></td>
                     <td><form:input type="text" path="issue" /></td>
                 </tr>
+                <form:errors style="color:red" path="issue"/>
                 <tr>
                     <td><form:label path="body">Cuerpo: </form:label></td>
                     <td><form:textarea path="body" /></td>
+                </tr>
+                <form:errors style="color:red" path="body"/>
             </table>
             
             <div class="d-flex justify-content-evenly" style="width:100%">

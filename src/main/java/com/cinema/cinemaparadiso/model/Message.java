@@ -2,17 +2,16 @@ package com.cinema.cinemaparadiso.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.sun.istack.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,11 +23,12 @@ import lombok.Setter;
 public class Message extends BaseEntity{
 	
 	@Column(name = "issue")
-	@NotNull
+	@Size(min=3,max=30,message="Es necesario que el asunto tenga entre 3 y 30 caracteres")
 	private String issue;
 	
 	@Column(name = "body")
-	@NotNull
+	@NotEmpty(message="No puede dejar el cuerpo del mensaje vacío")
+	@Size(min=10,max=900,message="Use un cuerpo de mensaje que contenga entre 10 y 900 carácteres")
 	private String body;
 	
 	@Column(name = "messagedate")
@@ -44,6 +44,9 @@ public class Message extends BaseEntity{
 	@OneToOne
 	@JoinColumn(name = "receptor_id")
 	private User receptor;
+	
+	@JoinColumn(name = "is_request")
+	private Integer isRequest;
 
 	public Message(String issue, String body, Date messageDate, User emisor, User receptor) {
 		super();

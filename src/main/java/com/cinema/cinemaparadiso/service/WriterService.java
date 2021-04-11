@@ -1,7 +1,5 @@
 package com.cinema.cinemaparadiso.service;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,20 +14,22 @@ import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
-import com.cinema.cinemaparadiso.model.Artist;
-import com.cinema.cinemaparadiso.repository.UserRepository;
 import com.cinema.cinemaparadiso.repository.WriterRepository;
 
 @Service
 public class WriterService {
 	@Autowired
 	private WriterRepository writerRepository;
-	
+
 	@Autowired
-    private AuthoritiesRepository authoritiesRepository;
+	private AuthoritiesRepository authoritiesRepository;
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private StoryService storyService;
+
 
 	@Autowired
 	public WriterService(WriterRepository writerRepository) {
@@ -38,48 +38,86 @@ public class WriterService {
 
 	public List<Writer> list() {
 		List<Writer> writers = new ArrayList<>();
-		writerRepository.findAll().forEach(w->writers.add(w));
+		writerRepository.findAll().forEach(w -> writers.add(w));
 		return writers;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Writer findWriterById(int id) throws DataAccessException {
 		return writerRepository.findById(id).get();
 	}
 
-	public void createWriter(Writer writer){
+	public void createWriter(Writer writer) {
 		userService.createUser(writer.getUser());
-		 Authorities authorities = new Authorities(writer.getUser().getUsername(),"writer");
-	     authoritiesRepository.save(authorities);
-	    saveWriter(writer);
-	        
+		Authorities authorities = new Authorities(writer.getUser().getUsername(), "writer");
+		authoritiesRepository.save(authorities);
+		saveWriter(writer);
 
-	    }
-	@Transactional
-	public void saveWriter(Writer writer) throws DataAccessException{
-
-			writerRepository.save(writer);	
-		
 	}
-	
+
 	@Transactional
-	public List<Story> findMyStories(Integer writerId){
+	public void saveWriter(Writer writer) throws DataAccessException {
+
+		writerRepository.save(writer);
+
+	}
+
+	@Transactional
+	public List<Story> findMyStories(Integer writerId) {
 		return this.writerRepository.findMyStories(writerId);
 	}
-	
+
 	@Transactional(readOnly = true)
-	public Writer getPrincipal(){
+	public Writer getPrincipal() {
 		Writer res = null;
-		
+
 		User currentUser = userService.getPrincipal();
-		System.out.println(currentUser.getUsername()+"-------------------------------------------------------------------------------");
-		if(currentUser != null) {
+		if (currentUser != null) {
 			Optional<Writer> optionalWriter = writerRepository.findByUserUsername(currentUser.getUsername());
-			if(optionalWriter.isPresent()) {
+			if (optionalWriter.isPresent()) {
 				res = optionalWriter.get();
 			}
 		}
 		return res;
 	}
-}
 
+	@Transactional
+	public void editWriter(Writer writer) throws DataAccessException {
+		Writer writer2 = findWriterById(writer.getId());
+		writer2.setId(writer.getId());
+		writer2.setName(writer.getName());
+		writer2.setSurName(writer.getSurName());
+		writer2.setSkills(writer.getSkills());
+		writer2.setDescription(writer.getDescription());
+		writer2.setPhoto(writer.getPhoto());
+		writer2.setUser(findMyUser(writer.getId()));
+		saveWriter(writer2);
+	}
+
+	@Transactional
+	public Boolean isActualWriter(Integer writerId) {
+		Writer writer = findWriterById(writerId);
+		Writer actualWriter = getPrincipal();
+
+		return writer.equals(actualWriter);
+	}
+
+	@Transactional
+	public User findMyUser(Integer writerId) {
+
+		return writerRepository.findUserByWriterUsername(findWriterById(writerId).getUser().getUsername()).get();
+	}
+
+	@Transactional
+	public void deleteWriter(Integer writerId) {
+
+		List<Story> stories = findMyStories(writerId);
+		for (Story s : stories) {
+				storyService.deleteStory(s.getId());
+			}
+		User user = findMyUser(writerId);
+		writerRepository.delete(findWriterById(writerId));
+		userService.deleteUser(user);
+	}
+
+}
