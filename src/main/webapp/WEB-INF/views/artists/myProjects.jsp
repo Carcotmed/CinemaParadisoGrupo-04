@@ -26,7 +26,17 @@
 	
 		<div class="d-flex justify-content-between" style="background-color:#4c4c4c; padding:1%">
 			<h4>Mis Proyectos</h4>
-			<button class="btn rounded-circle" style="background-color:#af3248" onClick="location.href='/projects/create'"><strong style="color:white">+</strong></button>
+			<div class="d-flex justify-content-between align-items-center" style="width:15%">
+				<c:choose>
+					<c:when test="${projectsLeft == 0}">
+						<span style="text-align: center;">¡Hazte PRO para poder seguir creando proyectos!</span>
+					</c:when>
+					<c:when test="${projectsLeft != 0}">
+						<span style="text-align: center;">Proyectos disponibles: ${projectsLeft}</span>
+						<button class="btn rounded-circle" style="background-color:#af3248" onClick="location.href='/projects/create'"><strong style="color:white">+</strong></button>
+					</c:when>
+				</c:choose>
+			</div>
 		</div>
 		
 		<c:forEach items="${myProjects}" var="myProject">
