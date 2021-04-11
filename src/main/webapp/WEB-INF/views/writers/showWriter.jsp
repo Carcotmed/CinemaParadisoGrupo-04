@@ -42,7 +42,7 @@
 			<h3 style="margin:0">Datos</h3>
 			<c:choose>
 				<c:when test="${sameWriter == true}">
-					<button class="btn" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
+					<button class="btn rounded-pill" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
 				</c:when>
 			</c:choose>
 		</div>

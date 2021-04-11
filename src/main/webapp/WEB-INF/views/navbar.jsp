@@ -22,7 +22,6 @@
 
 			<sec:authorize access="isAuthenticated()">
 				<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/messages/listReceived'">Mensajes</button>
-				<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/artists/myProjects'">Mis Proyectos</button>
 			</sec:authorize>
 			<button class="btn rounded-pill" style="color:white;background-color:#e8c71a;margin:0 1%;color:black"><strong>PRO</strong></button>
 		</div>

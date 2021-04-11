@@ -49,7 +49,19 @@
 					<p>${artist.description}</p>
 				</div>
 				<div class="col-6 p-3">
-					<h4 style="margin-bottom: 4%">Proyectos</h4>
+					<div class="d-flex justify-content-between align-items-center">
+						<h4 style="margin-bottom: 4%">Proyectos</h4>
+						<c:choose>
+							<c:when test="${projectsLeft == null || projectsLeft == 0}">
+								<span style="text-align: center;">¡Hazte PRO para poder seguir creando proyectos!</span>
+							</c:when>
+							<c:when test="${projectsLeft != null}">
+								<span style="text-align: center;">Proyectos disponibles: ${projectsLeft}</span>
+								<button class="btn rounded-circle" style="background-color:#af3248" onClick="location.href='/projects/create'"><strong style="color:white">+</strong></button>
+							</c:when>
+						</c:choose>
+					</div>
+					
 					<c:forEach items="${myProjects}" var="project">
 						<div class="d-flex align-items-center justify-content-evenly"
 							style="height: 15vh; margin: 1% 0; cursor: pointer"

@@ -150,7 +150,7 @@ public class ProjectController {
 	public String initFormCreateProject(Model model) {
 		Integer artistId = artistService.getPrincipal().getId();
 		Integer projectsLeft = artistService.leftProjects(artistId);
-		if(projectsLeft<=0) {
+		if(projectsLeft == null) {
 			return "error/error-403";
 		}
 		Project project = new Project();
