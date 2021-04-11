@@ -82,6 +82,7 @@ public class ProjectService {
 		relacion.setArtist_id(actualId);
 		relacion.setProject_id(projectId);
 		rel_projects_artistsService.create(relacion);
+		artist.setLeftProjects(artist.getLeftProjects()-1);
 	}
 	
 	@Transactional

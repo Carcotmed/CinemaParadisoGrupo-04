@@ -40,4 +40,7 @@ public interface ArtistRepository extends CrudRepository<Artist,Integer>{
 	
 	@Query("SELECT user FROM User user WHERE user.username = :username")
 	public Optional<User> findUserByArtistUsername(String username);
+	
+	@Query(value= "SELECT artist.left_projects FROM Artists artist WHERE artist.id = :artistId", nativeQuery = true)
+	public Integer findProjectsLeft(Integer artistId);
 }
