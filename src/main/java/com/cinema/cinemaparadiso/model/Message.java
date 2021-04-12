@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -47,6 +48,10 @@ public class Message extends BaseEntity{
 	
 	@JoinColumn(name = "is_request")
 	private Integer isRequest;
+	
+	@ManyToOne()
+	@JoinColumn(name = "story_id")
+	private Story story;
 
 	public Message(String issue, String body, Date messageDate, User emisor, User receptor) {
 		super();

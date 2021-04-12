@@ -20,10 +20,13 @@ import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Message;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Story;
+import com.cinema.cinemaparadiso.model.Rel_projects_story;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
-import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
+import com.cinema.cinemaparadiso.service.StoryService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,13 +39,16 @@ public class ProjectController {
 	private ProjectService projectService;
 
 	@Autowired
-	private UserService userService;
+	private Rel_projects_storyService rel_projects_storyService;
 
 	@Autowired
 	private ArtistService artistService;
 	
 	@Autowired
 	private MessageService messageService;
+	
+	@Autowired
+	private StoryService storyService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -111,11 +117,17 @@ public class ProjectController {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
 		Boolean isAdminProject = projectService.isAdminProject(projectId);
+		Story story;
+		try {
+			Integer storyId = rel_projects_storyService.findByProjectId(projectId).getStory_id();
+			story = storyService.findStoryById(storyId);
+		}catch(Exception e) {story=null;}
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
 		model.addAttribute("isAdminProject", isAdminProject);
+		model.addAttribute("story", story);
 		Artist artist;
     	try {
     		artist = artistService.getPrincipal();

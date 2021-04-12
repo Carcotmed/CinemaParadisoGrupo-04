@@ -3,9 +3,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html class="h-100">
 <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+	$(document).ready(function(){
+		$("#levantaModal").click(function(){
+		    $("#fondoModal").show();
+		    $("#modalProyectos").show();
+		});
+		$("#fondoModal").click(function(){
+		    $("#fondoModal").hide();
+		    $("#modalProyectos").hide();
+		});
+	});
+</script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +33,12 @@
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+	<div id="fondoModal" style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
+	<div id="modalProyectos" style="color: black; display: none; left: 20vw; top: 10vw; position: fixed; height: 50vw; width: 50vw; background-color: white">
+		<c:forEach items="${projects}" var="projects">
+			<a onclick="location.href='/stories/request/${story.id}/${projects.id}'">${ projects.title }</a>
+		</c:forEach>
+	</div>
 
 	<!-- Header Historia -->
 	<div class="d-flex justify-content-between p-3" style="height:15%">
@@ -31,6 +51,7 @@
 				</div>
 			</div>
 			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
+			<button class="btn rounded-pill" id="levantaModal" style="color:white;height: fit-content;background-color: #af3248">Levanta modal</button>
 	</div>
 	<!-- Info general Historia -->
 	<div>

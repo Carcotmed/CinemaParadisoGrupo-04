@@ -1,9 +1,11 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
+import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Rel_projects_story;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
+import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.MessageService;
+import com.cinema.cinemaparadiso.service.ProjectService;
+import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
 import com.cinema.cinemaparadiso.service.StoryService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +41,18 @@ public class StoryController {
 	@Autowired
 	private StoryService storyService;
 
+	@Autowired
+	private ArtistService artistService;
+
+	@Autowired
+	private MessageService messageService;
+
+	@Autowired
+	private ProjectService projectService;
+
+	@Autowired
+	private Rel_projects_storyService rel_projects_storyService;
+
 	@GetMapping("/update/{storyId}")
 	public String initFormUpdateStory(Model model, @PathVariable("storyId") Integer storyId) {
 		if(!storyService.isMyWriter(storyId)) {
@@ -43,6 +64,35 @@ public class StoryController {
 		model.addAttribute("story", story);
 		model.addAttribute("genres", genres);
 		return "stories/updateStory";
+	}
+	
+	@Transactional
+	@GetMapping("/request/{storyId}/{projectId}")
+	public String joinProject(Model model, @PathVariable("projectId") int projectId, @PathVariable("storyId") int storyId) {
+    	Artist artist;
+    	Project project;
+    	try {
+    		artist = artistService.getPrincipal();
+    		project = projectService.findProjectById(projectId);
+    	}catch(Exception e) {artist = null; project = null;}
+    	if(artist==null) {
+    		model.addAttribute("Error", "No eres un artista");
+			return "/error/error";
+    	}
+    	if(project==null) {
+    		model.addAttribute("Error", "Este proyecto no existe");
+			return "/error/error";
+    	}
+		if(!project.getMyAdmin().equals(artist.getUser().getUsername())) {
+			model.addAttribute("Error", "No eres administrador de este proyecto");
+			return "/error/error";
+		}
+		if(rel_projects_storyService.countByProjectId(projectId)!=0) {
+			model.addAttribute("Error", "Este proyecto ya posee una historia");
+			return "/error/error";
+		}
+		messageService.requestStory(projectId, storyId);
+		return "redirect:/projects/list";
 	}
 
 	@PostMapping("/update/{storyId}")
@@ -134,6 +184,11 @@ public class StoryController {
 		model.addAttribute("myWriter",myWriter);
 		model.addAttribute("writerUsername", myWriter.getUser().getUsername());
 		model.addAttribute("showButton",showButton);
+		try {
+			Artist artist = artistService.getPrincipal();
+			List<Project> projects = projectService.findProjectByAdminUsername(artist.getUser().getUsername());
+			model.addAttribute("projects",projects);
+		}catch(Exception e) {model.addAttribute("projects",new ArrayList<Project>());}
 
 		return "stories/showStory";
 	}

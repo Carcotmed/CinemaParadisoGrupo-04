@@ -4,6 +4,8 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.NoSuchElementException;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -73,6 +75,7 @@ public class MessageController {
         return "messages/showMessage";
     }
     
+    @Transactional
     @GetMapping("/show/{messageId}/acceptRequest")
     public String showAccept(Model model, @PathVariable("messageId") Integer messageId){
     	try {
@@ -82,7 +85,7 @@ public class MessageController {
 		}
         return "redirect:/messages/listReceived";
     }
-    
+    @Transactional
     @GetMapping("/show/{messageId}/rejectRequest")
     public String showReject(Model model, @PathVariable("messageId") Integer messageId){
     	try {
