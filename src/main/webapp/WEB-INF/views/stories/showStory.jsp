@@ -34,9 +34,14 @@
 <body class="h-100" style="background-color: #272727; color: white">
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
 	<div id="fondoModal" style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
-	<div id="modalProyectos" style="color: black; display: none; left: 20vw; top: 10vw; position: fixed; height: 50vw; width: 50vw; background-color: white">
+	<div id="modalProyectos" style="color: white; display: none; left: 20vw; top: 10vw; position: fixed; height: 10vw; width: 50vw; background-color: black">
+	<div class="container-fluid" style="background-color:#af3248; padding:1%">
+	<h2>Nombre del proyecto asociado</h2>
+	</div>
 		<c:forEach items="${projects}" var="projects">
-			<a onclick="location.href='/stories/request/${story.id}/${projects.id}'">${ projects.title }</a>
+		     <br>
+		    <h5>${ projects.title }</h5> 
+		    <button class="btn rounded-pill" onClick="location.href='/stories/request/${story.id}/${projects.id}'" style="color:white;height: fit-content; margin:0 88%; width:10%; background-color: #af3248">mostrar</button>
 		</c:forEach>
 	</div>
 
@@ -51,7 +56,7 @@
 				</div>
 			</div>
 			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
-			<button class="btn rounded-pill" id="levantaModal" style="color:white;height: fit-content;background-color: #af3248">Levanta modal</button>
+			<button class="btn rounded-pill" id="levantaModal" style="color:white;height: fit-content;background-color: #af3248">Proyecto asociado</button>
 	</div>
 	<!-- Info general Historia -->
 	<div>
@@ -93,7 +98,8 @@
 			
 		</div>
 	</div>
-		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 	
+	
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </body>
 </html>
