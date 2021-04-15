@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Message;
+import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.MessageRepository;
@@ -25,6 +26,9 @@ public class MessageService {
 	
 	@Autowired
     private ArtistService artistService;
+	
+	@Autowired
+    private ProducerService producerService;
 
     public Message findById(Integer id) throws NoSuchElementException{
         return messageRepository.findById(id).get();
@@ -46,7 +50,7 @@ public class MessageService {
     	messageRepository.delete(message);
     }
     
-    public void requestToEnterProject(Integer projectId,Integer artistId) {
+    public void requestToEnterProjectArtist(Integer projectId,Integer artistId) {
     	String adminProjectUsername = projectService.findProjectById(projectId).getMyAdmin();
     	Integer adminProjectId = artistService.findArtistByUsername(adminProjectUsername).getId();
     	User adminProjectUser = artistService.findMyUser(adminProjectId);
@@ -64,8 +68,26 @@ public class MessageService {
     	
     	create(message);  
     }
+    
+    public void requestToEnterProjectProducer(Integer projectId,Integer producerId) {
+    	String adminProjectUsername = projectService.findProjectById(projectId).getMyAdmin();
+    	Integer adminProjectId = artistService.findArtistByUsername(adminProjectUsername).getId();
+    	User adminProjectUser = artistService.findMyUser(adminProjectId);
+    	User requestProducerUser = producerService.findMyUser(producerId);
+    	Project project = projectService.findProjectById(projectId);
+    	Message message = new Message();
+    	
+    	message.setIssue("Quiero unirme a su proyecto");
+    	message.setBody("Me gustaría entrar en su proyecto llamado "+ project.getTitle()+". Mi rol es Productor.");
+    	message.setReceptor(adminProjectUser);
+    	message.setEmisor(requestProducerUser);
+    	message.setMessageDate(Date.from(Instant.now()));
+    	message.setIsRequest(projectId);
+    	
+    	create(message);  
+    }
     @Transactional
-    public void acceptRequest(Integer messageId) {
+    public void acceptRequestArtist(Integer messageId) {
     	
     	Message message = findById(messageId);
     	Integer projectId = message.getIsRequest();
@@ -89,7 +111,53 @@ public class MessageService {
     }
     
     @Transactional
-    public void rejectRequest(Integer messageId) {
+    public void rejectRequestArtist(Integer messageId) {
+    	
+    	Message message = findById(messageId);
+    	Integer projectId = message.getIsRequest();
+    	Project project = projectService.findProjectById(projectId);
+    	message.setIsRequest(null);
+    	Artist artistRejected = artistService.findArtistByUsername(message.getEmisor().getUsername());
+    	Artist artistOwnerProject = artistService.findArtistByUsername(message.getReceptor().getUsername());
+    	
+    	Message message2 = new Message();
+    	
+    	message2.setIssue("Has sido rechazado.");
+    	message2.setBody("El admin de "+ project.getTitle()+" ha rechazado su solicitud.");
+    	message2.setReceptor(artistService.findMyUser(artistRejected.getId()));
+    	message2.setEmisor(artistService.findMyUser(artistOwnerProject.getId()));
+    	message2.setMessageDate(Date.from(Instant.now()));
+    	message2.setIsRequest(null);
+    	
+    	create(message2);  
+    }
+    
+    @Transactional
+    public void acceptRequestProducer(Integer messageId) {
+    	
+    	Message message = findById(messageId);
+    	Integer projectId = message.getIsRequest();
+    	Project project = projectService.findProjectById(projectId);
+    	message.setIsRequest(null);
+    	Producer producerAccepted = producerService.findProducerByUsername(message.getEmisor().getUsername());
+    	Artist artistOwnerProject = artistService.findArtistByUsername(message.getReceptor().getUsername());
+    	projectService.addRelationShipProducer(projectId, producerAccepted.getId());
+    	
+    	Message message2 = new Message();
+    	
+
+    	message2.setIssue("Has sido aceptado.");
+    	message2.setBody("El admin de "+ project.getTitle()+" ha aceptado su solicitud.");
+    	message2.setReceptor(producerService.findMyUser(producerAccepted.getId()));
+    	message2.setEmisor(artistService.findMyUser(artistOwnerProject.getId()));
+    	message2.setMessageDate(Date.from(Instant.now()));
+    	message2.setIsRequest(null);
+    	
+    	create(message2);  
+    }
+    
+    @Transactional
+    public void rejectRequestProducer(Integer messageId) {
     	
     	Message message = findById(messageId);
     	Integer projectId = message.getIsRequest();

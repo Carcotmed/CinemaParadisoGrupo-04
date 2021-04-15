@@ -17,6 +17,8 @@ public interface ProducerRepository extends CrudRepository<Producer,Integer>{
 	
 	@Query("SELECT user FROM User user WHERE user.username = :username")
 	public Optional<User> findUserByProducerUsername(String username);
+
+	
 	
     
 }

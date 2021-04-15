@@ -114,6 +114,11 @@ public class ProducerService {
 		producerRepository.delete(findProducerById(producerId));
 		userService.deleteUser(user);
 	}
+	
+	@Transactional(readOnly = true)
+	public Producer findProducerByUsername(String username) throws DataAccessException {
+		return producerRepository.findByUserUsername(username).get();
+	}
 
     
 

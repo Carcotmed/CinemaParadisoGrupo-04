@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
+import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
+import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.UserService;
 
@@ -39,6 +41,9 @@ public class ProjectController {
 
 	@Autowired
 	private ArtistService artistService;
+
+	@Autowired
+	private ProducerService producerService;
 	
 	@Autowired
 	private MessageService messageService;
@@ -87,8 +92,8 @@ public class ProjectController {
 		return "projects/listProject";
 	}
 	
-	@GetMapping("/join/{projectId}")
-	public String joinProject(Model model, @PathVariable("projectId") int projectId) {
+	@GetMapping("/joinArtist/{projectId}")
+	public String joinProjectArtist(Model model, @PathVariable("projectId") int projectId) {
     	Artist artist;
     	try {
     		artist = artistService.getPrincipal();
@@ -101,7 +106,25 @@ public class ProjectController {
 			model.addAttribute("Error", "Ya perteneces a este equipo");
 			return "/error";
 		}
-		messageService.requestToEnterProject(projectId, artist.getId());
+		messageService.requestToEnterProjectArtist(projectId, artist.getId());
+		return "redirect:/messages/listSend";
+	}
+	
+	@GetMapping("/joinProducer/{projectId}")
+	public String joinProjectProducer(Model model, @PathVariable("projectId") int projectId) {
+    	Producer producer;
+    	try {
+    		producer = producerService.getPrincipal();
+    	}catch(Exception e) {producer = null;}
+    	if(producer==null) {
+    		model.addAttribute("Error", "No eres un producer");
+			return "/error/error";
+    	}
+		if(producer.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+			model.addAttribute("Error", "Ya perteneces a este equipo");
+			return "/error";
+		}
+		messageService.requestToEnterProjectProducer(projectId, producer.getId());
 		return "redirect:/messages/listSend";
 	}
 	
@@ -109,6 +132,7 @@ public class ProjectController {
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
+		List<Producer> producers = projectService.findProducers(projectId);
 		Boolean isAdminProject = false;
 		try {
 		 isAdminProject = projectService.isAdminProject(projectId);
@@ -118,6 +142,7 @@ public class ProjectController {
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
+		model.addAttribute("producers",producers);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
 		model.addAttribute("isAdminProject", isAdminProject);
 		Artist artist;
@@ -125,11 +150,29 @@ public class ProjectController {
     		artist = artistService.getPrincipal();
     	}catch(Exception e) {artist = null;}
     	if(artist==null) {
-			model.addAttribute("pertenece", true);
+			model.addAttribute("pertenece", false);
+			model.addAttribute("noPuede",true);
     	}else if(artist.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
 			model.addAttribute("pertenece", true);
+			model.addAttribute("noPuede",false);
 		}else {
 			model.addAttribute("pertenece", false);
+			model.addAttribute("noPuede",false);
+		}
+    	
+    	Producer producer;
+    	try {
+    		producer = producerService.getPrincipal();
+    	}catch(Exception e) {producer = null;}
+    	if(producer==null) {
+			model.addAttribute("perteneceP", false);
+			model.addAttribute("noPuedeP",true);
+    	}else if(producer.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+			model.addAttribute("perteneceP", true);
+			model.addAttribute("noPuedeP",false);
+		}else {
+			model.addAttribute("perteneceP", false);
+			model.addAttribute("noPuedeP",false);
 		}
 		return "projects/showProject";
 	}

@@ -43,8 +43,12 @@
 				  <td style="color:white"><c:out value="${message.receptor.username}" /></td>
 				  <c:if test="${isRequest != null}">
                     	<td style="color:white" class="d-flex justify-content-between align-items-center">
-							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequest'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
-                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequest'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
+							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestArtist'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
+                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestArtist'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
+                    	</td>
+                    	<td style="color:white" class="d-flex justify-content-between align-items-center">
+							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestProducer'" style="color:white;height: fit-content;background-color: #af3248">Aceptar2</button>
+                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestProducer'" style="color:white;height: fit-content;background-color: #af3248">Rechazar2</button>
                     	</td>
                    </c:if>
                 </tr>
