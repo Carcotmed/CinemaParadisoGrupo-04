@@ -1,10 +1,6 @@
 package com.cinema.cinemaparadiso.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -27,10 +23,7 @@ public class Person extends BaseEntity  {
 	@Column(name = "surName")
 	@NotEmpty(message = "El apellido no puede estar vacío")
 	protected String surName;
-	
-	@ElementCollection(targetClass=Skill.class, fetch = FetchType.EAGER)
-	@Column(name = "skills")
-	protected List<Skill> skills;
+
 	
 	@Column(name = "description")
 	@NotEmpty(message = "Indique una descripion propia")

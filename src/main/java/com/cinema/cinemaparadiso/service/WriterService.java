@@ -103,7 +103,6 @@ public class WriterService {
 		writer2.setId(writer.getId());
 		writer2.setName(writer.getName());
 		writer2.setSurName(writer.getSurName());
-		writer2.setSkills(writer.getSkills());
 		writer2.setDescription(writer.getDescription());
 		writer2.setPhoto(writer.getPhoto());
 		writer2.setUser(findMyUser(writer.getId()));

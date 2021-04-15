@@ -87,7 +87,6 @@ public class ProducerService {
 		producer2.setId(producer.getId());
 		producer2.setName(producer.getName());
 		producer2.setSurName(producer.getSurName());
-		producer2.setSkills(producer.getSkills());
 		producer2.setDescription(producer.getDescription());
 		producer2.setPhoto(producer.getPhoto());
 		producer2.setUser(findMyUser(producer.getId()));
