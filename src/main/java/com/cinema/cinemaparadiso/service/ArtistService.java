@@ -173,7 +173,7 @@ public class ArtistService {
 
 		List<Project> projects = findMyProjects(artistId);
 		for (Project p : projects) {
-				projectService.deleteRelation(p.getId());
+				projectService.deleteRelation(p.getId(),false);
 			}
 		User user = findMyUser(artistId);
 		artistRepository.delete(findArtistById(artistId));

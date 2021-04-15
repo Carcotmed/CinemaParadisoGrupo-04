@@ -59,6 +59,10 @@ public class Rel_projects_producersService {
 		return this.rel_projects_producersRepository.count();
 	}
 
+	public Long count(Integer projectId) {
+		return this.rel_projects_producersRepository.countRelationsProject(projectId);
+	}
+
 
 
 }

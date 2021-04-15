@@ -24,6 +24,8 @@ public class ProjectService {
 	
 	@Autowired
 	private ArtistService artistService;
+	@Autowired
+	private ProducerService producerService;
 	
 	@Autowired
 	private Rel_projects_artistsService rel_projects_artistsService;
@@ -73,10 +75,22 @@ public class ProjectService {
 	}
 	
 	@Transactional
-	public void deleteRelation(Integer projectId) throws DataAccessException{
-		Integer actualId = artistService.getPrincipal().getId();
-		Integer relacionId = rel_projects_artistsService.findRelation(actualId, projectId).getId();
-		rel_projects_artistsService.delete(relacionId);
+	public void deleteRelation(Integer projectId,Boolean noEsArtista) throws DataAccessException{
+		if(!noEsArtista) {
+			Integer actualId = artistService.getPrincipal().getId();
+			Integer relacionId = rel_projects_artistsService.findRelation(actualId, projectId).getId();
+			rel_projects_artistsService.delete(relacionId);
+		}else {
+			Integer actualId = producerService.getPrincipal().getId();
+			Integer relacionId = rel_projects_producersService.findRelation(actualId, projectId).getId();
+			rel_projects_producersService.delete(relacionId);
+		}
+		
+		Project project = findProjectById(projectId);
+		Boolean proyectoVacio = this.rel_projects_artistsService.count(projectId) + this.rel_projects_producersService.count(projectId)== 0;
+		if(proyectoVacio) {
+			projectRepository.delete(project);
+		}
 	}
 	
 	@Transactional
