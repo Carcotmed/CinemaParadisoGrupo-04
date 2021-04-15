@@ -32,7 +32,6 @@ public class Message extends BaseEntity{
 	private String body;
 	
 	@Column(name = "messagedate")
-	@NotNull
 	//@PastOrPresent
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private Date messageDate;
