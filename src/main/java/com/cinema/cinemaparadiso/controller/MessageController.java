@@ -3,6 +3,7 @@ package com.cinema.cinemaparadiso.controller;
 import java.time.Instant;
 import java.util.Date;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -62,9 +63,15 @@ public class MessageController {
     @GetMapping("/show/{messageId}")
     public String show(Model model, @PathVariable("messageId") Integer messageId){
     	try {
-    		
 	        Message message = messageService.findById(messageId);
-	        model.addAttribute("isRequest",message.getIsRequest());
+	        
+	        String usernameActual = userService.getPrincipal().getUsername();
+	        Boolean isRequest = message.getIsRequest()!=null && message.getReceptor().getUsername().equals(usernameActual);
+	        Boolean isArtist = this.userService.findArtistByUserUsername(message.getEmisor().getUsername()).isPresent();
+	        Boolean isProducer = this.userService.findProducerByUserUsername(message.getEmisor().getUsername()).isPresent();
+	        model.addAttribute("isRequest",isRequest);
+	        model.addAttribute("isArtist",isArtist);
+	        model.addAttribute("isProducer",isProducer);
 	        model.addAttribute("message", message);
 	        log.info("Showing Message..."+message.toString());
     	}catch (NoSuchElementException e) {

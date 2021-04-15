@@ -16,6 +16,7 @@ import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 import com.cinema.cinemaparadiso.model.Rel_projects_producers;
 import com.cinema.cinemaparadiso.repository.ProjectRepository;
+import com.cinema.cinemaparadiso.service.exceptions.ProjectLimitException;
 
 @Service
 public class ProjectService {
@@ -93,12 +94,16 @@ public class ProjectService {
 		}
 	}
 	
-	@Transactional
-	public void createProject(Project project){
+	@Transactional(rollbackFor = ProjectLimitException.class)
+	public void createProject(Project project) throws ProjectLimitException{
 		Artist artist = artistService.getPrincipal();
 		Boolean isPro = artist.getPro();
 		project.setMyAdmin(artist.getUser().getUsername());
 		project.setPro(isPro);
+		if(artist.getLeftProjects()==0) {
+			throw new ProjectLimitException();
+		}
+		else {
 		saveProject(project);
 		//Creamos la relación
 		Integer actualId = artist.getId();
@@ -108,6 +113,7 @@ public class ProjectService {
 		relacion.setProject_id(projectId);
 		rel_projects_artistsService.create(relacion);
 		artist.setLeftProjects(artist.getLeftProjects()-1);
+		}
 	}
 	
 	@Transactional

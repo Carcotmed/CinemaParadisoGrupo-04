@@ -27,7 +27,7 @@
                     <th style="color:white">FECHA</th>
                     <th style="color:white">ID DEL EMISOR</th>
                     <th style="color:white">ID DEL RECEPTOR</th>
-                    <c:if test="${isRequest != null}">
+                    <c:if test="${isRequest}">
                     	<th style="color:white">PETICIÓN</th>
                     </c:if>
                 </tr>
@@ -41,15 +41,19 @@
 				  <td style="color:white"><c:out value="${messageDate}" /></td>
 				  <td style="color:white"><c:out value="${message.emisor.username}" /></td>
 				  <td style="color:white"><c:out value="${message.receptor.username}" /></td>
-				  <c:if test="${isRequest != null}">
+				  <c:if test="${isRequest}">
+				  	<c:if test = "${isArtist}">
                     	<td style="color:white" class="d-flex justify-content-between align-items-center">
 							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestArtist'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
                     		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestArtist'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
                     	</td>
+                    </c:if>
+                    <c:if test = "${isProducer}">
                     	<td style="color:white" class="d-flex justify-content-between align-items-center">
-							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestProducer'" style="color:white;height: fit-content;background-color: #af3248">Aceptar2</button>
-                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestProducer'" style="color:white;height: fit-content;background-color: #af3248">Rechazar2</button>
+							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestProducer'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
+                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestProducer'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
                     	</td>
+                    </c:if>
                    </c:if>
                 </tr>
                 
