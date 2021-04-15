@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,13 +64,13 @@ public class ProjectController {
 		model.addAttribute("projectsFiltered", projectsFiltered);
 
 		List<Project> projectsProFiltrados = projects.stream()
-				.filter(a -> a.getPro()==true
+				.filter(a -> a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
-				.filter(a -> a.getPro()==false
+				.filter(a -> a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
