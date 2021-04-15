@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
@@ -81,11 +80,9 @@ public class WriterController {
     public String initFormCreateWriter(Model model) {
 		User user = new User();
         Writer writer = new Writer();
-        List<Skill> skill = Arrays.asList(Skill.values());
         model.addAttribute("writer", writer);
         model.addAttribute("user",user);
         model.addAttribute("isNew", true);
-        model.addAttribute("skill", skill);
         return "/writers/createOrUpdateWriterForm";
 
     }
@@ -94,8 +91,7 @@ public class WriterController {
     public String createWriter(Model model, @ModelAttribute("writer") @Valid Writer writer,
               BindingResult result) throws UserUniqueException{
   
-    	List<Skill> skill = Arrays.asList(Skill.values());
-    	model.addAttribute("skill", skill);
+
           if(!result.hasErrors()) {
 			try{
 				
@@ -119,10 +115,8 @@ public class WriterController {
 			return "error/error-403";
 		}
 		Writer writer = writerService.findWriterById(writerId);
-		List<Skill> skill = Arrays.asList(Skill.values());
 		model.addAttribute("writerId", writerId);
 		model.addAttribute("writer", writer);
-		model.addAttribute("skill", skill);
 		return "writers/updateWriter";
 	}
 
@@ -133,8 +127,6 @@ public class WriterController {
 		if(!writerService.isActualWriter(writerId)) {
 			return "error/error-403";
 		}
-		List<Skill> skill = Arrays.asList(Skill.values());
-		model.addAttribute("skill", skill);
 		if(!result.hasErrors()) {
 			writerService.editWriter(writer);
 			return "redirect:/writers/show/{writerId}";

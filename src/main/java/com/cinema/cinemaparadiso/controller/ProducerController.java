@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.UserService;
@@ -58,11 +57,9 @@ public class ProducerController {
     public String initFormCreateProducer(Model model) {
 		User user = new User();
         Producer producer = new Producer();
-        List<Skill> skill = Arrays.asList(Skill.values());
         model.addAttribute("producer", producer);
         model.addAttribute("user",user);
         model.addAttribute("isNew", true);
-        model.addAttribute("skill", skill);
         return "producers/createUpdateProducerForm";
 
     }
@@ -71,8 +68,6 @@ public class ProducerController {
     public String createProducer(Model model, @ModelAttribute("producer") @Valid Producer producer,
               BindingResult result) throws UserUniqueException{
   
-    	List<Skill> skill = Arrays.asList(Skill.values());
-    	model.addAttribute("skill", skill);
           if(!result.hasErrors()) {
 			try{
 				
@@ -96,10 +91,8 @@ public class ProducerController {
 			return "error/error-403";
 		}
 		Producer producer = producerService.findProducerById(producerId);
-		List<Skill> skill = Arrays.asList(Skill.values());
 		model.addAttribute("producerId", producerId);
 		model.addAttribute("producer", producer);
-		model.addAttribute("skill", skill);
 		return "producers/updateProducer";
 	}
 
@@ -110,8 +103,6 @@ public class ProducerController {
 		if(!producerService.isActualProducer(producerId)) {
 			return "error/error-403";
 		}
-		List<Skill> skill = Arrays.asList(Skill.values());
-		model.addAttribute("skill", skill);
 		if(!result.hasErrors()) {
 			producerService.editProducer(producer);
 			return "redirect:/producers/show/{producerId}";

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Role;
-import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
@@ -101,12 +100,10 @@ public class ArtistController {
 	public String initFormCreateArtist(Model model) {
 		Artist artist = new Artist();
 		User user = new User();
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
 		
 		model.addAttribute("user",user);
 		model.addAttribute("artist", artist);
-		model.addAttribute("skill", skill);
 		model.addAttribute("roles", role);
 
 		return "artists/createOrUpdateArtistForm";
@@ -114,10 +111,8 @@ public class ArtistController {
 
 	@PostMapping("/create")
 	public String createArtist(@Valid Artist artist, BindingResult result, Model model) throws UserUniqueException{
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
 		model.addAttribute("roles", role);
-		model.addAttribute("skill", skill);
 		if(!result.hasErrors()) {
 			//Unique artist exception
 			try{
@@ -141,11 +136,9 @@ public class ArtistController {
 			return "error/error-403";
 		}
 		Artist artist = artistService.findArtistById(artistId);
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> roles = Arrays.asList(Role.values());
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
-		model.addAttribute("skill",skill);
 		model.addAttribute("roles",roles);
 		return "artists/updateArtist";
 	}
@@ -157,9 +150,7 @@ public class ArtistController {
 		if(!artistService.isActualArtist(artistId)) {
 			return "error/error-403";
 		}
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> roles = Arrays.asList(Role.values());
-		model.addAttribute("skill",skill);
 		model.addAttribute("roles",roles);
 		if(!result.hasErrors()) {
 			artistService.editArtist(artist);
