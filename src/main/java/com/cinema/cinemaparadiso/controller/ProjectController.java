@@ -179,14 +179,19 @@ public class ProjectController {
 	
 	@GetMapping("/delete/{projectId}")
 	public String deleteProject(@PathVariable("projectId") Integer projectId) {
-		Integer actualId = this.artistService.getPrincipal().getId();
+		Boolean noEsArtista = false;
 		try {
-			projectService.deleteRelation(projectId);
+			this.artistService.getPrincipal().getId();
+		}catch (Exception e) {
+			noEsArtista = true;
+		}
+		try {
+			projectService.deleteRelation(projectId,noEsArtista);
 			log.info("Project Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Project", e);
 		}
-		return "redirect:/artists/show/"+actualId;
+		return "redirect:/projects/list";
 	}
 	
 	@GetMapping("/create")
