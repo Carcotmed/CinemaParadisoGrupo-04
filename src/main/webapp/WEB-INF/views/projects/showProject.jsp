@@ -32,10 +32,28 @@
 					<h2>${project.title}</h2>
 				</div>
 			</div>
-
+			<c:if test="${ !noPuede}">
 			<c:if test="${ !pertenece }">
-			<button class="btn rounded-pill" onclick="location.href='/projects/join/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
+				<button class="btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
 			</c:if>
+			
+			<c:if test="${ isAdminProject == true }">
+				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+			</c:if>
+			<c:if test="${pertenece}">
+				<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill"  onClick="location.href='/projects/delete/${project.id}'">Salir del proyecto</button>
+			</c:if>
+			</c:if>
+			
+			<c:if test="${ !noPuedeP}">
+			<c:if test="${ !perteneceP }">
+				<button class="btn rounded-pill" onclick="location.href='/projects/joinProducer/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
+			</c:if>
+			<c:if test="${perteneceP}">
+				<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill"  onClick="location.href='/projects/delete/${project.id}'">Salir del proyecto</button>
+			</c:if>
+			</c:if>
+			
 	</div>
 	<!-- Info general Proyecto -->
 	<div>
@@ -87,7 +105,18 @@
 						<p>${member.role}</p>
 					</div>
 				</div>
-				
+				<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1% auto">
+			</c:forEach>
+			<c:forEach items="${producers}" var="producer">
+				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
+						<img onclick="location.href='/producers/show/${ producer.id }'" src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
+					</div>
+					<div style="margin-left: 12%">
+						<h5>${producer.name}</h5>
+						<p>PRODUCTOR</p>
+					</div>
+				</div>
 				<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1% auto">
 			</c:forEach>
 		</div>

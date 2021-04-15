@@ -6,6 +6,8 @@ import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.UserService;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,5 +64,23 @@ public class UserController {
             log.error("Error Create User", e);
         }
         return "users/createUserForm";
+    }
+    
+    @GetMapping("/miPerfil")
+    public String myProfile() {
+    	String username = this.userService.getPrincipal().getUsername();
+    	Optional<Artist> optionalArtist = this.userService.findArtistByUserUsername(username);
+    	Optional<Writer> optionalWriter = this.userService.findWriterByUserUsername(username);
+    	Optional<Producer> optionalProducer = this.userService.findProducerByUserUsername(username);
+    	if(optionalArtist.isPresent()) {
+    		Integer artistId = optionalArtist.get().getId();
+    		return "redirect:/artists/show/"+artistId;
+    	}else if(optionalWriter.isPresent()) {
+    		Integer writerId = optionalWriter.get().getId();
+    		return "redirect:/writers/show/"+writerId;
+    	}else {
+    		Integer producerId = optionalProducer.get().getId();
+    		return "redirect:/producers/show/"+producerId;
+    	}
     }
 }

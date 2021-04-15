@@ -36,7 +36,7 @@ public class Project extends BaseEntity {
     private Genre genre;
 	
 	@Column(name="description")
-	@Size(max=900,message="Use una url con menos de 900 caracteres")
+	@Size(max=900,message="Use una descripción con menos de 900 carácteres")
     private String description;
 
 	@JoinTable(
@@ -47,6 +47,14 @@ public class Project extends BaseEntity {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Artist> team;
 	
+	@JoinTable(
+			name = "rel_projects_producers",
+			joinColumns = @JoinColumn(name = "project_id"),
+			inverseJoinColumns = @JoinColumn(name = "producer_id")
+			)
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Artist> team2;
+	
 	@Column(name="pro")
 	private Boolean pro;
 	
@@ -55,6 +63,9 @@ public class Project extends BaseEntity {
 	@Size(max=200,message="Use una url con menos de 200 caracteres")
 	@Column(name="photo")
 	private String photo;	
+	
+	@Column(name="my_admin")
+	private String myAdmin;
 	
  
 }

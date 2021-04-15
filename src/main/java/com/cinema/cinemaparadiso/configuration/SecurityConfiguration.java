@@ -25,13 +25,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**","/error/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
-
+				.antMatchers("/users/miPerfil").authenticated()
 				.antMatchers("/users/create").permitAll()
 				//PRODUCER
 				.antMatchers("/producers/list").permitAll()
 				.antMatchers("/producers/create").permitAll()
 				.antMatchers("/producers/show/**").permitAll()
-				.antMatchers("/producers/update/**").authenticated()
+				.antMatchers("/producers/update/**").permitAll()
 				.antMatchers("/producers/delete/**").permitAll()
 				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
@@ -39,14 +39,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/artists/update/{artistId}").permitAll()
 				.antMatchers("/artists/delete/{artistId}").permitAll()
 				.antMatchers("/artists/show/{artistId}").permitAll()
-				.antMatchers("/artists/myProjects").permitAll()
-				.antMatchers("/artists/myProjects/**").permitAll()
 				//MESSAGES
 				.antMatchers("/messages/listReceived").authenticated()
 				.antMatchers("/messages/listSend").authenticated()
 				.antMatchers("/messages/show/{messageId}").authenticated()
 				.antMatchers("/messages/create/{userId}").authenticated()
 				.antMatchers("/messages/delete/{messageId}").authenticated()
+				.antMatchers("/messages/show/{messageId}/acceptRequestArtist").authenticated()
+				.antMatchers("/messages/show/{messageId}/rejectRequestArtist").authenticated()
+				.antMatchers("/messages/show/{messageId}/acceptRequestProducer").authenticated()
+				.antMatchers("/messages/show/{messageId}/rejectRequestProducer").authenticated()
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/users/select").permitAll()
@@ -59,18 +61,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		     //WRITERS
 		    .antMatchers("/writers/list").permitAll()
 		    .antMatchers("/writers/create").permitAll()
-				.antMatchers("/writers/show/{writerId}").permitAll()
+			.antMatchers("/writers/show/{writerId}").permitAll()
+			.antMatchers("/writers/update/{writerId}").permitAll()
+			.antMatchers("/writers/delete/{writerId}").permitAll()
 		     //STORIES
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
 				.antMatchers("/stories/create").permitAll()
+				.antMatchers("/stories/update/{storyId}").permitAll()
+				.antMatchers("/stories/delete/{storyId}").permitAll()
+				
 				//PROJECTS
 				.antMatchers("/projects/list").permitAll()
 				.antMatchers("/projects/create").permitAll()
 				.antMatchers("/projects/update/{projectId}").permitAll()
 				.antMatchers("/projects/delete/{projectId}").permitAll()
 				.antMatchers("/projects/show/{projectId}").permitAll()
-				.antMatchers("/projects/join/{projectId}").permitAll()
+				.antMatchers("/projects/joinArtist/{projectId}").permitAll()
+				.antMatchers("/projects/joinProducer/{projectId}").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
