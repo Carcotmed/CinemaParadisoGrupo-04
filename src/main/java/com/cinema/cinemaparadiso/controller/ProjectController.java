@@ -25,6 +25,7 @@ import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.exceptions.ProjectLimitException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -210,12 +211,18 @@ public class ProjectController {
 	}
 
 	@PostMapping("/create")
-	public String createProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model) {
+	public String createProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model) throws ProjectLimitException{
 		List<Genre> genres = Arrays.asList(Genre.values());
 		Integer actualId = this.artistService.getPrincipal().getId();
 		model.addAttribute("genres", genres);
 		if(!result.hasErrors()) {
+			//Reach project limit  exception
+			try {
 			projectService.createProject(project);
+			}catch(ProjectLimitException ex) {
+				result.rejectValue("photo", "limitReach", "El limite de proyectos que puedes crear ha sido alcanzado");
+				return "projects/createOrUpdateProjectForm";
+			}
 		}else {
 			return "projects/createOrUpdateProjectForm";
 		}
