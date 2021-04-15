@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Rel_projects_artists;
+import com.cinema.cinemaparadiso.model.Rel_projects_producers;
 import com.cinema.cinemaparadiso.repository.ProjectRepository;
 
 @Service
@@ -25,6 +27,9 @@ public class ProjectService {
 	
 	@Autowired
 	private Rel_projects_artistsService rel_projects_artistsService;
+	
+	@Autowired
+	private Rel_projects_producersService rel_projects_producersService;
 
 	@Autowired
 	public ProjectService(ProjectRepository projectRepository) {
@@ -53,6 +58,12 @@ public class ProjectService {
 		List<Artist> members = new ArrayList<>();
 		members = projectRepository.findMembers(projectId);
 		return members;
+	}
+
+	public List<Producer> findProducers(Integer projectId){
+		List<Producer> producers = new ArrayList<>();
+		producers = projectRepository.findProducers(projectId);
+		return producers;
 	}
 	
 	
@@ -115,6 +126,12 @@ public class ProjectService {
 		relation.setArtist_id(artistId);
 		relation.setProject_id(projectId);
 		rel_projects_artistsService.save(relation);
+	}
+	public void addRelationShipProducer(int projectId, Integer producerId) {
+		Rel_projects_producers relation = new Rel_projects_producers();
+		relation.setProducer_id(producerId);;
+		relation.setProject_id(projectId);
+		rel_projects_producersService.save(relation);
 	}
 	
 	public Boolean isAdminProject(Integer projectId) {

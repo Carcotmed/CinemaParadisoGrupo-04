@@ -44,6 +44,14 @@ public class Project extends BaseEntity {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Artist> team;
 	
+	@JoinTable(
+			name = "rel_projects_producers",
+			joinColumns = @JoinColumn(name = "project_id"),
+			inverseJoinColumns = @JoinColumn(name = "producer_id")
+			)
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Artist> team2;
+	
 	@Column(name="pro")
 	private Boolean pro;
 	

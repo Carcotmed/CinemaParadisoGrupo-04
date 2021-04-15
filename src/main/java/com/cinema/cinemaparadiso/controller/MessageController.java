@@ -73,20 +73,39 @@ public class MessageController {
         return "messages/showMessage";
     }
     
-    @GetMapping("/show/{messageId}/acceptRequest")
-    public String showAccept(Model model, @PathVariable("messageId") Integer messageId){
+    @GetMapping("/show/{messageId}/acceptRequestArtist")
+    public String showAcceptArtist(Model model, @PathVariable("messageId") Integer messageId){
     	try {
-	        messageService.acceptRequest(messageId);
+	        messageService.acceptRequestArtist(messageId);
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
         return "redirect:/messages/listReceived";
     }
     
-    @GetMapping("/show/{messageId}/rejectRequest")
-    public String showReject(Model model, @PathVariable("messageId") Integer messageId){
+    @GetMapping("/show/{messageId}/rejectRequestArtist")
+    public String showRejectArtist(Model model, @PathVariable("messageId") Integer messageId){
     	try {
-	        messageService.rejectRequest(messageId);
+	        messageService.rejectRequestArtist(messageId);
+    	}catch (NoSuchElementException e) {
+	        log.error("Error Showing Message..."+messageId.toString());
+		}
+        return "redirect:/messages/listReceived";
+    }
+    @GetMapping("/show/{messageId}/acceptRequestProducer")
+    public String showAcceptProducer(Model model, @PathVariable("messageId") Integer messageId){
+    	try {
+	        messageService.acceptRequestProducer(messageId);
+    	}catch (NoSuchElementException e) {
+	        log.error("Error Showing Message..."+messageId.toString());
+		}
+        return "redirect:/messages/listReceived";
+    }
+    
+    @GetMapping("/show/{messageId}/rejectRequestProducer")
+    public String showRejectProducer(Model model, @PathVariable("messageId") Integer messageId){
+    	try {
+	        messageService.rejectRequestProducer(messageId);
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
