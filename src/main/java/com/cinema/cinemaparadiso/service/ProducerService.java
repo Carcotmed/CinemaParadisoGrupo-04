@@ -98,7 +98,6 @@ public class ProducerService {
 	public Boolean isActualProducer(Integer producerId) {
 		Producer producer = findProducerById(producerId);
 		Producer actualProducer = getPrincipal();
-
 		return producer.equals(actualProducer);
 	}
 

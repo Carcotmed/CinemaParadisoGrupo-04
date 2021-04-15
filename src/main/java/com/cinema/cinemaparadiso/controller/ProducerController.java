@@ -46,8 +46,11 @@ public class ProducerController {
     @GetMapping(value = { "/show/{producerId}" })
 	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
 		Producer producer = producerService.findProducerById(producerId);
+		Boolean showButton = producerService.isActualProducer(producerId);
 		model.addAttribute("producerUsername", producer.getUser().getUsername());
 		model.addAttribute("producer", producer);
+		model.addAttribute("showButton",showButton);
+
 		return "producers/showProducer";
 	}
 
