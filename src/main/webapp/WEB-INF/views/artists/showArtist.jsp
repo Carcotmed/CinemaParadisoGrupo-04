@@ -62,7 +62,9 @@
 						<c:if test="${showButton == true}">
 							<c:choose>
 								<c:when test="${projectsLeft == null || projectsLeft == 0}">
-									<span style="text-align: center;">¡Hazte PRO para poder seguir creando proyectos!</span>
+									<span style="text-align: center;">¡Accede a la ventana PRO para comprar más proyectos!</span>
+																		
+									
 								</c:when>
 								<c:when test="${projectsLeft != null}">
 									<span style="text-align: center;">Proyectos disponibles: ${projectsLeft}</span>
