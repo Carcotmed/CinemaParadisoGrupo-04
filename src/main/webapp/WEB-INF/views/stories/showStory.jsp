@@ -42,7 +42,7 @@
 	<!-- Info general Historia -->
 	<div>
 		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
-			<h3 style="margin:0">Ficha tÃ©cnica</h3>
+			<h3 style="margin:0">Ficha técnica</h3>
 		</div>
 		
 		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
@@ -50,25 +50,25 @@
 			<div style="width:150%">
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">TÃ­tulo</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Título</h5>
 					</div>
 					<p style="margin-left: 3%">${story.title}</p>
 				</div>
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">GÃ©nero</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Género</h5>
 					</div>
 					<p style="margin-left: 3%">${story.genre}</p>
 				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">DescripciÃ³n</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripción</h5>
 					</div>
 					<p style="margin-left: 3%">${story.body}</p>
 				</div>
 								<div>
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Writer</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Escritor</h5>
 					</div>
 					<p style="margin-left: 3%">${myWriter.user.username}</p>
 					<div style="width:20vh;height:20vh;overflow:hidden" class="rounded-circle">
