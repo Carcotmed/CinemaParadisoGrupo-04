@@ -68,11 +68,14 @@ public class WriterController {
 				}
 		catch(Exception e) {
 		}
+		Boolean disabled = !writerService.findMyUser(writerId).isEnabled();
+		
 		model.addAttribute("writerId", writerId);
 		model.addAttribute("writer", writer);
 		model.addAttribute("stories",stories);
 		model.addAttribute("sameWriter",sameWriter);
 		model.addAttribute("writerUsername", writer.getUser().getUsername());
+		model.addAttribute("userDisabled",disabled);
 
 		return "writers/showWriter";
 	}

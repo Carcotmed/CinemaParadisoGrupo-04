@@ -33,9 +33,9 @@
 				</div>
 			</div>
 			<c:if test="${ !noPuede}">
-			<c:if test="${ !pertenece }">
-				<button class="btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
-			</c:if>
+				<c:if test="${ (!pertenece) && (!requestexist) }">
+					<button class="btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
+				</c:if>
 			
 			<c:if test="${ isAdminProject == true }">
 				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
@@ -46,7 +46,7 @@
 			</c:if>
 			
 			<c:if test="${ !noPuedeP}">
-			<c:if test="${ !perteneceP }">
+			<c:if test="${ (!perteneceP) && (!requestexistP) }">
 				<button class="btn rounded-pill" onclick="location.href='/projects/joinProducer/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
 			</c:if>
 			<c:if test="${perteneceP}">
