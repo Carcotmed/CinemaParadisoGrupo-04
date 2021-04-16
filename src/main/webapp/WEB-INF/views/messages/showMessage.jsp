@@ -42,6 +42,12 @@
 				  <td style="color:white"><c:out value="${message.emisor.username}" /></td>
 				  <td style="color:white"><c:out value="${message.receptor.username}" /></td>
 				  <c:if test="${isRequest}">
+				  <c:if test = "${isWriter}">
+                    	<td style="color:white" class="d-flex justify-content-between align-items-center">
+							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestStory'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
+                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestStory'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
+                    	</td>
+                    </c:if>
 				  	<c:if test = "${isArtist}">
                     	<td style="color:white" class="d-flex justify-content-between align-items-center">
 							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestArtist'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>

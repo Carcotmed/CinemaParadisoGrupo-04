@@ -82,6 +82,14 @@
 					</div>
 					<p style="margin-left: 3%">${project.description}</p>
 				</div>
+				<c:if test="${ story!= null}">
+					<div>
+						<div class="d-flex flex-wrap ">
+							<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Historia asociada</h5>
+						</div>
+						<p style="margin-left: 3%">${story.title}</p>
+				    </div>
+				</c:if>
 			</div>
 			
 			<!-- Imagen - Video -->

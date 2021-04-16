@@ -181,10 +181,19 @@ public class ProjectService {
 	}
 	
 	public Boolean isAdminProject(Integer projectId) {
-		String artistUsername = artistService.getPrincipal().getUser().getUsername();
-		String projectAdminUsername = findProjectById(projectId).getMyAdmin();
-		
-		return artistUsername.equals(projectAdminUsername);
+		try {
+			String artistUsername = artistService.getPrincipal().getUser().getUsername();
+			String projectAdminUsername = findProjectById(projectId).getMyAdmin();
+			
+			return artistUsername.equals(projectAdminUsername);
+		}catch(Exception e) {
+			return false;
+		}
+	}
+
+
+	public List<Project> findProjectByAdminUsername(String username) {
+		return projectRepository.findByAdminUsername(username);
 	}
 
 

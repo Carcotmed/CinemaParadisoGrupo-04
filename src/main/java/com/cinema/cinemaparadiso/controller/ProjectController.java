@@ -20,10 +20,14 @@ import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Story;
+import com.cinema.cinemaparadiso.model.Rel_projects_story;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.ProjectService;
+import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
+import com.cinema.cinemaparadiso.service.StoryService;
 import com.cinema.cinemaparadiso.service.UserService;
 import com.cinema.cinemaparadiso.service.exceptions.ProjectLimitException;
 
@@ -38,7 +42,7 @@ public class ProjectController {
 	private ProjectService projectService;
 
 	@Autowired
-	private UserService userService;
+	private Rel_projects_storyService rel_projects_storyService;
 
 	@Autowired
 	private ArtistService artistService;
@@ -48,6 +52,9 @@ public class ProjectController {
 	
 	@Autowired
 	private MessageService messageService;
+	
+	@Autowired
+	private StoryService storyService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -134,6 +141,9 @@ public class ProjectController {
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
+		
+		Story story;
+		
 		List<Producer> producers = projectService.findProducers(projectId);
 		Boolean isAdminProject = false;
 		try {
@@ -141,12 +151,18 @@ public class ProjectController {
 		}catch (Exception e){
 			
 		}
+
+		try {
+			Integer storyId = rel_projects_storyService.findByProjectId(projectId).getStory_id();
+			story = storyService.findStoryById(storyId);
+		}catch(Exception e) {story=null;}
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
 		model.addAttribute("producers",producers);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
 		model.addAttribute("isAdminProject", isAdminProject);
+		model.addAttribute("story", story);
 		Artist artist;
     	try {
     		artist = artistService.getPrincipal();

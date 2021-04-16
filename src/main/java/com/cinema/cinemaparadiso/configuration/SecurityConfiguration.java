@@ -49,6 +49,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/show/{messageId}/rejectRequestArtist").authenticated()
 				.antMatchers("/messages/show/{messageId}/acceptRequestProducer").authenticated()
 				.antMatchers("/messages/show/{messageId}/rejectRequestProducer").authenticated()
+				.antMatchers("/messages/show/{messageId}/acceptRequestStory").authenticated()
+				.antMatchers("/messages/show/{messageId}/rejectRequestStory").authenticated()
+				
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/users/select").permitAll()
@@ -70,6 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/stories/create").permitAll()
 				.antMatchers("/stories/update/{storyId}").permitAll()
 				.antMatchers("/stories/delete/{storyId}").permitAll()
+				.antMatchers("/stories/request/{storyId}/{projectId}").permitAll()
 				
 				//PROJECTS
 				.antMatchers("/projects/list").permitAll()
