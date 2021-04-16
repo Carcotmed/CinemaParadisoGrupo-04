@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
-<html class="h-100">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,14 @@
 
 <title>Products</title>
 </head>
-<body>
+<body class="position-relative">
+
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+
+<div class="p-4 d-flex flex-column justify-content-start align-items-center" style="width:100%;background-color: #3e3e3e">
+
+<br>
+<br>
 
 	<script
 		src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
@@ -46,16 +53,16 @@
     	}
 	
 	</script>
+		
 
 	<div>
-		<h1>UN SOLO PROYECTO (3 napos)</h1>
-		<div id="paypal-button-project"></div>
-	</div>
-	<div>
-		<h1>PRO (15 napos)</h1>
+	
+		<h1 style="margin: 0.7vw; color:#33FFC4" >Un solo Proyecto (3 Euros)</h1>
+		<div  id="paypal-button-project"></div>
+		
+		<h1 style="margin: 0.7vw; color:#339CFF">PRO (15 Euros)</h1>
 		<div id="paypal-button-pro"></div>
 	</div>
-
 	<script>
 	paypal.Buttons({
 	    createOrder: function(data, actions) {
@@ -100,9 +107,12 @@
 	  //This function displays Smart Payment Buttons on your web page.
   </script>
 
+<br>
+<br>
+<br>
 
-
-
+</div>
+		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 
 </body>
 </html>
