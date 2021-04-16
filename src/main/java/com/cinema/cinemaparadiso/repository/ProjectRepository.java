@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
 
 @Repository
@@ -26,5 +27,7 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	@Query("SELECT project FROM Project project WHERE project.myAdmin = :username")
 	public List<Project> findByAdminUsername(@Param("username") String username);
 	
+	@Query("SELECT producer FROM Producer producer INNER JOIN Rel_projects_producers rel_projects_producers ON producer.id = rel_projects_producers.producer_id AND rel_projects_producers.project_id = :projectId")
+	public List<Producer> findProducers(@Param("projectId") Integer projectId);
 	
 }

@@ -111,7 +111,6 @@ public class ArtistService {
 		artist2.setId(artist.getId());
 		artist2.setName(artist.getName());
 		artist2.setSurName(artist.getSurName());
-		artist2.setSkills(artist.getSkills());
 		artist2.setDescription(artist.getDescription());
 		artist2.setPhoto(artist.getPhoto());
 		artist2.setRole(artist.getRole());
@@ -173,7 +172,7 @@ public class ArtistService {
 
 		List<Project> projects = findMyProjects(artistId);
 		for (Project p : projects) {
-				projectService.deleteRelation(p.getId());
+				projectService.deleteRelation(p.getId(),false);
 			}
 		User user = findMyUser(artistId);
 		artistRepository.delete(findArtistById(artistId));

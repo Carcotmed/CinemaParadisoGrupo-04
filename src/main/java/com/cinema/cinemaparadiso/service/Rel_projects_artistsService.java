@@ -35,6 +35,8 @@ public class Rel_projects_artistsService {
 
 	@Transactional
 	public void save(Rel_projects_artists rel_projects_artists) throws DataAccessException{
+		System.out.println("*************************************************************************************2");
+		System.out.println(rel_projects_artists.getId()+"-"+rel_projects_artists.getArtist_id()+"-"+rel_projects_artists.getProject_id());
 			rel_projects_artistsRepository.save(rel_projects_artists);	
 	}
 	
@@ -59,6 +61,9 @@ public class Rel_projects_artistsService {
 		return this.rel_projects_artistsRepository.count();
 	}
 
+	public Long count(Integer projectId) {
+		return this.rel_projects_artistsRepository.countRelationsProject(projectId);
+	}
 
 
 }

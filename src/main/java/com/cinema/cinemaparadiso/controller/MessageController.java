@@ -3,6 +3,7 @@ package com.cinema.cinemaparadiso.controller;
 import java.time.Instant;
 import java.util.Date;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -64,9 +65,15 @@ public class MessageController {
     @GetMapping("/show/{messageId}")
     public String show(Model model, @PathVariable("messageId") Integer messageId){
     	try {
-    		
 	        Message message = messageService.findById(messageId);
-	        model.addAttribute("isRequest",message.getIsRequest());
+	        
+	        String usernameActual = userService.getPrincipal().getUsername();
+	        Boolean isRequest = message.getIsRequest()!=null && message.getReceptor().getUsername().equals(usernameActual);
+	        Boolean isArtist = this.userService.findArtistByUserUsername(message.getEmisor().getUsername()).isPresent();
+	        Boolean isProducer = this.userService.findProducerByUserUsername(message.getEmisor().getUsername()).isPresent();
+	        model.addAttribute("isRequest",isRequest);
+	        model.addAttribute("isArtist",isArtist);
+	        model.addAttribute("isProducer",isProducer);
 	        model.addAttribute("message", message);
 	        log.info("Showing Message..."+message.toString());
     	}catch (NoSuchElementException e) {
@@ -76,20 +83,60 @@ public class MessageController {
     }
     
     @Transactional
-    @GetMapping("/show/{messageId}/acceptRequest")
-    public String showAccept(Model model, @PathVariable("messageId") Integer messageId){
+    @GetMapping("/show/{messageId}/acceptRequestStory")
+    public String showAcceptStory(Model model, @PathVariable("messageId") Integer messageId){
+        try {
+            messageService.acceptRequestStory(messageId);
+        }catch (NoSuchElementException e) {
+            log.error("Error Showing Message..."+messageId.toString());
+        }
+        return "redirect:/messages/listReceived";
+    }
+
+    @GetMapping("/show/{messageId}/acceptRequestArtist")
+    public String showAcceptArtist(Model model, @PathVariable("messageId") Integer messageId){
+        try {
+            messageService.acceptRequestArtist(messageId);
+        }catch (NoSuchElementException e) {
+            log.error("Error Showing Message..."+messageId.toString());
+        }
+        return "redirect:/messages/listReceived";
+    }
+    @Transactional
+    @GetMapping("/show/{messageId}/rejectRequestStory")
+    public String showRejectStory(Model model, @PathVariable("messageId") Integer messageId){
+         try {
+             messageService.rejectRequestStory(messageId);
+         }catch (NoSuchElementException e) {
+             log.error("Error Showing Message..."+messageId.toString());
+         }
+         return "redirect:/messages/listReceived";
+     }
+
+    @Transactional 
+    @GetMapping("/show/{messageId}/rejectRequestArtist")
+    public String showRejectArtist(Model model, @PathVariable("messageId") Integer messageId){
+        try {
+            messageService.rejectRequestArtist(messageId);
+        }catch (NoSuchElementException e) {
+            log.error("Error Showing Message..."+messageId.toString());
+        }
+        return "redirect:/messages/listReceived";
+    }
+    @GetMapping("/show/{messageId}/acceptRequestProducer")
+    public String showAcceptProducer(Model model, @PathVariable("messageId") Integer messageId){
     	try {
-	        messageService.acceptRequest(messageId);
+	        messageService.acceptRequestProducer(messageId);
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
         return "redirect:/messages/listReceived";
     }
-    @Transactional
-    @GetMapping("/show/{messageId}/rejectRequest")
-    public String showReject(Model model, @PathVariable("messageId") Integer messageId){
+    
+    @GetMapping("/show/{messageId}/rejectRequestProducer")
+    public String showRejectProducer(Model model, @PathVariable("messageId") Integer messageId){
     	try {
-	        messageService.rejectRequest(messageId);
+	        messageService.rejectRequestProducer(messageId);
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
@@ -112,6 +159,7 @@ public class MessageController {
 
     @PostMapping("/create/{userName}")
     public String create(@PathVariable("userName") String userName, @Validated @ModelAttribute("message") Message message, BindingResult result, Model model){
+    	System.out.println(result);
 		if(!result.hasErrors()) {
     		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
     		message.setEmisor(userService.getUserByUsername(emisor_username));
@@ -119,7 +167,7 @@ public class MessageController {
     		message.setMessageDate(Date.from(Instant.now()));
     		messageService.create(message);
     		model.addAttribute("Estado", "Exito");
-            return "redirect:/messages/listReceived";
+            return "redirect:/messages/listSend";
     	}else {
     		model.addAttribute("Estado", "Error, entidad incorrecta");
     		model.addAttribute(message);

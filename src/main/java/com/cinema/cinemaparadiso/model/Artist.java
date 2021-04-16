@@ -41,9 +41,6 @@ public class Artist extends Person {
 	@ManyToMany(mappedBy = "team")
 	private List<Project> projectsHistory;
 	
-
-	@Column(name="summary")
-	private String summary;
 	
 	@Column(name="left_projects")
 	private Integer leftProjects;

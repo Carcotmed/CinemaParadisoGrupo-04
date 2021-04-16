@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,8 +45,11 @@ public class ProducerController {
     @GetMapping(value = { "/show/{producerId}" })
 	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
 		Producer producer = producerService.findProducerById(producerId);
+		Boolean showButton = producerService.isActualProducer(producerId);
 		model.addAttribute("producerUsername", producer.getUser().getUsername());
 		model.addAttribute("producer", producer);
+		model.addAttribute("showButton",showButton);
+
 		return "producers/showProducer";
 	}
 
@@ -54,23 +57,27 @@ public class ProducerController {
     public String initFormCreateProducer(Model model) {
 		User user = new User();
         Producer producer = new Producer();
-        List<Skill> skill = Arrays.asList(Skill.values());
         model.addAttribute("producer", producer);
         model.addAttribute("user",user);
         model.addAttribute("isNew", true);
-        model.addAttribute("skill", skill);
         return "producers/createUpdateProducerForm";
 
     }
 
     @PostMapping("/create")
     public String createProducer(Model model, @ModelAttribute("producer") @Valid Producer producer,
-              BindingResult result) {
+              BindingResult result) throws UserUniqueException{
   
-    	List<Skill> skill = Arrays.asList(Skill.values());
-    	model.addAttribute("skill", skill);
           if(!result.hasErrors()) {
-              this.producerService.createProducer(producer);
+			try{
+				
+				this.producerService.createProducer(producer);
+			}
+			catch(UserUniqueException ex) {
+				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
+				return "producers/createUpdateProducerForm";
+			}
+			log.info("Producer Created Successfully");
           }else {
         	  return "producers/createUpdateProducerForm";
           }
@@ -84,10 +91,8 @@ public class ProducerController {
 			return "error/error-403";
 		}
 		Producer producer = producerService.findProducerById(producerId);
-		List<Skill> skill = Arrays.asList(Skill.values());
 		model.addAttribute("producerId", producerId);
 		model.addAttribute("producer", producer);
-		model.addAttribute("skill", skill);
 		return "producers/updateProducer";
 	}
 
@@ -98,8 +103,6 @@ public class ProducerController {
 		if(!producerService.isActualProducer(producerId)) {
 			return "error/error-403";
 		}
-		List<Skill> skill = Arrays.asList(Skill.values());
-		model.addAttribute("skill", skill);
 		if(!result.hasErrors()) {
 			producerService.editProducer(producer);
 			return "redirect:/producers/show/{producerId}";

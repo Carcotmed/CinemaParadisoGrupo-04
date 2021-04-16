@@ -27,12 +27,14 @@
 					
 				</div>
 			</div>
-			<button class="btn rounded-pill" onClick="location.href='/messages/create/${producerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+			<c:if test="${showButton == false}">
+				<button class="btn rounded-pill" onClick="location.href='/messages/create/${producerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+			</c:if>
+			<c:if test="${showButton == true}">
+				<button class="btn rounded-pill" onClick="location.href='/producers/update/${producer.id}'" style="color:white;height: fit-content;background-color: #af3248">Editar</button>
+			</c:if>
 		</div>		
 	</div>
-		
-		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
-	
-
+	<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </body>
 </html>

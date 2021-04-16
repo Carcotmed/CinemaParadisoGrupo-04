@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Role;
-import com.cinema.cinemaparadiso.model.Skill;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
@@ -61,13 +60,13 @@ public class ArtistController {
 		model.addAttribute("artistsFiltered", artistsFiltered);
 
 		List<Artist> artistasProFiltrados = artists.stream()
-				.filter(a -> a.getPro()==true &&
+				.filter(a -> a.getPro() &&
 							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
 							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
 				).collect(Collectors.toList());
 		
 		List<Artist> artistasNoProFiltrados = artists.stream()
-				.filter(a -> a.getPro()==false &&
+				.filter(a -> a.getPro() &&
 							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
 							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
 				).collect(Collectors.toList());
@@ -85,42 +84,26 @@ public class ArtistController {
 	@GetMapping(value = { "/show/{artistId}" })
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
-		Boolean showButtom = artistService.isActualArtist(artistId);
-		//List<Project> projectHistory = artistService.projectHistory(artistId);
-		model.addAttribute("artistUsername", artist.getUser().getUsername());
-		model.addAttribute("artist", artist);
-		model.addAttribute("showButtom",showButtom);
-		//model.addAttribute("projectHistory",projectHistory);
-		return "artists/showArtist";
-	}
-
-
-	@GetMapping(value = { "/myProjects" })
-	public String myProjectsArtist(Model model) {
-		Artist artist = artistService.getPrincipal();
-		Integer artistId = artist.getId();
+		Boolean showButton = artistService.isActualArtist(artistId);
 		List<Project> myProjects = artistService.findMyProjects(artistId);
 		Integer projectsLeft = artistService.leftProjects(artistId);
-		model.addAttribute("artistId", artistId);
 		model.addAttribute("projectsLeft",projectsLeft);
-		model.addAttribute("artist", artist);
 		model.addAttribute("myProjects",myProjects);
-		return "artists/myProjects";
-	}
-	
-	
-	
+		model.addAttribute("artistUsername", artist.getUser().getUsername());
+		model.addAttribute("artistId", artistId);
+		model.addAttribute("artist", artist);
+		model.addAttribute("showButton",showButton);
+		return "artists/showArtist";
+	}	
 
 	@GetMapping("/create")
 	public String initFormCreateArtist(Model model) {
 		Artist artist = new Artist();
 		User user = new User();
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
 		
 		model.addAttribute("user",user);
 		model.addAttribute("artist", artist);
-		model.addAttribute("skill", skill);
 		model.addAttribute("roles", role);
 
 		return "artists/createOrUpdateArtistForm";
@@ -128,10 +111,8 @@ public class ArtistController {
 
 	@PostMapping("/create")
 	public String createArtist(@Valid Artist artist, BindingResult result, Model model) throws UserUniqueException{
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> role = Arrays.asList(Role.values());
 		model.addAttribute("roles", role);
-		model.addAttribute("skill", skill);
 		if(!result.hasErrors()) {
 			//Unique artist exception
 			try{
@@ -155,11 +136,9 @@ public class ArtistController {
 			return "error/error-403";
 		}
 		Artist artist = artistService.findArtistById(artistId);
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> roles = Arrays.asList(Role.values());
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
-		model.addAttribute("skill",skill);
 		model.addAttribute("roles",roles);
 		return "artists/updateArtist";
 	}
@@ -171,9 +150,7 @@ public class ArtistController {
 		if(!artistService.isActualArtist(artistId)) {
 			return "error/error-403";
 		}
-		List<Skill> skill = Arrays.asList(Skill.values());
 		List<Role> roles = Arrays.asList(Role.values());
-		model.addAttribute("skill",skill);
 		model.addAttribute("roles",roles);
 		if(!result.hasErrors()) {
 			artistService.editArtist(artist);
