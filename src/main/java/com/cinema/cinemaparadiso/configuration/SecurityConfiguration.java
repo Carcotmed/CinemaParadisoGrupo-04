@@ -41,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/artists/show/{artistId}").permitAll()
 				.antMatchers("/artists/myProjects").permitAll()
 				.antMatchers("/artists/myProjects/**").permitAll()
+				.antMatchers("/request/**").permitAll()
 				//MESSAGES
 				.antMatchers("/messages/listReceived").authenticated()
 				.antMatchers("/messages/listSend").authenticated()

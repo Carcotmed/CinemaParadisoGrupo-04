@@ -92,7 +92,7 @@ public class StoryController {
 			return "/error/error";
 		}
 		messageService.requestStory(projectId, storyId);
-		return "redirect:/projects/list";
+		return "redirect:/messages/listSend";
 	}
 
 	@PostMapping("/update/{storyId}")
