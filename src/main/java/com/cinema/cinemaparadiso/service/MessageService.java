@@ -2,6 +2,7 @@ package com.cinema.cinemaparadiso.service;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
+    @Transactional
     public void delete(Message message) throws IllegalArgumentException{
     	messageRepository.delete(message);
     }
@@ -176,6 +178,17 @@ public class MessageService {
     	message2.setIsRequest(null);
     	
     	create(message2);  
+    }
+    
+    
+    public List<Message> findAllReceivedMessages(String username){
+    	
+    	return messageRepository.findAllMessagesReceived(username); 
+    }
+    
+    public List<Message> findAllSentsMessages(String username){
+    	
+    	return messageRepository.findAllMessagesSents(username); 
     }
     
     
