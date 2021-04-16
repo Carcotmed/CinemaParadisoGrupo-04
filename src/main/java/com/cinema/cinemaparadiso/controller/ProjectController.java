@@ -94,7 +94,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/joinArtist/{projectId}")
-	public String joinProjectArtist(Model model, @PathVariable("projectId") int projectId) {
+	public String joinProjectArtist(@PathVariable("projectId") int projectId, Model model){
     	Artist artist;
     	try {
     		artist = artistService.getPrincipal();
@@ -107,6 +107,7 @@ public class ProjectController {
 			model.addAttribute("Error", "Ya perteneces a este equipo");
 			return "/error";
 		}
+		//Solo puedes enviar una peticion para unirte a un proyecto
 		messageService.requestToEnterProjectArtist(projectId, artist.getId());
 		return "redirect:/messages/listSend";
 	}
@@ -154,9 +155,11 @@ public class ProjectController {
 			model.addAttribute("pertenece", false);
 			model.addAttribute("noPuede",true);
     	}else if(artist.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+    		model.addAttribute("requestexist",messageService.requestAlreadyExistArtist(projectId, artist.getId()));
 			model.addAttribute("pertenece", true);
 			model.addAttribute("noPuede",false);
 		}else {
+    		model.addAttribute("requestexist",messageService.requestAlreadyExistArtist(projectId, artist.getId()));
 			model.addAttribute("pertenece", false);
 			model.addAttribute("noPuede",false);
 		}
@@ -171,9 +174,11 @@ public class ProjectController {
     	}else if(producer.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
 			model.addAttribute("perteneceP", true);
 			model.addAttribute("noPuedeP",false);
+    		model.addAttribute("requestexistP",messageService.requestAlreadyExistProducer(projectId, producer.getId()));
 		}else {
 			model.addAttribute("perteneceP", false);
 			model.addAttribute("noPuedeP",false);
+    		model.addAttribute("requestexistP",messageService.requestAlreadyExistProducer(projectId, producer.getId()));
 		}
 		return "projects/showProject";
 	}
