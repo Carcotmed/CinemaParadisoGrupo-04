@@ -36,6 +36,7 @@
 				</c:when>
 				<c:when test="${showButton == true}">
 					<button class="btn rounded-pill" onClick="location.href='/stories/update/${story.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+					<button class="btn rounded-pill" onClick="location.href='/stories/delete/${story.id}'" style="color:white;height: fit-content;background-color: #af3248">Eliminar</button>
 				</c:when>
 			</c:choose>
 	</div>
