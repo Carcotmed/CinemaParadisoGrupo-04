@@ -29,17 +29,25 @@
 					<h2>${writer.user.username}</h2>
 				</div>
 			</div>
+	<c:if test="${!userDisabled}">
 			<c:choose>
 				<c:when test="${sameWriter == false}">
 					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 				</c:when>
 				<c:when test="${sameWriter == true}">
-					<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+					<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
+					<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Eliminar perfil</button>
 				</c:when>
 			</c:choose>
-			
+	</c:if>
+	<c:if test="${userDisabled}">
+	<div class="py-3 mx-3" style="width:40%">
+		<h2>Usuario desactivado</h2>
+	</div>
+	</c:if>
 	</div>
 	<!-- Info general Historia -->
+	<c:if test="${!userDisabled}">
 	<div>
 		<div class="d-flex justify-content-between w-100" style="background-color:#4c4c4c; padding:1%">
 			<h3 style="margin:0">Datos</h3>
@@ -91,6 +99,7 @@
 			
 		</div>
 	</div>
+	</c:if>
 </body>
 <jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </html>

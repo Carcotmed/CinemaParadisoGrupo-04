@@ -2,7 +2,9 @@ package com.cinema.cinemaparadiso.service;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,11 +59,13 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
+    @Transactional
     public void delete(Message message) throws IllegalArgumentException{
     	messageRepository.delete(message);
     }
     
-    public void requestToEnterProjectArtist(Integer projectId,Integer artistId) {
+    //Comprobar si existe ya la peticion para unirse al proyecto por parte del artista
+    public Boolean requestAlreadyExistArtist(Integer projectId,Integer artistId) {
     	String adminProjectUsername = projectService.findProjectById(projectId).getMyAdmin();
     	Integer adminProjectId = artistService.findArtistByUsername(adminProjectUsername).getId();
     	User adminProjectUser = artistService.findMyUser(adminProjectId);
@@ -77,7 +81,51 @@ public class MessageService {
     	message.setMessageDate(Date.from(Instant.now()));
     	message.setIsRequest(projectId);
     	
+    	String receptor = message.getReceptor().getUsername();
+    	String emisor = message.getEmisor().getUsername();
+    	Optional<Message> request= messageRepository.requestExist(message.getBody(),receptor,emisor);
+    	return request.isPresent();
+    }
+    
+    public void requestToEnterProjectArtist(Integer projectId,Integer artistId){
+    	String adminProjectUsername = projectService.findProjectById(projectId).getMyAdmin();
+    	Integer adminProjectId = artistService.findArtistByUsername(adminProjectUsername).getId();
+    	User adminProjectUser = artistService.findMyUser(adminProjectId);
+    	User requestArtistUser = artistService.findMyUser(artistId);
+    	Artist requestArtist = artistService.findArtistById(artistId);
+    	Project project = projectService.findProjectById(projectId);
+    	Message message = new Message();
+    	
+    	message.setIssue("Quiero unirme a su proyecto");
+    	message.setBody("Me gustaría entrar en su proyecto llamado "+ project.getTitle()+". Mi rol es "+requestArtist.getRole()+".");
+    	message.setReceptor(adminProjectUser);
+    	message.setEmisor(requestArtistUser);
+    	message.setMessageDate(Date.from(Instant.now()));
+    	message.setIsRequest(projectId);
+
     	create(message);  
+    	}
+    
+    //Comprobar si existe ya la peticion para unirse al proyecto por parte del productor
+    public Boolean requestAlreadyExistProducer(Integer projectId,Integer producerId) {
+    	String adminProjectUsername = projectService.findProjectById(projectId).getMyAdmin();
+    	Integer adminProjectId = artistService.findArtistByUsername(adminProjectUsername).getId();
+    	User adminProjectUser = artistService.findMyUser(adminProjectId);
+    	User requestProducerUser = producerService.findMyUser(producerId);
+    	Project project = projectService.findProjectById(projectId);
+    	Message message = new Message();
+    	
+    	message.setIssue("Quiero unirme a su proyecto");
+    	message.setBody("Me gustaría entrar en su proyecto llamado "+ project.getTitle()+". Mi rol es Productor.");
+    	message.setReceptor(adminProjectUser);
+    	message.setEmisor(requestProducerUser);
+    	message.setMessageDate(Date.from(Instant.now()));
+    	message.setIsRequest(projectId);;
+    	
+    	String receptor = message.getReceptor().getUsername();
+    	String emisor = message.getEmisor().getUsername();
+    	Optional<Message> request= messageRepository.requestExist(message.getBody(),receptor,emisor);
+    	return request.isPresent();
     }
     
 	public void requestStory(Integer projectId, Integer storyId) {
@@ -292,6 +340,17 @@ public class MessageService {
 		    	create(message2);
     		}
     	}
+    }
+    
+    
+    public List<Message> findAllReceivedMessages(String username){
+    	
+    	return messageRepository.findAllMessagesReceived(username); 
+    }
+    
+    public List<Message> findAllSentsMessages(String username){
+    	
+    	return messageRepository.findAllMessagesSents(username); 
     }
     
     
