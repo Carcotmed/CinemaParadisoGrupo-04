@@ -29,8 +29,8 @@
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
 			<form:form class="my-5" action="list" method="POST" modelAttribute="writersFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="user.username">Username:</form:label>
-					<form:input class="form-control" style="width:60%" type="text" placeholder="username" path="user.username" />
+					<form:label class="form-control-label" path="user.username">Nombre de usuario:</form:label>
+					<form:input class="form-control" style="width:60%" type="text" path="user.username" />
 				</div>
 
 								
