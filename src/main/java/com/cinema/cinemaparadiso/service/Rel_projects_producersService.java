@@ -27,6 +27,7 @@ public class Rel_projects_producersService {
 
 	public void create(Rel_projects_producers rel_projects_producers){
 		if(rel_projects_producers.getProducer_id()==null || rel_projects_producers.getProject_id()==null) {
+			System.out.println("*************************************************************************************");
 			throw new IllegalAccessError();
 		}else {
 	       save(rel_projects_producers);
@@ -35,7 +36,11 @@ public class Rel_projects_producersService {
 
 	@Transactional
 	public void save(Rel_projects_producers rel_projects_producers) throws DataAccessException{
+		System.out.println("*************************************************************************************2");
+			System.out.println(rel_projects_producers.getId()+"-"+rel_projects_producers.getProducer_id()+"-"+rel_projects_producers.getProject_id());
 			rel_projects_producersRepository.save(rel_projects_producers);	
+		System.out.println("*************************************************************************************3");
+
 	}
 	
 	@Transactional
@@ -46,11 +51,18 @@ public class Rel_projects_producersService {
 
 	@Transactional(readOnly = true)
 	public Rel_projects_producers findById(int id) throws DataAccessException {
+		System.out.println("*************************************************************************************4");
+
 		return rel_projects_producersRepository.findById(id).get();
+		
 	}
 	
 	public Rel_projects_producers findRelation(Integer producerId, Integer projectId){
+		System.out.println("*************************************************************************************5");
+
 		Rel_projects_producers relacion = rel_projects_producersRepository.findRelacion(producerId, projectId);
+		System.out.println("*************************************************************************************6");
+
 	       return relacion;
 	}
 	
@@ -60,7 +72,10 @@ public class Rel_projects_producersService {
 	}
 
 	public Long count(Integer projectId) {
+		System.out.println("*************************************************************************************7");
+
 		return this.rel_projects_producersRepository.countRelationsProject(projectId);
+		
 	}
 
 

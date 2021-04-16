@@ -4,6 +4,7 @@ package com.cinema.cinemaparadiso.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -91,7 +92,32 @@ public class ProjectService {
 		Boolean proyectoVacio = this.rel_projects_artistsService.count(projectId) + this.rel_projects_producersService.count(projectId)== 0;
 		if(proyectoVacio) {
 			projectRepository.delete(project);
+		}else {
+			if(noEsArtista) {
+				Integer actualId = producerService.getPrincipal().getId();
+				String producerUsername = producerService.findMyUser(actualId).getUsername();
+				if(project.getMyAdmin().equals(producerUsername)) {
+					project.setMyAdmin(findAllMembersUsername(projectId).get(0));
+					
+				}
+			}else {
+				Integer actualId = artistService.getPrincipal().getId();
+				String artistaUsername = artistService.findMyUser(actualId).getUsername();
+				if(project.getMyAdmin().equals(artistaUsername)) {
+					project.setMyAdmin(findAllMembersUsername(projectId).get(0));
+				}	
+			}
 		}
+	}
+	
+	public List<String> findAllMembersUsername(Integer projectId){
+		List<String> allMembersUsername = new ArrayList<>();
+		
+		allMembersUsername.addAll(findMembers(projectId).stream().map(s->s.getUser().getUsername()).collect(Collectors.toList()));
+		allMembersUsername.addAll(findProducers(projectId).stream().map(s->s.getUser().getUsername()).collect(Collectors.toList()));
+
+		
+		return allMembersUsername;
 	}
 	@Transactional
 	public void createProject(Project project) throws ProjectLimitException{
@@ -111,9 +137,7 @@ public class ProjectService {
 		relacion.setArtist_id(actualId);
 		relacion.setProject_id(projectId);
 		rel_projects_artistsService.create(relacion);
-		System.out.println(artist.getLeftProjects()+"***********************************************************************************************");
 		artist.setLeftProjects(artist.getLeftProjects()-1);
-		System.out.println(artist.getLeftProjects()+"***********************************************************************************************");
 
 		}
 	}

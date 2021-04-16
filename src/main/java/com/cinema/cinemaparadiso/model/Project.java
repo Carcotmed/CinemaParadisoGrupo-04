@@ -53,7 +53,7 @@ public class Project extends BaseEntity {
 			inverseJoinColumns = @JoinColumn(name = "producer_id")
 			)
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Artist> team2;
+    private List<Producer> team2;
 	
 	@Column(name="pro")
 	private Boolean pro;

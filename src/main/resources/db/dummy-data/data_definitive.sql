@@ -6,21 +6,21 @@ INSERT INTO users(username,password,enabled,email) VALUES ('artist','$2y$10$JJsH
 INSERT INTO users (username,password,enabled,email) VALUES ('JarrodHuffman','$2y$10$qJ14yJUo2/iXDiZrH17WPO1nx1AVeazpJJtleKKK/qr1iPamDdekC','True','habitant.morbi.tristique@cursusNuncmauris.org');
 INSERT INTO users (username,password,enabled,email) VALUES ('RossSimpson','$2y$10$vr86wEkNsinTPbZo0/yBVeIo9AtWcRbNYUgWajhPBI4d2NT9Y25PO','True','eget@aauctor.org');
 INSERT INTO users (username,password,enabled,email) VALUES ('GrayChurch','$2y$10$fLdxg5h33jtF2Wohlb3tK.kM2uSZ68D0X3fASMwKIyb1MSPp7gENy','True','odio.Nam.interdum@a.com');
-INSERT INTO users (username,password,enabled,email) VALUES ('RonanMoss','$2y$10$MhtWO.8E.sohTh6YjtLXquBqK0ja1z6NctREFC0hfvJa21ByRKTmi','False','Donec@Donec.org');
+INSERT INTO users (username,password,enabled,email) VALUES ('RonanMoss','$2y$10$MhtWO.8E.sohTh6YjtLXquBqK0ja1z6NctREFC0hfvJa21ByRKTmi','True','Donec@Donec.org');
 INSERT INTO users (username,password,enabled,email) VALUES ('DeniseMills','$2y$10$YMeccXz0Gfr1V.pSaNFmL./sij0fSzLYI0nHvd008tHy6YOWpdEp2','True','consequat.dolor.vitae@Sed.co.uk');
-INSERT INTO users (username,password,enabled,email) VALUES ('JoyVillarreal','$2y$10$Yy43QD2VGEm.mjkDiWg1r.ahcyYUu.WHgBntoSjE3TSvlQ5XzS92u','False','blandit.mattis@non.org');
-INSERT INTO users (username,password,enabled,email) VALUES ('AshelyGuzman','$2y$10$RsDytjJATgtp7lMrVO86LeueTXtAcWqmppm6f1fvRsdK4QEfnmi0u','False','ac@ideratEtiam.ca');
-INSERT INTO users (username,password,enabled,email) VALUES ('TatyanaAvila','$2y$10$4l/nS2JpBCwbXK/uF8Q6L.H.5e6eXEoIPCiChbICb//9Mw/iBj6Hy','False','lectus.ante.dictum@quam.net');
+INSERT INTO users (username,password,enabled,email) VALUES ('JoyVillarreal','$2y$10$Yy43QD2VGEm.mjkDiWg1r.ahcyYUu.WHgBntoSjE3TSvlQ5XzS92u','True','blandit.mattis@non.org');
+INSERT INTO users (username,password,enabled,email) VALUES ('AshelyGuzman','$2y$10$RsDytjJATgtp7lMrVO86LeueTXtAcWqmppm6f1fvRsdK4QEfnmi0u','True','ac@ideratEtiam.ca');
+INSERT INTO users (username,password,enabled,email) VALUES ('TatyanaAvila','$2y$10$4l/nS2JpBCwbXK/uF8Q6L.H.5e6eXEoIPCiChbICb//9Mw/iBj6Hy','True','lectus.ante.dictum@quam.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('GlennaWheeler','$2y$10$XNgmw98dThmugBlJ5FKLv.JX365ORXemKsBDCa5Gl/RUYVeqEGy52','True','auctor.non.feugiat@hendreritDonecporttitor.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('WinterCastro','$2y$10$1TInXdko7awPGwWzy6d0QeO4duLjpG/OFmyoczPxstVifG16zwJTm','True','vitae@Fusce.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('AquilaRodriquez','$2y$10$oZWr7LWALF2VXixdXzlEGOfL6YK4CoAMwPCco3ComuwwAwyv/TBIa','True','ac@Curabitur.org');
-INSERT INTO users (username,password,enabled,email) VALUES ('OraBoyle','$2y$10$d4apIiekpqgQKDbwka4UAeunc2eMEPxPQiTmuXdAs61PEtdhm.nKW','False','placerat.eget@enimSednulla.org');
-INSERT INTO users (username,password,enabled,email) VALUES ('HedyTate','$2y$10$ZlMkdUUd1cd7WqzXr2uFIeUnIgLLPVHvWGPG6Hu.Jd1Vi5bHuNzPe','False','ultrices.Vivamus.rhoncus@Namconsequat.co.uk');
+INSERT INTO users (username,password,enabled,email) VALUES ('OraBoyle','$2y$10$d4apIiekpqgQKDbwka4UAeunc2eMEPxPQiTmuXdAs61PEtdhm.nKW','True','placerat.eget@enimSednulla.org');
+INSERT INTO users (username,password,enabled,email) VALUES ('HedyTate','$2y$10$ZlMkdUUd1cd7WqzXr2uFIeUnIgLLPVHvWGPG6Hu.Jd1Vi5bHuNzPe','True','ultrices.Vivamus.rhoncus@Namconsequat.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('WyattHogan','$2y$10$GVgrfbpDZL1juZrHFEodv.8Jk1kxfNDnzx9cAxVWFxjcefr7sibkm','True','augue.Sed.molestie@ategestasa.org');
-INSERT INTO users (username,password,enabled,email) VALUES ('RudyardRogers','$2y$10$ItNgsY.Vi96gfrWf1CA6D.WZ59n0M0nybj5Ot7eUmcb10xyxkTqAy','False','lacinia.Sed@suscipitnonummy.co.uk');
-INSERT INTO users (username,password,enabled,email) VALUES ('HunterMcfarland','$2y$10$Sa7gTdxAX0ZQoxXacQYnLOs1BYx0eB7jcRuzWmWzYZr.bEVlzZn.2','False','metus@seddictum.ca');
+INSERT INTO users (username,password,enabled,email) VALUES ('RudyardRogers','$2y$10$ItNgsY.Vi96gfrWf1CA6D.WZ59n0M0nybj5Ot7eUmcb10xyxkTqAy','True','lacinia.Sed@suscipitnonummy.co.uk');
+INSERT INTO users (username,password,enabled,email) VALUES ('HunterMcfarland','$2y$10$Sa7gTdxAX0ZQoxXacQYnLOs1BYx0eB7jcRuzWmWzYZr.bEVlzZn.2','True','metus@seddictum.ca');
 INSERT INTO users (username,password,enabled,email) VALUES ('AmberWiley','$2y$10$NEFu4o9jNJNio.O6HU7RkuiLxvX7chs4AoGzDA2D99.wPHIljPFla','True','auctor.ullamcorper.nisl@laciniaSed.edu');
-INSERT INTO users (username,password,enabled,email) VALUES ('MicahBurch','$2y$10$goC2KTKpv.rw04KNC2nX3OPkjH6kHCJIZWizvEx6v1BqijnjyFz0m','False','diam.Proin@ultricesDuisvolutpat.com');
+INSERT INTO users (username,password,enabled,email) VALUES ('MicahBurch','$2y$10$goC2KTKpv.rw04KNC2nX3OPkjH6kHCJIZWizvEx6v1BqijnjyFz0m','True','diam.Proin@ultricesDuisvolutpat.com');
 INSERT INTO users (username,password,enabled,email) VALUES ('JaredAvery','$2y$10$x5eQUU7eQ3b4KEXHSNHqAe/z5/FjGxYOTkLgXBaP7XNXOS0D.UXwW','True','metus.In@sodalesMauris.net');
 
 
