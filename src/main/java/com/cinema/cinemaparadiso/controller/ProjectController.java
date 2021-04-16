@@ -246,7 +246,6 @@ public class ProjectController {
 	@PostMapping("/update/{projectId}")
 	public String updateProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model, @PathVariable("projectId") Integer projectId) {
 		project.setId(projectId);
-		Integer actualId = this.artistService.getPrincipal().getId();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
@@ -254,9 +253,9 @@ public class ProjectController {
 		if(!result.hasErrors()) {
 			projectService.editProject(project);
 			log.info("Project Updated Successfully");
-			return "redirect:/artists/show/"+actualId;
+			return "redirect:/projects/show/"+projectId;
 		} else {
-			return "redirect:/artists/show/"+actualId;
+			return "projects/createOrUpdateProjectForm";
 		}
 	}
 
