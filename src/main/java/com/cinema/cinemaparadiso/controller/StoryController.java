@@ -91,7 +91,7 @@ public class StoryController {
 			model.addAttribute("Error", "Este proyecto ya posee una historia");
 			return "/error/error";
 		}
-		messageService.requestStory(projectId, storyId);
+		messageService.requestToEnterProjectStory(projectId, storyId);
 		return "redirect:/messages/listSend";
 	}
 

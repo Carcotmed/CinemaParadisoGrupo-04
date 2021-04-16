@@ -71,7 +71,9 @@ public class MessageController {
 	        Boolean isRequest = message.getIsRequest()!=null && message.getReceptor().getUsername().equals(usernameActual);
 	        Boolean isArtist = this.userService.findArtistByUserUsername(message.getEmisor().getUsername()).isPresent();
 	        Boolean isProducer = this.userService.findProducerByUserUsername(message.getEmisor().getUsername()).isPresent();
+	        Boolean isWriter =this.userService.findWriterByUserUsername(message.getReceptor().getUsername()).isPresent();
 	        model.addAttribute("isRequest",isRequest);
+	        model.addAttribute("isWriter",isWriter);
 	        model.addAttribute("isArtist",isArtist);
 	        model.addAttribute("isProducer",isProducer);
 	        model.addAttribute("message", message);
@@ -102,6 +104,15 @@ public class MessageController {
         }
         return "redirect:/messages/listReceived";
     }
+    @GetMapping("/show/{messageId}/acceptRequestProducer")
+    public String showAcceptProducer(Model model, @PathVariable("messageId") Integer messageId){
+    	try {
+	        messageService.acceptRequestProducer(messageId);
+    	}catch (NoSuchElementException e) {
+	        log.error("Error Showing Message..."+messageId.toString());
+		}
+        return "redirect:/messages/listReceived";
+    }
     @Transactional
     @GetMapping("/show/{messageId}/rejectRequestStory")
     public String showRejectStory(Model model, @PathVariable("messageId") Integer messageId){
@@ -121,15 +132,6 @@ public class MessageController {
         }catch (NoSuchElementException e) {
             log.error("Error Showing Message..."+messageId.toString());
         }
-        return "redirect:/messages/listReceived";
-    }
-    @GetMapping("/show/{messageId}/acceptRequestProducer")
-    public String showAcceptProducer(Model model, @PathVariable("messageId") Integer messageId){
-    	try {
-	        messageService.acceptRequestProducer(messageId);
-    	}catch (NoSuchElementException e) {
-	        log.error("Error Showing Message..."+messageId.toString());
-		}
         return "redirect:/messages/listReceived";
     }
     
