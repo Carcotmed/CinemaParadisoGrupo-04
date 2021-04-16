@@ -93,18 +93,17 @@ public class ProjectService {
 			projectRepository.delete(project);
 		}
 	}
-	
-	@Transactional(rollbackFor = ProjectLimitException.class)
+	@Transactional
 	public void createProject(Project project) throws ProjectLimitException{
 		Artist artist = artistService.getPrincipal();
 		Boolean isPro = artist.getPro();
 		project.setMyAdmin(artist.getUser().getUsername());
 		project.setPro(isPro);
-		if(artist.getLeftProjects()==0) {
+		if(artist.getLeftProjects()<=0) {
 			throw new ProjectLimitException();
 		}
 		else {
-		saveProject(project);
+		projectRepository.save(project);
 		//Creamos la relación
 		Integer actualId = artist.getId();
 		Integer projectId = project.getId();
@@ -112,7 +111,10 @@ public class ProjectService {
 		relacion.setArtist_id(actualId);
 		relacion.setProject_id(projectId);
 		rel_projects_artistsService.create(relacion);
+		System.out.println(artist.getLeftProjects()+"***********************************************************************************************");
 		artist.setLeftProjects(artist.getLeftProjects()-1);
+		System.out.println(artist.getLeftProjects()+"***********************************************************************************************");
+
 		}
 	}
 	
