@@ -4,6 +4,8 @@ package com.cinema.cinemaparadiso.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -63,6 +65,11 @@ public class Rel_projects_artistsService {
 
 	public Long count(Integer projectId) {
 		return this.rel_projects_artistsRepository.countRelationsProject(projectId);
+	}
+
+
+	public void deleteByProjectId(Integer projectId) {
+		rel_projects_artistsRepository.deleteByProjectId(projectId);
 	}
 
 

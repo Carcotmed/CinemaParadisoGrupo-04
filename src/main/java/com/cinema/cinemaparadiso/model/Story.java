@@ -34,4 +34,9 @@ public class Story extends BaseEntity {
 	@Column(name="storylength")
     private Integer storylength;
 
+	@Override
+	public String toString() {
+		return "Story (" + id + ") [title=" + title + ", body=" + body + ", genre=" + genre + ", storylength=" + storylength + "]";
+	}
+
 }

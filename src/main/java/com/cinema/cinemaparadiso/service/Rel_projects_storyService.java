@@ -70,5 +70,15 @@ public class Rel_projects_storyService {
 	}
 
 
+	public void deleteByProjectId(Integer projectId) {
+		rel_projects_storyRepository.deleteByProjectId(projectId);
+	}
+
+
+	public void deleteByStoryId(Integer storyId) {
+		rel_projects_storyRepository.deleteByStoryId(storyId);
+	}
+
+
 
 }

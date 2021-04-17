@@ -79,5 +79,10 @@ public class Rel_projects_producersService {
 	}
 
 
+	public void deleteByProjectId(Integer projectId) {
+		rel_projects_producersRepository.deleteByProjectId(projectId);
+	}
+
+
 
 }
