@@ -23,14 +23,18 @@ import com.cinema.cinemaparadiso.service.exceptions.ProjectLimitException;
 public class ProjectService {
 
 	private ProjectRepository projectRepository;
-	
+
 	@Autowired
 	private ArtistService artistService;
+	
 	@Autowired
 	private ProducerService producerService;
 	
 	@Autowired
 	private Rel_projects_artistsService rel_projects_artistsService;
+	
+	@Autowired
+	private Rel_projects_storyService rel_projects_storyService;
 	
 	@Autowired
 	private Rel_projects_producersService rel_projects_producersService;
@@ -175,7 +179,7 @@ public class ProjectService {
 	}
 	public void addRelationShipProducer(int projectId, Integer producerId) {
 		Rel_projects_producers relation = new Rel_projects_producers();
-		relation.setProducer_id(producerId);;
+		relation.setProducer_id(producerId);
 		relation.setProject_id(projectId);
 		rel_projects_producersService.save(relation);
 	}
@@ -194,6 +198,23 @@ public class ProjectService {
 
 	public List<Project> findProjectByAdminUsername(String username) {
 		return projectRepository.findByAdminUsername(username);
+	}
+
+
+	public void makeProjectSponsored(Integer projectID) {
+		projectRepository.makeProjectSponsored(projectID);
+	}
+  
+  
+	public void deleteAllRelation(Integer projectId) {
+		rel_projects_artistsService.deleteByProjectId(projectId);
+		rel_projects_producersService.deleteByProjectId(projectId);
+		rel_projects_storyService.deleteByProjectId(projectId);
+	}
+
+
+	public void deleteProject(Integer projectId) {
+		projectRepository.delete(projectId);
 	}
 
 

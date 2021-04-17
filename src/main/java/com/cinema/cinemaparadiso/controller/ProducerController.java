@@ -1,6 +1,5 @@
 package com.cinema.cinemaparadiso.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -35,6 +34,7 @@ public class ProducerController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/list")
     public String list(Model model){
         List<Producer> producers = producerService.list();
@@ -45,12 +45,13 @@ public class ProducerController {
     @GetMapping(value = { "/show/{producerId}" })
 	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
 		Producer producer = producerService.findProducerById(producerId);
-		Boolean showButton = producerService.isActualProducer(producerId);
+		Boolean showButton = producerService.isActualProducer(producerId) || userService.isAdmin();
 		Boolean disabled = !producerService.findMyUser(producerId).isEnabled();
 		model.addAttribute("producerUsername", producer.getUser().getUsername());
 		model.addAttribute("producer", producer);
 		model.addAttribute("showButton",showButton);
 		model.addAttribute("userDisabled",disabled);
+		model.addAttribute("isAdmin",userService.isAdmin());
 
 		return "producers/showProducer";
 	}
@@ -89,7 +90,7 @@ public class ProducerController {
 
     @GetMapping("/update/{producerId}")
 	public String initFormUpdateProducer(Model model, @PathVariable("producerId") Integer producerId) {
-		if(!producerService.isActualProducer(producerId)) {
+		if(!producerService.isActualProducer(producerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		Producer producer = producerService.findProducerById(producerId);
@@ -102,7 +103,7 @@ public class ProducerController {
 	public String updateProducer(@ModelAttribute("producer") @Valid Producer producer,BindingResult result, Model model, @PathVariable("producerId") Integer producerId) {
 		producer.setId(producerId);
 		
-		if(!producerService.isActualProducer(producerId)) {
+		if(!producerService.isActualProducer(producerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		if(!result.hasErrors()) {
@@ -116,12 +117,30 @@ public class ProducerController {
 
 	@GetMapping("/delete/{producerId}")
 	public String deleteProducer(@PathVariable("producerId") Integer producerId) {
-		if(!producerService.isActualProducer(producerId)) {
+		if(!producerService.isActualProducer(producerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		try {
 			producerService.deleteProducer(producerId);
-			SecurityContextHolder.clearContext();
+			if(!userService.isAdmin())
+				SecurityContextHolder.clearContext();
+			log.info("Producer Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting Producer", e);
+		}
+		return "redirect:/";
+	}
+	
+
+	@GetMapping("/activate/{producerId}")
+	public String activateProducer(@PathVariable("producerId") Integer producerId) {
+		if(!userService.isAdmin()) {
+			return "error/error-403";
+		}
+		try {
+			producerService.activateProducer(producerId);
+			if(!userService.isAdmin())
+				SecurityContextHolder.clearContext();
 			log.info("Producer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Producer", e);

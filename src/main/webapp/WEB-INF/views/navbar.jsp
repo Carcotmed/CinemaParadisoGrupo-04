@@ -23,7 +23,7 @@
 			<sec:authorize access="isAuthenticated()">
 				<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/messages/listReceived'">Mensajes</button>
 			</sec:authorize>
-			<button class="btn rounded-pill" style="color:white;background-color:#e8c71a;margin:0 1%;color:black"><strong>PRO</strong></button>
+			<button class="btn rounded-pill" style="color:white;background-color:#e8c71a;margin:0 1%;color:black" onClick="location.href='/pro'"><strong>PRO</strong></button>
 		</div>
 		<!-- User menu -->
 		<div style="width: 15%;margin-right:1%" class="d-flex justify-content-between align-items-center">

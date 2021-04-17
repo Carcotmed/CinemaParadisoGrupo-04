@@ -34,12 +34,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/producers/show/**").permitAll()
 				.antMatchers("/producers/update/**").authenticated()
 				.antMatchers("/producers/delete/**").authenticated()
+				.antMatchers("/producers/activate/{producerId}").authenticated()
 				//ARTISTA
 				.antMatchers("/artists/list").permitAll()
 				.antMatchers("/artists/create").permitAll()
 				.antMatchers("/artists/update/{artistId}").authenticated()
 				.antMatchers("/artists/delete/{artistId}").authenticated()
 				.antMatchers("/artists/show/{artistId}").permitAll()
+				.antMatchers("/artists/activate/{artistId}").authenticated()
 				//MESSAGES
 				.antMatchers("/messages/listReceived").authenticated()
 				.antMatchers("/messages/listSend").authenticated()
@@ -62,12 +64,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
+				//PRO
+				.antMatchers("/pro/**").authenticated()//hasAnyAuthority("authenticated")
 		     //WRITERS
 		    .antMatchers("/writers/list").permitAll()
 		    .antMatchers("/writers/create").permitAll()
 			.antMatchers("/writers/show/{writerId}").permitAll()
 			.antMatchers("/writers/update/{writerId}").authenticated()
 			.antMatchers("/writers/delete/{writerId}").authenticated()
+			.antMatchers("/writers/activate/{writerId}").authenticated()
 		     //STORIES
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
@@ -81,6 +86,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/create").permitAll()
 				.antMatchers("/projects/update/{projectId}").authenticated()
 				.antMatchers("/projects/delete/{projectId}").authenticated()
+				.antMatchers("/projects/deleteAll/{projectId}").authenticated()
 				.antMatchers("/projects/show/{projectId}").permitAll()
 				.antMatchers("/projects/joinArtist/{projectId}").authenticated()
 				.antMatchers("/projects/joinProducer/{projectId}").authenticated()

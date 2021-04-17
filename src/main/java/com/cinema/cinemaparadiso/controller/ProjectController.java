@@ -21,7 +21,6 @@ import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Story;
-import com.cinema.cinemaparadiso.model.Rel_projects_story;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProducerService;
@@ -46,6 +45,9 @@ public class ProjectController {
 
 	@Autowired
 	private ArtistService artistService;
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private ProducerService producerService;
@@ -87,7 +89,7 @@ public class ProjectController {
 				).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
-				.filter(a -> a.getPro()
+				.filter(a -> !a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
@@ -162,6 +164,7 @@ public class ProjectController {
 		model.addAttribute("producers",producers);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
 		model.addAttribute("isAdminProject", isAdminProject);
+		model.addAttribute("isAdmin", userService.isAdmin());
 		model.addAttribute("story", story);
 		Artist artist;
     	try {
@@ -216,6 +219,18 @@ public class ProjectController {
 		return "redirect:/projects/list";
 	}
 	
+	@GetMapping("/deleteAll/{projectId}")
+	public String deleteAllProject(@PathVariable("projectId") Integer projectId) {
+		try {
+			projectService.deleteAllRelation(projectId);
+			projectService.deleteProject(projectId);
+			log.info("Project completely Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting completely Project", e);
+		}
+		return "redirect:/projects/list";
+	}
+	
 	@GetMapping("/create")
 	public String initFormCreateProject(Model model) {
 		Integer artistId = artistService.getPrincipal().getId();
@@ -254,7 +269,7 @@ public class ProjectController {
 	public String initFormUpdateProject(Model model, @PathVariable("projectId") Integer projectId) {
 		Project project = projectService.findProjectById(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
-		if(!projectService.isAdminProject(projectId)) {
+		if(!projectService.isAdminProject(projectId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		model.addAttribute("buttonCreate",false);
@@ -268,6 +283,9 @@ public class ProjectController {
 	public String updateProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model, @PathVariable("projectId") Integer projectId) {
 		project.setId(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
+		if(!projectService.isAdminProject(projectId) && !userService.isAdmin()) {
+			return "error/error-403";
+		}
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
 		model.addAttribute("buttonCreate",false);

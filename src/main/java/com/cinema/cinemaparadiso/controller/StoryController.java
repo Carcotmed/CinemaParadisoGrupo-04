@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
-import com.cinema.cinemaparadiso.model.Rel_projects_story;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;
@@ -30,6 +29,7 @@ import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
 import com.cinema.cinemaparadiso.service.StoryService;
+import com.cinema.cinemaparadiso.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,6 +45,9 @@ public class StoryController {
 	private ArtistService artistService;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	private MessageService messageService;
 
 	@Autowired
@@ -53,19 +56,6 @@ public class StoryController {
 	@Autowired
 	private Rel_projects_storyService rel_projects_storyService;
 
-	@GetMapping("/update/{storyId}")
-	public String initFormUpdateStory(Model model, @PathVariable("storyId") Integer storyId) {
-		if(!storyService.isMyWriter(storyId)) {
-			return "error/error-403";
-		}
-		Story story = storyService.findStoryById(storyId);
-		List<Genre> genres = Arrays.asList(Genre.values());
-		model.addAttribute("storyId", storyId);
-		model.addAttribute("story", story);
-		model.addAttribute("genres", genres);
-		return "stories/updateStory";
-	}
-	
 	@Transactional
 	@GetMapping("/request/{storyId}/{projectId}")
 	public String joinProject(Model model, @PathVariable("projectId") int projectId, @PathVariable("storyId") int storyId) {
@@ -94,11 +84,25 @@ public class StoryController {
 		messageService.requestToEnterProjectStory(projectId, storyId);
 		return "redirect:/messages/listSend";
 	}
+	
+
+	@GetMapping("/update/{storyId}")
+	public String initFormUpdateStory(Model model, @PathVariable("storyId") Integer storyId) {
+		if(!storyService.isMyWriter(storyId) && !userService.isAdmin()) {
+			return "error/error-403";
+		}
+		Story story = storyService.findStoryById(storyId);
+		List<Genre> genres = Arrays.asList(Genre.values());
+		model.addAttribute("storyId", storyId);
+		model.addAttribute("story", story);
+		model.addAttribute("genres", genres);
+		return "stories/updateStory";
+	}
 
 	@PostMapping("/update/{storyId}")
 	public String updateStory(@ModelAttribute("story") @Valid Story story,BindingResult result, Model model, @PathVariable("storyId") Integer storyId) {
 		story.setId(storyId);
-		if(!storyService.isMyWriter(storyId)) {
+		if(!storyService.isMyWriter(storyId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		List<Genre> genres = Arrays.asList(Genre.values());
@@ -178,12 +182,13 @@ public class StoryController {
 	public String showStory(@PathVariable("storyId") int storyId, Model model) {
 		Story story = storyService.findStoryById(storyId);
 		Writer myWriter = storyService.findMyWriter(storyId);
-		Boolean showButton = storyService.isMyWriter(storyId);
+		Boolean showButton = storyService.isMyWriter(storyId) || userService.isAdmin();
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
 		model.addAttribute("myWriter",myWriter);
 		model.addAttribute("writerUsername", myWriter.getUser().getUsername());
 		model.addAttribute("showButton",showButton);
+		model.addAttribute("isAdmin",userService.isAdmin());
 		try {
 			Artist artist = artistService.getPrincipal();
 			List<Project> projects = projectService.findProjectByAdminUsername(artist.getUser().getUsername());
@@ -195,7 +200,7 @@ public class StoryController {
 	
 	@GetMapping("/delete/{storyId}")
 	public String deleteStory(@PathVariable("storyId") Integer storyId) {
-		if(!storyService.isMyWriter(storyId)) {
+		if(!storyService.isMyWriter(storyId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		try {

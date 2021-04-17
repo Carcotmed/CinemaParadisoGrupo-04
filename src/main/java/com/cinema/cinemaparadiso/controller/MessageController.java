@@ -3,7 +3,6 @@ package com.cinema.cinemaparadiso.controller;
 import java.time.Instant;
 import java.util.Date;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -20,9 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Message;
-import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.UserService;
 
@@ -38,9 +35,7 @@ public class MessageController {
 
     @Autowired
     private UserService userService;
-    
-    @Autowired
-    private ArtistService artistService;
+
 
     @GetMapping("/listSend")
     public String listSend(Model model){
@@ -161,13 +156,12 @@ public class MessageController {
     	}catch (IllegalArgumentException e) {
     		model.addAttribute("Estado", "Error al iniciar la entidad");
 		}
-        log.info("Initializing Messages to..."+userName.toString());
+        log.info("Initializing Messages to..."+userName);
         return "messages/createMessageForm";
     }
 
     @PostMapping("/create/{userName}")
     public String create(@PathVariable("userName") String userName, @Validated @ModelAttribute("message") Message message, BindingResult result, Model model){
-    	System.out.println(result);
 		if(!result.hasErrors()) {
     		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
     		message.setEmisor(userService.getUserByUsername(emisor_username));

@@ -28,18 +28,21 @@
 				</div>
 			</div>
 			<c:if test="${!userDisabled}">
-			<c:if test="${showButton == false}">
+			<c:if test="${showButton == false || isAdmin}">
 				<button class="btn rounded-pill" onClick="location.href='/messages/create/${producerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 			</c:if>
 			<c:if test="${showButton == true}">
-					<button class="btn rounded-pill" onClick="location.href='/producers/update/${producer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
-					<button class="btn rounded-pill" onClick="location.href='/producers/delete/${producer.id}'" style="color:white;height: fit-content;background-color: #af3248">Desactivar perfil</button>
+					<button class="btn rounded-pill" onClick="location.href='/producers/update/${producer.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar perfil</button>
+					<button class="btn rounded-pill" onClick="location.href='/producers/delete/${producer.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Desactivar perfil</button>
 			</c:if>
 			</c:if>
 	<c:if test="${userDisabled}">
 		<div class="py-3 mx-3" style="width:40%">
 		<h2>Usuario desactivado</h2>
 		</div>
+			<c:if test="${isAdmin}">
+				<button class="btn rounded-pill" style="background-color: ${isAdmin?'#8a4380':'#af3248'}; color: white;" onclick="location.href='/producers/activate/${producer.id}'">Activar productora</button>
+			</c:if>
 	</c:if>
 		</div>	
 	</div>

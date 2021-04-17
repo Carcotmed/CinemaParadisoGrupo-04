@@ -10,7 +10,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -67,6 +66,9 @@ public class Project extends BaseEntity {
 	
 	@Column(name="my_admin")
 	private String myAdmin;
+	
+	@Column(name="isSponsored", columnDefinition="bool default false")
+	private Boolean isSponsored;
 	
  
 }

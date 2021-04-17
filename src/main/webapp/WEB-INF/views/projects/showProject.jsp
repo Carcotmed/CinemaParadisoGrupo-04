@@ -32,16 +32,79 @@
 					<h2>${project.title}</h2>
 				</div>
 			</div>
-			<c:if test="${ !noPuede}">
-				<c:if test="${ (!pertenece) && (!requestexist) }">
+			<c:if test="${ !noPuede || isAdmin}">
+				<c:if test="${ (!pertenece) && (!requestexist) && !isAdmin }">
 					<button class="btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
 				</c:if>
 			
 			<c:if test="${ isAdminProject == true }">
-				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+				
+				<c:if test="${ !project.isSponsored }">
+				
+					<!-- BOTON PAYPAL ANUNCIAR -->
+					
+					<script
+					src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2&currency=EUR"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+					</script>
+					
+					<script>
+				    function post(path, params, method='post') {
+				    	  // The rest of this code assumes you are not using a library.
+				    	  // It can be made less verbose if you use one.
+				    	  const form = document.createElement('form');
+				    	  form.method = method;
+				    	  form.action = path;
+				    	  for (const key in params) {
+				    	    if (params.hasOwnProperty(key)) {
+				    	      const hiddenField = document.createElement('input');
+				    	      hiddenField.type = 'hidden';
+				    	      hiddenField.name = key;
+				    	      hiddenField.value = params[key];
+				    	      form.appendChild(hiddenField);
+				    	    }
+				    	  }
+				    	  document.body.appendChild(form);
+				    	  form.submit();
+				    	}
+					
+					</script>
+					
+					<script>
+						paypal.Buttons({
+						    createOrder: function(data, actions) {
+						    	return actions.order.create({
+							        purchase_units: [{
+							          amount: {
+							        	currency: "EUR",
+							            value: "30"
+							          },
+							        }]
+							      });
+						    },
+						    onApprove: function(data, actions) {
+						      // This function captures the funds from the transaction.
+						      return actions.order.capture().then(function(details) {
+						    	  post("/pro/confirmedAd", {projectID:${project.id}, paymentDetails: details, ${_csrf.parameterName}:"${_csrf.token}"})
+						      });
+						    }
+						  }).render('#paypal-button-ad');
+						  //This function displays Smart Payment Buttons on your web page.
+					  </script>
+					
+					<div id="paypal-button-ad"></div>
+					
+					<!-- Fin paypal -->
+				
+				</c:if>
+			
+			<c:if test="${ isAdminProject == true  || isAdmin}">
+				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar</button>
 			</c:if>
 			<c:if test="${pertenece}">
 				<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill"  onClick="location.href='/projects/delete/${project.id}'">Salir del proyecto</button>
+			</c:if>
+			<c:if test="${isAdmin || isAdminProject}">
+				<button style="color:white;height: fit-content;background-color:${isAdmin?'#8a4380':'#af3248'}" class="btn rounded-pill"  onClick="location.href='/projects/deleteAll/${project.id}'">Eliminar proyecto</button>
 			</c:if>
 			</c:if>
 			
@@ -58,7 +121,7 @@
 	<!-- Info general Proyecto -->
 	<div>
 		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
-			<h3 style="margin:0">Ficha técnica</h3>
+			<h3 style="margin:0">Ficha tÃ©cnica</h3>
 		</div>
 		
 		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
@@ -66,13 +129,13 @@
 			<div style="width:150%">
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Título</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">TÃ­tulo</h5>
 					</div>
 					<p style="margin-left: 3%">${project.title}</p>
 				</div>
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Género</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">GÃ©nero</h5>
 					</div>
 					<p style="margin-left: 3%">${project.genre}</p>
 				</div style="margin:1% 0">

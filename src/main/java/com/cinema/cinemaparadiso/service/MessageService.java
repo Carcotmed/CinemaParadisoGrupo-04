@@ -120,7 +120,7 @@ public class MessageService {
     	message.setReceptor(adminProjectUser);
     	message.setEmisor(requestProducerUser);
     	message.setMessageDate(Date.from(Instant.now()));
-    	message.setIsRequest(projectId);;
+    	message.setIsRequest(projectId);
     	
     	String receptor = message.getReceptor().getUsername();
     	String emisor = message.getEmisor().getUsername();
@@ -199,7 +199,6 @@ public class MessageService {
 			relacion.setProject_id(projectId);
 			relacion.setStory_id(story.getId());
 			rel_projects_storyService.save(relacion);
-			System.out.println("before save project");
 			projectService.saveProject(project);
 
 			Message message2 = new Message();
@@ -212,9 +211,7 @@ public class MessageService {
 			message2.setMessageDate(Date.from(Instant.now()));
 			message2.setIsRequest(null);
 
-			System.out.println("before save message");
 			create(message2);
-			System.out.println("after save message");
 
 		}
 	}

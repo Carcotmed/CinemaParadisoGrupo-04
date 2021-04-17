@@ -4,16 +4,12 @@ package com.cinema.cinemaparadiso.service;
 
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 import com.cinema.cinemaparadiso.model.Rel_projects_story;
-import com.cinema.cinemaparadiso.repository.Rel_projects_artistsRepository;
 import com.cinema.cinemaparadiso.repository.Rel_projects_storyRepository;
 
 @Service
@@ -71,6 +67,16 @@ public class Rel_projects_storyService {
 	@Transactional
 	public Long count(){
 		return this.rel_projects_storyRepository.count();
+	}
+
+
+	public void deleteByProjectId(Integer projectId) {
+		rel_projects_storyRepository.deleteByProjectId(projectId);
+	}
+
+
+	public void deleteByStoryId(Integer storyId) {
+		rel_projects_storyRepository.deleteByStoryId(storyId);
 	}
 
 
