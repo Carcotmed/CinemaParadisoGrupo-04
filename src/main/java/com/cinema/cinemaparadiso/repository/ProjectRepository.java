@@ -38,4 +38,9 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	public void makeProjectSponsored(Integer projectID);
 
 	
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Project p WHERE p.id= :projectId")
+	public void delete(Integer projectId);
+	
 }

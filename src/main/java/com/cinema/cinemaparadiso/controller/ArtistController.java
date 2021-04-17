@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Role;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.UserService;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +35,9 @@ public class ArtistController {
 
 	@Autowired
 	private ArtistService artistService;
+
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -84,7 +89,7 @@ public class ArtistController {
 	@GetMapping(value = { "/show/{artistId}" })
 	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
 		Artist artist = artistService.findArtistById(artistId);
-		Boolean showButton = artistService.isActualArtist(artistId);
+		Boolean showButton = artistService.isActualArtist(artistId) || userService.isAdmin();
 		List<Project> myProjects = artistService.findMyProjects(artistId);
 		Integer projectsLeft = artistService.leftProjects(artistId);
 		Boolean disabled = !artistService.findMyUser(artistId).isEnabled();
@@ -95,6 +100,7 @@ public class ArtistController {
 		model.addAttribute("artist", artist);
 		model.addAttribute("showButton",showButton);
 		model.addAttribute("userDisabled",disabled);
+		model.addAttribute("isAdmin",userService.isAdmin());
 		return "artists/showArtist";
 	}	
 
@@ -134,7 +140,7 @@ public class ArtistController {
 
 	@GetMapping("/update/{artistId}")
 	public String initFormUpdateArtist(Model model, @PathVariable("artistId") Integer artistId) {
-		if(!artistService.isActualArtist(artistId)) {
+		if(!artistService.isActualArtist(artistId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		Artist artist = artistService.findArtistById(artistId);
@@ -149,7 +155,7 @@ public class ArtistController {
 	@PostMapping("/update/{artistId}")
 	public String updateArtist(@ModelAttribute("artist") @Valid Artist artist, BindingResult result,Model model, @PathVariable("artistId") Integer artistId) {
 		artist.setId(artistId);
-		if(!artistService.isActualArtist(artistId)) {
+		if(!artistService.isActualArtist(artistId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		List<Role> roles = Arrays.asList(Role.values());
@@ -163,15 +169,31 @@ public class ArtistController {
 	}
 	@GetMapping("/delete/{artistId}")
 	public String deleteArtist(@PathVariable("artistId") Integer artistId) {
-		if(!artistService.isActualArtist(artistId)) {
+		if(!artistService.isActualArtist(artistId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		try {
 			artistService.deleteArtist(artistId);
-			SecurityContextHolder.clearContext();
+			if(!userService.isAdmin())
+				SecurityContextHolder.clearContext();
 			log.info("Artist Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Artist", e);
+		}
+		return "redirect:/";
+	}
+	@GetMapping("/activate/{artistId}")
+	public String activateArtist(@PathVariable("artistId") Integer artistId) {
+		if(!userService.isAdmin()) {
+			return "error/error-403";
+		}
+		try {
+			artistService.activateArtist(artistId);
+			if(!userService.isAdmin())
+				SecurityContextHolder.clearContext();
+			log.info("Artist Activated Successfully");
+		} catch (Exception e) {
+			log.error("Error Activating Artist", e);
 		}
 		return "redirect:/";
 	}

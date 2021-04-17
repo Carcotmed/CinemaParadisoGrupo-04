@@ -41,7 +41,5 @@ public class Story extends BaseEntity {
 	public String toString() {
 		return "Story [title=" + title + ", body=" + body + ", genre=" + genre + "]";
 	}
-	
-	
 
 }

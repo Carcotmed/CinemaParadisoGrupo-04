@@ -58,8 +58,7 @@
 					<h2>${story.title}</h2>
 				</div>
 			</div>
-			<c:choose>
-				<c:when test="${showButton == false}">
+				<c:if test="${showButton == false}">
 					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
 					<button class="btn rounded-pill" id="levantaModal" style="color:white;height: fit-content;background-color: #af3248">Asociar proyecto</button>
 				</c:when>
@@ -120,10 +119,16 @@
 				
 				<!-- END PAYPAL -->
 				</c:if>
-				
-					<button class="btn rounded-pill" onClick="location.href='/stories/delete/${story.id}'" style="color:white;height: fit-content;background-color: #af3248">Eliminar</button>
 				</c:when>
 			</c:choose>
+				</c:if>
+				<c:if test="${isAdmin}">
+					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar con el escritor</button>
+				</c:if>
+			<c:if test="${showButton == true}">
+				<button class="btn rounded-pill" onClick="location.href='/stories/update/${story.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar</button>
+				<button class="btn rounded-pill" onClick="location.href='/stories/delete/${story.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Eliminar</button>
+			</c:if>
 	</div>
 	<!-- Info general Historia -->
 	<div>

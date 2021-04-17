@@ -168,6 +168,13 @@ public class ArtistService {
 		User user = findMyUser(artistId);
 		user.setEnabled(false);
 	}
+	
+	@Transactional
+	public void activateArtist(Integer artistId) {
+
+		User user = findMyUser(artistId);
+		user.setEnabled(true);
+	}
 
 	@Transactional
 	public Integer leftProjects(Integer artistId) {

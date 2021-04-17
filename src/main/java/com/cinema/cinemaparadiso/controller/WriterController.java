@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
+import com.cinema.cinemaparadiso.service.UserService;
 import com.cinema.cinemaparadiso.service.WriterService;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
@@ -31,6 +32,9 @@ public class WriterController {
 
 	@Autowired
 	private WriterService writerService;
+
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -61,12 +65,11 @@ public class WriterController {
 	public String showWriter(@PathVariable("writerId") int writerId, Model model) {
 		Writer writer = writerService.findWriterById(writerId);
 		List<Story> stories = writerService.findMyStories(writerId);
-		Boolean sameWriter = false;
+		Boolean sameWriter = userService.isAdmin();
 		try {
 			sameWriter = writerService.getPrincipal().getId().equals(writerId);
 				}
-		catch(Exception e) {
-		}
+		catch(Exception e) {}
 		Boolean disabled = !writerService.findMyUser(writerId).isEnabled();
 		
 		model.addAttribute("writerId", writerId);
@@ -75,6 +78,7 @@ public class WriterController {
 		model.addAttribute("sameWriter",sameWriter);
 		model.addAttribute("writerUsername", writer.getUser().getUsername());
 		model.addAttribute("userDisabled",disabled);
+		model.addAttribute("isAdmin",userService.isAdmin());
 
 		return "writers/showWriter";
 	}
@@ -113,7 +117,7 @@ public class WriterController {
     
     @GetMapping("/update/{writerId}")
 	public String initFormUpdateWriter(Model model, @PathVariable("writerId") Integer writerId) {
-		if(!writerService.isActualWriter(writerId)) {
+		if(!writerService.isActualWriter(writerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		Writer writer = writerService.findWriterById(writerId);
@@ -126,7 +130,7 @@ public class WriterController {
 	public String updateWriter(@ModelAttribute("writer") @Valid Writer writer,BindingResult result, Model model, @PathVariable("writerId") Integer writerId) {
 		writer.setId(writerId);
 		
-		if(!writerService.isActualWriter(writerId)) {
+		if(!writerService.isActualWriter(writerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		if(!result.hasErrors()) {
@@ -141,15 +145,31 @@ public class WriterController {
 
 	@GetMapping("/delete/{writerId}")
 	public String deleteWriter(@PathVariable("writerId") Integer writerId) {
-		if(!writerService.isActualWriter(writerId)) {
+		if(!writerService.isActualWriter(writerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		try {
 			writerService.deleteWriter(writerId);
-			SecurityContextHolder.clearContext();
+			if(!userService.isAdmin())
+				SecurityContextHolder.clearContext();
 			log.info("Writer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Writer", e);
+		}
+		return "redirect:/";
+	}
+	@GetMapping("/activate/{writerId}")
+	public String activateWriter(@PathVariable("writerId") Integer writerId) {
+		if(!userService.isAdmin()) {
+			return "error/error-403";
+		}
+		try {
+			writerService.activateWriter(writerId);
+			if(!userService.isAdmin())
+				SecurityContextHolder.clearContext();
+			log.info("Writer Activated Successfully");
+		} catch (Exception e) {
+			log.error("Error Activating Writer", e);
 		}
 		return "redirect:/";
 	}

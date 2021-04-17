@@ -112,6 +112,13 @@ public class ProducerService {
 		user.setEnabled(false);
 	}
 	
+	@Transactional
+	public void activateProducer(Integer producerId) {
+
+		User user = findMyUser(producerId);
+		user.setEnabled(true);
+	}
+	
 	@Transactional(readOnly = true)
 	public Producer findProducerByUsername(String username) throws DataAccessException {
 		return producerRepository.findByUserUsername(username).get();
