@@ -26,8 +26,7 @@ public class ProjectService {
 
 	@Autowired
 	private ArtistService artistService;
-	@Autowired
-	private UserService userService;
+	
 	@Autowired
 	private ProducerService producerService;
 	
