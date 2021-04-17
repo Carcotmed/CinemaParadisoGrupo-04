@@ -77,7 +77,7 @@
 							<div class="d-flex flex-wrap ">
 								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="description">Resumen</form:label>
 							</div>
-							<form:textarea class="form-control" value="${artist.description}" placeholder="Descripción" style="margin-left: 3%;width:60%" type="text" path="description"></form:textarea>
+							<form:textarea class="form-control" value="${artist.description}" placeholder="Descripcion" style="margin-left: 3%;width:60%" type="text" path="description"></form:textarea>
 						</div>
 						<form:errors style="color:red" path="description"/>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">

@@ -31,14 +31,14 @@
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
 			<form:form class="my-5" action="list" method="POST" modelAttribute="projectsFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="title">Título:</form:label>
-					<form:input class="form-control" style="width:60%" type="text" placeholder="Título" path="title" />
+					<form:label class="form-control-label" path="title">T&iacutetulo:</form:label>
+					<form:input class="form-control" style="width:60%" type="text" placeholder="Titulo" path="title" />
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="genre">Género:</form:label>
+					<form:label class="form-control-label" path="genre">G&eacutenero:</form:label>
 					<form:select class="form-control" style="width:60%" path="genre">
-						<form:option value="" selected="true">Selecciona un género</form:option>
+						<form:option value="" selected="true">Selecciona un g&eacutenero</form:option>
 						<c:forEach items="${genres}" var="genre">
 							<form:option value="${genre}">${genre}</form:option>
 						</c:forEach>
