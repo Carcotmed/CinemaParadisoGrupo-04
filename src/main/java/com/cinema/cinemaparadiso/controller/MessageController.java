@@ -68,10 +68,16 @@ public class MessageController {
 	        Message message = messageService.findById(messageId);
 	        
 	        String usernameActual = userService.getPrincipal().getUsername();
+	        
 	        Boolean isRequest = message.getIsRequest()!=null && message.getReceptor().getUsername().equals(usernameActual);
 	        Boolean isArtist = this.userService.findArtistByUserUsername(message.getEmisor().getUsername()).isPresent();
 	        Boolean isProducer = this.userService.findProducerByUserUsername(message.getEmisor().getUsername()).isPresent();
 	        Boolean isWriter =this.userService.findWriterByUserUsername(message.getReceptor().getUsername()).isPresent();
+	        Boolean messageForMe = message.getEmisor().getUsername().equals(usernameActual) || message.getReceptor().getUsername().equals(usernameActual);
+	        if(!messageForMe) {
+	        	return "error/error-403";
+	        }
+	        
 	        model.addAttribute("isRequest",isRequest);
 	        model.addAttribute("isWriter",isWriter);
 	        model.addAttribute("isArtist",isArtist);
