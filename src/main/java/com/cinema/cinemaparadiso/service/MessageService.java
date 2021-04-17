@@ -120,7 +120,7 @@ public class MessageService {
     	message.setReceptor(adminProjectUser);
     	message.setEmisor(requestProducerUser);
     	message.setMessageDate(Date.from(Instant.now()));
-    	message.setIsRequest(projectId);;
+    	message.setIsRequest(projectId);
     	
     	String receptor = message.getReceptor().getUsername();
     	String emisor = message.getEmisor().getUsername();
