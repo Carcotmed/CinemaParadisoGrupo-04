@@ -36,22 +36,23 @@
 				</div>
 			</div>
 		<c:if test="${!userDisabled}">
-			<c:choose>
-				<c:when test="${showButton == false}">
-					<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
-				</c:when>
-				<c:when test="${showButton == true}">
-					<button class="btn rounded-pill" onClick="location.href='/artists/update/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
-				</c:when>
-			</c:choose>
-			    <c:if test="${showButton == true}">
-					<button class="btn rounded-pill" onClick="location.href='/artists/delete/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Desactivar perfil</button>
-				</c:if>
+			<c:if test="${showButton == false || isAdmin}">
+				<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+			</c:if>
+			<c:if test="${showButton == true}">
+				<button class="btn rounded-pill" onClick="location.href='/artists/update/${artist.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar perfil</button>
+			</c:if>
+		    <c:if test="${showButton == true}">
+				<button class="btn rounded-pill" onClick="location.href='/artists/delete/${artist.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Desactivar perfil</button>
+			</c:if>
 		</c:if>
 		<c:if test="${userDisabled}">
 			<div class="py-3 mx-3" style="width:40%">
 			<h2>Usuario desactivado</h2>
 			</div>
+			<c:if test="${isAdmin}">
+				<button class="btn rounded-pill" style="background-color: ${isAdmin?'#8a4380':'#af3248'}; color: white;" onclick="location.href='/artists/activate/${artist.id}'">Activar artista</button>
+			</c:if>
 		</c:if>
 		</div>
 
@@ -73,7 +74,7 @@
 								<c:when test="${projectsLeft == null || projectsLeft == 0}">
 									<span style="text-align: center;">¡Hazte PRO para poder seguir creando proyectos!</span>
 								</c:when>
-								<c:when test="${projectsLeft != null}">
+								<c:when test="${projectsLeft != null && !isAdmin}">
 									<span style="text-align: center;">Proyectos disponibles: ${projectsLeft}</span>
 									<button class="btn rounded-circle" style="background-color:#af3248" onClick="location.href='/projects/create'"><strong style="color:white">+</strong></button>
 								</c:when>

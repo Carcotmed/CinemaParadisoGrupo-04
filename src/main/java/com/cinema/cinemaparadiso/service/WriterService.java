@@ -40,8 +40,7 @@ public class WriterService {
 	public List<Writer> list() {
 		List<Writer> writers = new ArrayList<>();
 		writerRepository.findAll().forEach(w -> writers.add(w));
-		List<Writer> writersEnabled = writers.stream().filter(w->w.getUser().isEnabled()).collect(Collectors.toList());
-		return writersEnabled;
+		return writers;
 	}
 
 	@Transactional(readOnly = true)
@@ -129,6 +128,13 @@ public class WriterService {
 
 		User user = findMyUser(writerId);
 		user.setEnabled(false);
+	}
+	
+	@Transactional
+	public void activateWriter(Integer writerId) {
+
+		User user = findMyUser(writerId);
+		user.setEnabled(true);
 	}
 
 }

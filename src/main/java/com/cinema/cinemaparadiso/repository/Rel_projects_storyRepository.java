@@ -3,8 +3,11 @@ package com.cinema.cinemaparadiso.repository;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Rel_projects_story;
 
@@ -17,5 +20,15 @@ import com.cinema.cinemaparadiso.model.Rel_projects_story;
 		
 		@Query("SELECT rel_projects_story FROM Rel_projects_story rel_projects_story WHERE rel_projects_story.project_id = ?1")
 		public List<Rel_projects_story> findRelacionesByProject(Integer projectId) throws DataAccessException;
+
+		@Transactional
+		@Modifying
+		@Query("DELETE FROM Rel_projects_story rel where rel.project_id= :projectId")
+		public void deleteByProjectId(@Param("projectId") Integer projectId);
+
+		@Transactional
+		@Modifying
+		@Query("DELETE FROM Rel_projects_story rel where rel.story_id= :storyId")
+		public void deleteByStoryId(@Param("storyId") Integer storyId);
 
 }

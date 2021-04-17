@@ -30,20 +30,21 @@
 				</div>
 			</div>
 	<c:if test="${!userDisabled}">
-			<c:choose>
-				<c:when test="${sameWriter == false}">
-					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
-				</c:when>
-				<c:when test="${sameWriter == true}">
-					<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
-					<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Desactivar perfil</button>
-				</c:when>
-			</c:choose>
+		<c:if test="${sameWriter == false && !isAdmin}">
+			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+		</c:if>
+		<c:if test="${sameWriter == true || isAdmin}">
+			<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color: white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar perfil</button>
+			<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Desactivar perfil</button>
+		</c:if>
 	</c:if>
 	<c:if test="${userDisabled}">
-	<div class="py-3 mx-3" style="width:40%">
-		<h2>Usuario desactivado</h2>
-	</div>
+		<div class="py-3 mx-3" style="width:40%">
+			<h2>Usuario desactivado</h2>
+		</div>
+		<c:if test="${isAdmin}">
+			<button class="btn rounded-pill" style="background-color: ${isAdmin?'#8a4380':'#af3248'}; color: white;" onclick="location.href='/writers/activate/${writer.id}'">Activar escritor</button>
+		</c:if>
 	</c:if>
 	</div>
 	<!-- Info general Historia -->
@@ -52,7 +53,7 @@
 		<div class="d-flex justify-content-between w-100" style="background-color:#4c4c4c; padding:1%">
 			<h3 style="margin:0">Datos</h3>
 			<c:choose>
-				<c:when test="${sameWriter == true}">
+				<c:when test="${sameWriter == true && !isAdmin}">
 					<button class="btn rounded-pill" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
 				</c:when>
 			</c:choose>
