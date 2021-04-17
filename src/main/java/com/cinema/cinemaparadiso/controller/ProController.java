@@ -70,7 +70,7 @@ public class ProController {
 		//CON EL CSRF NO DEBERIA HABER FORMA DE COLARSE AQUI CON URL
 		Map paymentDetails = (Map) model.getAttribute("paymentDetails");
 						
-		projectService.makeProjectPro(projectID);
+		projectService.makeProjectSponsored(projectID);
 		
 		return "redirect:/projects/show/"+projectID;
 	}

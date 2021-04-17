@@ -162,9 +162,9 @@ public class ProjectService {
 	}
 
 
-	public void makeProjectPro(Integer projectID) {
-		projectRepository.makeProjectPro(projectID);
-		
+
+	public void makeProjectSponsored(Integer projectID) {
+		projectRepository.makeProjectSponsored(projectID);		
 	}
 
 

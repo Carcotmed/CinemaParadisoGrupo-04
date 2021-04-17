@@ -31,7 +31,8 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 
 	@Transactional
 	@Modifying
-	@Query("UPDATE Project project SET project.pro = TRUE WHERE project.id = :projectID")
-	public void makeProjectPro(Integer projectID);
+	@Query("UPDATE Project project SET project.isSponsored = TRUE WHERE project.id = :projectID")
+	public void makeProjectSponsored(Integer projectID);
+
 	
 }
