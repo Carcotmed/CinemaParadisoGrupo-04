@@ -85,7 +85,7 @@ public class ProjectController {
 				).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
-				.filter(a -> a.getPro()
+				.filter(a -> !a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
