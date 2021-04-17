@@ -156,7 +156,7 @@ public class MessageController {
     	}catch (IllegalArgumentException e) {
     		model.addAttribute("Estado", "Error al iniciar la entidad");
 		}
-        log.info("Initializing Messages to..."+userName.toString());
+        log.info("Initializing Messages to..."+userName);
         return "messages/createMessageForm";
     }
 

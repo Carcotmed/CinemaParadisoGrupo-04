@@ -3,15 +3,11 @@ package com.cinema.cinemaparadiso.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.mockito.BDDMockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 //import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-
-import com.cinema.cinemaparadiso.service.MessageService;
-import com.cinema.cinemaparadiso.service.UserService;
 
 @WebMvcTest(controllers = MessageController.class,
 excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, 
@@ -21,12 +17,12 @@ public class MessageControllerTests {
     @Autowired
     MockMvc mockMvc;
 
-
-    @MockBean
-    private MessageService messageService;
-    
-    @MockBean
-    private UserService userService;
+//
+//    @MockBean
+//    private MessageService messageService;
+//    
+//    @MockBean
+//    private UserService userService;
 
 //    @BeforeEach
 //	void setup() {
