@@ -1,19 +1,6 @@
 package com.cinema.cinemaparadiso.service;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.NoSuchElementException;
-
-import com.cinema.cinemaparadiso.model.Message;
-
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,11 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MessageServiceTests {
 	
-	@Autowired
-	private MessageService messageService;
-	
-	@Autowired
-	private UserService userService;
+
 /*
     @Test
 	public void shouldFindMessageById() {

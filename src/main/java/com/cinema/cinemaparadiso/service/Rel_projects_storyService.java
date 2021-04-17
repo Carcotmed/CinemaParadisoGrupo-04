@@ -4,16 +4,12 @@ package com.cinema.cinemaparadiso.service;
 
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 import com.cinema.cinemaparadiso.model.Rel_projects_story;
-import com.cinema.cinemaparadiso.repository.Rel_projects_artistsRepository;
 import com.cinema.cinemaparadiso.repository.Rel_projects_storyRepository;
 
 @Service
