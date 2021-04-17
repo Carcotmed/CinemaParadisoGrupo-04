@@ -21,6 +21,9 @@
 		<h2 style="color:white">Iniciar sesi&oacuten</h2>
 		
 		<form:form style="width:80%;" action="/login" method="POST" modelAttribute="user">
+			<div style="border-radios:20px;background-color:#af3248;opacity:0.7" class="d-flex justify-content align-items-center">
+				<p style="color:white">Usuario o contrase&ntildea incorrectos</p>
+			</div>
 			<div  style="margin-top:5%">
 				<form:label class="form-control-label" style="color:white" path="username">Nombre de usuario</form:label>
 				<form:input class="form-control" type="text" path="username" name="username" placeholder="Nombre usuario" />

@@ -18,30 +18,14 @@
 <body style="margin-top:20vh;background-color:#2b2b2b" class="d-flex justify-content-center align-items-center">
 	<div  class="d-flex flex-column justify-content-center align-items-center" style="width:20%">
 		
-		<h2 style="color:white">Iniciar sesi&oacuten</h2>
+		<h2 style="color:white">Cerrar sesi&oacuten</h2>
+		<div class="d-flex justify-content-between align-items-center">
+			<button onClick="location.href='/'" style="color:white; background-color:#af3248" class="btn rounded-pill">Volver</button>
+			<button onClick="location.href='/'" style="color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesi&oacuten</button>
+		</div>
 		
-		<form:form style="width:80%;" action="/login" method="POST" modelAttribute="user">
-			<div  style="margin-top:5%">
-				<form:label class="form-control-label" style="color:white" path="username">Nombre de usuario</form:label>
-				<form:input class="form-control" type="text" path="username" name="username" placeholder="Nombre usuario" />
-			</div>
-			
-			<div  style="margin-top:5%">
-				<form:label class="form-control-label" style="color:white" path="password">Contrase&ntildea</form:label>
-				<form:input class="form-control" type="password"  path="password" name="password" placeholder="Contraseña" />
-			</div>
-			
-			<div class="d-flex justify-content-center" style="margin-top:5%">
-				<form:button class="btn rounded-pill" style="color:white;background-color: #af3248">Listo</form:button>
-			</div>
-		</form:form>		
+		
 	</div>
-	<button onClick="location.href='/'" style="color:white; background-color:#af3248" class="btn rounded-pill">Volver</button>
-	
-		
-	
-	
-	
 	
 </body>
 </html>

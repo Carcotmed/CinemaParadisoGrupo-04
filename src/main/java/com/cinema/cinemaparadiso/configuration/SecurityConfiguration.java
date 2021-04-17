@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/miPerfil").authenticated()
 				.antMatchers("/users/create").permitAll()
+				.antMatchers("/logout").authenticated()
 				//PRODUCER
 				.antMatchers("/producers/list").permitAll()
 				.antMatchers("/producers/create").permitAll()
@@ -84,13 +85,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/joinArtist/{projectId}").authenticated()
 				.antMatchers("/projects/joinProducer/{projectId}").authenticated()
 				.anyRequest().denyAll()
+
 				.and()
 				 	.formLogin()
 				 	.loginPage("/login")
 				 	.permitAll()
 				 	.failureUrl("/login-error")
+				 	.permitAll()
 				.and()
 					.logout()
+					.logoutUrl("/logout")
 						.logoutSuccessUrl("/"); 
                 // Configuración para que funcione la consola de administración 
                 // de la BD H2 (deshabilitar las cabeceras de protección contra
