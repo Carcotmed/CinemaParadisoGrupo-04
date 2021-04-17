@@ -19,6 +19,9 @@
     	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
     
     <div class="container mt-4">
+    
+    
+    
         <table class="table">
             <thead>
                 <tr>
@@ -65,7 +68,7 @@
                 
             </tbody>
         </table>
-
+	
      	<button class="btn btn-danger" style="background-color:#af3248" onclick="location.href = '/messages/listReceived';">Volver</button>    		
      		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
     
