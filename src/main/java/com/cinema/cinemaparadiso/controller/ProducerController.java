@@ -1,6 +1,5 @@
 package com.cinema.cinemaparadiso.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
-import com.cinema.cinemaparadiso.service.UserService;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +30,6 @@ public class ProducerController {
     @Autowired
     private ProducerService producerService;
 
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/list")
     public String list(Model model){

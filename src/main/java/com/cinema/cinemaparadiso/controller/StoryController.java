@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
-import com.cinema.cinemaparadiso.model.Rel_projects_story;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;

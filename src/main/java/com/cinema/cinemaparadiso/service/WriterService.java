@@ -1,11 +1,9 @@
 package com.cinema.cinemaparadiso.service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -13,13 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Authorities;
-import com.cinema.cinemaparadiso.model.Message;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
-import com.cinema.cinemaparadiso.repository.MessageRepository;
-import com.cinema.cinemaparadiso.repository.UserRepository;
 import com.cinema.cinemaparadiso.repository.WriterRepository;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
@@ -33,20 +28,9 @@ public class WriterService {
 	private AuthoritiesRepository authoritiesRepository;
 	
 	@Autowired
-	private MessageRepository messageRepository;
-
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private StoryService storyService;
 
-	@Autowired
-	private MessageService messageService;
 
 	@Autowired
 	public WriterService(WriterRepository writerRepository) {

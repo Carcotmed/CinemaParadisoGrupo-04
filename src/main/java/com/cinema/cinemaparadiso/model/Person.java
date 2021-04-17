@@ -3,7 +3,6 @@ package com.cinema.cinemaparadiso.model;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;

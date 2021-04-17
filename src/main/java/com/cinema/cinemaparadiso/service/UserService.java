@@ -16,7 +16,6 @@ import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
-import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.UserRepository;
 
 @Service
@@ -24,8 +23,7 @@ public class UserService {
     
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private AuthoritiesRepository authoritiesRepository;
+
 
     
 
