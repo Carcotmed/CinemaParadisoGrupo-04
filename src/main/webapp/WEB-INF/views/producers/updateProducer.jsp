@@ -84,7 +84,7 @@
 							style="color:white;background-color: #af3248">Guardar</form:button>
 					</div>
 				</div>
-			<a href="/users/select" style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill">Volver</a>
+			<a href="/producers/show/${producer.id}" style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill">Volver</a>
 			</form:form>
 		</div>
 

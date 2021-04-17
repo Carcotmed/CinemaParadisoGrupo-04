@@ -33,10 +33,10 @@
 	<div class="d-flex justify-content-center align-items-center position-relative w-100" style="background-color:#af3248; height:60%">
 		<div class="d-flex justify-content-center align-items-center" style="margin:auto">
 			<div style="width:30%;margin-right:2%">
-				<h3 class="text-center" style="color:white">¿Qué es Cinema Paradiso?</h3>
+				<h3 class="text-center" style="color:white">¿Qu&eacute es Cinema Paradiso?</h3>
 			</div>
 			<div style="width:30%">
-				<p class="text-center"  style="color:white">Tu mejor opción para formar un equipo para realizar tus proyectos cinematográficos personales</p>
+				<p class="text-center"  style="color:white">Tu mejor opción para formar un equipo para realizar tus proyectos cinematogr&aacuteficos personales</p>
 			</div>
 		</div>
 	</div>
@@ -47,7 +47,7 @@
 				<p class="text-center"  style="color:white">Encuentra a gente a tu alrededor para formar tu equipo sin necesidad de irte a la otra punta del mundo</p>
 			</div>
 			<div style="width:30%">
-				<h3 class="text-center"  style="color:white">La cercanía es importante</h3>
+				<h3 class="text-center"  style="color:white">La cercan&iacutea es importante</h3>
 			</div>
 		</div>
 	</div>

@@ -21,7 +21,7 @@
 <body class="h-100" style="color:white">
 <jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 
-	<div class="d-flex h-100">
+	<div class="d-flex">
 
 		<!--  Filtros -->
 		<div class="p-4 w-25" style="background-color: #af3248">

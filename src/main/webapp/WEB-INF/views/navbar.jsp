@@ -28,12 +28,12 @@
 		<!-- User menu -->
 		<div style="width: 15%;margin-right:1%" class="d-flex justify-content-between align-items-center">
 			<sec:authorize access="!isAuthenticated()">
-				<button onClick="location.href='/login'" style="color:white;background-color:#af3248" class="btn rounded-pill">Inicia sesión</button>
+				<button onClick="location.href='/login'" style="color:white;background-color:#af3248" class="btn rounded-pill">Inicia sesi&oacuten</button>
 				<button onClick="location.href='/users/select'" style="color:white;background-color:#af3248" class="btn rounded-pill">Registrate</button>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<button onClick="location.href='/users/miPerfil'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Mi perfil</button>
-				<button onClick="location.href='/logout'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesión</button>
+				<button onClick="location.href='/logoutsecure'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesi&oacuten</button>
 			</sec:authorize>
 			
 		</div>

@@ -20,6 +20,11 @@
 		});
 	});
 	
+	$(window).scroll(function() {
+	    $("#fondoModal").hide();
+	    $("#modalProyectos").hide();
+	})
+	
 </script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,15 +40,15 @@
 <body class="h-100" style="background-color: #272727; color: white">
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
 	<div id="fondoModal" style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
-	<div id="modalProyectos" style="color: white; border-radius: 20px; display: none;  left: 20vw; top: 10vw; position: fixed; height: 10vw; width: 50vw; background-color: black">
-	<div class="container-fluid" style="background-color:#af3248; border-radius: 20px; padding:1%">
-	<h2>Proyectos a asociar</h2>
-	</div>
+		<div id="modalProyectos" style="color: white; border-radius: 20px; display: none;  left: 24vw; top: 20vh; padding: 1%; position: fixed; width: 50vw; background-color: #3c3c3c">
+			<div class="container-fluid" style="background-color:#af3248; border-radius: 20px; padding:1%">
+				<h2>Proyectos a asociar</h2>
+			</div>
 		<c:forEach items="${projects}" var="projects">
 		    <br>
-		    <div style="display:flex";>
+		    <div class="d-flex justify-content-between align-items-center">
 		      <h5>${ projects.title }</h5> 
-		      <button class="btn rounded-pill" onClick="location.href='/stories/request/${story.id}/${projects.id}'" style="color:white;height: fit-content; margin:0 79%; width:10%; background-color: #af3248">Asociar</button>
+		      <button class="btn rounded-pill" onClick="location.href='/stories/request/${story.id}/${projects.id}'" style="color:white;background-color: #af3248">Asociar</button>
 		    </div>
 		</c:forEach>
 	</div>
@@ -133,7 +138,7 @@
 	<!-- Info general Historia -->
 	<div>
 		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
-			<h3 style="margin:0">Ficha t�cnica</h3>
+			<h3 style="margin:0">Ficha t&eacutecnica</h3>
 		</div>
 		
 		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
@@ -141,19 +146,19 @@
 			<div style="width:150%">
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">T�tulo</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">T&iacutetulo</h5>
 					</div>
 					<p style="margin-left: 3%">${story.title}</p>
 				</div>
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">G�nero</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">G&eacutenero</h5>
 					</div>
 					<p style="margin-left: 3%">${story.genre}</p>
 				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripci�n</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripci&oacuten</h5>
 					</div>
 					<p style="margin-left: 3%">${story.body}</p>
 				</div>
@@ -162,8 +167,8 @@
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Escritor</h5>
 					</div>
 					<p style="margin-left: 3%">${myWriter.user.username}</p>
-					<div style="width:20vh;height:20vh;overflow:hidden" class="rounded-circle">
-					<img src="${myWriter.photo}" onClick="location.href='/writers/show/${myWriter.id}'" style="width:100%;height:100%;object-fit:cover">
+					<div style="width:20vh;height:20vh;overflow:hidden;cursor:pointer" class="rounded-circle">
+						<img src="${myWriter.photo}" onClick="location.href='/writers/show/${myWriter.id}'" style="width:100%;height:100%;object-fit:cover">
 					</div>
 				</div>
 			</div>

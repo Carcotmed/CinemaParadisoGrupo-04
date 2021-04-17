@@ -88,7 +88,7 @@
 								style="background-color:#828282" path="description">Resumen</form:label>
 						</div>
 						<form:textarea class="form-control" value="${writer.description}"
-							placeholder="Descripción" style="margin-left: 3%;width:60%"
+							placeholder="Descripcion" style="margin-left: 3%;width:60%"
 							type="text" path="description"></form:textarea>
 					</div>
 					<form:errors style="color:red" path="description" />
