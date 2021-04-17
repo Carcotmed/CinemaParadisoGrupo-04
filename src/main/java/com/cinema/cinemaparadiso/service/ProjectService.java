@@ -175,7 +175,7 @@ public class ProjectService {
 	}
 	public void addRelationShipProducer(int projectId, Integer producerId) {
 		Rel_projects_producers relation = new Rel_projects_producers();
-		relation.setProducer_id(producerId);;
+		relation.setProducer_id(producerId);
 		relation.setProject_id(projectId);
 		rel_projects_producersService.save(relation);
 	}

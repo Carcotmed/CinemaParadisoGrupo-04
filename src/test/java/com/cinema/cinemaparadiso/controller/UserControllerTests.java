@@ -1,28 +1,13 @@
 package com.cinema.cinemaparadiso.controller;
 
-/*
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
-*/
-//import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-//import org.junit.Assert;
-//import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.mockito.BDDMockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 //import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-
-import com.cinema.cinemaparadiso.service.UserService;
 //import org.springframework.test.web.servlet.ResultMatcher;
 
 @WebMvcTest(controllers = UserController.class,
@@ -35,32 +20,32 @@ public class UserControllerTests {
 
 
 
-    @MockBean
-    private UserService userService;
-
-    @BeforeEach
-	void setup() {
-	
-    }
+//    @MockBean
+//    private UserService userService;
+//
+//    @BeforeEach
+//	void setup() {
+//	
+//    }
 
     // He metido estos test como prueba para ver si el contexto carga correctamente.
 
     //@WithMockUser(username="admin",authorities= {"admin"})
-	@Test
-	void testInitial() throws Exception {
-		
-		mockMvc.perform(get("/"))
-                .andExpect(status().is4xxClientError());
-	}
-
-    @Test
-	void testInitial2() throws Exception {
-/*
-		mockMvc.perform(get("/users/create"))
-                .andExpect(status().is4xxClientError())
-                .andExpect(model().attributeExists("user"))
-				.andExpect(view().name("users/createUserForm"));
-*/
-	}
-   
+//	@Test
+//	void testInitial() throws Exception {
+//		
+//		mockMvc.perform(get("/"))
+//                .andExpect(status().is4xxClientError());
+//	}
+//
+//    @Test
+//	void testInitial2() throws Exception {
+///*
+//		mockMvc.perform(get("/users/create"))
+//                .andExpect(status().is4xxClientError())
+//                .andExpect(model().attributeExists("user"))
+//				.andExpect(view().name("users/createUserForm"));
+//*/
+//	}
+//   
 }
