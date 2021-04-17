@@ -87,12 +87,14 @@ public class ArtistController {
 		Boolean showButton = artistService.isActualArtist(artistId);
 		List<Project> myProjects = artistService.findMyProjects(artistId);
 		Integer projectsLeft = artistService.leftProjects(artistId);
+		Boolean disabled = !artistService.findMyUser(artistId).isEnabled();
 		model.addAttribute("projectsLeft",projectsLeft);
 		model.addAttribute("myProjects",myProjects);
 		model.addAttribute("artistUsername", artist.getUser().getUsername());
 		model.addAttribute("artistId", artistId);
 		model.addAttribute("artist", artist);
 		model.addAttribute("showButton",showButton);
+		model.addAttribute("userDisabled",disabled);
 		return "artists/showArtist";
 	}	
 

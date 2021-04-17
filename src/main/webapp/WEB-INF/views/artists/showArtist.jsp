@@ -35,20 +35,29 @@
 					<p>Rol: ${artist.role}</p>
 				</div>
 			</div>
+		<c:if test="${!userDisabled}">
 			<c:choose>
 				<c:when test="${showButton == false}">
 					<button class="btn rounded-pill" onClick="location.href='/messages/create/${artistUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 				</c:when>
 				<c:when test="${showButton == true}">
-					<button class="btn rounded-pill" onClick="location.href='/artists/update/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+					<button class="btn rounded-pill" onClick="location.href='/artists/update/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
 				</c:when>
 			</c:choose>
 			    <c:if test="${showButton == true}">
-					<button class="btn rounded-pill" onClick="location.href='/artists/delete/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Eliminar</button>
+					<button class="btn rounded-pill" onClick="location.href='/artists/delete/${artist.id}'" style="color:white;height: fit-content;background-color: #af3248">Desactivar perfil</button>
 				</c:if>
+		</c:if>
+		<c:if test="${userDisabled}">
+			<div class="py-3 mx-3" style="width:40%">
+			<h2>Usuario desactivado</h2>
+			</div>
+		</c:if>
 		</div>
 
 		<!-- Info general Artista -->
+		
+		<c:if test="${!userDisabled}">
 		<div class="container" style="margin: 0 5%; max-width: 90%">
 			<div class="row">
 				<div class="col-6 p-3"
@@ -92,8 +101,9 @@
 				</div>
 			</div>
 		</div>
+		</c:if>
 	</div>
-
+	
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 
 
