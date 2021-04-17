@@ -36,7 +36,7 @@
 				</c:when>
 				<c:when test="${sameWriter == true}">
 					<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
-					<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Eliminar perfil</button>
+					<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Desactivar perfil</button>
 				</c:when>
 			</c:choose>
 	</c:if>
