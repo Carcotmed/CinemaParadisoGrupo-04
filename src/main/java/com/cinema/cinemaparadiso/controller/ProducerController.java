@@ -46,9 +46,11 @@ public class ProducerController {
 	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
 		Producer producer = producerService.findProducerById(producerId);
 		Boolean showButton = producerService.isActualProducer(producerId);
+		Boolean disabled = !producerService.findMyUser(producerId).isEnabled();
 		model.addAttribute("producerUsername", producer.getUser().getUsername());
 		model.addAttribute("producer", producer);
 		model.addAttribute("showButton",showButton);
+		model.addAttribute("userDisabled",disabled);
 
 		return "producers/showProducer";
 	}
