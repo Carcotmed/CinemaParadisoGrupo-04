@@ -162,7 +162,6 @@ public class MessageController {
 
     @PostMapping("/create/{userName}")
     public String create(@PathVariable("userName") String userName, @Validated @ModelAttribute("message") Message message, BindingResult result, Model model){
-    	System.out.println(result);
 		if(!result.hasErrors()) {
     		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
     		message.setEmisor(userService.getUserByUsername(emisor_username));

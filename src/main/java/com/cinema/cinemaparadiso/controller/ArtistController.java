@@ -101,8 +101,6 @@ public class ArtistController {
 		model.addAttribute("showButton",showButton);
 		model.addAttribute("userDisabled",disabled);
 		model.addAttribute("isAdmin",userService.isAdmin());
-		System.out.println("=================================================================");
-		System.out.println(userService.isAdmin());
 		return "artists/showArtist";
 	}	
 
