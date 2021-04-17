@@ -20,6 +20,11 @@
 		});
 	});
 	
+	$(window).scroll(function() {
+	    $("#fondoModal").hide();
+	    $("#modalProyectos").hide();
+	})
+	
 </script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,15 +40,15 @@
 <body class="h-100" style="background-color: #272727; color: white">
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
 	<div id="fondoModal" style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
-	<div id="modalProyectos" style="color: white; border-radius: 20px; display: none;  left: 20vw; top: 10vw; position: fixed; height: 10vw; width: 50vw; background-color: black">
-	<div class="container-fluid" style="background-color:#af3248; border-radius: 20px; padding:1%">
-	<h2>Proyectos a asociar</h2>
-	</div>
+		<div id="modalProyectos" style="color: white; border-radius: 20px; display: none;  left: 24vw; top: 20vh; padding: 1%; position: fixed; width: 50vw; background-color: #3c3c3c">
+			<div class="container-fluid" style="background-color:#af3248; border-radius: 20px; padding:1%">
+				<h2>Proyectos a asociar</h2>
+			</div>
 		<c:forEach items="${projects}" var="projects">
 		    <br>
-		    <div style="display:flex";>
+		    <div class="d-flex justify-content-between align-items-center">
 		      <h5>${ projects.title }</h5> 
-		      <button class="btn rounded-pill" onClick="location.href='/stories/request/${story.id}/${projects.id}'" style="color:white;height: fit-content; margin:0 79%; width:10%; background-color: #af3248">Asociar</button>
+		      <button class="btn rounded-pill" onClick="location.href='/stories/request/${story.id}/${projects.id}'" style="color:white;background-color: #af3248">Asociar</button>
 		    </div>
 		</c:forEach>
 	</div>
