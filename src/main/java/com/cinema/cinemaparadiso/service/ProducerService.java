@@ -109,8 +109,7 @@ public class ProducerService {
 	@Transactional
 	public void deleteProducer(Integer producerId) {
 		User user = findMyUser(producerId);
-		producerRepository.delete(findProducerById(producerId));
-		userService.deleteUser(user);
+		user.setEnabled(false);
 	}
 	
 	@Transactional(readOnly = true)

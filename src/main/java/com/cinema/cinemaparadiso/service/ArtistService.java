@@ -170,13 +170,8 @@ public class ArtistService {
 	@Transactional
 	public void deleteArtist(Integer artistId) {
 
-		List<Project> projects = findMyProjects(artistId);
-		for (Project p : projects) {
-				projectService.deleteRelation(p.getId(),false);
-			}
 		User user = findMyUser(artistId);
-		artistRepository.delete(findArtistById(artistId));
-		userService.deleteUser(user);
+		user.setEnabled(false);
 	}
 
 	@Transactional

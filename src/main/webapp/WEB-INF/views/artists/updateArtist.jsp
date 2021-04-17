@@ -46,18 +46,6 @@
 						<form:errors style="color:red" path="surName"/>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" path="skills" style="background-color:#828282">Habilidad</form:label>
-							</div>
-							<form:select value="${artist.skills}" class="form-control" style="width:60%" path="skills">
-								<form:option value="" selected="true">Selecciona una habilidad</form:option>
-								<c:forEach items="${skill}" var="skills">
-									<form:option value="${skills}">${skills}</form:option>
-								</c:forEach>
-							</form:select>
-						</div>
-						<form:errors style="color:red" path="skills"/>
-						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
-							<div class="d-flex flex-wrap ">
 								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="description">Resumen</form:label>
 							</div>
 							<form:textarea class="form-control" value="${artist.description}" placeholder="Descripción" style="margin-left: 3%;width:60%" type="text" path="description"></form:textarea>
