@@ -58,9 +58,9 @@
 			</c:choose>
 		</div>
 		
-		<div class="d-flex justify-content-between" style="padding: 2% 5%">
+		<div class="d-flex" style="padding: 2% 5%">
 			<!-- Datos -->
-			<div style="width:150%">
+			<div style="width:50%;border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre de usuario</h5>
@@ -81,20 +81,21 @@
 				</div>
 				
 			</div>
-			<div style="padding: 2% 0;width:30%;margin:auto">
-			<c:forEach items="${stories}" var="story">
-				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0;cursor: pointer" onClick="location.href='/stories/show/${story.id}'">
-					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-						<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"  style="width:100%;height:100%;object-fit:cover">
+			<div style="padding: 2% 0;width:30%;margin-left:3%">
+				<h4 style="margin-bottom: 4%">Mis historias</h4>
+				<c:forEach items="${stories}" var="story">
+					<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0;cursor: pointer" onClick="location.href='/stories/show/${story.id}'">
+						<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
+							<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"  style="width:100%;height:100%;object-fit:cover">
+						</div>
+						<div style="margin-left: 12%">
+							<h5>${story.title}</h5>
+							<p>${story.genre}</p>
+						</div>
 					</div>
-					<div style="margin-left: 12%">
-						<h5>${story.title}</h5>
-						<p>${story.genre}</p>
-					</div>
-				</div>
-				
-				
-			</c:forEach>
+					
+					
+				</c:forEach>
 		</div>
 			
 		</div>
