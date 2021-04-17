@@ -2,10 +2,12 @@ package com.cinema.cinemaparadiso.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Producer;
@@ -26,5 +28,10 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	
 	@Query("SELECT producer FROM Producer producer INNER JOIN Rel_projects_producers rel_projects_producers ON producer.id = rel_projects_producers.producer_id AND rel_projects_producers.project_id = :projectId")
 	public List<Producer> findProducers(@Param("projectId") Integer projectId);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Project project SET project.pro = TRUE WHERE project.id = :projectID")
+	public void makeProjectPro(Integer projectID);
 	
 }

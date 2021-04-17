@@ -162,4 +162,10 @@ public class ProjectService {
 	}
 
 
+	public void makeProjectPro(Integer projectID) {
+		projectRepository.makeProjectPro(projectID);
+		
+	}
+
+
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.ProjectService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +28,9 @@ public class ProController {
 	@Autowired
 	private ArtistService artistService;
 	
+	@Autowired
+	private ProjectService projectService;
+	
 	@GetMapping("")
 	public String showProducts(Model model) {
 		return "/pro/products";
@@ -36,13 +40,8 @@ public class ProController {
 	@PostMapping("/confirmedPro")
 	public String confirmedPro(Model model) {
 		
-		//TODO SEGURIDAD PA QUE NO SE NOS CUELEN POR LA PINCHE URL
 		Map paymentDetails = (Map) model.getAttribute("paymentDetails");
-		
-		System.out.println(paymentDetails);
-		
-		//TODO VALIDAR EL PAYMENT DE ALGUNA FORMA
-				
+							
 		Artist currentArtist = artistService.getPrincipal();
 		Integer artistID = currentArtist.getId();
 		
@@ -55,12 +54,7 @@ public class ProController {
 	@PostMapping("/confirmedProyect")
 	public String confirmedProyect(Model model) {
 		
-		//TODO SEGURIDAD PA QUE NO SE NOS CUELEN POR LA PINCHE URL
-		Map paymentDetails = (Map) model.getAttribute("paymentDetails");
-		
-		System.out.println(paymentDetails);
-		
-		//TODO VALIDAR EL PAYMENT DE ALGUNA FORMA
+		Map paymentDetails = (Map) model.getAttribute("paymentDetails");		
 				
 		Artist currentArtist = artistService.getPrincipal();
 		Integer artistID = currentArtist.getId();
@@ -68,6 +62,17 @@ public class ProController {
 		artistService.incrementLeftProjects(artistID, 1);
 		
 		return "redirect:/artists/show/"+artistID;
+	}
+	
+	@PostMapping("/confirmedAd")
+	public String confirmedAd(@ModelAttribute("projectID") Integer projectID, Model model) {
+		
+		//CON EL CSRF NO DEBERIA HABER FORMA DE COLARSE AQUI CON URL
+		Map paymentDetails = (Map) model.getAttribute("paymentDetails");
+						
+		projectService.makeProjectPro(projectID);
+		
+		return "redirect:/projects/show/"+projectID;
 	}
 
 }

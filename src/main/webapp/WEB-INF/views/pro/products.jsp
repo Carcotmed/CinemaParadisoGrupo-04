@@ -29,7 +29,7 @@
 <br>
 
 	<script
-		src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+		src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2&currency=EUR"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
   </script>
 
 	<script>
@@ -70,6 +70,7 @@
 	      return actions.order.create({
 	        purchase_units: [{
 	          amount: {
+		        currency: 'EUR',
 	            value: '3.00'
 	          }
 	        }]
@@ -92,6 +93,7 @@
 	      return actions.order.create({
 	        purchase_units: [{
 	          amount: {
+	        	currency: 'EUR',
 	            value: '15.00'
 	          }
 	        }]

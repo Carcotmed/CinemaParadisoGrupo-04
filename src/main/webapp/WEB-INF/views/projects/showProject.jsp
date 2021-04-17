@@ -37,8 +37,63 @@
 				<button class="btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
 			</c:if>
 			
-			<c:if test="${ isAdminProject == true }">
+			<c:if test="${ isAdminProject == true && !project.pro}">
 				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+				
+				<!-- BOTON PAYPAL ANUNCIAR -->
+				
+				<script
+				src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2&currency=EUR"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+				</script>
+				
+				<script>
+			    function post(path, params, method='post') {
+			    	  // The rest of this code assumes you are not using a library.
+			    	  // It can be made less verbose if you use one.
+			    	  const form = document.createElement('form');
+			    	  form.method = method;
+			    	  form.action = path;
+			    	  for (const key in params) {
+			    	    if (params.hasOwnProperty(key)) {
+			    	      const hiddenField = document.createElement('input');
+			    	      hiddenField.type = 'hidden';
+			    	      hiddenField.name = key;
+			    	      hiddenField.value = params[key];
+			    	      form.appendChild(hiddenField);
+			    	    }
+			    	  }
+			    	  document.body.appendChild(form);
+			    	  form.submit();
+			    	}
+				
+				</script>
+				
+				<script>
+					paypal.Buttons({
+					    createOrder: function(data, actions) {
+					    	return actions.order.create({
+						        purchase_units: [{
+						          amount: {
+						        	currency: "EUR",
+						            value: "30"
+						          },
+						        }]
+						      });
+					    },
+					    onApprove: function(data, actions) {
+					      // This function captures the funds from the transaction.
+					      return actions.order.capture().then(function(details) {
+					    	  post("/pro/confirmedAd", {projectID:${project.id}, paymentDetails: details, ${_csrf.parameterName}:"${_csrf.token}"})
+					      });
+					    }
+					  }).render('#paypal-button-ad');
+					  //This function displays Smart Payment Buttons on your web page.
+				  </script>
+				
+				<div id="paypal-button-ad"></div>
+				
+				<!-- Fin paypal -->
+				
 			</c:if>
 			<c:if test="${pertenece}">
 				<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill"  onClick="location.href='/projects/delete/${project.id}'">Salir del proyecto</button>
