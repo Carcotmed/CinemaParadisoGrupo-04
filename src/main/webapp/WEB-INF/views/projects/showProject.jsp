@@ -36,7 +36,7 @@
 				<c:if test="${ (!pertenece) && (!requestexist) && !isAdmin }">
 					<button class="btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'" style="color:white;height: fit-content;background-color: #af3248">Unirse al equipo</button>
 				</c:if>
-			
+			</c:if>
 			<c:if test="${ isAdminProject == true }">
 				
 				<c:if test="${ !project.isSponsored }">
