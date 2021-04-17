@@ -33,7 +33,7 @@
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<button onClick="location.href='/users/miPerfil'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Mi perfil</button>
-				<button onClick="location.href='/logout'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesi&oacuten</button>
+				<button onClick="location.href='/logoutsecure'" style="margin: 0 5%;color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesi&oacuten</button>
 			</sec:authorize>
 			
 		</div>

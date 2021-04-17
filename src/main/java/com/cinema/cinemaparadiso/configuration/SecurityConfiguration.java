@@ -84,17 +84,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/show/{projectId}").permitAll()
 				.antMatchers("/projects/joinArtist/{projectId}").authenticated()
 				.antMatchers("/projects/joinProducer/{projectId}").authenticated()
+				
+				.antMatchers("/logoutsecure").authenticated()
+				
 				.anyRequest().denyAll()
-
+				
 				.and()
 				 	.formLogin()
 				 	.loginPage("/login")
+				 	.defaultSuccessUrl("/")
 				 	.permitAll()
 				 	.failureUrl("/login-error")
 				 	.permitAll()
 				.and()
 					.logout()
-					.logoutUrl("/logout")
 						.logoutSuccessUrl("/"); 
                 // Configuración para que funcione la consola de administración 
                 // de la BD H2 (deshabilitar las cabeceras de protección contra

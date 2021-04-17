@@ -21,7 +21,7 @@
 		<h2 style="color:white">Cerrar sesi&oacuten</h2>
 		<div class="d-flex justify-content-between align-items-center">
 			<button onClick="location.href='/'" style="color:white; background-color:#af3248" class="btn rounded-pill">Volver</button>
-			<button onClick="location.href='/'" style="color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesi&oacuten</button>
+			<button onClick="location.href='/logout'" style="color:white; background-color:#af3248" class="btn rounded-pill">Cerrar sesi&oacuten</button>
 		</div>
 		
 		

@@ -1,9 +1,9 @@
 package com.cinema.cinemaparadiso.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cinema.cinemaparadiso.model.User;
 
@@ -17,7 +17,24 @@ public class LoginController {
 		
 		return "login";
 	}
+	
+	@GetMapping("/login-error")
+	public String errorFormLogin(Model model) {
+		User user = new User();
+		model.addAttribute("user", user);
+		return "login-error";
+	}
 
+	@GetMapping("/logoutsecure")
+	public String logoutSecure(Model model) {
 
+		return "logout";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model) {
+		SecurityContextHolder.clearContext();
+		return "redirect:/";
+	}
 
 }
