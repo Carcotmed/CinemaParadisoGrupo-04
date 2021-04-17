@@ -129,7 +129,7 @@ public class ArtistController {
 		} else {
 			return "artists/createOrUpdateArtistForm";
 		}
-		return "redirect:/artists/list";
+		return "redirect:/login";
 	}
 
 	@GetMapping("/update/{artistId}")

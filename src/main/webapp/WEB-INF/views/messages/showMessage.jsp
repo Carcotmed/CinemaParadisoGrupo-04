@@ -51,6 +51,7 @@
                     		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestStory'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
                     	</td>
                     </c:if>
+                    <c:if test = "${!isWriter}">
 				  	<c:if test = "${isArtist}">
                     	<td style="color:white" class="d-flex justify-content-between align-items-center">
 							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestArtist'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
@@ -63,6 +64,7 @@
                     		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestProducer'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
                     	</td>
                     </c:if>
+                   </c:if>
                    </c:if>
                 </tr>
                 

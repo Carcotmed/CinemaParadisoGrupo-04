@@ -109,7 +109,7 @@ public class WriterController {
           else {
               return "writers/createOrUpdateWriterForm";
           }
-          return "redirect:/writers/list";
+          return "redirect:/login";
       }
     
     @GetMapping("/update/{writerId}")

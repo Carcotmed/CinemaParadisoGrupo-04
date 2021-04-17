@@ -83,7 +83,7 @@ public class ProducerController {
           }else {
         	  return "producers/createUpdateProducerForm";
           }
-          return "redirect:/producers/list";
+          return "redirect:/login";
       }
     
 
