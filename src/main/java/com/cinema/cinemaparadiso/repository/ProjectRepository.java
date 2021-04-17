@@ -31,6 +31,12 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	
 	@Query("SELECT producer FROM Producer producer INNER JOIN Rel_projects_producers rel_projects_producers ON producer.id = rel_projects_producers.producer_id AND rel_projects_producers.project_id = :projectId")
 	public List<Producer> findProducers(@Param("projectId") Integer projectId);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Project project SET project.isSponsored = TRUE WHERE project.id = :projectID")
+	public void makeProjectSponsored(Integer projectID);
+
 	
 	@Transactional
 	@Modifying

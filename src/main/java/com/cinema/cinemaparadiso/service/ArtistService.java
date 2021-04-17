@@ -182,4 +182,12 @@ public class ArtistService {
 		return leftProjectsOfMyArtist;
 	}
 
+	public void incrementLeftProjects(Integer artistID, Integer addingAmount) {
+		artistRepository.incrementLeftProjectsOfArtist(artistID, addingAmount);
+	}
+
+	public void makePro(Integer artistID) {
+		artistRepository.makePro(artistID);
+	}
+
 }

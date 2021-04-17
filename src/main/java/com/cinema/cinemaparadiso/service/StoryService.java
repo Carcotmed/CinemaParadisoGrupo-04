@@ -95,6 +95,10 @@ public class StoryService {
 		rel_projects_storyService.deleteByStoryId(storyId);
 		storyRepository.delete(findStoryById(storyId));
 	}
+
+	public void makeStorySponsored(Integer storyID) {
+		storyRepository.makeStorySponsored(storyID);
+	}
 	
 
 }

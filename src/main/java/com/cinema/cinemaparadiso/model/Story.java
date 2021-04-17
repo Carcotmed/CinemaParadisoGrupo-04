@@ -33,6 +33,9 @@ public class Story extends BaseEntity {
 	
 	@Column(name="storylength")
     private Integer storylength;
+	
+	@Column(name="isSponsored", columnDefinition="bool default false")
+	private Boolean isSponsored;
 
 	@Override
 	public String toString() {

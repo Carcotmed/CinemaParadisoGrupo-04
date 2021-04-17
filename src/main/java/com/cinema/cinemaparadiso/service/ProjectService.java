@@ -201,6 +201,11 @@ public class ProjectService {
 	}
 
 
+	public void makeProjectSponsored(Integer projectID) {
+		projectRepository.makeProjectSponsored(projectID);
+	}
+  
+  
 	public void deleteAllRelation(Integer projectId) {
 		rel_projects_artistsService.deleteByProjectId(projectId);
 		rel_projects_producersService.deleteByProjectId(projectId);
