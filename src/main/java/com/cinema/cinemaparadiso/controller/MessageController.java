@@ -188,14 +188,16 @@ public class MessageController {
 
     	try {
     		Message message = messageService.findById(messageId);
-    		String username = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-    		if(message.getEmisor().getUsername()!=username && message.getReceptor().getUsername()!=username) {
+    		String username = userService.getPrincipal().getUsername();
+    		if(message.getEmisor().getUsername().equals(username) || message.getReceptor().getUsername().equals(username)) {
+        		messageService.delete(message);
+        		model.addAttribute("Estado", "Exito");
+                log.info("Deleting Messages..."+message.toString());
+    		}else {
     			model.addAttribute("Error", "No tienes relacion con esta entidad");
-    			return "/error";
+    			return "error/error-403";
     		}
-    		messageService.delete(message);
-    		model.addAttribute("Estado", "Exito");
-            log.info("Deleting Messages..."+message.toString());
+
     	}catch (NoSuchElementException e) {
     		model.addAttribute("Estado", "Error, identificador incorrecto");
             log.error("Error Deleting Message..."+messageId);
