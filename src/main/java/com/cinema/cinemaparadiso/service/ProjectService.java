@@ -202,7 +202,8 @@ public class ProjectService {
 
 
 	public void makeProjectSponsored(Integer projectID) {
-		projectRepository.makeProjectSponsored(projectID);		
+		projectRepository.makeProjectSponsored(projectID);
+	}
   
   
 	public void deleteAllRelation(Integer projectId) {
