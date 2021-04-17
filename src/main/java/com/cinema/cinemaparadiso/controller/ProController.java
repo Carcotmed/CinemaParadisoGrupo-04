@@ -16,6 +16,7 @@ import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.ProjectService;
+import com.cinema.cinemaparadiso.service.StoryService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +31,9 @@ public class ProController {
 	
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private StoryService storyService;
 	
 	@GetMapping("")
 	public String showProducts(Model model) {
@@ -73,6 +77,17 @@ public class ProController {
 		projectService.makeProjectSponsored(projectID);
 		
 		return "redirect:/projects/show/"+projectID;
+	}
+	
+	@PostMapping("/confirmedAdStory")
+	public String confirmedStoryAd(@ModelAttribute("storyID") Integer storyID, Model model) {
+		
+		//CON EL CSRF NO DEBERIA HABER FORMA DE COLARSE AQUI CON URL
+		Map paymentDetails = (Map) model.getAttribute("paymentDetails");
+						
+		storyService.makeStorySponsored(storyID);
+		
+		return "redirect:/stories/show/"+storyID;
 	}
 
 }
