@@ -20,11 +20,13 @@ import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.ProjectService;
-import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
+import com.cinema.cinemaparadiso.service.StoryService;
 import com.cinema.cinemaparadiso.service.exceptions.ProjectLimitException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +40,7 @@ public class ProjectController {
 	private ProjectService projectService;
 
 	@Autowired
-	private UserService userService;
+	private Rel_projects_storyService rel_projects_storyService;
 
 	@Autowired
 	private ArtistService artistService;
@@ -48,6 +50,9 @@ public class ProjectController {
 	
 	@Autowired
 	private MessageService messageService;
+	
+	@Autowired
+	private StoryService storyService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -80,7 +85,7 @@ public class ProjectController {
 				).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
-				.filter(a -> a.getPro()
+				.filter(a -> !a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
@@ -94,7 +99,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/joinArtist/{projectId}")
-	public String joinProjectArtist(Model model, @PathVariable("projectId") int projectId) {
+	public String joinProjectArtist(@PathVariable("projectId") int projectId, Model model){
     	Artist artist;
     	try {
     		artist = artistService.getPrincipal();
@@ -107,6 +112,7 @@ public class ProjectController {
 			model.addAttribute("Error", "Ya perteneces a este equipo");
 			return "/error";
 		}
+		//Solo puedes enviar una peticion para unirte a un proyecto
 		messageService.requestToEnterProjectArtist(projectId, artist.getId());
 		return "redirect:/messages/listSend";
 	}
@@ -133,6 +139,9 @@ public class ProjectController {
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
+		
+		Story story;
+		
 		List<Producer> producers = projectService.findProducers(projectId);
 		Boolean isAdminProject = false;
 		try {
@@ -140,12 +149,18 @@ public class ProjectController {
 		}catch (Exception e){
 			
 		}
+
+		try {
+			Integer storyId = rel_projects_storyService.findByProjectId(projectId).getStory_id();
+			story = storyService.findStoryById(storyId);
+		}catch(Exception e) {story=null;}
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
 		model.addAttribute("producers",producers);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
 		model.addAttribute("isAdminProject", isAdminProject);
+		model.addAttribute("story", story);
 		Artist artist;
     	try {
     		artist = artistService.getPrincipal();
@@ -154,9 +169,11 @@ public class ProjectController {
 			model.addAttribute("pertenece", false);
 			model.addAttribute("noPuede",true);
     	}else if(artist.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+    		model.addAttribute("requestexist",messageService.requestAlreadyExistArtist(projectId, artist.getId()));
 			model.addAttribute("pertenece", true);
 			model.addAttribute("noPuede",false);
 		}else {
+    		model.addAttribute("requestexist",messageService.requestAlreadyExistArtist(projectId, artist.getId()));
 			model.addAttribute("pertenece", false);
 			model.addAttribute("noPuede",false);
 		}
@@ -171,9 +188,11 @@ public class ProjectController {
     	}else if(producer.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
 			model.addAttribute("perteneceP", true);
 			model.addAttribute("noPuedeP",false);
+    		model.addAttribute("requestexistP",messageService.requestAlreadyExistProducer(projectId, producer.getId()));
 		}else {
 			model.addAttribute("perteneceP", false);
 			model.addAttribute("noPuedeP",false);
+    		model.addAttribute("requestexistP",messageService.requestAlreadyExistProducer(projectId, producer.getId()));
 		}
 		return "projects/showProject";
 	}
@@ -246,7 +265,6 @@ public class ProjectController {
 	@PostMapping("/update/{projectId}")
 	public String updateProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model, @PathVariable("projectId") Integer projectId) {
 		project.setId(projectId);
-		Integer actualId = this.artistService.getPrincipal().getId();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
@@ -254,9 +272,9 @@ public class ProjectController {
 		if(!result.hasErrors()) {
 			projectService.editProject(project);
 			log.info("Project Updated Successfully");
-			return "redirect:/artists/show/"+actualId;
+			return "redirect:/projects/show/"+projectId;
 		} else {
-			return "redirect:/artists/show/"+actualId;
+			return "projects/createOrUpdateProjectForm";
 		}
 	}
 

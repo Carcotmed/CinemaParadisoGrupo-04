@@ -3,6 +3,7 @@ package com.cinema.cinemaparadiso.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -21,15 +22,14 @@ import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 public class WriterService {
 	@Autowired
 	private WriterRepository writerRepository;
+	
 
 	@Autowired
 	private AuthoritiesRepository authoritiesRepository;
-
+	
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private StoryService storyService;
 
 
 	@Autowired
@@ -40,7 +40,8 @@ public class WriterService {
 	public List<Writer> list() {
 		List<Writer> writers = new ArrayList<>();
 		writerRepository.findAll().forEach(w -> writers.add(w));
-		return writers;
+		List<Writer> writersEnabled = writers.stream().filter(w->w.getUser().isEnabled()).collect(Collectors.toList());
+		return writersEnabled;
 	}
 
 	@Transactional(readOnly = true)
@@ -126,13 +127,8 @@ public class WriterService {
 	@Transactional
 	public void deleteWriter(Integer writerId) {
 
-		List<Story> stories = findMyStories(writerId);
-		for (Story s : stories) {
-				storyService.deleteStory(s.getId());
-			}
 		User user = findMyUser(writerId);
-		writerRepository.delete(findWriterById(writerId));
-		userService.deleteUser(user);
+		user.setEnabled(false);
 	}
 
 }

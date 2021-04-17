@@ -1,6 +1,5 @@
 package com.cinema.cinemaparadiso.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,11 +67,14 @@ public class WriterController {
 				}
 		catch(Exception e) {
 		}
+		Boolean disabled = !writerService.findMyUser(writerId).isEnabled();
+		
 		model.addAttribute("writerId", writerId);
 		model.addAttribute("writer", writer);
 		model.addAttribute("stories",stories);
 		model.addAttribute("sameWriter",sameWriter);
 		model.addAttribute("writerUsername", writer.getUser().getUsername());
+		model.addAttribute("userDisabled",disabled);
 
 		return "writers/showWriter";
 	}
@@ -106,7 +108,7 @@ public class WriterController {
           else {
               return "writers/createOrUpdateWriterForm";
           }
-          return "index";
+          return "redirect:/login";
       }
     
     @GetMapping("/update/{writerId}")

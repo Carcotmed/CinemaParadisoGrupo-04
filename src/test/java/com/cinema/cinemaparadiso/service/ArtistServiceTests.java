@@ -1,6 +1,5 @@
 package com.cinema.cinemaparadiso.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,12 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ArtistServiceTests {
 	
-	@Autowired
-	private ArtistService artistService;
 
-	@Autowired
-	private UserService userService;
-	
 	/*
 	@Test
     public void shouldListTotalArtist(){

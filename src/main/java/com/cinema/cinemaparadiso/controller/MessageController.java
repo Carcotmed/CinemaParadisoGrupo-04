@@ -3,7 +3,8 @@ package com.cinema.cinemaparadiso.controller;
 import java.time.Instant;
 import java.util.Date;
 import java.util.NoSuchElementException;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Message;
-import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.UserService;
 
@@ -36,9 +35,7 @@ public class MessageController {
 
     @Autowired
     private UserService userService;
-    
-    @Autowired
-    private ArtistService artistService;
+
 
     @GetMapping("/listSend")
     public String listSend(Model model){
@@ -66,10 +63,18 @@ public class MessageController {
 	        Message message = messageService.findById(messageId);
 	        
 	        String usernameActual = userService.getPrincipal().getUsername();
+	        
 	        Boolean isRequest = message.getIsRequest()!=null && message.getReceptor().getUsername().equals(usernameActual);
 	        Boolean isArtist = this.userService.findArtistByUserUsername(message.getEmisor().getUsername()).isPresent();
 	        Boolean isProducer = this.userService.findProducerByUserUsername(message.getEmisor().getUsername()).isPresent();
+	        Boolean isWriter =this.userService.findWriterByUserUsername(message.getReceptor().getUsername()).isPresent();
+	        Boolean messageForMe = message.getEmisor().getUsername().equals(usernameActual) || message.getReceptor().getUsername().equals(usernameActual);
+	        if(!messageForMe) {
+	        	return "error/error-403";
+	        }
+	        
 	        model.addAttribute("isRequest",isRequest);
+	        model.addAttribute("isWriter",isWriter);
 	        model.addAttribute("isArtist",isArtist);
 	        model.addAttribute("isProducer",isProducer);
 	        model.addAttribute("message", message);
@@ -80,23 +85,24 @@ public class MessageController {
         return "messages/showMessage";
     }
     
-    @GetMapping("/show/{messageId}/acceptRequestArtist")
-    public String showAcceptArtist(Model model, @PathVariable("messageId") Integer messageId){
-    	try {
-	        messageService.acceptRequestArtist(messageId);
-    	}catch (NoSuchElementException e) {
-	        log.error("Error Showing Message..."+messageId.toString());
-		}
+    @Transactional
+    @GetMapping("/show/{messageId}/acceptRequestStory")
+    public String showAcceptStory(Model model, @PathVariable("messageId") Integer messageId){
+        try {
+            messageService.acceptRequestStory(messageId);
+        }catch (NoSuchElementException e) {
+            log.error("Error Showing Message..."+messageId.toString());
+        }
         return "redirect:/messages/listReceived";
     }
-    
-    @GetMapping("/show/{messageId}/rejectRequestArtist")
-    public String showRejectArtist(Model model, @PathVariable("messageId") Integer messageId){
-    	try {
-	        messageService.rejectRequestArtist(messageId);
-    	}catch (NoSuchElementException e) {
-	        log.error("Error Showing Message..."+messageId.toString());
-		}
+
+    @GetMapping("/show/{messageId}/acceptRequestArtist")
+    public String showAcceptArtist(Model model, @PathVariable("messageId") Integer messageId){
+        try {
+            messageService.acceptRequestArtist(messageId);
+        }catch (NoSuchElementException e) {
+            log.error("Error Showing Message..."+messageId.toString());
+        }
         return "redirect:/messages/listReceived";
     }
     @GetMapping("/show/{messageId}/acceptRequestProducer")
@@ -106,6 +112,27 @@ public class MessageController {
     	}catch (NoSuchElementException e) {
 	        log.error("Error Showing Message..."+messageId.toString());
 		}
+        return "redirect:/messages/listReceived";
+    }
+    @Transactional
+    @GetMapping("/show/{messageId}/rejectRequestStory")
+    public String showRejectStory(Model model, @PathVariable("messageId") Integer messageId){
+         try {
+             messageService.rejectRequestStory(messageId);
+         }catch (NoSuchElementException e) {
+             log.error("Error Showing Message..."+messageId.toString());
+         }
+         return "redirect:/messages/listReceived";
+     }
+
+    @Transactional 
+    @GetMapping("/show/{messageId}/rejectRequestArtist")
+    public String showRejectArtist(Model model, @PathVariable("messageId") Integer messageId){
+        try {
+            messageService.rejectRequestArtist(messageId);
+        }catch (NoSuchElementException e) {
+            log.error("Error Showing Message..."+messageId.toString());
+        }
         return "redirect:/messages/listReceived";
     }
     
@@ -129,7 +156,7 @@ public class MessageController {
     	}catch (IllegalArgumentException e) {
     		model.addAttribute("Estado", "Error al iniciar la entidad");
 		}
-        log.info("Initializing Messages to..."+userName.toString());
+        log.info("Initializing Messages to..."+userName);
         return "messages/createMessageForm";
     }
 
@@ -156,14 +183,16 @@ public class MessageController {
 
     	try {
     		Message message = messageService.findById(messageId);
-    		String username = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-    		if(message.getEmisor().getUsername()!=username && message.getReceptor().getUsername()!=username) {
+    		String username = userService.getPrincipal().getUsername();
+    		if(message.getEmisor().getUsername().equals(username) || message.getReceptor().getUsername().equals(username)) {
+        		messageService.delete(message);
+        		model.addAttribute("Estado", "Exito");
+                log.info("Deleting Messages..."+message.toString());
+    		}else {
     			model.addAttribute("Error", "No tienes relacion con esta entidad");
-    			return "/error";
+    			return "error/error-403";
     		}
-    		messageService.delete(message);
-    		model.addAttribute("Estado", "Exito");
-            log.info("Deleting Messages..."+message.toString());
+
     	}catch (NoSuchElementException e) {
     		model.addAttribute("Estado", "Error, identificador incorrecto");
             log.error("Error Deleting Message..."+messageId);

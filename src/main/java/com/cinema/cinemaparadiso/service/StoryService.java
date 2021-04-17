@@ -34,12 +34,13 @@ public class StoryService {
 	}
 	
 	@Transactional
-	public void editStory(Story story) throws DataAccessException{
+	public void editStory(Story story){
 			Story story2 = findStoryById(story.getId());
 			story2.setId(story.getId());
 			story2.setTitle(story.getTitle());
 			story2.setBody(story.getBody());
 			story2.setGenre(story.getGenre());
+
 			saveStory(story2);	
   }
 	

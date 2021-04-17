@@ -1,28 +1,15 @@
 package com.cinema.cinemaparadiso.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.cinema.cinemaparadiso.model.Genre;
-import com.cinema.cinemaparadiso.model.Project;
-import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 
 
 @SpringBootTest
 @Sql("/db/data.sql")
 @Transactional
 public class ProjectServiceTests {
-	
-	@Autowired
-	private ProjectService projectService;
-	@Autowired
-	private Rel_projects_artistsService rel_projects_artistsService;
+
 
 	/*
 	@Test

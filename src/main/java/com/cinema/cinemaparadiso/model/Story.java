@@ -37,4 +37,11 @@ public class Story extends BaseEntity {
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
 
+	@Override
+	public String toString() {
+		return "Story [title=" + title + ", body=" + body + ", genre=" + genre + "]";
+	}
+	
+	
+
 }

@@ -27,13 +27,21 @@
 					
 				</div>
 			</div>
+			<c:if test="${!userDisabled}">
 			<c:if test="${showButton == false}">
 				<button class="btn rounded-pill" onClick="location.href='/messages/create/${producerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 			</c:if>
 			<c:if test="${showButton == true}">
-				<button class="btn rounded-pill" onClick="location.href='/producers/update/${producer.id}'" style="color:white;height: fit-content;background-color: #af3248">Editar</button>
+					<button class="btn rounded-pill" onClick="location.href='/producers/update/${producer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
+					<button class="btn rounded-pill" onClick="location.href='/producers/delete/${producer.id}'" style="color:white;height: fit-content;background-color: #af3248">Desactivar perfil</button>
 			</c:if>
-		</div>		
+			</c:if>
+	<c:if test="${userDisabled}">
+		<div class="py-3 mx-3" style="width:40%">
+		<h2>Usuario desactivado</h2>
+		</div>
+	</c:if>
+		</div>	
 	</div>
 	<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </body>

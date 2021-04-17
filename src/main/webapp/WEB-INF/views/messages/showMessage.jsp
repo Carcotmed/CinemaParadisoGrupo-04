@@ -19,6 +19,9 @@
     	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
     
     <div class="container mt-4">
+    
+    
+    
         <table class="table">
             <thead>
                 <tr>
@@ -42,6 +45,13 @@
 				  <td style="color:white"><c:out value="${message.emisor.username}" /></td>
 				  <td style="color:white"><c:out value="${message.receptor.username}" /></td>
 				  <c:if test="${isRequest}">
+				  <c:if test = "${isWriter}">
+                    	<td style="color:white" class="d-flex justify-content-between align-items-center">
+							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestStory'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
+                    		<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/rejectRequestStory'" style="color:white;height: fit-content;background-color: #af3248">Rechazar</button>
+                    	</td>
+                    </c:if>
+                    <c:if test = "${!isWriter}">
 				  	<c:if test = "${isArtist}">
                     	<td style="color:white" class="d-flex justify-content-between align-items-center">
 							<button class="btn rounded-pill" onClick="location.href='/messages/show/${message.id}/acceptRequestArtist'" style="color:white;height: fit-content;background-color: #af3248">Aceptar</button>
@@ -55,11 +65,12 @@
                     	</td>
                     </c:if>
                    </c:if>
+                   </c:if>
                 </tr>
                 
             </tbody>
         </table>
-
+	
      	<button class="btn btn-danger" style="background-color:#af3248" onclick="location.href = '/messages/listReceived';">Volver</button>    		
      		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
     

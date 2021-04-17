@@ -28,14 +28,15 @@ public class Producer extends Person {
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 
+	@Column(name="projects")
+	@ManyToMany(mappedBy = "team2", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<Project> projects;
+	
 	@Override
 	public String toString() {
 		return "Producer (" + id + ") " + ", description=" + description + ", user=" + user + "]";
 	}
 	
-	@Column(name="projects")
-	@ManyToMany(mappedBy = "team2", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	private List<Project> projects;
   
 }

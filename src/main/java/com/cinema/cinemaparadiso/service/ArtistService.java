@@ -17,7 +17,6 @@ import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
-import com.cinema.cinemaparadiso.repository.UserRepository;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 @Service
@@ -25,17 +24,13 @@ public class ArtistService {
 	@Autowired
 	private ArtistRepository artistRepository;
 
-	@Autowired
-    private UserRepository userRepository;
 	 
 	@Autowired
     private AuthoritiesRepository authoritiesRepository;
 	
 	@Autowired
     private UserService userService;
-	
-	@Autowired
-    private ProjectService projectService;
+
 
 	@Autowired
 	public ArtistService(ArtistRepository artistRepository) {
@@ -170,13 +165,8 @@ public class ArtistService {
 	@Transactional
 	public void deleteArtist(Integer artistId) {
 
-		List<Project> projects = findMyProjects(artistId);
-		for (Project p : projects) {
-				projectService.deleteRelation(p.getId(),false);
-			}
 		User user = findMyUser(artistId);
-		artistRepository.delete(findArtistById(artistId));
-		userService.deleteUser(user);
+		user.setEnabled(false);
 	}
 
 	@Transactional

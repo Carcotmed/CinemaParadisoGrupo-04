@@ -29,17 +29,25 @@
 					<h2>${writer.user.username}</h2>
 				</div>
 			</div>
+	<c:if test="${!userDisabled}">
 			<c:choose>
 				<c:when test="${sameWriter == false}">
 					<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 				</c:when>
 				<c:when test="${sameWriter == true}">
-					<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar</button>
+					<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Actualizar perfil</button>
+					<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: #af3248">Desactivar perfil</button>
 				</c:when>
 			</c:choose>
-			
+	</c:if>
+	<c:if test="${userDisabled}">
+	<div class="py-3 mx-3" style="width:40%">
+		<h2>Usuario desactivado</h2>
+	</div>
+	</c:if>
 	</div>
 	<!-- Info general Historia -->
+	<c:if test="${!userDisabled}">
 	<div>
 		<div class="d-flex justify-content-between w-100" style="background-color:#4c4c4c; padding:1%">
 			<h3 style="margin:0">Datos</h3>
@@ -55,7 +63,7 @@
 			<div style="width:150%">
 				<div style="margin:1% 0">
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Username</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre de usuario</h5>
 					</div>
 					<p style="margin-left: 3%">${writer.user.username}</p>
 				</div>
@@ -67,7 +75,7 @@
 				</div>
 				<div>
 					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">DescripciÃ³n</h5>
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripción</h5>
 					</div>
 					<p style="margin-left: 3%">${writer.description}</p>
 				</div>
@@ -91,6 +99,7 @@
 			
 		</div>
 	</div>
+	</c:if>
 </body>
 <jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </html>

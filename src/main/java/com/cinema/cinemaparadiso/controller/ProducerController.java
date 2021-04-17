@@ -1,6 +1,5 @@
 package com.cinema.cinemaparadiso.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
-import com.cinema.cinemaparadiso.service.UserService;
 import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +30,6 @@ public class ProducerController {
     @Autowired
     private ProducerService producerService;
 
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/list")
     public String list(Model model){
@@ -46,9 +42,11 @@ public class ProducerController {
 	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
 		Producer producer = producerService.findProducerById(producerId);
 		Boolean showButton = producerService.isActualProducer(producerId);
+		Boolean disabled = !producerService.findMyUser(producerId).isEnabled();
 		model.addAttribute("producerUsername", producer.getUser().getUsername());
 		model.addAttribute("producer", producer);
 		model.addAttribute("showButton",showButton);
+		model.addAttribute("userDisabled",disabled);
 
 		return "producers/showProducer";
 	}
@@ -81,7 +79,7 @@ public class ProducerController {
           }else {
         	  return "producers/createUpdateProducerForm";
           }
-          return "redirect:/producers/list";
+          return "redirect:/login";
       }
     
 
