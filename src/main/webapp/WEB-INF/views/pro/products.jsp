@@ -58,13 +58,19 @@
 		
 	<!-- COSAS DE ARTIST -->
 	<sec:authorize access="hasAuthority('artist')">
-		<div> 
-		
-			<h1 style="margin: 0.7vw; color:#33FFC4" >Un solo Proyecto (3 Euros)</h1>
-			<div  id="paypal-button-project"></div>
+		<div class="d-flex justify-content-center align-items-center"> 
+			<div style="width:46%;margin:2%" class="d-flex flex-column align-items-center">
+				<h3 style="margin: 0.7vw; color:white" >Un solo Proyecto (3&#8364)</h3>
+				<p style="color:white;text-align:center;font-size:1.2rem">A&ntildeade un proyecto extra al n&uacutemero de proyectos que puedes crear</p>
+				<div  id="paypal-button-project"></div>
+			</div>
 			
-			<h1 style="margin: 0.7vw; color:#339CFF">PRO (15 Euros)</h1>
-			<div id="paypal-button-pro"></div>
+			<div style="width:46%;margin:2%" class="d-flex flex-column align-items-center">
+				<h3 style="margin: 0.7vw; color:white">PRO (15&#8364)</h3>
+				<p style="color:white;text-align:center;font-size:1.2rem">Â¡A&ntildeade tres proyectos extra al n&uacutemero de proyectos que puedes crear y adem&aacutes convi&eacutertete en usuario PRO!
+				Â¡Aparecer&aacutes arriba en el listado y aumentar&aacutes tu probabilidad de que te encuentren!</p>
+				<div id="paypal-button-pro"></div>
+			</div>
 			<!-- TODO
 			<div>
 				<button class="btn rounded-pill" onClick="location.href='/patata'" style="color:white;height: fit-content;background-color: #af3248">
@@ -72,13 +78,12 @@
 				</button>
 			</div>
 			 -->
-			 <div>
-			 	<p style="color:white">
-			 		Para anunciar uno de tus proyectos, utiliza el botón "Anunciar" en los detalles de tu proyecto.
-			 	</p>
-			 </div>
+			 	
 			 
 		</div>
+		<p style="color:white;text-align:center;font-size:1.2rem">
+			 		Para anunciar uno de tus proyectos, utiliza el bot&oacuten "Anunciar" en los detalles de tu proyecto.
+			 	</p>
 	</sec:authorize>
 	
 	<!-- COSAS DE WRITER -->
@@ -93,7 +98,7 @@
 		 
 		 <div>
 		 	<p style="color:white">
-		 		Para anunciar una de tus historias, utiliza el botón "Anunciar" en los detalles de tu historia.
+		 		Para anunciar una de tus historias, utiliza el botÃ³n "Anunciar" en los detalles de tu historia.
 		 	</p>
 		 </div>
 		 
