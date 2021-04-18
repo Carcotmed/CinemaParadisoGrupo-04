@@ -45,12 +45,14 @@
 
 			<div class="d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${writers}" var="writers">
+	      		<c:if test="${writers.user.enabled}">
 	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 15%; margin: 1vw;height:10vw">
 	      			<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:80%">
 							<img src="${writers.photo}" onClick="location.href='/writers/show/${writers.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 						</div>
 		      			<h5 style="margin: 0.5vw; text-align:center">${writers.user.username}</h5>
 		      		</div>
+		      	</c:if>
 	      		</c:forEach>
 	      	</div>
 			

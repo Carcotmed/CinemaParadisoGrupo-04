@@ -44,10 +44,12 @@
 			<!-- Listado producers -->
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${producers}" var="producer">
+	      		<c:if test="${producer.user.enabled}">
 					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
 						<img src="${producer.photo}" onClick="location.href='/producers/show/${producer.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;height:5vw">
 						<h5 style="margin: 0.5vw">${producer.user.username}</h5>
 					</div>
+				</c:if>
 				</c:forEach>
 	      	</div>
 			
