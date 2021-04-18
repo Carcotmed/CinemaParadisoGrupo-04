@@ -76,18 +76,23 @@ public class ProjectController {
 		
 		//PROYECTOS ANUNCIADOS
 		List <Project> allSponsoredProjects = projectService.findAllSponsoredProjects();
-		
+		Integer size;
 		List <Project> chosenSponsoredProjects = new ArrayList<Project>();
-		
-		List<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<allSponsoredProjects.size(); i++) {
-            list.add(i);
-        }
-        Collections.shuffle(list);
-        for (int i=0; i<3; i++) {
-        	chosenSponsoredProjects.add(allSponsoredProjects.get(i));
-        }
-        
+		if(allSponsoredProjects.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredProjects.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredProjects.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredProjects.add(allSponsoredProjects.get(list.get(i)));
+	        }
+		}
         model.addAttribute("sponsoredProjects",chosenSponsoredProjects);
         
 		
@@ -121,18 +126,23 @@ public class ProjectController {
 		
 		//PROYECTOS ANUNCIADOS
 		List <Project> allSponsoredProjects = projectService.findAllSponsoredProjects();
-		
+		Integer size;
 		List <Project> chosenSponsoredProjects = new ArrayList<Project>();
-		
-		List<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<allSponsoredProjects.size(); i++) {
-            list.add(i);
-        }
-        Collections.shuffle(list);
-        for (int i=0; i<3; i++) {
-        	chosenSponsoredProjects.add(allSponsoredProjects.get(i));
-        }
-        
+		if(allSponsoredProjects.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredProjects.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredProjects.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredProjects.add(allSponsoredProjects.get(list.get(i)));
+	        }
+		}
         model.addAttribute("sponsoredProjects",chosenSponsoredProjects);
 		
 		return "projects/listProject";

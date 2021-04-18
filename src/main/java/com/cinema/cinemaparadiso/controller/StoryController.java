@@ -162,18 +162,24 @@ public class StoryController {
 		
 		//HISTORIAS ANUNCIADAS
 		List <Story> allSponsoredStories = storyService.findAllSponsoredStories();
-		
+		Integer size;
 		List <Story> chosenSponsoredStories = new ArrayList<Story>();
-		
-		List<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<allSponsoredStories.size(); i++) {
-            list.add(i);
-        }
-        Collections.shuffle(list);
-        for (int i=0; i<3; i++) {
-        	chosenSponsoredStories.add(allSponsoredStories.get(i));
-        }
-        
+		if(allSponsoredStories.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredStories.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredStories.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredStories.add(allSponsoredStories.get(list.get(i)));
+	        }
+		}
+		System.out.println(allSponsoredStories);
         model.addAttribute("sponsoredStories",chosenSponsoredStories);
 		
 		return "stories/listStory";
@@ -196,6 +202,27 @@ public class StoryController {
 		
 		model.addAttribute("stories",storiesFiltrados);
 		model.addAttribute("genres", genres);
+		
+		//HISTORIAS ANUNCIADAS
+		List <Story> allSponsoredStories = storyService.findAllSponsoredStories();
+		Integer size;
+		List <Story> chosenSponsoredStories = new ArrayList<Story>();
+		if(allSponsoredStories.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredStories.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredStories.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredStories.add(allSponsoredStories.get(list.get(i)));
+	        }
+		}
+        model.addAttribute("sponsoredStories",chosenSponsoredStories);
 		
 		return "stories/listStory";
 
