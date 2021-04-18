@@ -63,9 +63,26 @@
 			<div class="row">
 				<div class="col-6 p-3"
 					style="border-color: #af3248; border-style: solid; border-width: 0 2px 0 0;">
-					<h4 style="margin-bottom: 4%">Sobre mi</h4>
-					<p>${artist.description}</p>
+					<h3 style="margin:0">Datos</h3>
+				<div style="margin:1% 0">
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre de usuario</h5>
+					</div>
+					<p style="margin-left: 3%">${artist.user.username}</p>
 				</div>
+				<div style="margin:1% 0">
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre</h5>
+					</div>
+					<p style="margin-left: 3%">${artist.name}</p>
+				</div>
+				<div>
+					<div class="d-flex flex-wrap ">
+						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripci&oacuten</h5>
+					</div>
+					<p style="margin-left: 3%">${artist.description}</p>
+				</div>
+			</div>
 				<div class="col-6 p-3">
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 style="margin-bottom: 4%">Proyectos</h4>
