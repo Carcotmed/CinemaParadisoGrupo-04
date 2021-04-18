@@ -1,5 +1,5 @@
 INSERT INTO users(username,password,enabled,email) VALUES ('admin','admin',TRUE,'admin@cinemaparadiso.com');
-INSERT INTO users(username,password,enabled,email) VALUES ('artist','artist',TRUE,'artist@cinemaparadiso.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('artist','artist',FALSE,'artist@cinemaparadiso.com');
 
 --User Artists
 INSERT INTO users (username,password,enabled,email) VALUES ('JarrodHuffman','PHK13RWX8IX','True','habitant.morbi.tristique@cursusNuncmauris.org');
