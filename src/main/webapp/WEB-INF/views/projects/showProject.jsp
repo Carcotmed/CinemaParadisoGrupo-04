@@ -167,9 +167,9 @@
 			
 		<div style="padding: 2% 0;width:30%;margin:auto">
 			<c:forEach items="${members}" var="member">
-				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+				<div onclick="location.href='/artists/show/${ member.id }'"  class="d-flex align-items-center justify-content-evenly" style="cursor:pointer;height:15vh; margin: 1% 0">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-						<img onclick="location.href='/artists/show/${ member.id }'" src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
+						<img src="${member.photo}" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
 					</div>
 					<div style="margin-left: 12%">
 						<h5>${member.name}</h5>
@@ -179,9 +179,9 @@
 				<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1% auto">
 			</c:forEach>
 			<c:forEach items="${producers}" var="producer">
-				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+				<div onclick="location.href='/producers/show/${ producer.id }'" class="d-flex align-items-center justify-content-evenly" style="cursor:pointer;height:15vh; margin: 1% 0">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-						<img onclick="location.href='/producers/show/${ producer.id }'" src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
+						<img src="${producer.photo}" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
 					</div>
 					<div style="margin-left: 12%">
 						<h5>${producer.name}</h5>

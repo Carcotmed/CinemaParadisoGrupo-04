@@ -180,11 +180,14 @@
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Escritor</h5>
 					</div>
-					<p style="margin-left: 3%">${myWriter.user.username}</p>
-					<div style="width:20vh;height:20vh;overflow:hidden;cursor:pointer" class="rounded-circle">
-						<img src="${myWriter.photo}" onClick="location.href='/writers/show/${myWriter.id}'"
-							style="width:100%;height:100%;object-fit:cover">
+					<div class="d-flex align-items-center" style="cursor:pointer" onClick="location.href='/writers/show/${myWriter.id}'">
+						<div style="width:20vh;height:20vh;overflow:hidden;cursor:pointer" class="rounded-circle">
+							<img src="${myWriter.photo}" 
+								style="width:100%;height:100%;object-fit:cover">
+						</div>
+						<p style="margin-left: 3%">${myWriter.user.username}</p>
 					</div>
+					
 				</div>
 			</div>
 

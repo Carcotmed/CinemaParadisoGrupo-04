@@ -57,9 +57,9 @@
 			<!-- Listado Proyectos PRO -->
 			<div class="d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${projectsPro}" var="projectPro">
-	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 15%; margin: 1vw;height:10vw">
+	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="cursor:pointer;flex-basis: 15%; margin: 1vw;height:10vw" onClick="location.href='/projects/show/${projectPro.id}'">
 						<div  class="rounded-circle d-flex" style="border-style:solid;border-color:#edd214;overflow:hidden;height:100%;width:80%">
-	      					<img src="${projectPro.photo}" onClick="location.href='/projects/show/${projectPro.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+	      					<img src="${projectPro.photo}"  style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 	      				</div>
 		      			<h5 style="margin: 0.5vw; text-align:center">${projectPro.title}</h5>
 		      		</div>
@@ -71,9 +71,9 @@
 			<!-- Listado Proyectos No PRO -->
 			<div class="d-flex flex-wrap justify-content-center align-items-center">
 				<c:forEach items="${projectsNoPro}" var="projectNoPro">
-	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 15%; margin: 1vw;height:10vw">
+	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="cursor:pointer;flex-basis: 15%; margin: 1vw;height:10vw" onClick="location.href='/projects/show/${projectNoPro.id}'">
 						<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:80%">
-							<img src="${projectNoPro.photo}" onClick="location.href='/projects/show/${projectNoPro.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+							<img src="${projectNoPro.photo}" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 						</div>
 						<h5 style="margin: 0.5vw; text-align:center">${projectNoPro.title}</h5>
 					</div>
