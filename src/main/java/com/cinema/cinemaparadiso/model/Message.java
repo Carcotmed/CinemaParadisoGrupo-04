@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -24,10 +25,11 @@ public class Message extends BaseEntity{
 	
 	@Column(name = "issue")
 	@Size(min=3,max=30,message="Es necesario que el asunto tenga entre 3 y 30 caracteres")
+    @NotBlank(message="No puedes dejarlo vacío.")
 	private String issue;
 	
 	@Column(name = "body")
-	@NotEmpty(message="No puede dejar el cuerpo del mensaje vacío")
+    @NotBlank(message="No puedes dejarlo vacío.")
 	@Size(min=10,max=900,message="Use un cuerpo de mensaje que contenga entre 10 y 900 carácteres")
 	private String body;
 	
