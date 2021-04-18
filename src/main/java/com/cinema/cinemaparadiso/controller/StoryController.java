@@ -62,7 +62,7 @@ public class StoryController {
 
 	@Transactional
 	@GetMapping("/request/{storyId}/{projectId}")
-	public String joinProject(Model model, @PathVariable("projectId") int projectId, @PathVariable("storyId") int storyId) {
+	public String request(Model model, @PathVariable("projectId") int projectId, @PathVariable("storyId") int storyId) {
     	Artist artist;
     	Project project;
     	try {
