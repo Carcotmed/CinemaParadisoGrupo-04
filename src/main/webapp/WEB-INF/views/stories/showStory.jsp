@@ -139,7 +139,10 @@
 						  //This function displays Smart Payment Buttons on your web page.
 						</script>
 
-			<div id="paypal-button-ad-story"></div>
+			<div>
+				<p>¡Publicita tu historia! (30&#8364)</p>
+			</div>
+			<div id="paypal-button-ad-story" style="z-index: 1"></div>
 
 			<!-- END PAYPAL -->
 		</c:if>

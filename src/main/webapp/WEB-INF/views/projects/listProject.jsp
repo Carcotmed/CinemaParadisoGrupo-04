@@ -56,16 +56,16 @@
 			<c:if test="${ sponsoredProjects.size()>0 }">
 				<div class="row">
 					<h4 style="padding-bottom: 1.5vw; padding-left: 4vw;">Proyectos descatacados</h4>
-					<c:forEach items="${ sponsoredProjects }" var="sponsoredProjects">
-						<div onclick="location.href='/stories/show/${sponsoredProjects.id}'" class="col-sm" style="cursor: pointer; height: fit-content; background-color: #c1c113; border-radius: 2vw; margin: 1vw 3vw 1vw 3vw; text-align: center; padding-bottom: 1vw; padding-top: 1vw;">
+					<c:forEach items="${ sponsoredProjects }" var="sponsoredProject">
+						<div onclick="location.href='/projects/show/${sponsoredProject.id}'" class="col-sm" style="cursor: pointer; height: fit-content; background-color: #c1c113; border-radius: 2vw; margin: 1vw 3vw 1vw 3vw; text-align: center; padding-bottom: 1vw; padding-top: 1vw;">
 							<div style="margin-bottom: 1vw; padding-left: 6vw; overflow:hidden;height:40%;width:80%">
 								<div  class="rounded-circle d-flex">
-									<img src="${ sponsoredProjects.photo }" style="border-radius: 50%; width:5vw;height:5vw;object-fit:cover">
+									<img src="${ sponsoredProject.photo }" style="border-radius: 50%; width:5vw;height:5vw;object-fit:cover">
 								</div>
 							</div>
 							<i>
 								<b>
-									${ sponsoredProjects.title }
+									${ sponsoredProject.title }
 								</b>
 							</i>
 						</div>

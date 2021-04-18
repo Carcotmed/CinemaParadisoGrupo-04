@@ -21,7 +21,7 @@
 		</div>
 		<div class="d-flex flex-column"  style="margin:0 1%; width:15%">
 			<h6 style="color:white">Contacto</h6>
-			<p style="color:white">Email: cinemaparadiso@gmail.com</p>
+			<p style="color:white">Email: cinemaparadisoapp@gmail.com</p>
 		</div>
 	</div>
 </html>

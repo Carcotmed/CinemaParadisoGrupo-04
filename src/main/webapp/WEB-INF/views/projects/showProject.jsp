@@ -90,8 +90,10 @@
 						  }).render('#paypal-button-ad');
 						  //This function displays Smart Payment Buttons on your web page.
 					  </script>
-					
-					<div id="paypal-button-ad"></div>
+					<div>
+						<p>¡Publicita tu proyecto! (30&#8364)</p>
+					</div>
+					<div id="paypal-button-ad" style="z-index:1"></div>
 					
 					<!-- Fin paypal -->
 				
