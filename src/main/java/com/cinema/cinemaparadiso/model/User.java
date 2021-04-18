@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -20,7 +21,8 @@ public class User {
     @Id
     @Column(name = "username")
     @Size(min=1,max=30,message="El usuario debe tener como máximo 30 caracteres y no ser vacío")
-    @NotBlank(message="No puedes dejarlo vacío.")
+    @NotBlank(message="No puedes dejarlo vacío")
+    @Pattern(regexp = "[a-zA-Z0-9]*", message = "Utiliza solo numeros y letras sin tildes y sin espacios")
     private String username;
     
     @Column(name = "password")
