@@ -44,7 +44,13 @@
 				<button class="btn rounded-pill" style="background-color: ${isAdmin?'#8a4380':'#af3248'}; color: white;" onclick="location.href='/producers/activate/${producer.id}'">Activar productora</button>
 			</c:if>
 	</c:if>
+		</div>
+		<c:if test="${!userDisabled}">
+		<div class="col-6 p-3">
+					<h4 style="margin-bottom: 4%">Datos de la productora</h4>
+					<p>${producer.description}</p>
 		</div>	
+		</c:if>
 	</div>
 	<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </body>
