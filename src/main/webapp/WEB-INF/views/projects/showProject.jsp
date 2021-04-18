@@ -39,7 +39,7 @@
 			</c:if>
 			<c:if test="${ isAdminProject == true }">
 				
-				<c:if test="${ !project.isSponsored }">
+				<c:if test="${ !project.isSponsored and !isAdmin }">
 				
 					<!-- BOTON PAYPAL ANUNCIAR -->
 					
