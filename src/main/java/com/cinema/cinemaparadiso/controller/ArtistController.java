@@ -64,14 +64,14 @@ public class ArtistController {
 		model.addAttribute("artistsFiltered", artistsFiltered);
 
 		List<Artist> artistasProFiltrados = artists.stream()
-				.filter(a -> a.getPro() &&
-							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
+				.filter(a -> a.getPro() &&		
+							a.getUser().getUsername().toLowerCase().contains(artistsFiltered.getUser().getUsername().toLowerCase()) && 
 							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
 				).collect(Collectors.toList());
 		
 		List<Artist> artistasNoProFiltrados = artists.stream()
-				.filter(a -> a.getPro() &&
-							a.getName().toLowerCase().contains(artistsFiltered.getName().toLowerCase()) && 
+				.filter(a -> !a.getPro() &&
+							a.getUser().getUsername().toLowerCase().contains(artistsFiltered.getUser().getUsername().toLowerCase()) && 
 							(!roles.contains(artistsFiltered.getRole()) || a.getRole().equals(artistsFiltered.getRole()))
 				).collect(Collectors.toList());
 		

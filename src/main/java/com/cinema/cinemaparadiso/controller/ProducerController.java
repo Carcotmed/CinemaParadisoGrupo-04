@@ -1,6 +1,7 @@
 package com.cinema.cinemaparadiso.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -38,10 +39,28 @@ public class ProducerController {
     @GetMapping("/list")
     public String list(Model model){
         List<Producer> producers = producerService.list();
+        Producer producersFiltered = new Producer();
         model.addAttribute("producers", producers);
+        model.addAttribute("producersFiltered",producersFiltered);
         return "producers/listProducer";
     }
     
+    @PostMapping("/list")
+	public String list(@ModelAttribute("producersFiltered") Producer producersFiltered,Model model) {
+		List<Producer> producers = producerService.list();
+		
+		model.addAttribute("producers", producers);
+		
+		
+		List<Producer> producersFiltrados = producers.stream()
+				.filter(w->w.getUser().getUsername().toLowerCase().contains(producersFiltered.getUser().getUsername().toLowerCase())
+				).collect(Collectors.toList());
+		
+		model.addAttribute("producers",producersFiltrados);
+		
+		return "/producers/listProducer";
+	}
+	
     @GetMapping(value = { "/show/{producerId}" })
 	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
 		Producer producer = producerService.findProducerById(producerId);

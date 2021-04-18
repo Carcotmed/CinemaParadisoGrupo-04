@@ -30,6 +30,7 @@ import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
 import com.cinema.cinemaparadiso.service.StoryService;
 import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.WriterService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,6 +44,9 @@ public class StoryController {
 
 	@Autowired
 	private ArtistService artistService;
+	
+	@Autowired
+	private WriterService writerService;
 
 	@Autowired
 	private UserService userService;
@@ -131,6 +135,7 @@ public class StoryController {
 
 	@PostMapping("/create")
 	public String createStory(@Validated Story story, BindingResult result,Model model) {
+		Integer actualId = writerService.getPrincipal().getId();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("genres",genres);
 		try {
@@ -140,7 +145,7 @@ public class StoryController {
 			log.error("Error Create Story", e);
 			return "stories/createStory";
 		}
-		return "redirect:/stories/list";
+		return "redirect:/writers/show/"+actualId;
 	}
 
 	@GetMapping("/list")
