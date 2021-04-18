@@ -213,4 +213,9 @@ public class ProjectService {
 	}
 
 
+	public List<Project> findAllSponsoredProjects() {
+		return projectRepository.findAllSponsoredProjects();
+	}
+	
+
 }

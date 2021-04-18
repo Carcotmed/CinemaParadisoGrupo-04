@@ -1,5 +1,7 @@
 package com.cinema.cinemaparadiso.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -21,4 +23,7 @@ public interface StoryRepository extends CrudRepository<Story,Integer>{
 	@Modifying
 	@Query("UPDATE Story story SET story.isSponsored = TRUE WHERE story.id = :storyID")
 	public void makeStorySponsored(Integer storyID);
+
+	@Query("SELECT story from Story story WHERE story.isSponsored = TRUE")
+	public List<Story> findAllSponsoredStories();
 }

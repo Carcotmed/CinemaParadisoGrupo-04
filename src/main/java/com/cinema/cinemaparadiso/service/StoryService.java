@@ -103,6 +103,10 @@ public class StoryService {
 	public void makeStorySponsored(Integer storyID) {
 		storyRepository.makeStorySponsored(storyID);
 	}
+
+	public List<Story> findAllSponsoredStories() {
+		return storyRepository.findAllSponsoredStories();
+	}
 	
 
 }

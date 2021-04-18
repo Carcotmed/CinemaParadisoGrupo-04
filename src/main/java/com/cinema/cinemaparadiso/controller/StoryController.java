@@ -2,6 +2,7 @@ package com.cinema.cinemaparadiso.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -158,6 +159,23 @@ public class StoryController {
 		model.addAttribute("genres",genres);
 		model.addAttribute("storiesFiltered",storiesFiltered);
 		log.info("Listing Stories..." + stories.toString());
+		
+		//HISTORIAS ANUNCIADAS
+		List <Story> allSponsoredStories = storyService.findAllSponsoredStories();
+		
+		List <Story> chosenSponsoredStories = new ArrayList<Story>();
+		
+		List<Integer> list = new ArrayList<Integer>();
+        for (int i=0; i<allSponsoredStories.size(); i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        for (int i=0; i<3; i++) {
+        	chosenSponsoredStories.add(allSponsoredStories.get(i));
+        }
+        
+        model.addAttribute("sponsoredStories",chosenSponsoredStories);
+		
 		return "stories/listStory";
 
 	}
@@ -199,6 +217,23 @@ public class StoryController {
 			List<Project> projects = projectService.findProjectByAdminUsername(artist.getUser().getUsername());
 			model.addAttribute("projects",projects);
 		}catch(Exception e) {model.addAttribute("projects",new ArrayList<Project>());}
+		
+		
+		//HISTORIAS ANUNCIADAS
+		List <Story> allSponsoredStories = storyService.findAllSponsoredStories();
+		
+		List <Story> chosenSponsoredStories = new ArrayList<Story>();
+		
+		List<Integer> list = new ArrayList<Integer>();
+        for (int i=0; i<allSponsoredStories.size(); i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        for (int i=0; i<3; i++) {
+        	chosenSponsoredStories.add(allSponsoredStories.get(i));
+        }
+        
+        model.addAttribute("sponsoredStories",chosenSponsoredStories);
 
 		return "stories/showStory";
 	}
