@@ -67,8 +67,8 @@
 			
 			<div style="width:46%;margin:2%" class="d-flex flex-column align-items-center">
 				<h3 style="margin: 0.7vw; color:white">PRO (15&#8364)</h3>
-				<p style="color:white;text-align:center;font-size:1.2rem">Â¡A&ntildeade tres proyectos extra al n&uacutemero de proyectos que puedes crear y adem&aacutes convi&eacutertete en usuario PRO!
-				Â¡Aparecer&aacutes arriba en el listado y aumentar&aacutes tu probabilidad de que te encuentren!</p>
+				<p style="color:white;text-align:center;font-size:1.2rem">¡A&ntildeade tres proyectos extra al n&uacutemero de proyectos que puedes crear y adem&aacutes convi&eacutertete en usuario PRO!
+				¡Aparecer&aacutes arriba en el listado y aumentar&aacutes tu probabilidad de que te encuentren!</p>
 				<div id="paypal-button-pro"></div>
 			</div>
 			<!-- TODO

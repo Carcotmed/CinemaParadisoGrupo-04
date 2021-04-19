@@ -20,14 +20,15 @@ public class User {
 	
     @Id
     @Column(name = "username")
-    @Size(min=1,max=30,message="El usuario debe tener como máximo 30 caracteres y no ser vacío")
+    @Size(min=1,max=30,message="El usuario debe tener como máximo 30 caracteres")
     @NotBlank(message="No puedes dejarlo vacío")
     @Pattern(regexp = "[a-zA-Z0-9]*", message = "Utiliza solo numeros y letras sin tildes y sin espacios")
     private String username;
     
     @Column(name = "password")
-    @Size(min=1,max=150,message="La password debe tener como máximo 150 caracteres y no ser vacía")
-    @NotBlank(message="No puedes dejarlo vacío.")
+    @Size(min=1,max=150,message="La password debe tener como máximo 150 caracteres")
+    @NotBlank(message="No puedes dejarlo vacío")
+    @Pattern(regexp = "[a-zA-Z0-9 ]*", message = "Utiliza solo numeros y letras sin tildes")
     private String password;
     
     @Column(name = "enabled")
@@ -35,8 +36,8 @@ public class User {
     
     @Email
     @Column(name = "email")
-    @Size(min=1,max=80,message="El email debe tener como máximo 80 caracteres y no ser vacío")
-    @NotBlank(message="No puedes dejarlo vacío.")
+    @Size(min=1,max=80,message="El email debe tener como máximo 80 caracteres")
+    @NotBlank(message="No puedes dejarlo vacío")
     private String email;
     
 	@Override

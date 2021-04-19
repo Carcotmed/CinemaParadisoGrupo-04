@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
@@ -30,6 +31,7 @@ public class Project extends BaseEntity {
 	@Column(name="title")
 	@Size(min=3,max=30,message="Es necesario que el título tenga entre 3 y 30 caracteres")
     @NotBlank(message="No puedes dejarlo vacío.")
+	@Pattern(regexp = "[a-zA-Z0-9 ]*", message = "Utiliza solo numeros y letras sin tildes")
     private String title;
 
 	@Enumerated(EnumType.STRING)
