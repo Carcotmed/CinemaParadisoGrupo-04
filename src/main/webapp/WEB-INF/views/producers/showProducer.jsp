@@ -74,8 +74,8 @@
 						<h4 style="margin-bottom: 4%">Datos de la productora</h4>
 						<p>${producer.description}</p>
 					</div>
-					<div class="col-6 p-3 d-flex justify-content-between align-items-center flex-column" >
-						<div class="d-flex justify-content-between align-items-center">
+					<div class="col-6 p-3 d-flex justify-content-between flex-column" >
+						<div class="d-flex justify-content-between flex-column w-100">
 							<h4 style="margin-bottom: 4%">Proyectos</h4>
 							<c:forEach items="${myProjects}" var="project">
 								<div class="d-flex align-items-center justify-content-evenly"
