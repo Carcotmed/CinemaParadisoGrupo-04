@@ -39,7 +39,7 @@
 			</c:if>
 			<c:if test="${ isAdminProject == true }">
 				
-				<c:if test="${ !project.isSponsored }">
+				<c:if test="${ !project.isSponsored and !isAdmin }">
 				
 					<!-- BOTON PAYPAL ANUNCIAR -->
 					
@@ -90,12 +90,15 @@
 						  }).render('#paypal-button-ad');
 						  //This function displays Smart Payment Buttons on your web page.
 					  </script>
-					
-					<div id="paypal-button-ad"></div>
+					<div>
+						<p>¡Publicita tu proyecto! (30&#8364)</p>
+					</div>
+					<div id="paypal-button-ad" style="z-index:1"></div>
 					
 					<!-- Fin paypal -->
 				
 				</c:if>
+			</c:if>
 			
 			<c:if test="${ isAdminProject == true  || isAdmin}">
 				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar</button>
@@ -105,7 +108,6 @@
 			</c:if>
 			<c:if test="${isAdmin || isAdminProject}">
 				<button style="color:white;height: fit-content;background-color:${isAdmin?'#8a4380':'#af3248'}" class="btn rounded-pill"  onClick="location.href='/projects/deleteAll/${project.id}'">Eliminar proyecto</button>
-			</c:if>
 			</c:if>
 			
 			<c:if test="${ !noPuedeP}">
@@ -167,9 +169,9 @@
 			
 		<div style="padding: 2% 0;width:30%;margin:auto">
 			<c:forEach items="${members}" var="member">
-				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+				<div onclick="location.href='/artists/show/${ member.id }'"  class="d-flex align-items-center justify-content-evenly" style="cursor:pointer;height:15vh; margin: 1% 0">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-						<img onclick="location.href='/artists/show/${ member.id }'" src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
+						<img src="${member.photo}" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
 					</div>
 					<div style="margin-left: 12%">
 						<h5>${member.name}</h5>
@@ -179,9 +181,9 @@
 				<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1% auto">
 			</c:forEach>
 			<c:forEach items="${producers}" var="producer">
-				<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0">
+				<div onclick="location.href='/producers/show/${ producer.id }'" class="d-flex align-items-center justify-content-evenly" style="cursor:pointer;height:15vh; margin: 1% 0">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-						<img onclick="location.href='/producers/show/${ producer.id }'" src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
+						<img src="${producer.photo}" style="width:100%;height:100%;object-fit:cover"><!-- {member.img} -->
 					</div>
 					<div style="margin-left: 12%">
 						<h5>${producer.name}</h5>

@@ -366,6 +366,10 @@ public class MessageService {
     	
     	return messageRepository.findAllMessagesSents(username); 
     }
+
+	public void deleteAllByStoryId(Integer storyId) {
+		messageRepository.deleteAllByStoryId(storyId);
+	}
     
     
     

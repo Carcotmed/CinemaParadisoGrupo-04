@@ -59,8 +59,8 @@
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${artistsPro}" var="artistPro">
 	      		<c:if test="${artistPro.user.enabled}">
-					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="${artistPro.photo}" onClick="location.href='/artists/show/${artistPro.id}'" class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="cursor:pointer;flex-basis: 15%; margin: 1vw;" onClick="location.href='/artists/show/${artistPro.id}'">
+						<img src="${artistPro.photo}"  class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
 						<h5 style="margin: 0.5vw">${artistPro.user.username}</h5>
 					</div>
 				</c:if>
@@ -74,8 +74,8 @@
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${artistsNoPro}" var="artistNoPro">
 				<c:if test="${artistNoPro.user.enabled}">
-					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="${artistNoPro.photo}" onClick="location.href='/artists/show/${artistNoPro.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="cursor:pointer;flex-basis: 15%; margin: 1vw;" onClick="location.href='/artists/show/${artistNoPro.id}'">
+						<img src="${artistNoPro.photo}"  class="rounded-circle" style="cursor:pointer;width:5vw;">
 						<h5 style="margin: 0.5vw">${artistNoPro.user.username}</h5>
 					</div>
 				</c:if>

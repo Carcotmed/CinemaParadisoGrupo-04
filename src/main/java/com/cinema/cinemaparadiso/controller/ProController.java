@@ -33,7 +33,7 @@ public class ProController {
 	private StoryService storyService;
 	
 	@GetMapping("")
-	public String showProducts(Model model) {
+	public String showProducts(Model model) {		
 		return "/pro/products";
 	}
 	

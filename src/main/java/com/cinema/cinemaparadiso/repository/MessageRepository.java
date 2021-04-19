@@ -5,10 +5,12 @@ import java.util.List;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Message;
 
@@ -30,5 +32,10 @@ public interface MessageRepository extends CrudRepository<Message,Integer>{
 	
 	@Query("SELECT m FROM Message m WHERE m.receptor.username = :usernameQuery")
 	public List<Message> findAllMessagesReceived(@Param("usernameQuery") String username);
+
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Message m WHERE m.story.id = :storyId")
+	public Object deleteAllByStoryId(@Param("storyId") Integer storyId);
 	
 }

@@ -1,8 +1,8 @@
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'The Fault in Our Stars','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'City of Lost Souls','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Pandemonium','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Cinder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'The Fault in Our Stars','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'City of Lost Souls','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'Pandemonium','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
+INSERT INTO stories (version, title, body, genre, storylength,is_sponsored) VALUES (0,'Cinder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000, true);
 INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Easy','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000);
 INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'The Golden Lily','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000);
 INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Slammed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000);

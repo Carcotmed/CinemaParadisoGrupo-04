@@ -42,5 +42,8 @@ public interface ProjectRepository extends CrudRepository<Project,Integer>{
 	@Modifying
 	@Query("DELETE FROM Project p WHERE p.id= :projectId")
 	public void delete(Integer projectId);
+
+	@Query("SELECT project from Project project WHERE project.isSponsored = TRUE")
+	public List<Project> findAllSponsoredProjects();
 	
 }

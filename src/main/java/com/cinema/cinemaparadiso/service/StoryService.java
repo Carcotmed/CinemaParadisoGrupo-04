@@ -29,6 +29,9 @@ public class StoryService {
 	
 	@Autowired
 	private Rel_projects_storyService rel_projects_storyService;
+	
+	@Autowired
+	private MessageService messageService;
 
 
 	@Autowired
@@ -93,11 +96,16 @@ public class StoryService {
 	public void deleteStory(Integer storyId) {
 		rel_story_writersService.deleteByStoryId(storyId);
 		rel_projects_storyService.deleteByStoryId(storyId);
+		messageService.deleteAllByStoryId(storyId);
 		storyRepository.delete(findStoryById(storyId));
 	}
 
 	public void makeStorySponsored(Integer storyID) {
 		storyRepository.makeStorySponsored(storyID);
+	}
+
+	public List<Story> findAllSponsoredStories() {
+		return storyRepository.findAllSponsoredStories();
 	}
 	
 

@@ -64,7 +64,7 @@ public class MessageController {
 	        
 	        String usernameActual = userService.getPrincipal().getUsername();
 	        
-	        Boolean isRequest = message.getIsRequest()!=null && message.getReceptor().getUsername().equals(usernameActual);
+	        Boolean isRequest = message.getIsRequest()!=null && message.getIsRequest()!=0 && message.getReceptor().getUsername().equals(usernameActual);
 	        Boolean isArtist = this.userService.findArtistByUserUsername(message.getEmisor().getUsername()).isPresent();
 	        Boolean isProducer = this.userService.findProducerByUserUsername(message.getEmisor().getUsername()).isPresent();
 	        Boolean isWriter =this.userService.findWriterByUserUsername(message.getReceptor().getUsername()).isPresent();

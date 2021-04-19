@@ -1,6 +1,8 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,6 +73,29 @@ public class ProjectController {
 		model.addAttribute("projectsNoPro", noProProjects);
 		model.addAttribute("projectsFiltered", projectsFiltered);
 		log.info("Listing Projects..." + projects.toString());
+		
+		//PROYECTOS ANUNCIADOS
+		List <Project> allSponsoredProjects = projectService.findAllSponsoredProjects();
+		Integer size;
+		List <Project> chosenSponsoredProjects = new ArrayList<Project>();
+		if(allSponsoredProjects.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredProjects.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredProjects.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredProjects.add(allSponsoredProjects.get(list.get(i)));
+	        }
+		}
+        model.addAttribute("sponsoredProjects",chosenSponsoredProjects);
+        
+		
 		return "projects/listProject";
 	}
 	
@@ -98,6 +123,27 @@ public class ProjectController {
 		model.addAttribute("projectsPro", projectsProFiltrados);
 		model.addAttribute("projectsNoPro", projectsNoProFiltrados);
 		model.addAttribute("genres", genres);
+		
+		//PROYECTOS ANUNCIADOS
+		List <Project> allSponsoredProjects = projectService.findAllSponsoredProjects();
+		Integer size;
+		List <Project> chosenSponsoredProjects = new ArrayList<Project>();
+		if(allSponsoredProjects.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredProjects.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredProjects.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredProjects.add(allSponsoredProjects.get(list.get(i)));
+	        }
+		}
+        model.addAttribute("sponsoredProjects",chosenSponsoredProjects);
 		
 		return "projects/listProject";
 	}

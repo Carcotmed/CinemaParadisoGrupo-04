@@ -1,5 +1,5 @@
 INSERT INTO users(username,password,enabled,email) VALUES ('admin','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu',TRUE,'admin@cinemaparadiso.com');
-INSERT INTO users(username,password,enabled,email) VALUES ('artist','$2y$10$JJsHuf1/VAPRBD5TSxWi7.17fcLb24jpU6tfoYqTSHHiH9Ln/dbLm',TRUE,'admin@cinemaparadiso.com');
+INSERT INTO users(username,password,enabled,email) VALUES ('artist','$2y$10$JJsHuf1/VAPRBD5TSxWi7.17fcLb24jpU6tfoYqTSHHiH9Ln/dbLm',FALSE,'admin@cinemaparadiso.com');
 
 --User Artists
 INSERT INTO users (username,password,enabled,email) VALUES ('JarrodHuffman','$2y$10$qJ14yJUo2/iXDiZrH17WPO1nx1AVeazpJJtleKKK/qr1iPamDdekC','True','habitant.morbi.tristique@cursusNuncmauris.org');
