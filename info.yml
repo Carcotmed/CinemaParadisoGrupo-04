@@ -1,64 +1,54 @@
 project:
-  name: "Cinema Paradiso"
-  owner: "morning"
-  teamId: "4"
+  name: 'CinemaParadiso'
+  owner: 'morning'
+  teamId: '4'
   identities:
-    heroku-develop:
-      url: "https://cinema-paradiso-develop.herokuapp.com/"
-    heroku-sprint-1:
-      url: "https://cinema-paradiso-sprint-1.herokuapp.com"
+    github:
+      url: 'https://github.com/Carcotmed/CinemaParadisoGrupo-04'
+    heroku:
+      url: 'https://cinema-paradiso.herokuapp.com/'
     travis:
-      url: "https://travis-ci.com/github/Carcotmed/CinemaParadisoGrupo-04"
-    codacy:
-      url: "https://app.codacy.com/gh/ivan-desing-testing/CinemaParadisoGrupo-04/dashboard?utm_source=github.com&utm_medium=referral&utm_content=ivan-desing-testing/CinemaParadisoGrupo-04"
+      url: 'https://travis-ci.com/github/Carcotmed/CinemaParadisoGrupo-04'
+    codeclimate:
+      url: 'https://app.codacy.com/gh/ivan-desing-testing/CinemaParadisoGrupo-04/dashboard'
   members:
     member1:
-      name: "Carlos"
-      surname: "Cote Medina"
-      githubUsername: "Carcotmed"
-      email: "carcotmed@gmail.com"
+      name: 'Carlos'
+      surname: 'Cote Medina' 
+      githubUsername: 'Carcotmed'
     member2:
-      name: "Pablo"
-      surname: "Calle Perez"
-      githubUsername: "Pabcalper"
-      email: "pabcalper@alum.us.es"
+      name: 'Pablo'
+      surname: 'Calle Perez' 
+      githubUsername: 'Pabcalper'
     member3:
-      name: "Iván"
-      surname: "Cárdenas Meneses"
-      githubUsername: "ivan-desing-testing"
-      email: "ivacarmen@alum.us.es"
+      name: 'Ivan'
+      surname: 'Cardenas Meneses' 
+      githubUsername: 'ivan-desing-testing'
     member4:
-      name: "Sergio"
-      surname: "Pérez Capitán"
-      githubUsername: "Capi9888"
-      email: "serpercap@alum.us.es"
+      name: 'Sergio'
+      surname: 'Perez Capitan' 
+      githubUsername: 'Capi9888'
     member5:
-      name: "Óscar"
-      surname: "Dorado Abadías"
-      githubUsername: "oscdoraba"
-      email: "oscdoraba@alum.us.es"
+      name: 'oscar'
+      surname: 'Dorado Abadias' 
+      githubUsername: 'oscdoraba'
     member6:
-      name: "Adrián"
-      surname: "Gracia Barroso"
-      githubUsername: "adrgrabar"
-      email: "adriaingra@gmail.com"
+      name: 'Adrian'
+      surname: 'Gracia Barroso' 
+      githubUsername: 'adrgrabar'
     member7:
-      name: "Moises"
-      surname: "Pantión Loza"
-      githubUsername: "Moipanloz"
-      email: "moipanloz@alum.us.es"
+      name: 'Moises'
+      surname: 'Pantion Loza' 
+      githubUsername: 'Moipanloz'
     member8:
-      name: "Bogdan-Marian"
-      surname: "Stefan"
-      githubUsername: "bogdanstefan"
-      email: "sbogdanm26@hotmail.com"
+      name: 'Bogdan-Marian'
+      surname: 'Stefan' 
+      githubUsername: 'bogdanstefan'
     member9:
-      name: "Luis"
-      surname: "Campos Iglesia"
-      githubUsername: "LuisCamposIglesia"
-      email: "luicamigl@alum.us.es"
+      name: 'Luis'
+      surname: 'Campos Iglesia' 
+      githubUsername: 'LuisCamposIglesia'
     member10:
-      name: "David"
-      surname: "Gañán García"
-      githubUsername: "DavidGananGarcia"
-      email: "davgangar@alum.us.es"
+      name: 'David'
+      surname: 'Gañan Garcia' 
+      githubUsername: 'DavidGananGarcia'
