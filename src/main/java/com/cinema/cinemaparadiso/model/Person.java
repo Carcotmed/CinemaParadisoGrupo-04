@@ -34,7 +34,6 @@ public class Person extends BaseEntity  {
 	@Column(name = "description")
     @NotBlank(message="No puedes dejarlo vacío")
 	@Size(min=1,max=150,message="El resumen debe tener como máximo 150 caracteres")
-	@Pattern(regexp = "[a-zA-Z0-9 ]*", message = "Utiliza solo numeros y letras sin tildes")
 	protected String description;
 	
 	@Column(name="photo")

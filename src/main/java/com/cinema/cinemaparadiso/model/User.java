@@ -28,7 +28,6 @@ public class User {
     @Column(name = "password")
     @Size(min=1,max=150,message="La password debe tener como máximo 150 caracteres")
     @NotBlank(message="No puedes dejarlo vacío")
-    @Pattern(regexp = "[a-zA-Z0-9 ]*", message = "Utiliza solo numeros y letras sin tildes")
     private String password;
     
     @Column(name = "enabled")
