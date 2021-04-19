@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Authorities;
 import com.cinema.cinemaparadiso.model.Producer;
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
 import com.cinema.cinemaparadiso.repository.ProducerRepository;
@@ -92,6 +93,12 @@ public class ProducerService {
 		producer2.setUser(findMyUser(producer.getId()));
 		saveProducer(producer2);
 	}
+	
+	public List<Project> findMyprojects(Integer producerId) {
+		List<Project> myProjects = new ArrayList<>();
+		myProjects = producerRepository.findMyProjects(producerId);
+		return myProjects;
+	}
 
 	@Transactional
 	public Boolean isActualProducer(Integer producerId) {
@@ -123,8 +130,5 @@ public class ProducerService {
 	public Producer findProducerByUsername(String username) throws DataAccessException {
 		return producerRepository.findByUserUsername(username).get();
 	}
-
-    
-
 }
 

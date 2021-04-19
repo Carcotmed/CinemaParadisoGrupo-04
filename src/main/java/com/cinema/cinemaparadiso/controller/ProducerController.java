@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Producer;
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.UserService;
@@ -65,7 +66,9 @@ public class ProducerController {
 	public String showProducer(@PathVariable("producerId") Integer producerId, Model model) {
 		Producer producer = producerService.findProducerById(producerId);
 		Boolean showButton = producerService.isActualProducer(producerId) || userService.isAdmin();
+		List<Project> myProjects = producerService.findMyprojects(producerId);
 		Boolean disabled = !producerService.findMyUser(producerId).isEnabled();
+		model.addAttribute("myProjects", myProjects);
 		model.addAttribute("producerUsername", producer.getUser().getUsername());
 		model.addAttribute("producer", producer);
 		model.addAttribute("showButton",showButton);
