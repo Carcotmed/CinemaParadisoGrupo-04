@@ -98,6 +98,7 @@
 					<!-- Fin paypal -->
 				
 				</c:if>
+			</c:if>
 			
 			<c:if test="${ isAdminProject == true  || isAdmin}">
 				<button class="btn rounded-pill" onclick="location.href='/projects/update/${project.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar</button>
@@ -107,7 +108,6 @@
 			</c:if>
 			<c:if test="${isAdmin || isAdminProject}">
 				<button style="color:white;height: fit-content;background-color:${isAdmin?'#8a4380':'#af3248'}" class="btn rounded-pill"  onClick="location.href='/projects/deleteAll/${project.id}'">Eliminar proyecto</button>
-			</c:if>
 			</c:if>
 			
 			<c:if test="${ !noPuedeP}">
