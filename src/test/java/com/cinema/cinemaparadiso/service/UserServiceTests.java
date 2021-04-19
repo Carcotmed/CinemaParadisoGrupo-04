@@ -1,16 +1,10 @@
 package com.cinema.cinemaparadiso.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import com.cinema.cinemaparadiso.model.User;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class UserServiceTests {
-	
-	@Autowired
-	private UserService userService;
+
 	
 	// Cuando se termine de hacer la funcionalidad y se concrete mejor el data
 	// se descomenta estos comentarios 

@@ -1,22 +1,8 @@
 package com.cinema.cinemaparadiso.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.cinema.cinemaparadiso.model.Artist;
-import com.cinema.cinemaparadiso.model.Authorities;
-import com.cinema.cinemaparadiso.model.Role;
-import com.cinema.cinemaparadiso.model.Skill;
-import com.cinema.cinemaparadiso.model.User;
 
 
 @SpringBootTest
@@ -24,12 +10,7 @@ import com.cinema.cinemaparadiso.model.User;
 @Transactional
 public class ArtistServiceTests {
 	
-	@Autowired
-	private ArtistService artistService;
 
-	@Autowired
-	private UserService userService;
-	
 	/*
 	@Test
     public void shouldListTotalArtist(){

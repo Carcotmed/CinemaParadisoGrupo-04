@@ -1,14 +1,21 @@
 package com.cinema.cinemaparadiso.service;
 
-import com.cinema.cinemaparadiso.model.Authorities;
-import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
-import com.cinema.cinemaparadiso.repository.ProducerRepository;
-
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cinema.cinemaparadiso.model.Authorities;
+import com.cinema.cinemaparadiso.model.Producer;
+import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.User;
+import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
+import com.cinema.cinemaparadiso.repository.ProducerRepository;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 @Service
 public class ProducerService {
@@ -17,59 +24,111 @@ public class ProducerService {
     private ProducerRepository producerRepository;
     
     @Autowired
-    private UserService userService;
+	private AuthoritiesRepository authoritiesRepository;
     
     @Autowired
-    private AuthoritiesRepository authoritiesRepository;
+    private UserService userService;
     
-    public boolean existeProducerByUsername(String username) {
-    	Integer count = producerRepository.countByUsername(username);
-    	return count != 0;
-    }
-    
+    public List<Producer> list() {
+		List<Producer> producers = new ArrayList<>();
+		producerRepository.findAll().forEach(w -> producers.add(w));
+		return producers;
+	}
 
-    public long countProducers(){
-        return producerRepository.count();
-    }
+	@Transactional(readOnly = true)
+	public Producer findProducerById(int id) throws DataAccessException {
+		return producerRepository.findById(id).get();
+	}
+	
+	public Boolean isUniqueUsername(String username) {
+		Boolean res = null;
+		Optional<User> optionalUser = this.producerRepository.findUserByProducerUsername(username);
+		res = !optionalUser.isPresent();
+		return res;
+	}
 
-    public Iterable<Producer> list(){
-        return producerRepository.findAll();
-    }
-    
-    public Producer getProducerByNif(String nif) throws NoSuchElementException {
-    	return producerRepository.findByNif(nif).get();
-    }
-    
-    public Producer getProducerByUsername(String username) throws NoSuchElementException {
-    	return producerRepository.findByUser(username);
-    }
-    
-    public Producer getProducerById(Integer id) throws NoSuchElementException {
-    	return producerRepository.findById(id).get();
-    }
-    
-    public void saveProducer(Producer producer){
-    	producerRepository.save(producer);
-    }
+	@Transactional(rollbackFor = UserUniqueException.class)
+	public void createProducer(Producer producer) throws UserUniqueException {
+		User user = producer.getUser();
+		String nuevoUsername = user.getUsername();
+		if(!isUniqueUsername(nuevoUsername)) {
+			throw new UserUniqueException();
+		}
+		else {
+		userService.createUser(user);
+		Authorities authorities = new Authorities(user.getUsername(), "producer");
+		authoritiesRepository.save(authorities);
+		saveProducer(producer);
+		}
 
-    public void createProducer(Producer producer){
-    	userService.createUser(producer.getUser());
-		 Authorities authorities = new Authorities(producer.getUser().getUsername(),"producer");
-	     authoritiesRepository.save(authorities);
-	    saveProducer(producer);
-    }
+	}
 
-    public void deleteProducer(Producer producer){
-    	authoritiesRepository.delete(authoritiesRepository.findByUsername(producer.getUser().getUsername()));
-    	producerRepository.delete(producer);
-    	userService.deleteUser(producer.getUser());
-	    saveProducer(producer);
-    }
-    
+	@Transactional
+	public void saveProducer(Producer producer) throws DataAccessException {
+		producerRepository.save(producer);
+	}
 
-    
+	@Transactional(readOnly = true)
+	public Producer getPrincipal() {
+		Producer res = null;
 
-    
+		User currentUser = userService.getPrincipal();
+		if (currentUser != null) {
+			Optional<Producer> optionalProducer = producerRepository.findByUserUsername(currentUser.getUsername());
+			if (optionalProducer.isPresent()) {
+				res = optionalProducer.get();
+			}
+		}
+		return res;
+	}
 
+	@Transactional
+	public void editProducer(Producer producer) throws DataAccessException {
+		Producer producer2 = findProducerById(producer.getId());
+		producer2.setId(producer.getId());
+		producer2.setName(producer.getName());
+		producer2.setSurName(producer.getSurName());
+		producer2.setDescription(producer.getDescription());
+		producer2.setPhoto(producer.getPhoto());
+		producer2.setUser(findMyUser(producer.getId()));
+		saveProducer(producer2);
+	}
+	
+	public List<Project> findMyprojects(Integer producerId) {
+		List<Project> myProjects = new ArrayList<>();
+		myProjects = producerRepository.findMyProjects(producerId);
+		return myProjects;
+	}
+
+	@Transactional
+	public Boolean isActualProducer(Integer producerId) {
+		Producer producer = findProducerById(producerId);
+		Producer actualProducer = getPrincipal();
+		return producer.equals(actualProducer);
+	}
+
+	@Transactional
+	public User findMyUser(Integer producerId) {
+
+		return producerRepository.findUserByProducerUsername(findProducerById(producerId).getUser().getUsername()).get();
+	}
+
+	@Transactional
+	public void deleteProducer(Integer producerId) {
+		User user = findMyUser(producerId);
+		user.setEnabled(false);
+	}
+	
+	@Transactional
+	public void activateProducer(Integer producerId) {
+
+		User user = findMyUser(producerId);
+		user.setEnabled(true);
+	}
+	
+	@Transactional(readOnly = true)
+	public Producer findProducerByUsername(String username) throws DataAccessException {
+		return producerRepository.findByUserUsername(username).get();
+	}
 }
 

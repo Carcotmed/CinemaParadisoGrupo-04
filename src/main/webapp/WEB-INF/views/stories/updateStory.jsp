@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html class="h-100">
 <head>
@@ -15,72 +17,55 @@
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
 
-<title>Update Story</title>
+<title>Crear historia</title>
 </head>
 <body class="h-100" style="background-color: #272727; color: white">
-	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
-
-	<div class="d-flex">
-		<div class="d-flex flex-column justify-content-center">
-			<h4>Mis Historias</h4>
-			<button class="btn rounded-circle">+</button>
-		</div>
-		<!--  c:forEach items="${stories}" var="story" -->
-		<div>
-			<img src="https://via.placeholder.com/150" class="w-30">
-			<h6>Historia</h6>
-			<!-- ${story.title} -->
-		</div>
-		<!-- c:forEach -->
-
-		<!-- Actualizar Historia -->
-		<form>
-			<!-- Info general Historia -->
-			<div style="overflow: scroll">
-				<div class="container-fluid">
-					<h3>Ficha técnica</h3>
-				</div>
-				<div class="d-flex justify-content-between"	style="margin: 0 5%; max-width: 90%">
+	<div class="d-flex justify-content-center align-items-center" style="padding:2%">
+		
+		<!-- Info general historia -->
+			
+			<div class="d-flex justify-content-between" style="width:40%;">
+				
+				<form:form method="POST" action="${story.id}" modelAttribute="story" style="width:100%">
 				
 					<!-- Datos -->
 					<div>
-						<div class="form-group">
-							<h5 class="form-control-label" for="title">Título:</h5>
-							<input class="form-control" style="width:60%" type="text" value="" placeholder="Título" id="title">
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+							<div class="d-flex flex-wrap ">
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="title">T&iacutetulo</form:label>
+							</div>
+							<form:input class="form-control" value="${story.title}" placeholder="Titulo" style="margin-left: 3%;width:60%" type="text" path="title"></form:input>
 						</div>
+						<form:errors style="color:red" path="title"/>
 						
-						<div class="form-group">
-							<h5 class="form-control-label" for="genres">Géneros:</h5>
-							<select class="form-control" style="width:60%" id="genres">
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+							<div class="d-flex flex-wrap ">
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="body">Historia</form:label>
+							</div>
+							<form:input class="form-control" value="${story.body}" placeholder="Historia" style="margin-left: 3%;width:60%" type="text" path="body"></form:input>
+						</div>
+						<form:errors style="color:red" path="body"/>
+					
+					
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+							<div class="d-flex flex-wrap ">
+								<form:label class="p-2 rounded-pill form-control-label" path="genre" style="background-color:#828282">G&eacutenero</form:label>
+							</div>
+							<form:select value="${story.genre}" class="form-control" style="width:60%" path="genre">
+								<form:option value="" selected="true">Selecciona un g&eacutenero</form:option>
 								<c:forEach items="${genres}" var="genre">
-									<option value="${genre}">${genre}</option>
+									<form:option value="${genre}">${genre}</form:option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
-						
-						<div class="form-group">
-							<h5 class="form-control-label" for="description">Descripción:</h5>
-							<input class="form-control" style="width:60%" type="text-area" value="" placeholder="Descripción" id="description">
+						<form:errors style="color:red" path="genre"/>
+						<div class="form-group d-flex justify-content-center align-items-center my-4">
+							<form:button class="btn" style="color:white;background-color: #af3248">Guardar</form:button>
 						</div>
-						
 					</div>
-
-					<!-- Imagen - Video -->
-					<div>
-						<img src="https://via.placeholder.com/150" class="w-50">
-					</div>
-				</div>
-				
-				<div class="form-group d-flex justify-content-center align-items-center my-4">
-					<button class="btn" style="color:white;background-color: #3e3e3e" type="submit">Guardar</button>
-				</div>
-				
+				</form:form>
 			</div>
-		</form>
-
-
-	</div>
-		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
-	
+		
+		</div>
 </body>
 </html>

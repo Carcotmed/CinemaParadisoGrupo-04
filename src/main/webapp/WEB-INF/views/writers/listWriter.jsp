@@ -21,7 +21,7 @@
 <body class="h-100" style="color:white">
 <jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 
-	<div class="d-flex h-100">
+	<div class="d-flex">
 
 		<!--  Filtros -->
 		<div class="p-4 w-25" style="background-color: #af3248">
@@ -29,8 +29,8 @@
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
 			<form:form class="my-5" action="list" method="POST" modelAttribute="writersFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="user.username">Username:</form:label>
-					<form:input class="form-control" style="width:60%" type="text" placeholder="username" path="user.username" />
+					<form:label class="form-control-label" path="user.username">Nombre de usuario:</form:label>
+					<form:input class="form-control" style="width:60%" type="text" path="user.username" />
 				</div>
 
 								
@@ -45,12 +45,14 @@
 
 			<div class="d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${writers}" var="writers">
-	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 15%; margin: 1vw;height:10vw">
-	      			<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:80%">
-							<img src="${writers.photo}" onClick="location.href='/writers/show/${writers.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+	      		<c:if test="${writers.user.enabled}">
+	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="cursor:pointer;flex-basis: 15%; margin: 1vw;height:10vw" onClick="location.href='/writers/show/${writers.id}'">
+	      				<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:80%">
+							<img src="${writers.photo}" style="width:100%;height:100%;object-fit:cover">
 						</div>
 		      			<h5 style="margin: 0.5vw; text-align:center">${writers.user.username}</h5>
 		      		</div>
+		      	</c:if>
 	      		</c:forEach>
 	      	</div>
 			

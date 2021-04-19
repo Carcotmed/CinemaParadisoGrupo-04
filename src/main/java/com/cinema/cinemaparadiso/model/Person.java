@@ -1,17 +1,13 @@
 package com.cinema.cinemaparadiso.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
-
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,22 +19,26 @@ import lombok.Setter;
 public class Person extends BaseEntity  {
 
 	@Column(name = "name")
-	@NotEmpty(message = "El nombre no puede estar vacío")
+    @NotBlank(message="No puedes dejarlo vacío")
+	@Size(min=1,max=30,message="El nombre debe tener como máximo 30 caracteres")
+	@Pattern(regexp = "[a-zA-Z0-9 ]*", message = "Utiliza solo numeros y letras sin tildes")
 	protected String name;
 	
 	@Column(name = "surName")
-	@NotEmpty(message = "El apellido no puede estar vacío")
+    @NotBlank(message="No puedes dejarlo vacío")
+	@Size(min=1,max=30,message="El apellido debe tener como máximo 30 caracteres")
+	@Pattern(regexp = "[a-zA-Z0-9 ]*", message = "Utiliza solo numeros y letras sin tildes")
 	protected String surName;
-	
-	@ElementCollection(targetClass=Skill.class, fetch = FetchType.EAGER)
-	@Column(name = "skills")
-	protected List<Skill> skills;
+
 	
 	@Column(name = "description")
-	@NotEmpty(message = "Indique una descripion propia")
+    @NotBlank(message="No puedes dejarlo vacío")
+	@Size(min=1,max=150,message="El resumen debe tener como máximo 150 caracteres")
 	protected String description;
 	
-  @Column(name="photo")
-  @URL(message = "Debe indicar una URL")
-  private String photo;
+	@Column(name="photo")
+    @NotBlank(message="No puedes dejarlo vacío")
+	@URL(message = "Debe indicar una URL")
+	@Size(min=1,max=150,message="La foto debe tener como máximo 150 caracteres")
+	private String photo;
 }

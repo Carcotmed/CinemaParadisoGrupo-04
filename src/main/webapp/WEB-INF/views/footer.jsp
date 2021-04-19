@@ -17,11 +17,11 @@
 		</div>
 		<div class="d-flex flex-column"  style="margin:0 1%; width:15%">
 			<h6 style="color:white">Legal</h6>
-			<p style="color:white">Cinema Paradiso no está afiliado de ninguna forma a Ariane Films, Miramax o cualquier otra empresa que disponga los derechos de la película.</p>
+			<p style="color:white">Cinema Paradiso no está afiliado de ninguna forma a Ariane Films, Miramax o cualquier otra empresa que disponga los derechos de la pel&iacutecula.</p>
 		</div>
 		<div class="d-flex flex-column"  style="margin:0 1%; width:15%">
 			<h6 style="color:white">Contacto</h6>
-			<p style="color:white">Email: cinemaparadiso@gmail.com</p>
+			<p style="color:white">Email: cinemaparadisoapp@gmail.com</p>
 		</div>
 	</div>
 </html>

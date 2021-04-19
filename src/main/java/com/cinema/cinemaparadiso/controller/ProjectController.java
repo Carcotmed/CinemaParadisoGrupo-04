@@ -1,13 +1,14 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,10 +20,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
+import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.MessageService;
+import com.cinema.cinemaparadiso.service.ProducerService;
 import com.cinema.cinemaparadiso.service.ProjectService;
+import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
+import com.cinema.cinemaparadiso.service.StoryService;
 import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.exceptions.ProjectLimitException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,10 +43,22 @@ public class ProjectController {
 	private ProjectService projectService;
 
 	@Autowired
-	private UserService userService;
+	private Rel_projects_storyService rel_projects_storyService;
 
 	@Autowired
 	private ArtistService artistService;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private ProducerService producerService;
+	
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	private StoryService storyService;
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -53,6 +73,29 @@ public class ProjectController {
 		model.addAttribute("projectsNoPro", noProProjects);
 		model.addAttribute("projectsFiltered", projectsFiltered);
 		log.info("Listing Projects..." + projects.toString());
+		
+		//PROYECTOS ANUNCIADOS
+		List <Project> allSponsoredProjects = projectService.findAllSponsoredProjects();
+		Integer size;
+		List <Project> chosenSponsoredProjects = new ArrayList<Project>();
+		if(allSponsoredProjects.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredProjects.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredProjects.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredProjects.add(allSponsoredProjects.get(list.get(i)));
+	        }
+		}
+        model.addAttribute("sponsoredProjects",chosenSponsoredProjects);
+        
+		
 		return "projects/listProject";
 	}
 	
@@ -65,13 +108,13 @@ public class ProjectController {
 		model.addAttribute("projectsFiltered", projectsFiltered);
 
 		List<Project> projectsProFiltrados = projects.stream()
-				.filter(a -> a.getPro()==true
+				.filter(a -> a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
-				.filter(a -> a.getPro()==false
+				.filter(a -> !a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
 				).collect(Collectors.toList());
@@ -81,11 +124,32 @@ public class ProjectController {
 		model.addAttribute("projectsNoPro", projectsNoProFiltrados);
 		model.addAttribute("genres", genres);
 		
+		//PROYECTOS ANUNCIADOS
+		List <Project> allSponsoredProjects = projectService.findAllSponsoredProjects();
+		Integer size;
+		List <Project> chosenSponsoredProjects = new ArrayList<Project>();
+		if(allSponsoredProjects.size()>=3) {
+			size=3;
+		}else {
+			size=allSponsoredProjects.size();
+		}
+		if(size!=0) {
+			List<Integer> list = new ArrayList<Integer>();
+	        for (int i=0; i<allSponsoredProjects.size(); i++) {
+	            list.add(i);
+	        }
+	        Collections.shuffle(list);
+	        for (int i=0; i<size; i++) {
+	        	chosenSponsoredProjects.add(allSponsoredProjects.get(list.get(i)));
+	        }
+		}
+        model.addAttribute("sponsoredProjects",chosenSponsoredProjects);
+		
 		return "projects/listProject";
 	}
 	
-	@GetMapping("/join/{projectId}")
-	public String joinProject(Model model, @PathVariable("projectId") int projectId) {
+	@GetMapping("/joinArtist/{projectId}")
+	public String joinProjectArtist(@PathVariable("projectId") int projectId, Model model){
     	Artist artist;
     	try {
     		artist = artistService.getPrincipal();
@@ -98,45 +162,128 @@ public class ProjectController {
 			model.addAttribute("Error", "Ya perteneces a este equipo");
 			return "/error";
 		}
-		projectService.addRelationShip(projectId, artist.getId());
-		return "redirect:/artists/myProjects";
+		//Solo puedes enviar una peticion para unirte a un proyecto
+		messageService.requestToEnterProjectArtist(projectId, artist.getId());
+		return "redirect:/messages/listSend";
+	}
+	
+	@GetMapping("/joinProducer/{projectId}")
+	public String joinProjectProducer(Model model, @PathVariable("projectId") int projectId) {
+    	Producer producer;
+    	try {
+    		producer = producerService.getPrincipal();
+    	}catch(Exception e) {producer = null;}
+    	if(producer==null) {
+    		model.addAttribute("Error", "No eres un producer");
+			return "/error/error";
+    	}
+		if(producer.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+			model.addAttribute("Error", "Ya perteneces a este equipo");
+			return "/error";
+		}
+		messageService.requestToEnterProjectProducer(projectId, producer.getId());
+		return "redirect:/messages/listSend";
 	}
 	
 	@GetMapping(value = { "/show/{projectId}" })
 	public String showProject(@PathVariable("projectId") int projectId, Model model) {
 		Project project = projectService.findProjectById(projectId);
 		List<Artist> members = projectService.findMembers(projectId);
+		
+		Story story;
+		
+		List<Producer> producers = projectService.findProducers(projectId);
+		Boolean isAdminProject = false;
+		try {
+		 isAdminProject = projectService.isAdminProject(projectId);
+		}catch (Exception e){
+			
+		}
+
+		try {
+			Integer storyId = rel_projects_storyService.findByProjectId(projectId).getStory_id();
+			story = storyService.findStoryById(storyId);
+		}catch(Exception e) {story=null;}
 		model.addAttribute("projectId", projectId);
 		model.addAttribute("project", project);
 		model.addAttribute("members",members);
+		model.addAttribute("producers",producers);
 		model.addAttribute("artistUsername", members.get(0).getUser().getUsername());
+		model.addAttribute("isAdminProject", isAdminProject);
+		model.addAttribute("isAdmin", userService.isAdmin());
+		model.addAttribute("story", story);
 		Artist artist;
     	try {
     		artist = artistService.getPrincipal();
     	}catch(Exception e) {artist = null;}
     	if(artist==null) {
-			model.addAttribute("pertenece", true);
-    	}else if(artist.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
-			model.addAttribute("pertenece", true);
-		}else {
 			model.addAttribute("pertenece", false);
+			model.addAttribute("noPuede",true);
+    	}else if(artist.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+    		model.addAttribute("requestexist",messageService.requestAlreadyExistArtist(projectId, artist.getId()));
+			model.addAttribute("pertenece", true);
+			model.addAttribute("noPuede",false);
+		}else {
+    		model.addAttribute("requestexist",messageService.requestAlreadyExistArtist(projectId, artist.getId()));
+			model.addAttribute("pertenece", false);
+			model.addAttribute("noPuede",false);
+		}
+    	
+    	Producer producer;
+    	try {
+    		producer = producerService.getPrincipal();
+    	}catch(Exception e) {producer = null;}
+    	if(producer==null) {
+			model.addAttribute("perteneceP", false);
+			model.addAttribute("noPuedeP",true);
+    	}else if(producer.getProjects().stream().anyMatch(p->p.getId().equals(projectId))) {
+			model.addAttribute("perteneceP", true);
+			model.addAttribute("noPuedeP",false);
+    		model.addAttribute("requestexistP",messageService.requestAlreadyExistProducer(projectId, producer.getId()));
+		}else {
+			model.addAttribute("perteneceP", false);
+			model.addAttribute("noPuedeP",false);
+    		model.addAttribute("requestexistP",messageService.requestAlreadyExistProducer(projectId, producer.getId()));
 		}
 		return "projects/showProject";
 	}
 	
 	@GetMapping("/delete/{projectId}")
 	public String deleteProject(@PathVariable("projectId") Integer projectId) {
+		Boolean noEsArtista = false;
 		try {
-			projectService.deleteRelation(projectId);
+			this.artistService.getPrincipal().getId();
+		}catch (Exception e) {
+			noEsArtista = true;
+		}
+		try {
+			projectService.deleteRelation(projectId,noEsArtista);
 			log.info("Project Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Project", e);
 		}
-		return "redirect:/artists/myProjects";
+		return "redirect:/projects/list";
+	}
+	
+	@GetMapping("/deleteAll/{projectId}")
+	public String deleteAllProject(@PathVariable("projectId") Integer projectId) {
+		try {
+			projectService.deleteAllRelation(projectId);
+			projectService.deleteProject(projectId);
+			log.info("Project completely Deleted Successfully");
+		} catch (Exception e) {
+			log.error("Error Deleting completely Project", e);
+		}
+		return "redirect:/projects/list";
 	}
 	
 	@GetMapping("/create")
 	public String initFormCreateProject(Model model) {
+		Integer artistId = artistService.getPrincipal().getId();
+		Integer projectsLeft = artistService.leftProjects(artistId);
+		if(projectsLeft == null) {
+			return "error/error-403";
+		}
 		Project project = new Project();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		model.addAttribute("buttonCreate",true);
@@ -146,21 +293,31 @@ public class ProjectController {
 	}
 
 	@PostMapping("/create")
-	public String createProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model) {
+	public String createProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model) throws ProjectLimitException{
 		List<Genre> genres = Arrays.asList(Genre.values());
+		Integer actualId = this.artistService.getPrincipal().getId();
 		model.addAttribute("genres", genres);
 		if(!result.hasErrors()) {
+			//Reach project limit  exception
+			try {
 			projectService.createProject(project);
+			}catch(ProjectLimitException ex) {
+				result.rejectValue("photo", "limitReach", "El limite de proyectos que puedes crear ha sido alcanzado");
+				return "projects/createOrUpdateProjectForm";
+			}
 		}else {
 			return "projects/createOrUpdateProjectForm";
 		}
-		return "redirect:/artists/myProjects";
+		return "redirect:/artists/show/"+actualId;
 	}
 	
 	@GetMapping("/update/{projectId}")
 	public String initFormUpdateProject(Model model, @PathVariable("projectId") Integer projectId) {
 		Project project = projectService.findProjectById(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
+		if(!projectService.isAdminProject(projectId) && !userService.isAdmin()) {
+			return "error/error-403";
+		}
 		model.addAttribute("buttonCreate",false);
 		model.addAttribute("genres", genres);
 		model.addAttribute("projectId", projectId);
@@ -172,13 +329,16 @@ public class ProjectController {
 	public String updateProject(@ModelAttribute("project") @Valid Project project, BindingResult result, Model model, @PathVariable("projectId") Integer projectId) {
 		project.setId(projectId);
 		List<Genre> genres = Arrays.asList(Genre.values());
+		if(!projectService.isAdminProject(projectId) && !userService.isAdmin()) {
+			return "error/error-403";
+		}
 		model.addAttribute("genres", genres);
 		model.addAttribute("project", project);
 		model.addAttribute("buttonCreate",false);
 		if(!result.hasErrors()) {
 			projectService.editProject(project);
 			log.info("Project Updated Successfully");
-			return "redirect:/artists/myProjects";
+			return "redirect:/projects/show/"+projectId;
 		} else {
 			return "projects/createOrUpdateProjectForm";
 		}

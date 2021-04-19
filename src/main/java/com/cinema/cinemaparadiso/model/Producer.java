@@ -1,14 +1,18 @@
 package com.cinema.cinemaparadiso.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.Valid;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,31 +23,20 @@ import lombok.Setter;
 @Setter
 public class Producer extends Person {
 	
-	@Pattern(regexp = "^[0-9]{8}[A-Z]$")
-	@NotEmpty(message = "El campo NIF no puede estar vacio")
-	@Column(name="nif")
-	private String nif;
-	
-	private String photo;
-	
 	@OneToOne
-	@NotNull
+	@Valid
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 
+	@Column(name="projects")
+	@ManyToMany(mappedBy = "team2", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<Project> projects;
+	
 	@Override
 	public String toString() {
-		return "Producer (" + id + ") [nif=" + nif + ", description=" + description + ", user=" + user + "]";
+		return "Producer (" + id + ") " + ", description=" + description + ", user=" + user + "]";
 	}
-	
-	public Producer(String nif, String description, User user) {
-		this.nif = nif;
-		this.description = description;
-		this.user = user;
-	}
-	
-	public Producer() {}
-	
 	
   
 }

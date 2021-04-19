@@ -52,4 +52,9 @@ public class Rel_story_writersService {
 		return this.rel_story_writersRepository.count();
 	}
 
+
+	public void deleteByStoryId(Integer storyId) {
+		rel_story_writersRepository.deleteByStoryId(storyId);
+	}
+
 }

@@ -31,14 +31,14 @@
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
 			<form:form class="my-5" action="list" method="POST" modelAttribute="projectsFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="title">Título:</form:label>
-					<form:input class="form-control" style="width:60%" type="text" placeholder="Título" path="title" />
+					<form:label class="form-control-label" path="title">T&iacutetulo:</form:label>
+					<form:input class="form-control" style="width:60%" type="text" placeholder="Titulo" path="title" />
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="genre">Género:</form:label>
+					<form:label class="form-control-label" path="genre">G&eacutenero:</form:label>
 					<form:select class="form-control" style="width:60%" path="genre">
-						<form:option value="" selected="true">Selecciona un género</form:option>
+						<form:option value="" selected="true">Selecciona un g&eacutenero</form:option>
 						<c:forEach items="${genres}" var="genre">
 							<form:option value="${genre}">${genre}</form:option>
 						</c:forEach>
@@ -53,13 +53,32 @@
 
 		<!--  Listado  -->
 		<div class="w-75 p-4 d-flex flex-column justify-content-start align-items-center" style="background-color: #3e3e3e">
-		
+			<c:if test="${ sponsoredProjects.size()>0 }">
+				<div class="row">
+					<h4 style="padding-bottom: 1.5vw; padding-left: 4vw;">Proyectos descatacados</h4>
+					<c:forEach items="${ sponsoredProjects }" var="sponsoredProject">
+						<div onclick="location.href='/projects/show/${sponsoredProject.id}'" class="col-sm" style="cursor: pointer; height: fit-content; background-color: #c1c113; border-radius: 2vw; margin: 1vw 3vw 1vw 3vw; text-align: center; padding-bottom: 1vw; padding-top: 1vw;">
+							<div style="margin-bottom: 1vw; padding-left: 6vw; overflow:hidden;height:40%;width:80%">
+								<div  class="rounded-circle d-flex">
+									<img src="${ sponsoredProject.photo }" style="border-radius: 50%; width:5vw;height:5vw;object-fit:cover">
+								</div>
+							</div>
+							<i>
+								<b>
+									${ sponsoredProject.title }
+								</b>
+							</i>
+						</div>
+					</c:forEach>
+				</div>
+				<hr width="100%">
+			</c:if>
 			<!-- Listado Proyectos PRO -->
 			<div class="d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${projectsPro}" var="projectPro">
-	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 15%; margin: 1vw;height:10vw">
+	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="cursor:pointer;flex-basis: 15%; margin: 1vw;height:10vw" onClick="location.href='/projects/show/${projectPro.id}'">
 						<div  class="rounded-circle d-flex" style="border-style:solid;border-color:#edd214;overflow:hidden;height:100%;width:80%">
-	      					<img src="${projectPro.photo}" onClick="location.href='/projects/show/${projectPro.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+	      					<img src="${projectPro.photo}"  style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 	      				</div>
 		      			<h5 style="margin: 0.5vw; text-align:center">${projectPro.title}</h5>
 		      		</div>
@@ -71,9 +90,9 @@
 			<!-- Listado Proyectos No PRO -->
 			<div class="d-flex flex-wrap justify-content-center align-items-center">
 				<c:forEach items="${projectsNoPro}" var="projectNoPro">
-	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="flex-basis: 15%; margin: 1vw;height:10vw">
+	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="cursor:pointer;flex-basis: 15%; margin: 1vw;height:10vw" onClick="location.href='/projects/show/${projectNoPro.id}'">
 						<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:80%">
-							<img src="${projectNoPro.photo}" onClick="location.href='/projects/show/${projectNoPro.id}'" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+							<img src="${projectNoPro.photo}" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 						</div>
 						<h5 style="margin: 0.5vw; text-align:center">${projectNoPro.title}</h5>
 					</div>

@@ -9,9 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cinema.cinemaparadiso.model.Story;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
+import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 
 @Repository
@@ -24,5 +22,10 @@ public interface WriterRepository extends CrudRepository<Writer,Integer>{
 	
 	@Query("SELECT writer FROM Writer writer WHERE writer.user.username = :username")
 	public Optional<Writer> findByUserUsername(String username);
+	
+	@Query("SELECT user FROM User user WHERE user.username = :username")
+	public Optional<User> findUserByWriterUsername(String username);
+	
+	
 }
 

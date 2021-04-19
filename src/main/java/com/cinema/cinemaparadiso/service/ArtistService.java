@@ -17,21 +17,20 @@ import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.repository.ArtistRepository;
 import com.cinema.cinemaparadiso.repository.AuthoritiesRepository;
-import com.cinema.cinemaparadiso.repository.UserRepository;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 @Service
 public class ArtistService {
 	@Autowired
 	private ArtistRepository artistRepository;
 
-	@Autowired
-    private UserRepository userRepository;
 	 
 	@Autowired
     private AuthoritiesRepository authoritiesRepository;
 	
 	@Autowired
     private UserService userService;
+
 
 	@Autowired
 	public ArtistService(ArtistRepository artistRepository) {
@@ -62,17 +61,32 @@ public class ArtistService {
 		projectsHistory = artistRepository.findProjectsHistory(id);
 		return projectsHistory;
 	}
+	
+	public Boolean isUniqueUsername(String username) {
+		Boolean res = null;
+		Optional<User> optionalUser = this.artistRepository.findUserByArtistUsername(username);
+		res = !optionalUser.isPresent();
+		return res;
+	}
 
-
-public void createArtist(Artist artist){
-		userService.createUser(artist.getUser());
-		 Authorities authorities = new Authorities(artist.getUser().getUsername(),"artist");
+	@Transactional(rollbackFor = UserUniqueException.class)
+	public void createArtist(Artist artist) throws UserUniqueException{
+		User user = artist.getUser();
+		String nuevoUsername = user.getUsername();
+		if(!isUniqueUsername(nuevoUsername)) {
+			throw new UserUniqueException();
+		}
+		else {
+		 userService.createUser(artist.getUser());
+		 Authorities authorities = new Authorities(user.getUsername(),"artist");
 	     authoritiesRepository.save(authorities);
-	     artist.setPro(false);
-	    saveArtist(artist);
-	       
-
+	     artist.setPro(false);	
+	     artist.setLeftProjects(1);
+	     saveArtist(artist);
+			}
 	    }
+	
+
 	
 	public List<Project> findMyProjects(Integer artistId){
 		List<Project> myProjects = new ArrayList<>();
@@ -87,9 +101,15 @@ public void createArtist(Artist artist){
 		}
 	
 	@Transactional
-	public void editArtist(Integer artistId) throws DataAccessException{
-			Artist artist = findArtistById(artistId);
-			artistRepository.save(artist);	
+	public void editArtist(Artist artist) throws DataAccessException{
+		Artist artist2 = findArtistById(artist.getId());
+		artist2.setId(artist.getId());
+		artist2.setName(artist.getName());
+		artist2.setSurName(artist.getSurName());
+		artist2.setDescription(artist.getDescription());
+		artist2.setPhoto(artist.getPhoto());
+		artist2.setRole(artist.getRole());
+		saveArtist(artist2);
 		}
 	
 	@Transactional(readOnly = true)
@@ -125,6 +145,49 @@ public void createArtist(Artist artist){
 
 	public long count() {
 		return this.artistRepository.count();
+	}
+	
+	@Transactional
+	public Boolean isActualArtist(Integer artistId) {
+		Artist artist = findArtistById(artistId);
+		Artist actualArtist = getPrincipal();
+
+		return artist.equals(actualArtist);
+	}
+	
+
+	@Transactional
+	public User findMyUser(Integer artistId) {
+
+		return artistRepository.findUserByArtistUsername(findArtistById(artistId).getUser().getUsername()).get();
+	}
+	
+	@Transactional
+	public void deleteArtist(Integer artistId) {
+
+		User user = findMyUser(artistId);
+		user.setEnabled(false);
+	}
+	
+	@Transactional
+	public void activateArtist(Integer artistId) {
+
+		User user = findMyUser(artistId);
+		user.setEnabled(true);
+	}
+
+	@Transactional
+	public Integer leftProjects(Integer artistId) {
+		Integer leftProjectsOfMyArtist = artistRepository.findProjectsLeft(artistId);
+		return leftProjectsOfMyArtist;
+	}
+
+	public void incrementLeftProjects(Integer artistID, Integer addingAmount) {
+		artistRepository.incrementLeftProjectsOfArtist(artistID, addingAmount);
+	}
+
+	public void makePro(Integer artistID) {
+		artistRepository.makePro(artistID);
 	}
 
 }

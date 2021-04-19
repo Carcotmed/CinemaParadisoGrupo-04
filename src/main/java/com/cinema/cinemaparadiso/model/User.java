@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,11 +20,14 @@ public class User {
 	
     @Id
     @Column(name = "username")
-	@NotEmpty(message = "El usuario no puede estar vacío")
+    @Size(min=1,max=30,message="El usuario debe tener como máximo 30 caracteres")
+    @NotBlank(message="No puedes dejarlo vacío")
+    @Pattern(regexp = "[a-zA-Z0-9]*", message = "Utiliza solo numeros y letras sin tildes y sin espacios")
     private String username;
     
     @Column(name = "password")
-	@NotEmpty(message = "La contraseña no puede estar vacía")
+    @Size(min=1,max=150,message="La password debe tener como máximo 150 caracteres")
+    @NotBlank(message="No puedes dejarlo vacío")
     private String password;
     
     @Column(name = "enabled")
@@ -30,21 +35,13 @@ public class User {
     
     @Email
     @Column(name = "email")
-	@NotEmpty(message = "El correo no puede estar vacío")
+    @Size(min=1,max=80,message="El email debe tener como máximo 80 caracteres")
+    @NotBlank(message="No puedes dejarlo vacío")
     private String email;
+    
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", enabled=" + enabled + "]";
 	}
 	
-	public User(String username, String password, boolean enabled) {
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-	}
-	
-	public User() {}
-    
-    
- 
 }

@@ -15,9 +15,9 @@
 
     <title>Lista de Mensajes</title>
 </head>
-<body style="color:white;height:100%;background-color:#2b2b2b" class="position-relative">
+<body style="color:white;height:100%;background-color:#2b2b2b;" class="position-relative">
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
-	<div style="min-height:70%">
+	<div style="min-height:70%;background-color:#3e3e3e;padding:5%">
 	
 	<h3>
    	    <c:if test="${ tipo=='received' }">Mensajes Recibidos</c:if>
@@ -28,7 +28,7 @@
             <thead>
                 <tr>
                     <th style="color:white">ASUNTO</th>
-                    <th style="color:white">FECHA</th>
+                    <th style="color:white">FECHA (UTC)</th>
                     <th style="color:white">EMISOR</th>
                     <th style="color:white">RECEPTOR</th>
                     <th style="color:white">             </th> 

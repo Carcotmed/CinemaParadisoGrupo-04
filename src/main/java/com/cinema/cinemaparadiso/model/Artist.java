@@ -1,7 +1,6 @@
 package com.cinema.cinemaparadiso.model;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Fetch;
@@ -41,9 +41,9 @@ public class Artist extends Person {
 	@ManyToMany(mappedBy = "team")
 	private List<Project> projectsHistory;
 	
-
-	@Column(name="summary")
-	private String summary;
+	
+	@Column(name="left_projects")
+	private Integer leftProjects;
 	
 
 	
@@ -53,6 +53,7 @@ public class Artist extends Person {
 	
 	
   @OneToOne()
+  @Valid
   @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 }

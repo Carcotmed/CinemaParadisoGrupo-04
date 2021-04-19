@@ -26,6 +26,12 @@ public class StoryService {
 	
 	@Autowired
 	private Rel_story_writersService rel_story_writersService;
+	
+	@Autowired
+	private Rel_projects_storyService rel_projects_storyService;
+	
+	@Autowired
+	private MessageService messageService;
 
 
 	@Autowired
@@ -34,10 +40,15 @@ public class StoryService {
 	}
 	
 	@Transactional
-	public void editStory(Integer storyId) throws DataAccessException{
-			Story story = findStoryById(storyId);
-			storyRepository.save(story);	
+	public void editStory(Story story){
+			Story story2 = findStoryById(story.getId());
+			story2.setId(story.getId());
+			story2.setTitle(story.getTitle());
+			story2.setBody(story.getBody());
+			story2.setGenre(story.getGenre());
+			saveStory(story2);	
   }
+	
 
 	public void createStory(Story story){
 	       saveStory(story);
@@ -56,7 +67,7 @@ public class StoryService {
 	
 	@Transactional
 	public void saveStory(Story story) throws DataAccessException{
-			storyRepository.save(story);	
+			storyRepository.save(story);
 	}
 	@Transactional
 	public Writer findMyWriter(Integer storyId) {
@@ -73,5 +84,29 @@ public class StoryService {
 	public Story findStoryById(int id) throws DataAccessException {
 		return storyRepository.findById(id).get();
 	}
+	@Transactional
+	public Boolean isMyWriter(Integer storyId) {
+		Writer writerHistory = findMyWriter(storyId);
+		Writer actualWriter = writerService.getPrincipal();
+		
+		return writerHistory.equals(actualWriter);
+	}
+	
+	@Transactional
+	public void deleteStory(Integer storyId) {
+		rel_story_writersService.deleteByStoryId(storyId);
+		rel_projects_storyService.deleteByStoryId(storyId);
+		messageService.deleteAllByStoryId(storyId);
+		storyRepository.delete(findStoryById(storyId));
+	}
+
+	public void makeStorySponsored(Integer storyID) {
+		storyRepository.makeStorySponsored(storyID);
+	}
+
+	public List<Story> findAllSponsoredStories() {
+		return storyRepository.findAllSponsoredStories();
+	}
+	
 
 }

@@ -30,8 +30,8 @@
 			<hr class="m-3" style="border-width: 3px;border-style: solid;border-radius: 20px;">
 			<form:form class="my-5" method="POST" action="list" modelAttribute="artistsFiltered">
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="name">Nombre:</form:label>
-					<form:input class="form-control" style="width:60%" type="text" value="" placeholder="Nombre" path="name" />
+					<form:label class="form-control-label" path="user.username">Nombre de usuario:</form:label>
+					<form:input class="form-control" style="width:60%" type="text" value="" placeholder="Nombre" path="user.username" />
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
@@ -58,12 +58,14 @@
 			<!-- Listado Artistas PRO -->
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${artistsPro}" var="artistPro">
-					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="${artistPro.photo}" onClick="location.href='/artists/show/${artistPro.id}'" class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
-						<h5 style="margin: 0.5vw">${artistPro.name}</h5>
-						<p>${artistPro.summary}</p>
+	      		<c:if test="${artistPro.user.enabled}">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="cursor:pointer;flex-basis: 15%; margin: 1vw;" onClick="location.href='/artists/show/${artistPro.id}'">
+						<img src="${artistPro.photo}"  class="rounded-circle" style="border-style:solid;border-color:#edd214;cursor:pointer;width:5vw;height:5vw">
+						<h5 style="margin: 0.5vw">${artistPro.user.username}</h5>
 					</div>
+				</c:if>
 				</c:forEach>
+				
 	      	</div>
 			
 			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:0">
@@ -71,11 +73,12 @@
 			<!-- Listado Artistas normales -->
 			<div class="p-4 d-flex flex-wrap justify-content-center align-items-center">
 	      		<c:forEach items="${artistsNoPro}" var="artistNoPro">
-					<div class="d-flex flex-column align-items-center justify-content-center" style="flex-basis: 15%; margin: 1vw;">
-						<img src="${artistNoPro.photo}" onClick="location.href='/artists/show/${artistNoPro.id}'" class="rounded-circle" style="cursor:pointer;width:5vw;">
-						<h5 style="margin: 0.5vw">${artistNoPro.name}</h5>
-						<p>${artistNoPro.summary}</p>
+				<c:if test="${artistNoPro.user.enabled}">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="cursor:pointer;flex-basis: 15%; margin: 1vw;" onClick="location.href='/artists/show/${artistNoPro.id}'">
+						<img src="${artistNoPro.photo}"  class="rounded-circle" style="cursor:pointer;width:5vw;">
+						<h5 style="margin: 0.5vw">${artistNoPro.user.username}</h5>
 					</div>
+				</c:if>
 				</c:forEach>
 			</div>
 		</div>
