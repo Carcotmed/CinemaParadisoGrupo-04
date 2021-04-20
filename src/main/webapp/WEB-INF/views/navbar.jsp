@@ -9,6 +9,13 @@
 <!DOCTYPE html>
 <html>
 <style>
+
+	body{
+		min-height: 100vh;
+		background-color:#af3248;
+		position: relative;
+	}
+	
 	.menu-nav{
 		display: none;
 	}
@@ -51,7 +58,7 @@
 	}
 	
 	@media(max-width: 1160px) {
-		ul{
+		.menu-list > ul{
 			list-style-type: none;
 		    padding: 0;
 		    margin: 0;
@@ -63,7 +70,7 @@
 	        margin-top: 1.3rem;
 		}
 		
-		li{
+		.menu-list > * > li{
 			padding: 1rem 0;
 		}
 		
@@ -148,7 +155,7 @@
 		<img src="https://image.flaticon.com/icons/png/512/96/96595.png" id="menu-b" onClick="toggleMobileMenu()" />
 		
 		<div id="menu-list">
-			<ul>
+			<ul class="nav-ul">
 				<li onClick="location.href='/stories/list'">Historias</li>
 				<li onClick="location.href='/writers/list'">Escritores</li>
 				<li onClick="location.href='/artists/list'">Artistas</li>

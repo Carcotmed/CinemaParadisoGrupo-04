@@ -25,7 +25,7 @@
 	}
 
 </style>
-<body style="height:70vh;background-color:#af3248">
+<body>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	
 
