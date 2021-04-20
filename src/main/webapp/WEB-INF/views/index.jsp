@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,14 +15,24 @@
 	<link rel="shorcut icon" type="image/ico" href="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/feature/fix-general/src/main/webapp/WEB-INF/views/static/favicon.ico?raw=true" />
     <title>Cinema Paradiso</title>
 </head>
+<style>
+
+	.video-wrapper{
+	    height: 100%;
+	    align-items: center;
+	    display: flex;
+	    justify-content: center;
+	}
+
+</style>
 <body style="height:70vh;background-color:#af3248">
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	
 
-	<div class="d-flex justify-content-center align-items-center position-relative w-100" style="height:100%; overflow:hidden">
-			<video autoplay muted loop style="position:absolute;width:100vw;height:100vh;object-fit:cover"
-			 src="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/develop/src/main/webapp/WEB-INF/views/static/index-video.mp4?raw=true" 
-			 type="video/mp4"></video>
+	<div class="video-wrapper">
+		<video autoplay muted loop class="w-100 position-absolute"
+		 src="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/develop/src/main/webapp/WEB-INF/views/static/index-video.mp4?raw=true" 
+		 type="video/mp4"></video>
 		<div class="d-flex justify-content-center align-items-center" style="margin:auto">			
 			<div class="d-flex flex-column justify-content-center align-items-center" style="z-index:2">
 				<h1 class="text-center" style="color:white">Cinema Paradiso</h1>
