@@ -19,7 +19,7 @@
 
 	body{
 		min-height: 100vh;
-		background-color: var(--rojo);
+		background-color: var(--gris-oscuro);
 		position: relative;
 	}
 	
@@ -33,6 +33,7 @@
 		margin: 0 0.5rem;
 	  	transform: scale(1);
 	    transition: 0.3s ease;
+	    text-shadow: 0 0 4px black;
 	}
 	
 	.boton:hover{
@@ -40,6 +41,7 @@
 		color:white;
 		text-weight: bold;
 		transform: scale(1.1);
+		text-shadow: unset;
 	}
 	
 	.pro{
@@ -52,7 +54,7 @@
 		color:black;
 	}
 	
-	li,p,h1,h2,h3,h4,h5,h6,span,button{
+	li,p,h1,h2,h3,h4,h5,h6,span,button,label{
 		color:white;
 	}
 	
@@ -64,8 +66,12 @@
 		background-color: var(--gris-oscuro);
 	}
 	
+	.padding-nav{
+		padding-top: 7rem;
+	}
+	
 	@media(max-width: 1160px) {
-		.menu-list > ul{
+		#menu-list > ul{
 			list-style-type: none;
 		    padding: 0;
 		    margin: 0;
@@ -77,7 +83,7 @@
 	        margin-top: 1.3rem;
 		}
 		
-		.menu-list > * > li{
+		#menu-list > * > li{
 			padding: 1rem 0;
 		}
 		
@@ -116,6 +122,10 @@
 		
 		nav h4 {
 			display:none;
+		}
+		
+		.padding-nav{
+			padding-top: 8rem;
 		}
 	
 	}

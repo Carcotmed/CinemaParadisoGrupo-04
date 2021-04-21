@@ -52,7 +52,8 @@
 		}
 		
 		.video-wrapper{
-			padding-top: 4.5rem;
+			padding-top: 7rem;
+			height: 43vh;
 		}
 	}
 	
