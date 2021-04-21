@@ -173,7 +173,7 @@
 
 	<!-- Menu movil -->
 	<div class="menu-nav">
-		<img src="https://image.flaticon.com/icons/png/512/96/96595.png" id="menu-b" onClick="toggleMobileMenu()" />
+		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png" id="menu-b" onClick="toggleMobileMenu()" />
 		
 		<div id="menu-list">
 			<ul class="nav-ul">
