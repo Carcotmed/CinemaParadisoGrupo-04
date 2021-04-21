@@ -6,13 +6,20 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<!DOCTYPE html>
 <html>
 <style>
 
+	:root{
+		--rojo: #af3248;
+		--gris-oscuro: #232323;
+		--gris: #2b2b2b;
+		--gris-claro: #3e3e3e;
+		--amarillo: #e8c71a;
+	}
+
 	body{
 		min-height: 100vh;
-		background-color:#af3248;
+		background-color: var(--rojo);
 		position: relative;
 	}
 	
@@ -22,26 +29,26 @@
 	
 	.boton{
 		color:white;
-		border: 3px solid #af3248;
+		border: 3px solid var(--rojo);
 		margin: 0 0.5rem;
 	  	transform: scale(1);
 	    transition: 0.3s ease;
 	}
 	
 	.boton:hover{
-		background-color:#af3248;
+		background-color:var(--rojo);
 		color:white;
 		text-weight: bold;
 		transform: scale(1.1);
 	}
 	
 	.pro{
-		border-color:#e8c71a;
+		border-color:var(--amarillo);
 		color:white;
 	}
 	
 	.pro:hover{
-		background-color:#e8c71a;
+		background-color:var(--amarillo);
 		color:black;
 	}
 	
@@ -54,7 +61,7 @@
 	}
 	
 	.fondo{
-		background-color: #232323;
+		background-color: var(--gris-oscuro);
 	}
 	
 	@media(max-width: 1160px) {
@@ -63,7 +70,7 @@
 		    padding: 0;
 		    margin: 0;
 		    position: absolute;
-		    background-color: #232323;
+		    background-color: var(--gris-oscuro);
 		    width: 10rem;
 		    text-align: center;
 		    right: 0;
@@ -75,7 +82,7 @@
 		}
 		
 		.pro{
-			background-color:#e8c71a;
+			background-color:var(--amarillo);
 			color: black;
 			font-weight: bold;
 		}
@@ -93,11 +100,11 @@
 		}
 		
 		nav{
-			background-color: #232323;
+			background-color: var(--gris-oscuro);
 		}
 		
 		#logout{
-			background-color: #af3248;
+			background-color: var(--rojo);
 		}
 		
 		#menu-b{
@@ -105,6 +112,10 @@
 		    width: 3rem;
 		    height: 3rem;
 		    filter: invert(1);
+		}
+		
+		nav h4 {
+			display:none;
 		}
 	
 	}
@@ -147,7 +158,7 @@
 		style="cursor: pointer; width: 20%" onClick="location.href='/'">
 		<img src="https://image.flaticon.com/icons/png/512/96/96595.png"
 			style="cursor: pointer; width: 5rem; filter: invert(1)">
-		<h4 style="color: white; margin-left: 1rem">Cinema Paradiso</h4>
+		<h4 style="margin:0;margin-left: 1rem">Cinema Paradiso</h4>
 	</div>
 
 	<!-- Menu movil -->

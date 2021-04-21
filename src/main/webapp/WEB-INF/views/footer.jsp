@@ -4,17 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!DOCTYPE html>
 <html>
 	<style>
 	
 		footer{
-			background-color: #232323;
+			background-color: var(--gris-oscuro);
 			position: absolute;
 			bottom: 0;
 			height: 17rem;
 			font-size: 0.9rem;
 			padding: 1rem;
+			overflow:hidden;
 		}
 		
 		.footer-wrap{
@@ -38,6 +38,10 @@
 		
 		footer > * > div{
 			height: 100%;
+		}
+		
+		.padding-footer{
+			padding-bottom: 17rem;
 		}
 		
 		@media(max-width: 1160px) {
@@ -68,6 +72,14 @@
 			}
 			
 			footer{
+				height: 32rem;
+			}
+			
+			.padding-footer{
+				padding-bottom: 32rem;
+			}
+			
+			footer > * > div{
 				height: unset;
 			}
 		}
@@ -129,7 +141,5 @@
 			</div>
 			
 		</div>
-		
-		
 	</footer>
 </html>
