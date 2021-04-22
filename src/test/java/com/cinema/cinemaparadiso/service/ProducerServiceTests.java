@@ -1,16 +1,27 @@
 package com.cinema.cinemaparadiso.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+
+import com.cinema.cinemaparadiso.model.Producer;
 
 @SpringBootTest
 @Sql("/db/test.sql")
 @Transactional
 public class ProducerServiceTests {
 	
+	@Autowired
+	ProducerService producerService;
 
-
+    @Test
+    public void shouldList(){
+		assertThat(producerService.list().size()).isEqualTo(41);
+    }
 	/*
     @Test
     public void shouldExistProducerWithUsername(){
@@ -50,7 +61,7 @@ public class ProducerServiceTests {
     	assertThat(producer.getUser().getUsername()).isEqualTo("adminTest");
     	assertThat(producer.getDescription()).isEqualTo("Productor exitoso y feliz con ganas de trabajar con un equipo de trabajo apasionado por el cine de terror");
     }
-    /*
+    
     @Test
     public void shouldSaveProducer() {
     	Producer producer = new Producer();
@@ -83,6 +94,6 @@ public class ProducerServiceTests {
     	producerService.deleteProducer(producerService.getProducerByUsername("adminTest"));
     	assertThat(producerService.countProducers()).isEqualTo(2);
     	assertThat(((List<Producer>)producerService.list()).stream().filter(p->p.getUser().getUsername().equals("adminTest")).count()).isEqualTo(0);
-    }
-*/
+    }*/
+
 }
