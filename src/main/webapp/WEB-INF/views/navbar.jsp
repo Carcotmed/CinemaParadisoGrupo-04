@@ -107,26 +107,14 @@
 	  border-radius: 20px;
 	  transition: 0.3s;
 	}
-	
-	#boton-up{
-		border-radius: 100%;
-		background-color: var(--gris);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		position: sticky;
-		bottom: 1rem;
-		right: 1rem;
-	}
-	
+
 	::-webkit-scrollbar-thumb:hover {
 	  background-color: #8a2f3f;
 	}
 	
 	#boton-up{
-		display: none !important;
+		display:none;
 	}
-	
 	
 	@media(max-width: 1160px) {
 		#menu-list > ul{
@@ -194,7 +182,6 @@
 		#boton-up{
 		    border-radius: 100%;
 		    background-color: var(--gris);
-		    display: flex;
 		    justify-content: center;
 		    align-items: center;
 		    position: sticky;
@@ -205,6 +192,14 @@
 		    font-size: 2.5rem;
 		    z-index: 99;
 	        box-shadow: 0 0 10px rgb(0,0,0,40%);
+		}
+		
+		.button-up-show{
+			display: flex !important;
+		}
+		
+		.hide{
+			display: none;
 		}
 	
 	
@@ -240,7 +235,7 @@
 	    	nav.classList.remove("fondo");
 	    }
 	    
-	    if($(window).scrollTop() > 400){
+	    if($(window).scrollTop() > 400 && $(window).width() <= 1160){
 	    	botonUp.style.display = "flex";
 
 	    }else{
