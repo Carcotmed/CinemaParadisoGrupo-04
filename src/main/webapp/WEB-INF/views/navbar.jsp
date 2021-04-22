@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <style>
 
@@ -21,6 +22,7 @@
 		min-height: 100vh;
 		background-color: var(--gris-oscuro);
 		position: relative;
+		overflow-x: hidden;
 	}
 	
 	.menu-nav{
@@ -69,6 +71,62 @@
 	.padding-nav{
 		padding-top: 7rem;
 	}
+	
+	.linea-hor{
+		border-width: 3px;
+		border-style: solid;
+		border-radius: 20px;
+	}
+	
+	.element-wrapper{
+		border-radius: 20px;
+		transition: 0.3s;
+		cursor:pointer;
+		margin: 1rem;
+		padding: 1rem;
+	}
+	
+	.element-wrapper:hover{
+		background-color: var(--gris);
+		transform: scale(1.1);
+		box-shadow: 0 0 10px black;
+	}
+	
+	.element-wrapper img{
+		height:7rem;
+		width:7rem;
+	}
+	
+	::-webkit-scrollbar {
+	  width: 12px;
+	  transition: 0.3s;
+	}
+	
+	::-webkit-scrollbar-thumb {
+	  background: var(--rojo);
+	  border-radius: 20px;
+	  transition: 0.3s;
+	}
+	
+	#boton-up{
+		border-radius: 100%;
+		background-color: var(--gris);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: sticky;
+		bottom: 1rem;
+		right: 1rem;
+	}
+	
+	::-webkit-scrollbar-thumb:hover {
+	  background-color: #8a2f3f;
+	}
+	
+	#boton-up{
+		display: none !important;
+	}
+	
 	
 	@media(max-width: 1160px) {
 		#menu-list > ul{
@@ -127,6 +185,28 @@
 		.padding-nav{
 			padding-top: 8rem;
 		}
+		
+		.element-wrapper{
+			margin: 0;
+			padding: 1rem;
+		}
+		
+		#boton-up{
+		    border-radius: 100%;
+		    background-color: var(--gris);
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    position: sticky;
+		    bottom: 1rem;
+		    left: 80%;
+		    width: 4rem;
+		    height: 4rem;
+		    font-size: 2.5rem;
+		    z-index: 99;
+	        box-shadow: 0 0 10px rgb(0,0,0,40%);
+		}
+	
 	
 	}
 	
@@ -151,16 +231,30 @@
 	
 	$(window).scroll(function () {
 	    var nav = document.getElementById("nav");
+	    var botonUp = document.getElementById("boton-up");
 
 	    if($(window).scrollTop()){
 	    	nav.classList.add("fondo");
+
 	    }else{
 	    	nav.classList.remove("fondo");
 	    }
+	    
+	    if($(window).scrollTop() > 400){
+	    	botonUp.style.display = "flex";
+
+	    }else{
+	    	botonUp.style.display = "none";
+
+	    }
+
 		
 	})
 	
 </script>
+<head>
+<title>Cinema Paradiso</title>
+</head>
 <nav id="nav" style="padding: 0.5rem 1rem; z-index: 99; top: 0"
 	class="position-fixed d-flex justify-content-between align-items-center w-100">
 	

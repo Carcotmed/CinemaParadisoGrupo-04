@@ -16,7 +16,6 @@
 	crossorigin="anonymous">
 <link rel="shorcut icon" type="image/ico"
 	href="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/feature/fix-general/src/main/webapp/WEB-INF/views/static/favicon.ico?raw=true" />
-<title>Cierra sesi&oacuten</title>
 </head>
 <style>
 
