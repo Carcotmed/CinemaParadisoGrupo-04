@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Post;
 import com.cinema.cinemaparadiso.service.PostService;
+import com.cinema.cinemaparadiso.service.ProjectService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,10 +26,15 @@ public class PostController {
     @Autowired
     private PostService postService;
     
+    @Autowired
+    private ProjectService projectService;
+    
     @GetMapping("/create/{projectId}")
 	public String initFormCreatePost(Model model,@PathVariable("projectId") Integer projectId) {
     	//Comprobamos que la persona que accede pertenece al project
 		Post post = new Post();
+		post.setProject(this.projectService.findProjectById(projectId));
+		
 		model.addAttribute("post", post);
 		return "posts/createPostForm";
 	}
@@ -36,7 +42,7 @@ public class PostController {
 	@PostMapping("/create/{projectId}")
 	public String createPost(@ModelAttribute("post") @Valid Post post,@PathVariable("projectId") Integer projectId
 			, BindingResult result, Model model){
-
+	
 		if(!result.hasErrors()) {
 			this.postService.createPost(post, projectId);
 		}else {
@@ -45,24 +51,6 @@ public class PostController {
 		return "redirect:/projects/show/"+projectId;
 	}
     
-//  @GetMapping("/list")
-//  public String list(Model model){
-//      Iterable<Post> posts = postService.list();
-//      model.addAttribute("posts", posts);
-//      log.info("Listing Posts..."+posts.toString());
-//      return "posts/listPost";
-//  }
-    
-//    @GetMapping("/show/{postId}")
-//    public String show(Model model, Integer postId){
-//    	try {
-//	        Post post = postService.findById(postId);
-//	        model.addAttribute("post", post);
-//	        log.info("Showing Post..."+post.toString());
-//    	}catch (NoSuchElementException e) {
-//	        log.error("Error Showing Post..."+postId.toString());
-//		}
-//        return "posts/showPost";
-//    }
+
 
 }
