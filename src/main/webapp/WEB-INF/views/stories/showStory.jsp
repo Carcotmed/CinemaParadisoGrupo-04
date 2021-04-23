@@ -70,7 +70,7 @@
 			<div class="rounded-circle d-flex"
 				style="overflow: hidden; height: 100%; width: 12vh">
 				<img
-					src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"
+					src="${story.photo}"
 					style="width: 100%; height: 100%; object-fit: cover">
 			</div>
 			<div class="py-3 mx-3" style="width: 40%">
@@ -83,7 +83,7 @@
 					onClick="location.href='/messages/create/${writerUsername}'"
 					style="color: white; height: fit-content; background-color: #af3248">Contactar
 					con el escritor</button>
-				<button class="btn rounded-pill" id="levantaModal"
+				<button class="btn rounded-pill" id="levantaModal"F
 					style="color: white; height: fit-content; background-color: #af3248">Asociar
 					proyecto</button>
 			</sec:authorize>

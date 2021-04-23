@@ -87,7 +87,7 @@
 				<c:forEach items="${stories}" var="story">
 					<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0;cursor: pointer" onClick="location.href='/stories/show/${story.id}'">
 						<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-							<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"  style="width:100%;height:100%;object-fit:cover">
+							<img src="${story.photo}"  style="width:100%;height:100%;object-fit:cover">
 						</div>
 						<div style="margin-left: 12%">
 							<h5>${story.title}</h5>
