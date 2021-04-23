@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Post;
+import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.PostService;
+import com.cinema.cinemaparadiso.service.ProjectService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,11 +27,18 @@ public class PostController {
     @Autowired
     private PostService postService;
     
+    @Autowired
+    private ArtistService artistService;
+    
+    @Autowired
+    private ProjectService projectService;
+    
     @GetMapping("/create/{projectId}")
 	public String initFormCreatePost(Model model,@PathVariable("projectId") Integer projectId) {
     	//Comprobamos que la persona que accede pertenece al project
-    	
 		Post post = new Post();
+		post.setArtist(this.artistService.getPrincipal());
+		post.setProject(this.projectService.findProjectById(projectId));
 		model.addAttribute("post", post);
 		return "posts/createPostForm";
 	}
