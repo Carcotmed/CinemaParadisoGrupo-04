@@ -53,5 +53,23 @@ public class PostService {
     	post.setDate(new Date());
         return postRepository.save(post);
     }
+    
+    public Boolean pertenecesAlProyecto (Integer projectId) {
+		String username = this.userService.getPrincipal().getUsername();
+    	Optional<Artist> optionalArtist = this.userService.findArtistByUserUsername(username);
+    	Optional<Producer> optionalProducer = this.userService.findProducerByUserUsername(username);
+    	Boolean res = false;
+    	List<String> membersUsernames = this.projectService.findAllMembersUsername(projectId);
+    	System.out.println("**************************______________**************"+membersUsernames);
+    	if(optionalArtist.isPresent()) {
+    		res = membersUsernames.contains(optionalArtist.get().getUser().getUsername());
+    		System.out.println("RESULTADO PARA ARTISTA=***************"+res);
+    	}else {
+    		res = membersUsernames.contains(optionalProducer.get().getUser().getUsername());
+    		System.out.println("RESULTADO PARA PRODUCER=***************"+res);
+    	}
+		System.out.println("RESULTADO PARA FINAAAAAAAAAAAAL=***************"+res);
+    	return res;
+    }
 
 }

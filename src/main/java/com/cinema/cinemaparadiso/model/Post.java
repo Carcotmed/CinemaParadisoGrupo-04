@@ -6,32 +6,30 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name="posts")
 @Getter
 @Setter
 public class Post extends BaseEntity{
 	
 	@Column(name = "title")
-	@NotBlank(message="El titulo no puede ser vacío")
 	@Size(min=5,max=30,message="El título debe tener un tamaño entre 5 y 30 carácteres")
 	private String title;
 	
 	@Column(name = "body")
-	@NotBlank(message="El cuerpo no puede ser vacío")
 	@Size(min=5,max=140,message="El cuerpo debe tener un tamaño entre 5 y 140 carácteres")
 	private String body;
 	
 	@Column(name = "date")
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH")
 	private Date date;
 	
 	@ManyToOne(optional=true)

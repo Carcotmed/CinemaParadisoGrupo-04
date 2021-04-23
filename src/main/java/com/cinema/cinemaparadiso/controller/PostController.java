@@ -1,5 +1,7 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.util.NoSuchElementException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,13 @@ public class PostController {
     @GetMapping("/create/{projectId}")
 	public String initFormCreatePost(Model model,@PathVariable("projectId") Integer projectId) {
     	//Comprobamos que la persona que accede pertenece al project
+    	
+    	try{
+    		this.postService.pertenecesAlProyecto(projectId);
+    		}
+    	catch(NoSuchElementException ex) {
+    		return "error/error-403";
+    	}
 		Post post = new Post();
 		post.setProject(this.projectService.findProjectById(projectId));
 		
@@ -40,8 +49,7 @@ public class PostController {
 	}
 
 	@PostMapping("/create/{projectId}")
-	public String createPost(@ModelAttribute("post") @Valid Post post,@PathVariable("projectId") Integer projectId
-			, BindingResult result, Model model){
+	public String createPost(@PathVariable("projectId") Integer projectId,@ModelAttribute("post") @Valid Post post,BindingResult result, Model model){
 	
 		if(!result.hasErrors()) {
 			this.postService.createPost(post, projectId);
