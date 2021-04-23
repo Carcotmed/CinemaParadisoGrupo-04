@@ -1,14 +1,21 @@
 package com.cinema.cinemaparadiso.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,6 +48,11 @@ public class Story extends BaseEntity {
 	
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
+	
+	@Column(name="likes")
+	@ManyToMany(mappedBy = "likes", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<User> users;
 
 	@Override
 	public String toString() {

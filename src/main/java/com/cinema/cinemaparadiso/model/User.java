@@ -1,8 +1,14 @@
 package com.cinema.cinemaparadiso.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -38,6 +44,14 @@ public class User {
     @Size(min=1,max=80,message="El email debe tener como máximo 80 caracteres")
     @NotBlank(message="No puedes dejarlo vacío")
     private String email;
+    
+	@JoinTable(
+			name = "rel_user_story",
+			joinColumns = @JoinColumn(name = "username"),
+			inverseJoinColumns = @JoinColumn(name = "story_id")
+			)
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Story> likes;
     
 	@Override
 	public String toString() {
