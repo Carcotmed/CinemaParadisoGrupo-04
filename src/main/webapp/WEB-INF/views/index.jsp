@@ -22,7 +22,7 @@
 			<video autoplay muted loop style="position:absolute;width:100vw;height:100vh;object-fit:cover"
 			 src="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/develop/src/main/webapp/WEB-INF/views/static/index-video.mp4?raw=true" 
 			 type="video/mp4"></video>
-		<div class="d-flex justify-content-center align-items-center" style="margin:auto">			
+		<div class="d-flex justify-content-center align-items-center" style="margin:0.03%">			
 			<div class="d-flex flex-column justify-content-center align-items-center" style="z-index:2">
 				<h1 class="text-center" style="color:white">Cinema Paradiso</h1>
 				<h3 class="text-center" style="color:white">El material con el que se hacen los sueños</h3>
@@ -38,10 +38,23 @@
 			<div style="width:30%">
 				<p class="text-center"  style="color:white">Tu mejor opción para formar un equipo para realizar tus proyectos cinematogr&aacuteficos personales</p>
 			</div>
+			<div style="width:30%;margin-right:2%">
+				<p class="text-center"  style="color:white">Encuentra a gente a tu alrededor para formar tu equipo sin necesidad de irte a la otra punta del mundo</p>
+			</div>
+			<div style="width:30%">
+				<h3 class="text-center"  style="color:white">La cercan&iacutea es importante</h3>
+			</div>
+			<div style="width:30%;margin-right:2%">
+				<h3 class="text-center"  style="color:white">¿Eres mas de libros?</h3>
+			</div>
+			<div style="width:30%">
+				<p class="text-center"  style="color:white">Aquí puedes encontrar a personas que hagan realidad tus historias para que dejen de ser solo historias</p>
+			</div>
+			
 		</div>
 	</div>
 	
-	<div class="d-flex justify-content-center align-items-center position-relative w-100" style="background-color:#2b2b2b; height:60%">
+	<!-- <div class="d-flex justify-content-center align-items-center position-relative w-100" style="background-color:#2b2b2b; height:60%">
 		<div class="d-flex justify-content-center align-items-center" style="margin:auto">
 			<div style="width:30%;margin-right:2%">
 				<p class="text-center"  style="color:white">Encuentra a gente a tu alrededor para formar tu equipo sin necesidad de irte a la otra punta del mundo</p>
@@ -61,7 +74,7 @@
 				<p class="text-center"  style="color:white">Aquí puedes encontrar a personas que hagan realidad tus historias para que dejen de ser solo historias</p>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </body>
