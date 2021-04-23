@@ -58,12 +58,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/users/select").permitAll()
-				//POST
-				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")
+				//POST - TABLON DE ANUNCIOS
 				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
 				//PRO
 				.antMatchers("/pro/**").authenticated()//hasAnyAuthority("authenticated")
 		     //WRITERS

@@ -1,12 +1,14 @@
 package com.cinema.cinemaparadiso.service;
 
-import com.cinema.cinemaparadiso.model.Post;
-import com.cinema.cinemaparadiso.repository.PostRepository;
-
-import java.util.NoSuchElementException;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cinema.cinemaparadiso.model.Post;
+import com.cinema.cinemaparadiso.repository.PostRepository;
 
 @Service
 public class PostService {
@@ -14,19 +16,20 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public Post findById(Integer id) throws NoSuchElementException{
-        return postRepository.findById(id).get();
+    public Optional<Post> findById(Integer id){
+        return postRepository.findById(id);
     }
 
-    public Iterable<Post> list(){
-        return postRepository.findAll();
+    public List<Post> listPostOfProject(Integer projectId){
+    	List<Post> posts = this.postRepository.listPostOfProject(projectId);
+		//Ordenamos por fecha
+		//posts.stream().sorted(Comparator.comparing(Post::getDate));
+		return posts;
     }
 
-    public Post createUpdate(Post post) throws IllegalArgumentException{
+    @Transactional
+    public Post createPost(Post post) throws IllegalArgumentException{
         return postRepository.save(post);
     }
 
-    public void delete(Post post) throws IllegalArgumentException{
-        postRepository.delete(post);
-    }
 }
