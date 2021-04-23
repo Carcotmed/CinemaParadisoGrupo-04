@@ -168,14 +168,17 @@
 			</div>
 		</div>
 		
-		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
-			<h3 style="margin:0">Integrantes</h3>
+		<div class="container-fluid" style="display:flex;background-color:#4c4c4c; padding:1%">
+		   
+			<h3 style="margin:0% ;">Integrantes</h3>
 			<c:if test="${pertenece || perteneceP}"> 
-			<h3 style="margin:0; max-height:100%;max-right:100%; margin:0 1% ;">Anuncios</h3>
+			<h3 style=" max-height:100%;max-right:100%; margin:0 30% ;">Anuncios</h3>
 			</c:if>
+			
 		</div>
 			
-		<div style="padding: 2% 0;width:30%;margin:auto">
+		<div style="padding: 2% 0;width:30%;display:flex;margin:0%">
+		<div>
 			<c:forEach items="${members}" var="member">
 				<div onclick="location.href='/artists/show/${ member.id }'"  class="d-flex align-items-center justify-content-evenly" style="cursor:pointer;height:15vh; margin: 1% 0">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
@@ -200,9 +203,11 @@
 				</div>
 				<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1% auto">
 			</c:forEach>
+			</div>
+			<div>
 			<c:if test="${pertenece || perteneceP }">
-			<div style="padding: 0% 2;width:30%;margin:auto">
-			       <h5>ANUNCIOS</h5>
+			<div style="padding: 0% 2;width:50%;margin:0% 20%; marginheight = 50 ;max-height:100%">
+			       
 			<c:forEach items="${posts}" var="post">
 			            <h5>${post.title}</h5>
 						<p>${post.body}</p>

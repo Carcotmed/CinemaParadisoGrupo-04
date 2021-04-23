@@ -1,5 +1,6 @@
 package com.cinema.cinemaparadiso.service;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class PostService {
     public List<Post> listPostOfProject(Integer projectId){
     	List<Post> posts = this.postRepository.listPostOfProject(projectId);
 		//Ordenamos por fecha
-		//posts.stream().sorted(Comparator.comparing(Post::getDate));
+		posts.stream().sorted(Comparator.comparing(Post::getDate).reversed());
 		return posts;
     }
 
@@ -60,15 +61,15 @@ public class PostService {
     	Optional<Producer> optionalProducer = this.userService.findProducerByUserUsername(username);
     	Boolean res = false;
     	List<String> membersUsernames = this.projectService.findAllMembersUsername(projectId);
-    	System.out.println("**************************______________**************"+membersUsernames);
+    	
     	if(optionalArtist.isPresent()) {
     		res = membersUsernames.contains(optionalArtist.get().getUser().getUsername());
-    		System.out.println("RESULTADO PARA ARTISTA=***************"+res);
+    		
     	}else {
     		res = membersUsernames.contains(optionalProducer.get().getUser().getUsername());
-    		System.out.println("RESULTADO PARA PRODUCER=***************"+res);
+    		
     	}
-		System.out.println("RESULTADO PARA FINAAAAAAAAAAAAL=***************"+res);
+		
     	return res;
     }
 
