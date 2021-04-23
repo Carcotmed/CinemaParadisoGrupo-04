@@ -1,9 +1,15 @@
 package com.cinema.cinemaparadiso.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Post;
@@ -18,20 +24,27 @@ public class PostController {
 
     @Autowired
     private PostService postService;
-
-
-
+    
     @GetMapping("/create/{projectId}")
-    public String create(Model model, Integer projectId, Post post){
-    	try {
-    		postService.createPost(post);
-    		model.addAttribute("Estado", "Exito");
-    	}catch (IllegalArgumentException e) {
-    		model.addAttribute("Estado", "Error, entidad incorrecta");
+	public String initFormCreatePost(Model model,@PathVariable("projectId") Integer projectId) {
+    	//Comprobamos que la persona que accede pertenece al project
+    	
+		Post post = new Post();
+		model.addAttribute("post", post);
+		return "posts/createPostForm";
+	}
+
+	@PostMapping("/create/{projectId}")
+	public String createPost(@ModelAttribute("post") @Valid Post post,@PathVariable("projectId") Integer projectId
+			, BindingResult result, Model model){
+
+		if(!result.hasErrors()) {
+			this.postService.createPost(post);
+		}else {
+			return "posts/createPostForm";
 		}
-        log.info("Creating Posts..."+post.toString());
-        return "posts/createPost";
-    }
+		return "redirect:/projects/show/"+projectId;
+	}
     
 //  @GetMapping("/list")
 //  public String list(Model model){

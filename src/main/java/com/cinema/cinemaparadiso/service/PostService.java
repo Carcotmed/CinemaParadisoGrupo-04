@@ -1,5 +1,6 @@
 package com.cinema.cinemaparadiso.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,7 @@ public class PostService {
 
     @Transactional
     public Post createPost(Post post) throws IllegalArgumentException{
+    	post.setDate(new Date());
         return postRepository.save(post);
     }
 
