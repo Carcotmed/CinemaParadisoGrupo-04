@@ -36,8 +36,13 @@
 				<h3 class="text-center" style="color:white">¿Qu&eacute es Cinema Paradiso?</h3>
 			</div>
 			<div style="width:30%">
-				<p class="text-center"  style="color:white">Tu mejor opción para formar un equipo para realizar tus proyectos cinematogr&aacuteficos personales.
-				<br> <br>Encuentra a gente a tu alrededor para formar tu equipo sin necesidad de irte a la otra punta del mundo</p>
+				<p class="text-center"  style="color:white">Tu mejor opción para formar un equipo para realizar tus proyectos cinematogr&aacuteficos personales</p>
+			</div>
+			<div style="width:30%;margin-right:2%">
+				<p class="text-center"  style="color:white">Encuentra a gente a tu alrededor para formar tu equipo sin necesidad de irte a la otra punta del mundo</p>
+			</div>
+			<div style="width:30%">
+				<h3 class="text-center"  style="color:white">La cercan&iacutea es importante</h3>
 			</div>
 			<div style="width:30%;margin-right:2%">
 				<h3 class="text-center"  style="color:white">¿Eres mas de libros?</h3>
