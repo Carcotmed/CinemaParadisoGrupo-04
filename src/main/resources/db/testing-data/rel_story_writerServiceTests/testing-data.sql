@@ -24,5 +24,3 @@ INSERT INTO rel_story_writers (id, story_id, writer_id) VALUES (5,5,1);
 INSERT INTO rel_story_writers (id, story_id, writer_id) VALUES (6,6,2);
 INSERT INTO rel_story_writers (id, story_id, writer_id) VALUES (7,7,2);
 INSERT INTO rel_story_writers (id, story_id, writer_id) VALUES (8,8,2);
-
-INSERT INTO stories (id, version, title, body, genre, storylength) VALUES (9,0,'Historia por asignar','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000);
