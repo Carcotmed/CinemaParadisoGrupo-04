@@ -53,6 +53,9 @@ public class Story extends BaseEntity {
 	@ManyToMany(mappedBy = "likes", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<User> users;
+	
+	@Column(name="numlikes")
+	private Long numLikes;
 
 	@Override
 	public String toString() {

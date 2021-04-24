@@ -323,31 +323,31 @@ INSERT INTO authorities (username, authority) VALUES ('JosephineWoodard','writer
 INSERT INTO authorities (username, authority) VALUES ('AlecHill','writer');
 
 --STORIES----------------------------------------------------------------------------
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'The Fault in Our Stars','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'City of Lost Souls','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'Pandemonium','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored) VALUES (0,'Cinder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000, true);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Easy','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'The Golden Lily','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Slammed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'The Selection','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Wonder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Bared to You','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Third Grave Dead Ahead','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Lover Reborn','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Under the Never Sky','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Point of Retreat','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Defending Jacob','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Fourth Grave Beneath My Feet','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Shadow of Night','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Hallowed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'The Serpents Shadow','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Rapture','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'The Immortal Rules','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'On Dublin Street','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Bitterblue','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000);
-INSERT INTO stories (version, title, body, genre, storylength) VALUES (0,'Spell Bound','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000);
+INSERT INTO stories (version, title, body, genre, storylength,is_sponsored,numlikes) VALUES (0,'The Fault in Our Stars','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
+INSERT INTO stories (version, title, body, genre, storylength,is_sponsored,numlikes) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,numlikes) VALUES (0,'City of Lost Souls','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,numlikes) VALUES (0,'Pandemonium','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,numlikes) VALUES (0,'Cinder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000, true,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Easy','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Golden Lily','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Slammed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Selection','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Wonder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Bared to You','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Third Grave Dead Ahead','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Lover Reborn','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Under the Never Sky','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Point of Retreat','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Defending Jacob','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Fourth Grave Beneath My Feet','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Shadow of Night','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Hallowed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Serpents Shadow','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Rapture','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Immortal Rules','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'On Dublin Street','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Bitterblue','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
+INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Spell Bound','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
 
 --REL_STORY_WRITERS----------------------------------------------------------------------------
 INSERT INTO rel_story_writers (story_id, writer_id) VALUES (1,1);

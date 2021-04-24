@@ -58,6 +58,7 @@ public class StoryService {
 	
 
 	public void createStory(Story story){
+		   story.setNumLikes(relUserStoryService.count(story.getId()));
 	       saveStory(story);
 	       
 	       Integer idWriter = writerService.getPrincipal().getId();

@@ -112,6 +112,7 @@ public class StoryController {
 	@PostMapping("/update/{storyId}")
 	public String updateStory(@ModelAttribute("story") @Valid Story story,BindingResult result, Model model, @PathVariable("storyId") Integer storyId) {
 		story.setId(storyId);
+		System.out.println(story.getNumLikes());
 		if(!storyService.isMyWriter(storyId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
@@ -124,6 +125,7 @@ public class StoryController {
 			log.info("Story Updated Successfully");
 			return "redirect:/stories/show/{storyId}";
 		} else {
+			System.out.println(result.getAllErrors());
 			return "stories/updateStory";
 		}
  

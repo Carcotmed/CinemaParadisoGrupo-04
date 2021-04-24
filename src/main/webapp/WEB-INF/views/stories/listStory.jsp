@@ -79,6 +79,8 @@
 							<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 						</div>
 		      			<h5 style="margin: 0.5vw; text-align:center">${stories.title}</h5>
+		      			<h5 style="margin: 0.5vw; text-align:center">${stories.numLikes}</h5>
+		      			
 		      		</div>
 	      		</c:forEach>
 	      	</div>
