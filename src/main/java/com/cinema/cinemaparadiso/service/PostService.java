@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,8 @@ public class PostService {
     public List<Post> listPostOfProject(Integer projectId){
     	List<Post> posts = this.postRepository.listPostOfProject(projectId);
 		//Ordenamos por fecha
-		posts.stream().sorted(Comparator.comparing(Post::getDate).reversed());
-		return posts;
+		List<Post> postsOrdenadosFecha = posts.stream().sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
+		return postsOrdenadosFecha;
     }
 
     @Transactional
