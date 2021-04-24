@@ -1,23 +1,30 @@
 package com.cinema.cinemaparadiso.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 
 @SpringBootTest
-@Sql("/db/data.sql")
+@Sql("/db/testing-data/producerServiceTests/testing-data.sql")
 @Transactional
 public class ProjectServiceTests {
+	
+	@Autowired
+	ProjectService projectService;
 
 
-	/*
+	
 	@Test
     public void shouldListTotalProject(){
         Integer totalProject = this.projectService.list().size();
-		assertThat(totalProject).isEqualTo(13);
+		assertThat(totalProject).isEqualTo(7);
    }
-	
+	/*
 	@Test
     public void shouldListTotalProjectWithError(){
         Integer totalProject = this.projectService.list().size();
