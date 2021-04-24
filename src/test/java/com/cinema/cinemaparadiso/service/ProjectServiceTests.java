@@ -41,6 +41,9 @@ public class ProjectServiceTests {
 	@Autowired
 	ProjectService projectService;
 	
+	@Autowired
+	UserService userService;
+	
 	@Test
 	public void shouldList() {
 		List <Project> allProjectsOrderedById = projectService.list().stream().sorted(Comparator.comparing(Project::getId)).collect(Collectors.toList());
@@ -180,7 +183,9 @@ public class ProjectServiceTests {
 	@WithMockUser(username="artistUser4",authorities={"artist"})
 	@Test
 	public void checkIfIsAdminProject() {
-		Integer projectId = 3;
+		Integer projectId = 5;
+		
+		assertEquals(userService.getPrincipal().getUsername(), projectService.findProjectById(projectId).getMyAdmin());
 		
 		assertTrue(projectService.isAdminProject(projectId));
 	}
@@ -216,7 +221,6 @@ public class ProjectServiceTests {
 	@Test
 	public void shouldMakeProjectSponsored() {
 		Integer projectId = 5;
-		assertFalse(projectService.findProjectById(projectId).getIsSponsored());
 		projectService.makeProjectSponsored(projectId);
 		assertTrue(projectService.findProjectById(projectId).getIsSponsored());
 	}
