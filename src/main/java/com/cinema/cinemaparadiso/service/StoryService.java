@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -100,6 +101,8 @@ public class StoryService {
 		storyRepository.delete(findStoryById(storyId));
 	}
 
+	@Transactional
+	@Modifying
 	public void makeStorySponsored(Integer storyID) {
 		storyRepository.makeStorySponsored(storyID);
 	}
