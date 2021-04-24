@@ -239,6 +239,7 @@ public class StoryController {
 		try {
 			String username = userService.getPrincipal().getUsername();
 			Boolean actualUserLiked = relUserStoryService.actualUserLiked(storyId, username);
+			log.info("***********************************" +actualUserLiked+"**********************************");
 			model.addAttribute("actualUserLiked",actualUserLiked);
 		}catch (Exception e) {
 			model.addAttribute("actualUserLiked",false);
