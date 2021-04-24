@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
 <html class="h-100">
@@ -82,7 +83,7 @@
 						<form:errors style="color:red" path="description"/>
 						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
 							<div class="d-flex flex-wrap ">
-								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="photo">Añade tu foto</form:label>
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="photo">Aï¿½ade tu foto</form:label>
 							</div>
 							<form:input class="form-control" value="${artist.photo}" placeholder="url" style="margin-left: 3%;width:60%" type="text" path="photo"></form:input>
 						</div>
@@ -99,6 +100,17 @@
 							</form:select>
 						</div>
 						<form:errors style="color:red" path="role"/>
+						<br>
+						<br>
+
+						
+
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+							<div class="d-flex flex-wrap ">
+								<label><input type="checkbox" name="cb-terminosservicio" required> Acepto los  <a href="/terms" target="_blank">TÃ©rminos y Condiciones de Uso</a> </label>
+							</div>
+						</div>
+
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
 							<form:button class="btn" style="color:white;background-color: #af3248">Guardar</form:button>
 						</div>

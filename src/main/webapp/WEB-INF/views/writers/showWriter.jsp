@@ -30,7 +30,7 @@
 				</div>
 			</div>
 	<c:if test="${!userDisabled}">
-		<c:if test="${sameWriter == false && !isAdmin}">
+		<c:if test="${!sameWriter}">
 			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
 		</c:if>
 		<c:if test="${sameWriter == true || isAdmin}">
