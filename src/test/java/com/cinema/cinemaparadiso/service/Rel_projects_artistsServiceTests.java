@@ -75,14 +75,13 @@ public class Rel_projects_artistsServiceTests {
 	}
 
 	@Test
-	@Transactional
 	@Order(6)
 	public void shouldDeleteByProjectId() {
 		Integer projectId = 4;
 		
-		assertNotNull(rel_projects_artistsService.findById(2));
+		assertNotNull(rel_projects_artistsService.findById(10));
 		rel_projects_artistsService.deleteByProjectId(projectId);
-		assertThrows(NoSuchElementException.class, () -> rel_projects_artistsService.findById(2));
+		assertThrows(NoSuchElementException.class,()->rel_projects_artistsService.findById(10));
 		
 	}
 	
