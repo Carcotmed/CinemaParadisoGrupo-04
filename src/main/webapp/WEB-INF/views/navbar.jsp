@@ -78,12 +78,21 @@
 		border-radius: 20px;
 	}
 	
+	.linea-hor-pro{
+		border-color: var(--amarillo);
+		background-color: var(--amarillo);
+	}
+	
 	.element-wrapper{
 		border-radius: 20px;
 		transition: 0.3s;
 		cursor:pointer;
 		margin: 1rem;
 		padding: 1rem;
+	}
+	
+	.element-pro:hover{
+		background-color:var(--amarillo) !important;	
 	}
 	
 	.element-wrapper:hover{
@@ -95,6 +104,7 @@
 	.element-wrapper img{
 		height:7rem;
 		width:7rem;
+		object-fit: cover;
 	}
 	
 	::-webkit-scrollbar {

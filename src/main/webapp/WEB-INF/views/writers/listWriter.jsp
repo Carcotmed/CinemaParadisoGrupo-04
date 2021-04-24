@@ -19,6 +19,9 @@
 		    box-shadow: 0 0 10px black;
 		}
 		
+		label{
+			width:50%;
+		}
 		
 		.padding-nav > h2{
 			text-align:center;
