@@ -50,6 +50,9 @@ public class Story extends BaseEntity {
 	@Size(min=1,max=150,message="La foto debe tener como máximo 150 caracteres")
 	private String photo;
 
+	@Column(name="haveProject")
+	private Boolean haveProject;
+	
 	@Override
 	public String toString() {
 		return "Story [title=" + title + ", body=" + body + ", genre=" + genre + "]";

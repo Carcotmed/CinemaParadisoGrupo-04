@@ -75,5 +75,11 @@ public class Project extends BaseEntity {
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
 	
+	@Column(name="haveStory")
+	private Boolean haveStory;
+	
+	
+	
+	
  
 }
