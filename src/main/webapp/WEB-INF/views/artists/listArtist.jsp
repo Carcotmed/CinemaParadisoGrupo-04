@@ -35,7 +35,7 @@
 		
 		.background-image{
 			z-index: -1;
-		   background-image: url(https://www.teahub.io/photos/full/55-553913_photo-wallpaper-background-wallpaper-blur-book-book-background.jpg);
+		   background-image: url(https://cdn.hipwallpaper.com/i/33/55/hreiP4.jpg);
 		   width: 110%;
 		   position: absolute;
 		   height: 100%;
@@ -43,8 +43,8 @@
 		   background-size: contain;
 		}
 		
-		.fondo-w {
-			background-color: rgb(49 28 5 / 69%);
+		.fondo-a {
+			background-color: rgb(49 5 24 / 69%);
 		}
 			
 		#list-wrap{
@@ -141,10 +141,10 @@
 	    var lista = document.getElementById("list-wrap");
 
 	    if($(window).scrollTop() > 400){
-	    	lista.classList.add("fondo-w");
+	    	lista.classList.add("fondo-a");
 
 	    }else{
-	    	lista.classList.remove("fondo-w");
+	    	lista.classList.remove("fondo-a");
 	    }
 		
 	})
