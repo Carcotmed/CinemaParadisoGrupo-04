@@ -218,7 +218,7 @@
 			  
                  
 					<div style="padding: 2% 0; width: 30%; margin-left: 3%">
-						<h4 style="margin-bottom: 4%">Mis proyectos</h4>
+						<h4 style="margin-bottom: 4%">Proyectos asociados a esta historia</h4>
 						<c:forEach items="${myProjectsRel}" var="myProjects">
 							<div class="d-flex align-items-center justify-content-evenly"
 								style="height: 15vh; margin: 1% 0; cursor: pointer"
