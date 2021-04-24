@@ -48,7 +48,7 @@ public class UserServiceTests {
 		//TODO CUANDO ACABE DE POPULAR TESTING DATA
 
 		long count = userService.countUsers();
-		//assertThat(count).isEqualTo(2L);
+		assertThat(count).isEqualTo(12L);
 	}
 	
 	@Test
