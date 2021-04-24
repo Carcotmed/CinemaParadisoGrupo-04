@@ -34,7 +34,7 @@ public class Rel_projects_artistsServiceTests {
 	
 	@Test
 	@Order(1)
-	public void delete() throws DataAccessException{
+	public void shouldDelete() throws DataAccessException{
 		Integer rel_projects_artistsId = 1;
 		
 		assertNotNull(rel_projects_artistsService.findById(rel_projects_artistsId));
@@ -44,7 +44,7 @@ public class Rel_projects_artistsServiceTests {
 
 	@Test
 	@Order(2)
-	public void findById() throws DataAccessException {
+	public void shouldFindById() throws DataAccessException {
 		Integer rel_projects_artistsId = 1;
 		Rel_projects_artists rel = rel_projects_artistsService.findById(rel_projects_artistsId);
 		assertEquals(1, rel.getArtist_id());
@@ -54,7 +54,7 @@ public class Rel_projects_artistsServiceTests {
 	
 	@Test
 	@Order(3)
-	public void findRelation(){
+	public void shouldFindRelation(){
 		Integer artistId = 1;
 		Integer projectId = 2;
 		
@@ -63,26 +63,32 @@ public class Rel_projects_artistsServiceTests {
 	
 	@Test
 	@Order(4)
-	public void count(){		
-		assertEquals(1L, rel_projects_artistsService.count());
+	public void shouldCount(){		
+		assertEquals(2L, rel_projects_artistsService.count());
 	}
 
 	@Test
 	@Order(5)
-	public void countByProject() {
+	public void shouldCountByProject() {
 		Integer projectId = 2;
 		assertEquals(1L, rel_projects_artistsService.count(projectId));
 	}
 
 	@Test
+	@Transactional
 	@Order(6)
-	public void deleteByProjectId() {
-		Integer projectId = 2;
+	public void shouldDeleteByProjectId() {
+		Integer projectId = 4;
+		
+		assertNotNull(rel_projects_artistsService.findById(2));
+		rel_projects_artistsService.deleteByProjectId(projectId);
+		assertThrows(NoSuchElementException.class, () -> rel_projects_artistsService.findById(2));
+		
 	}
 	
 	@Test
 	@Order(7)
-	public void save() {
+	public void shouldSave() {
 		Rel_projects_artists rel = new Rel_projects_artists();
 		rel.setArtist_id(1);
 		rel.setProject_id(3);
@@ -94,7 +100,7 @@ public class Rel_projects_artistsServiceTests {
 	
 	@Test
 	@Order(8)
-	public void create(){
+	public void shouldCreate(){
 		Rel_projects_artists rel = new Rel_projects_artists();
 		rel.setArtist_id(1);
 		rel.setProject_id(1);

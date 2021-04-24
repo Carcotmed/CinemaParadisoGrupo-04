@@ -8,4 +8,8 @@ INSERT INTO projects (id,version,title, genre, description, pro, photo,my_admin,
 
 INSERT INTO projects (id,version,title, genre, description, pro, photo,my_admin,is_sponsored) VALUES (3,0,'Third Project','ACCION','Creando contenido desde hace 17 años, buscamos nuevos miembros',true,'https://media.istockphoto.com/vectors/project-management-icon-flat-design-vector-id585291474?b=1&k=6&m=585291474&s=170667a&w=0&h=PsqYKLdR6SBC4bmLmhPCx3vvzvHiaKlR15FgyPNVQaE=','JarrodHuffman',true);
 
+INSERT INTO projects (id,version,title, genre, description, pro, photo,my_admin,is_sponsored) VALUES (4,0,'Fourth Project','ACCION','Creando contenido desde hace 17 años, buscamos nuevos miembros',true,'https://media.istockphoto.com/vectors/project-management-icon-flat-design-vector-id585291474?b=1&k=6&m=585291474&s=170667a&w=0&h=PsqYKLdR6SBC4bmLmhPCx3vvzvHiaKlR15FgyPNVQaE=','JarrodHuffman',true);
+
 INSERT INTO rel_projects_artists (id, project_id, artist_id) VALUES (1,2,1);
+
+INSERT INTO rel_projects_artists (id, project_id, artist_id) VALUES (2,4,1);
