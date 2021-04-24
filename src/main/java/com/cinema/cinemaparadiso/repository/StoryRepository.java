@@ -16,13 +16,13 @@ import com.cinema.cinemaparadiso.model.Writer;
 public interface StoryRepository extends CrudRepository<Story,Integer>{
 
 	
-	@Query("SELECT writer FROM Writer writer INNER JOIN Rel_story_writers rel_story_writers ON writer.id = rel_story_writers.writer_id AND rel_story_writers.story_id = :storyId")
+	@Query("SELECT writer FROM Writer writer INNER JOIN Rel_story_writers rel_story_writers ON writer.id = rel_story_writers.writer_id WHERE rel_story_writers.story_id = :storyId")
 	public Writer findMyWriter(@Param("storyId") Integer storyId);
 
 	@Transactional
 	@Modifying
-	@Query("UPDATE Story story SET story.isSponsored = TRUE WHERE story.id = :storyID")
-	public void makeStorySponsored(Integer storyID);
+	@Query("UPDATE Story story SET story.isSponsored = TRUE WHERE story.id = :storyId")
+	public void makeStorySponsored(@Param("storyId") Integer storyID);
 
 	@Query("SELECT story from Story story WHERE story.isSponsored = TRUE")
 	public List<Story> findAllSponsoredStories();

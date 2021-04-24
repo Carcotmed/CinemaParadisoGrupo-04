@@ -42,9 +42,74 @@ public class Story extends BaseEntity {
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
 
+	public Story() {}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Story [title=" + title + ", body=" + body + ", genre=" + genre + "]";
+	}
+
+
+
+	public Story(Integer id, String title,String body,Genre genre, Integer storylength) {
+		this.title = title;
+		this.body = body;
+		this.genre = genre;
+		this.storylength = storylength;
+		this.isSponsored = false;
+		this.id = id;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((body == null) ? 0 : body.hashCode());
+		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
+		result = prime * result + ((isSponsored == null) ? 0 : isSponsored.hashCode());
+		result = prime * result + ((storylength == null) ? 0 : storylength.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Story other = (Story) obj;
+		if (body == null) {
+			if (other.body != null)
+				return false;
+		} else if (!body.equals(other.body))
+			return false;
+		if (genre != other.genre)
+			return false;
+		if (isSponsored == null) {
+			if (other.isSponsored != null)
+				return false;
+		} else if (!isSponsored.equals(other.isSponsored))
+			return false;
+		if (storylength == null) {
+			if (other.storylength != null)
+				return false;
+		} else if (!storylength.equals(other.storylength))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
 	}
 
 }
