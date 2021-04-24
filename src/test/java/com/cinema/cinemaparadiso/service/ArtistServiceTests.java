@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,24 +59,16 @@ public class ArtistServiceTests {
 	@Test
 	public void shouldListProArtist() {
 		List <Artist> proList = this.artistService.listProArtist();
-		Artist pro1 = proList.get(0);
-		assertEquals("Pro User 1", pro1.getName());
 		
-		Artist pro2 = proList.get(1);
-		assertEquals("Pro User 2", pro2.getName());
-		
-		//assertEquals(2L, proList.size());
+		assertEquals(5, proList.size());
 	}
 	
 	@Test
 	public void shouldListNoProArtist() {
 		
 		List <Artist> noProList = this.artistService.listNoProArtist();
-		Artist noPro1 = noProList.get(0);
-		assertEquals("No Pro User 1", noPro1.getName());
-		
-		Artist noPro2 = noProList.get(1);
-		assertEquals("No Pro User 2", noPro2.getName());
+
+		assertEquals(4, noProList.size());
 	}
 	
 	@Test
@@ -149,7 +142,16 @@ public class ArtistServiceTests {
 	
 	@Test
 	public void shouldEditArtist() {
-		Artist artist;
+		Artist retrievedArtist = artistService.findArtistByUsername("existingUserName");
+		
+		assertEquals("Unedited Artist Description", retrievedArtist.getDescription());
+		
+		retrievedArtist.setDescription("Updated Artist Description");
+		
+		artistService.saveArtist(retrievedArtist);
+		
+		assertEquals("Updated Artist Description" ,artistService.findArtistByUsername("existingUserName").getDescription());
+		
 	}
 	
 	@Test
@@ -164,54 +166,62 @@ public class ArtistServiceTests {
 		assertEquals("https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png", retrievedArtist.getPhoto());
 	}
 	
+	@WithMockUser(username="existingUserName",authorities={"artist"})
 	@Test
 	public void shouldGetPrincipal(){
 		
-	}
-	
-	@Test
-	public void shouldGetPrincipalArtist() {
+		Artist currentArtist = artistService.getPrincipal();
+		
+		assertEquals(artistService.findArtistByUsername("existingUserName"), currentArtist);
 		
 	}
 	
 	@Test
 	public void shouldGetCount() {
-		
-	}
-	
-	@Test
-	public void checkIfIsActualArtist() {
-		Integer artistId;
+		assertEquals(9L, artistService.count());
 	}
 	
 	@Test
 	public void shouldFindMyUser() {
-		Integer artistId;
-	}
-	
-	@Test
-	public void shouldDeleteArtist() {
-		Integer artistId;
-	}
-	
-	@Test
-	public void shouldActivateArtist() {
-		Integer artistId;
+		Integer artistId = 20;
+		
+		User foundUser = artistService.findMyUser(artistId);
+		
+		assertEquals(userService.findUser("existingUserName").get(), foundUser);
 	}
 	
 	@Test
 	public void shouldGetLeftProjects() {
-		Integer artistId;
+		Integer artistId = 22;
+		
+		assertEquals(25, artistService.leftProjects(artistId));
 	}
 	
 	@Test
 	public void shouldIncrementLeftProjects() {
-		Integer artistID;
-		Integer addingAmount;
+		Integer artistId = 23;
+		Integer addingAmount = (int) Math.rint(10);
+		
+		assertEquals(5, artistService.leftProjects(artistId));
+		
+		artistService.incrementLeftProjects(artistId, addingAmount);
+
+		assertEquals(5+addingAmount, artistService.leftProjects(artistId));
+
 	}
 	@Test
 	public void shouldMakePro() {
-		Integer artistID;
+		Integer artistId = 24;
+		
+		Artist beforePro = artistService.findArtistById(artistId);
+		
+		assertFalse(beforePro.getPro());
+		
+		artistService.makePro(artistId);
+		
+		Artist afterPro = artistService.findArtistById(artistId);
+		
+		assertTrue(afterPro.getPro());
 	}
 
 }
