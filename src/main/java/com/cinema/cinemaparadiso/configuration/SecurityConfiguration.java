@@ -91,6 +91,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/show/{projectId}").permitAll()
 				.antMatchers("/projects/joinArtist/{projectId}").authenticated()
 				.antMatchers("/projects/joinProducer/{projectId}").authenticated()
+
+				//TERMS AND CONDITIONS
+				.antMatchers("/terms").permitAll()
 				
 				.antMatchers("/logoutsecure").authenticated()
 				
