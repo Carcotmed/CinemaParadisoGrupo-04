@@ -6,6 +6,27 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
+<head>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+	<script>
+	$(document).ready(function () {
+		$.ajax({
+		    type : "GET",
+		    url : "/messages/check",
+		    data : {
+		    	"username": $("#usernameContainer").text()
+		    },
+		    success: function(data){
+		    	if(data && data=="true"){
+		    		$("#messagesButton").css("background-color", "#359106");
+		    	}
+		    }
+		});
+	});
+	</script>
+</head>
 	<div style="padding:0.5%;background-color:#2b2b2b;z-index:99;top:0" class="position-sticky d-flex justify-content-between align-items-center w-100">
 		<div class="d-flex align-items-center" style="cursor:pointer; width:20%" onClick="location.href='/'">
 			<img src="https://image.flaticon.com/icons/png/512/96/96595.png" style="cursor:pointer;width:30%;margin-left:1%;filter:invert(1)">
@@ -21,11 +42,12 @@
 			<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/producers/list'">Productoras</button>
 
 			<sec:authorize access="isAuthenticated()">
-				<button class="btn rounded-pill" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/messages/listReceived'">Mensajes</button>
+				<button class="btn rounded-pill" id="messagesButton" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/messages/listReceived'">Mensajes</button>
 			</sec:authorize>
 			<button class="btn rounded-pill" style="color:white;background-color:#e8c71a;margin:0 1%;color:black" onClick="location.href='/pro'"><strong>PRO</strong></button>
 		</div>
 		<!-- User menu -->
+		<p style="display: none;" id="usernameContainer"><sec:authentication property="name"/></p>
 		<div style="width: 15%;margin-right:1%" class="d-flex justify-content-between align-items-center">
 			<sec:authorize access="!isAuthenticated()">
 				<button onClick="location.href='/login'" style="color:white;background-color:#af3248" class="btn rounded-pill">Inicia sesi&oacuten</button>

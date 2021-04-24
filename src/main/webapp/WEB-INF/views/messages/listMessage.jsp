@@ -48,7 +48,7 @@
                         <spring:param name="messageId" value="${message.id}"/>
                     </spring:url>
 
-                    <a href="${fn:escapeXml(showUrl)}" style="background-color:#af3248" class="btn btn-danger">Mostrar</a>
+                    <a href="${fn:escapeXml(showUrl)}" style="background-color:${(!message.seen && tipo=='received')?'#359106; border-color: #359106':'#af3248;'}" class="btn btn-danger">Mostrar</a>
                    	 
                     <spring:url value="/messages/delete/{messageId}" var="deleteUrl">
                         <spring:param name="messageId" value="${message.id}"/>              

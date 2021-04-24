@@ -48,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/show/{messageId}").authenticated()
 				.antMatchers("/messages/create/{userId}").authenticated()
 				.antMatchers("/messages/delete/{messageId}").authenticated()
+				.antMatchers("/messages/check").authenticated()
 				.antMatchers("/messages/show/{messageId}/acceptRequestArtist").authenticated()
 				.antMatchers("/messages/show/{messageId}/rejectRequestArtist").authenticated()
 				.antMatchers("/messages/show/{messageId}/acceptRequestProducer").authenticated()
@@ -86,6 +87,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/show/{projectId}").permitAll()
 				.antMatchers("/projects/joinArtist/{projectId}").authenticated()
 				.antMatchers("/projects/joinProducer/{projectId}").authenticated()
+
+				//TERMS AND CONDITIONS
+				.antMatchers("/terms").permitAll()
 				
 				.antMatchers("/logoutsecure").authenticated()
 				
