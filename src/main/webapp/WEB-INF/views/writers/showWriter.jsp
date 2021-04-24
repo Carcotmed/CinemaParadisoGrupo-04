@@ -30,6 +30,20 @@
 			<div class="py-3 mx-3" style="width: 40%">
 				<h2>${writer.user.username}</h2>
 			</div>
+
+	<c:if test="${!userDisabled}">
+		<c:if test="${!sameWriter}">
+			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
+		</c:if>
+		<c:if test="${sameWriter == true || isAdmin}">
+			<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color: white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar perfil</button>
+			<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Desactivar perfil</button>
+		</c:if>
+	</c:if>
+	<c:if test="${userDisabled}">
+		<div class="py-3 mx-3" style="width:40%">
+			<h2>Usuario desactivado</h2>
+
 		</div>
 		<c:if test="${!userDisabled}">
 			<c:if test="${sameWriter == false && !isAdmin}">

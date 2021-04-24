@@ -3,9 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html class="h-100">
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,7 +96,7 @@
 						  //This function displays Smart Payment Buttons on your web page.
 					  </script>
 					<div>
-						<p>¡Publicita tu proyecto! (30&#8364)</p>
+						<p>Â¡Publicita tu proyecto! (30&#8364)</p>
 					</div>
 					<div id="paypal-button-ad" style="z-index:1"></div>
 					
@@ -164,11 +169,17 @@
 			</div>
 		</div>
 		
-		<div class="container-fluid" style="background-color:#4c4c4c; padding:1%">
-			<h3 style="margin:0">Integrantes</h3>
+		<div class="container-fluid" style="display:flex;background-color:#4c4c4c; padding:1%">
+		   
+			<h3 style="margin:0% ;padding-left: 100px">Integrantes</h3>
+			<c:if test="${pertenece || perteneceP}"> 
+			<h3 style=" max-height:100%;max-right:100%; margin:0 70% ;">Anuncios</h3>
+			</c:if>
+			
 		</div>
 			
-		<div style="padding: 2% 0;width:30%;margin:auto">
+		<div style="padding: 2% 0;width:100%;display:flex;margin:0%;justify-content:space-between">
+		<div style="padding-left: 80px">
 			<c:forEach items="${members}" var="member">
 				<div onclick="location.href='/artists/show/${ member.id }'"  class="d-flex align-items-center justify-content-evenly" style="cursor:pointer;height:15vh; margin: 1% 0">
 					<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
@@ -193,6 +204,20 @@
 				</div>
 				<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:60%; margin:1% auto">
 			</c:forEach>
+			</div>
+			<div>
+			<c:if test="${pertenece || perteneceP }">
+			<div style="padding: 0% 20px;width:50%;max-height:100%">
+			       
+			<c:forEach items="${posts}" var="post">
+			            <h5>${post.title}</h5>
+						<p>${post.body}</p>
+						<p>${post.date}</p>
+			</c:forEach>
+			<button  onclick="location.href='/posts/create/${project.id}'" class="btn rounded-pill" id="levantaModal"
+					style="color: white; height: fit-content; background-color: #af3248">Crear anuncio</button>
+			</div>
+			</c:if>
 		</div>
 
 	</div>
