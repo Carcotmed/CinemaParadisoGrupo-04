@@ -451,6 +451,10 @@ INSERT INTO rel_projects_producers (project_id, producer_id) VALUES (7,10);
 
 --REL_PROJECTS_STORIES----------------------------------------------------------------------------
 INSERT INTO rel_projects_story (project_id, story_id) VALUES (1,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (2,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (3,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (4,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (5,1);
 
 --MESSAGES----------------------------------------------------------------------------
 INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,is_request) VALUES (0,'Saludos','Hey, que tal por la pagina?',TO_DATE('2021/04/10', 'YYYY/MM/DD'),'JarrodHuffman','RossSimpson',false);

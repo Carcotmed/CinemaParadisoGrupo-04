@@ -218,27 +218,24 @@
 			  
                  <div class="col-6 p-3">
 					<div style="padding: 2% 0; width: 30%; margin-left: 3%">
-						<h4 style="margin-bottom: 4%">Mis historias</h4>
-						<c:forEach items="${projects}" var="project">
+						<h4 style="margin-bottom: 4%">Mis proyectos</h4>
+						<c:forEach items="${myProjectsRel}" var="myProjects">
 							<div class="d-flex align-items-center justify-content-evenly"
 								style="height: 15vh; margin: 1% 0; cursor: pointer"
-								onClick="location.href='/projects/show/${project.id}'">
+								onClick="location.href='/projects/show/${myProjects.id}'">
 								<div style="width: 10vh; height: 10vh; overflow: hidden"
 									class="rounded-circle">
-									<img src="${project.photo}"
+									<img src="${myProjects.photo}"
 										style="width: 100%; height: 100%; object-fit: cover">
 								</div>
 								<div style="margin-left: 12%">
-									<h5>${project.title}</h5>
-									<p>${project.genre}</p>
+									<h5>${myProjects.title}</h5>
+									<p>${myProjects.genre}</p>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				<!-- Imagen - Video -->
-			<div class="d-flex justify-content-center align-items-center" style="width:100vh">
-				<img src="${story.photo}" style="border-radius:50%; width:10vw; height:10vw; object-fit:cover; height:20vh;">
-			</div>
 				</div>
 				</div>
 			</div>
