@@ -69,8 +69,7 @@
 		<div class="d-flex align-items-center" style="width: 50%">
 			<div class="rounded-circle d-flex"
 				style="overflow: hidden; height: 100%; width: 12vh">
-				<img
-					src="${story.photo}"
+				<img src="${story.photo}"
 					style="width: 100%; height: 100%; object-fit: cover">
 			</div>
 			<div class="py-3 mx-3" style="width: 40%">
@@ -83,7 +82,7 @@
 					onClick="location.href='/messages/create/${writerUsername}'"
 					style="color: white; height: fit-content; background-color: #af3248">Contactar
 					con el escritor</button>
-				<button class="btn rounded-pill" id="levantaModal"F
+				<button class="btn rounded-pill" id="levantaModal" F
 					style="color: white; height: fit-content; background-color: #af3248">Asociar
 					proyecto</button>
 			</sec:authorize>
@@ -170,10 +169,13 @@
 			style="background-color: #4c4c4c; padding: 1%">
 			<h3 style="margin: 0">Ficha t&eacutecnica</h3>
 		</div>
-
+	
+		
+	   <!-- Datos -->
+	   <div style="display:flex">
+       <div class="col-6 p-3" style="border-color: #af3248; border-style: solid; border-width: 0 2px 0 0;">
 		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
-			<!-- Datos -->
-			<div style="width: 150%">
+			<div style= "width: 150%">
 				<div style="margin: 1% 0">
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">T&iacutetulo</h5>
@@ -193,7 +195,7 @@
 					<p style="margin-left: 3%">${story.body}</p>
 				</div>
 				<div>
-					<div class="d-flex flex-wrap ">
+					<div class="d-flex flex-wrap">
 						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">Escritor</h5>
 					</div>
 					<div class="d-flex align-items-center" style="cursor: pointer"
@@ -205,15 +207,42 @@
 								style="width: 100%; height: 100%; object-fit: cover">
 						</div>
 						<p style="margin-left: 3%">${myWriter.user.username}</p>
+					
 					</div>
-
+					</div>
 				</div>
 			</div>
-
-		</div>
-	</div>
-
-
+			</div>
+			
+			
+			  
+                 <div class="col-6 p-3">
+					<div style="padding: 2% 0; width: 30%; margin-left: 3%">
+						<h4 style="margin-bottom: 4%">Mis historias</h4>
+						<c:forEach items="${projects}" var="project">
+							<div class="d-flex align-items-center justify-content-evenly"
+								style="height: 15vh; margin: 1% 0; cursor: pointer"
+								onClick="location.href='/projects/show/${project.id}'">
+								<div style="width: 10vh; height: 10vh; overflow: hidden"
+									class="rounded-circle">
+									<img src="${project.photo}"
+										style="width: 100%; height: 100%; object-fit: cover">
+								</div>
+								<div style="margin-left: 12%">
+									<h5>${project.title}</h5>
+									<p>${project.genre}</p>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				<!-- Imagen - Video -->
+			<div class="d-flex justify-content-center align-items-center" style="width:100vh">
+				<img src="${story.photo}" style="border-radius:50%; width:10vw; height:10vw; object-fit:cover; height:20vh;">
+			</div>
+				</div>
+				</div>
+			</div>
+			
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 
