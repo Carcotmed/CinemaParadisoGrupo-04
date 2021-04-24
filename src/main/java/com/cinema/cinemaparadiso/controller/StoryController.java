@@ -233,9 +233,11 @@ public class StoryController {
 		Story story = storyService.findStoryById(storyId);
 		Writer myWriter = storyService.findMyWriter(storyId);
 		Boolean showButton = storyService.isMyWriter(storyId) || userService.isAdmin();
+		List<Project> myProjectsRel = storyService.findMyProjects(storyId);
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
 		model.addAttribute("myWriter",myWriter);
+		model.addAttribute("myProjectsRel",myProjectsRel);
 		model.addAttribute("writerUsername", myWriter.getUser().getUsername());
 		model.addAttribute("showButton",showButton);
 		model.addAttribute("isAdmin",userService.isAdmin());

@@ -157,7 +157,8 @@
 						<div class="d-flex flex-wrap ">
 							<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Historia asociada</h5>
 						</div>
-						<p style="margin-left: 3%">${story.title}</p>
+						<img src="${story.photo}" onclick="location.href='/stories/show/${story.id}'" style="border-radius:50%; width:5vw; height:5vw; object-fit:cover; cursor:pointer;height:10vh;">
+						<p style="margin-left:3%; cursor:pointer;height:15vh" onclick="location.href='/stories/show/${story.id}'">${story.title}</p>  <!-- style="cursor:pointer;height:15vh; -->
 				    </div>
 				</c:if>
 			</div>
