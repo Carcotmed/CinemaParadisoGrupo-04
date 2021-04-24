@@ -216,7 +216,7 @@
 			
 			
 			  
-                 <div class="col-6 p-3">
+                 
 					<div style="padding: 2% 0; width: 30%; margin-left: 3%">
 						<h4 style="margin-bottom: 4%">Mis proyectos</h4>
 						<c:forEach items="${myProjectsRel}" var="myProjects">
@@ -235,7 +235,6 @@
 							</div>
 						</c:forEach>
 					</div>
-				<!-- Imagen - Video -->
 				</div>
 				</div>
 			</div>
