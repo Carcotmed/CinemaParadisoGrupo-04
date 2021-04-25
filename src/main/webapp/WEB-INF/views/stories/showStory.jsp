@@ -11,6 +11,20 @@
 
 <head>
 
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+
+<title>Story</title>
+</head>
+
+<body class="h-100" style="background-color: #272727; color: white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 <script>
 		$(document).ready(function () {
 			$("#levantaModal").click(function () {
@@ -29,20 +43,6 @@
 		})
 
 	</script>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-
-<title>Story</title>
-</head>
-
-<body class="h-100" style="background-color: #272727; color: white">
-	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<div id="fondoModal"
 		style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
 	<div id="modalProyectos"

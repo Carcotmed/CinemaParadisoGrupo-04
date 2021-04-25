@@ -65,6 +65,8 @@ INSERT INTO users (username,password,enabled,email) VALUES ('IfeomaMiles','$2y$1
 INSERT INTO users (username,password,enabled,email) VALUES ('EleanorCrane','$2y$10$ggTKPbwWSNezDUDSnnfVS.FNA8LycttldEkxJhg.6qqWFGjzU3HQS','True','Suspendisse.ac.metus@faucibusMorbivehicula.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('DesiraeBuchanan','$2y$10$YyjTFRhqqRB28/1QO3i/a.HLL55EE8hBwEqQJCZ73ZRm7jpZmc8ES','True','Phasellus.elit@Utsemperpretium.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('RudyardDiaz','$2y$10$l4JPIw3XmlqY4zRzDh1fMOtz10/aDG98WlTbwiou/kEX3mtmpZX5e','True','consectetuer@necquam.com');
+
+
 INSERT INTO users (username,password,enabled,email) VALUES ('GradyManning','$2a$10$U9tzLPiS43F9SNtgGoYS5ekMLDj1BqxpcJNPeJrkvx59h1AWCFa','True','odio.a@musAeneaneget.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('KyleConway','$2y$10$Q4zXt8COaMdM07hnNRu4n.084uQMoCOHFV9pAn/fcHzksA/eolnFe','True','non@enim.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('MelyssaMedina','$2y$10$Hl3XzbHutGbFlUYgNtqfROe4buBkREOkBtFhf5q.1uC7vhxNZePgi','True','Phasellus.fermentum.convallis@pede.ca');
