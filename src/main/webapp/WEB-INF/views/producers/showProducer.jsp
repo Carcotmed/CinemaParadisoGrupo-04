@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
@@ -66,6 +65,7 @@
 		
 		h3{
 			text-align: center;
+			text-shadow: 0 0 10px black;
 		}
 		
 		h4{
@@ -132,7 +132,7 @@
 			}
 			
 			.padding-footer{
-				padding-bottom: 25rem;
+				padding-bottom: 25rem !important;
 			}
 			
 		}
