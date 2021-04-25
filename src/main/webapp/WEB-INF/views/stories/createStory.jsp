@@ -59,6 +59,17 @@
 							</form:select>
 						</div>
 						<form:errors style="color:red" path="genre"/>
+						<div class="d-flex justify-content-between align-items-center"
+						style="margin: 1% 0">
+						<div class="d-flex flex-wrap ">
+							<form:label class="p-2 rounded-pill form-control-label"
+								style="background-color:#828282" path="photo">Url imagen</form:label>
+						</div>
+						<form:input class="form-control" value="${story.photo}"
+							placeholder="url" style="margin-left: 3%;width:60%" type="text"
+							path="photo"></form:input>
+					</div>
+					<form:errors style="color:red" path="photo" />
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
 							<form:button class="btn" style="color:white;background-color: #af3248">Guardar</form:button>
 						</div>

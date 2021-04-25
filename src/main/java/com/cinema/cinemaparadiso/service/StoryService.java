@@ -11,9 +11,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Rel_story_writers;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
@@ -53,6 +55,7 @@ public class StoryService {
 			story2.setTitle(story.getTitle());
 			story2.setBody(story.getBody());
 			story2.setGenre(story.getGenre());
+			story2.setPhoto(story.getPhoto());
 			saveStory(story2);	
   }
 	
@@ -108,6 +111,8 @@ public class StoryService {
 		storyRepository.delete(findStoryById(storyId));
 	}
 
+	@Transactional
+	@Modifying
 	public void makeStorySponsored(Integer storyID) {
 		storyRepository.makeStorySponsored(storyID);
 	}
@@ -116,6 +121,7 @@ public class StoryService {
 		return storyRepository.findAllSponsoredStories();
 	}
 	
+
 	public Iterable<Story> sortByLikes(Iterable<Story> stories){
 		Map<Story,Long> storyLikes = new HashMap<>();
 		for(Story s : stories) {
@@ -152,5 +158,12 @@ public class StoryService {
 		
 		
 	}
+
+	@Transactional
+	public List<Project> findMyProjects(Integer storyId) {
+		return this.storyRepository.findMyProjects(storyId);
+	}
+
+
 
 }

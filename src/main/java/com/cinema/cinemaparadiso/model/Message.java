@@ -37,6 +37,9 @@ public class Message extends BaseEntity{
 	//@PastOrPresent
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	private Date messageDate;
+	
+	@Column(columnDefinition = "bool default false")
+	private boolean seen;
 
 	@OneToOne
 	@JoinColumn(name = "emisor_id")

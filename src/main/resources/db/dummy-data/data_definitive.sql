@@ -65,6 +65,8 @@ INSERT INTO users (username,password,enabled,email) VALUES ('IfeomaMiles','$2y$1
 INSERT INTO users (username,password,enabled,email) VALUES ('EleanorCrane','$2y$10$ggTKPbwWSNezDUDSnnfVS.FNA8LycttldEkxJhg.6qqWFGjzU3HQS','True','Suspendisse.ac.metus@faucibusMorbivehicula.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('DesiraeBuchanan','$2y$10$YyjTFRhqqRB28/1QO3i/a.HLL55EE8hBwEqQJCZ73ZRm7jpZmc8ES','True','Phasellus.elit@Utsemperpretium.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('RudyardDiaz','$2y$10$l4JPIw3XmlqY4zRzDh1fMOtz10/aDG98WlTbwiou/kEX3mtmpZX5e','True','consectetuer@necquam.com');
+
+
 INSERT INTO users (username,password,enabled,email) VALUES ('GradyManning','$2a$10$U9tzLPiS43F9SNtgGoYS5ekMLDj1BqxpcJNPeJrkvx59h1AWCFa','True','odio.a@musAeneaneget.co.uk');
 INSERT INTO users (username,password,enabled,email) VALUES ('KyleConway','$2y$10$Q4zXt8COaMdM07hnNRu4n.084uQMoCOHFV9pAn/fcHzksA/eolnFe','True','non@enim.net');
 INSERT INTO users (username,password,enabled,email) VALUES ('MelyssaMedina','$2y$10$Hl3XzbHutGbFlUYgNtqfROe4buBkREOkBtFhf5q.1uC7vhxNZePgi','True','Phasellus.fermentum.convallis@pede.ca');
@@ -323,31 +325,33 @@ INSERT INTO authorities (username, authority) VALUES ('JosephineWoodard','writer
 INSERT INTO authorities (username, authority) VALUES ('AlecHill','writer');
 
 --STORIES----------------------------------------------------------------------------
-INSERT INTO stories (version, title, body, genre, storylength,is_sponsored,numlikes) VALUES (0,'The Fault in Our Stars','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
-INSERT INTO stories (version, title, body, genre, storylength,is_sponsored,numlikes) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,numlikes) VALUES (0,'City of Lost Souls','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,numlikes) VALUES (0,'Pandemonium','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,0);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,numlikes) VALUES (0,'Cinder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000, true,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Easy','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Golden Lily','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Slammed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Selection','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Wonder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Bared to You','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Third Grave Dead Ahead','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Lover Reborn','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Under the Never Sky','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Point of Retreat','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Defending Jacob','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Fourth Grave Beneath My Feet','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Shadow of Night','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Hallowed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Serpents Shadow','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Rapture','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'The Immortal Rules','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'On Dublin Street','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Bitterblue','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
-INSERT INTO stories (version, title, body, genre, storylength,numlikes) VALUES (0,'Spell Bound','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,0);
+
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'The Fault in Our Stars','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'City of Lost Souls','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'Pandemonium','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'Cinder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000, true,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Easy','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'The Golden Lily','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Slammed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'The Selection','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Wonder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Bared to You','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Third Grave Dead Ahead','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','TERROR',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Lover Reborn','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Under the Never Sky','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Point of Retreat','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Defending Jacob','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','PSICOLOGICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Fourth Grave Beneath My Feet','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Shadow of Night','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Hallowed','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'The Serpents Shadow','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','HUMORISTICO',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Rapture','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'The Immortal Rules','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'On Dublin Street','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Bitterblue','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength,photo,numlikes) VALUES (0,'Spell Bound','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','FICCION',1000,'https://espaciolibros.com//wp-content/uploads/2014/01/la-novela-y-su-definicion-600x536.jpg',0);
+
 
 --REL_STORY_WRITERS----------------------------------------------------------------------------
 INSERT INTO rel_story_writers (story_id, writer_id) VALUES (1,1);
@@ -448,6 +452,13 @@ INSERT INTO rel_projects_producers (project_id, producer_id) VALUES (7,7);
 INSERT INTO rel_projects_producers (project_id, producer_id) VALUES (7,8);
 INSERT INTO rel_projects_producers (project_id, producer_id) VALUES (7,9);
 INSERT INTO rel_projects_producers (project_id, producer_id) VALUES (7,10);
+
+--REL_PROJECTS_STORIES----------------------------------------------------------------------------
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (1,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (2,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (3,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (4,1);
+INSERT INTO rel_projects_story (project_id, story_id) VALUES (5,1);
 
 --MESSAGES----------------------------------------------------------------------------
 INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,is_request) VALUES (0,'Saludos','Hey, que tal por la pagina?',TO_DATE('2021/04/10', 'YYYY/MM/DD'),'JarrodHuffman','RossSimpson',false);

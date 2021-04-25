@@ -113,7 +113,7 @@ public class ProjectService {
 		List<String> allMembersUsername = new ArrayList<>();
 		
 		allMembersUsername.addAll(findMembers(projectId).stream().map(s->s.getUser().getUsername()).collect(Collectors.toList()));
-
+		allMembersUsername.addAll(findProducers(projectId).stream().map(s->s.getUser().getUsername()).collect(Collectors.toList()));
 		
 		return allMembersUsername;
 	}

@@ -10,135 +10,21 @@
 <html class="h-100">
 
 <head>
-<style > 
-body{margin:0; padding:0; -webkit-font-smoothing: antialiased; font-family:arial;}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
 
-#main-content{display:flex; width:100vw; height:100vh; background:white; align-items:center; justify-content:center; text-align:center;}
+<title>Story</title>
+</head>
 
-h1{font-size:14px; font-weight:400; margin:10px 0 0 0; color:#888888;}
+<body class="h-100" style="background-color: #272727; color: white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 
-a{font-size:12px; font-weight:bold; margin-top:10px; display:inline-block; text-decoration:none; color:#008A68;}
-
-svg{
-  cursor:pointer; overflow:visible; width:60px;
-  #heart{transform-origin:center; animation:animateHeartOut .3s linear forwards;}
-  #main-circ{transform-origin:29.5px 29.5px;}
-}
-
-#checkbox{display:none;}
-
-#checkbox:checked + label svg{
-    #heart{transform:scale(.2); fill:#E2264D; animation:animateHeart .3s linear forwards .25s;}
-    #main-circ{transition:all 2s; animation:animateCircle .3s linear forwards; opacity:1;}
-    #grp1{
-      opacity:1; transition:.1s all .3s;
-      #oval1{
-        transform:scale(0) translate(0, -30px);
-        transform-origin:0 0 0;
-        transition:.5s transform .3s;}
-      #oval2{
-        transform:scale(0) translate(10px, -50px);
-        transform-origin:0 0 0;
-        transition:1.5s transform .3s;}
-    }
-    #grp2{
-      opacity:1; transition:.1s all .3s;
-      #oval1{
-        transform:scale(0) translate(30px, -15px); 
-        transform-origin:0 0 0;
-        transition:.5s transform .3s;}
-      #oval2{
-        transform:scale(0) translate(60px, -15px); 
-        transform-origin:0 0 0;
-        transition:1.5s transform .3s;}
-    }
-    #grp3{
-      opacity:1; transition:.1s all .3s;
-      #oval1{
-        transform:scale(0) translate(30px, 0px);
-        transform-origin:0 0 0;
-        transition:.5s transform .3s;}
-      #oval2{
-        transform:scale(0) translate(60px, 10px);
-        transform-origin:0 0 0;
-        transition:1.5s transform .3s;}
-    }
-    #grp4{
-      opacity:1; transition:.1s all .3s;
-      #oval1{
-        transform:scale(0) translate(30px, 15px);
-        transform-origin:0 0 0;
-        transition:.5s transform .3s;}
-      #oval2{
-        transform:scale(0) translate(40px, 50px);
-        transform-origin:0 0 0;
-        transition:1.5s transform .3s;}
-    }
-    #grp5{
-      opacity:1; transition:.1s all .3s;
-      #oval1{
-        transform:scale(0) translate(-10px, 20px);
-        transform-origin:0 0 0;
-        transition:.5s transform .3s;}
-      #oval2{
-        transform:scale(0) translate(-60px, 30px);
-        transform-origin:0 0 0;
-        transition:1.5s transform .3s;}
-    }
-    #grp6{
-      opacity:1; transition:.1s all .3s;
-      #oval1{
-        transform:scale(0) translate(-30px, 0px);
-        transform-origin:0 0 0;
-        transition:.5s transform .3s;}
-      #oval2{
-        transform:scale(0) translate(-60px, -5px);
-        transform-origin:0 0 0;
-        transition:1.5s transform .3s;}
-    }
-    #grp7{
-      opacity:1; transition:.1s all .3s;
-      #oval1{
-        transform:scale(0) translate(-30px, -15px);
-        transform-origin:0 0 0;
-        transition:.5s transform .3s;}
-      #oval2{
-        transform:scale(0) translate(-55px, -30px);
-        transform-origin:0 0 0;
-        transition:1.5s transform .3s;}
-    }
-    #grp2{opacity:1; transition:.1s opacity .3s;}
-    #grp3{opacity:1; transition:.1s opacity .3s;}
-    #grp4{opacity:1; transition:.1s opacity .3s;}
-    #grp5{opacity:1; transition:.1s opacity .3s;}
-    #grp6{opacity:1; transition:.1s opacity .3s;}
-    #grp7{opacity:1; transition:.1s opacity .3s;}
-}
-
-@keyframes animateCircle{
-  40%{transform:scale(10); opacity:1; fill:#DD4688;}
-  55%{transform:scale(11); opacity:1; fill:#D46ABF;}
-  65%{transform:scale(12); opacity:1; fill:#CC8EF5;}
-  75%{transform:scale(13); opacity:1; fill:transparent; stroke:#CC8EF5; stroke-width:.5;}
-  85%{transform:scale(17); opacity:1; fill:transparent; stroke:#CC8EF5; stroke-width:.2;}
-  95%{transform:scale(18); opacity:1; fill:transparent; stroke:#CC8EF5; stroke-width:.1;}
-  100%{transform:scale(19); opacity:1; fill:transparent; stroke:#CC8EF5; stroke-width:0;}
-}
-
-@keyframes animateHeart{
-  0%{transform:scale(.2);}
-  40%{transform:scale(1.2);}
-  100%{transform:scale(1);}
-}
-
-@keyframes animateHeartOut{
-  0%{transform:scale(1.4);}
-  100%{transform:scale(1);}
-}
-</style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	type="text/javascript"></script>
 <script>
 		$(document).ready(function () {
 			$("#levantaModal").click(function () {
@@ -157,20 +43,6 @@ svg{
 		})
 
 	</script>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-
-<title>Story</title>
-</head>
-
-<body class="h-100" style="background-color: #272727; color: white">
-	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<div id="fondoModal"
 		style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
 	<div id="modalProyectos"
@@ -195,8 +67,7 @@ svg{
 		<div class="d-flex align-items-center" style="width: 50%">
 			<div class="rounded-circle d-flex"
 				style="overflow: hidden; height: 100%; width: 12vh">
-				<img
-					src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"
+				<img src="${story.photo}"
 					style="width: 100%; height: 100%; object-fit: cover">
 			</div>
 			<div class="py-3 mx-3" style="width: 40%">
@@ -209,7 +80,7 @@ svg{
 					onClick="location.href='/messages/create/${writerUsername}'"
 					style="color: white; height: fit-content; background-color: #af3248">Contactar
 					con el escritor</button>
-				<button class="btn rounded-pill" id="levantaModal"
+				<button class="btn rounded-pill" id="levantaModal" F
 					style="color: white; height: fit-content; background-color: #af3248">Asociar
 					proyecto</button>
 			</sec:authorize>
@@ -266,7 +137,7 @@ svg{
 						</script>
 
 			<div>
-				<p>¡Publicita tu historia! (30&#8364)</p>
+				<p>Â¡Publicita tu historia! (30&#8364)</p>
 			</div>
 			<div id="paypal-button-ad-story" style="z-index: 1"></div>
 
@@ -297,9 +168,14 @@ svg{
 			<h3 style="margin: 0">Ficha t&eacutecnica</h3>
 		</div>
 
-		<div class="d-flex justify-content-between" style="padding: 2% 5%; display:flex">
-			<!-- Datos -->
-			<div style="width: 150%">
+	
+		
+	   <!-- Datos -->
+	   <div style="display:flex">
+       <div class="col-6 p-3" style="border-color: #af3248; border-style: solid; border-width: 0 2px 0 0;">
+		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
+			<div style= "width: 150%">
+
 				<div style="margin: 1% 0">
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">T&iacutetulo</h5>
@@ -319,7 +195,7 @@ svg{
 					<p style="margin-left: 3%">${story.body}</p>
 				</div>
 				<div>
-					<div class="d-flex flex-wrap ">
+					<div class="d-flex flex-wrap">
 						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">Escritor</h5>
 					</div>
 					<div class="d-flex align-items-center" style="cursor: pointer"
@@ -331,10 +207,12 @@ svg{
 								style="width: 100%; height: 100%; object-fit: cover">
 						</div>
 						<p style="margin-left: 3%">${myWriter.user.username}</p>
+					
 					</div>
-
+					</div>
 				</div>
 			</div>
+
 			<div style="width: 50%;">
 			<h2>Apoya la historia!!</h2>
 			<br>
@@ -369,6 +247,35 @@ svg{
 		</div>
 	</div>
 
+
+
+			</div>
+			
+			
+			  
+                 
+					<div style="padding: 2% 0; width: 30%; margin-left: 3%">
+						<h4 style="margin-bottom: 4%">Proyectos asociados a esta historia</h4>
+						<c:forEach items="${myProjectsRel}" var="myProjects">
+							<div class="d-flex align-items-center justify-content-evenly"
+								style="height: 15vh; margin: 1% 0; cursor: pointer"
+								onClick="location.href='/projects/show/${myProjects.id}'">
+								<div style="width: 10vh; height: 10vh; overflow: hidden"
+									class="rounded-circle">
+									<img src="${myProjects.photo}"
+										style="width: 100%; height: 100%; object-fit: cover">
+								</div>
+								<div style="margin-left: 12%">
+									<h5>${myProjects.title}</h5>
+									<p>${myProjects.genre}</p>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				</div>
+			</div>
+			
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
