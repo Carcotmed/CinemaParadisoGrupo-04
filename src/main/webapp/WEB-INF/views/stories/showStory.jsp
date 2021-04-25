@@ -10,9 +10,21 @@
 <html class="h-100">
 
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	type="text/javascript"></script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+
+<title>Story</title>
+</head>
+
+<body class="h-100" style="background-color: #272727; color: white">
+	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 <script>
 		$(document).ready(function () {
 			$("#levantaModal").click(function () {
@@ -31,20 +43,6 @@
 		})
 
 	</script>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-
-<title>Story</title>
-</head>
-
-<body class="h-100" style="background-color: #272727; color: white">
-	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<div id="fondoModal"
 		style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
 	<div id="modalProyectos"
@@ -69,8 +67,7 @@
 		<div class="d-flex align-items-center" style="width: 50%">
 			<div class="rounded-circle d-flex"
 				style="overflow: hidden; height: 100%; width: 12vh">
-				<img
-					src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"
+				<img src="${story.photo}"
 					style="width: 100%; height: 100%; object-fit: cover">
 			</div>
 			<div class="py-3 mx-3" style="width: 40%">
@@ -83,7 +80,7 @@
 					onClick="location.href='/messages/create/${writerUsername}'"
 					style="color: white; height: fit-content; background-color: #af3248">Contactar
 					con el escritor</button>
-				<button class="btn rounded-pill" id="levantaModal"
+				<button class="btn rounded-pill" id="levantaModal" F
 					style="color: white; height: fit-content; background-color: #af3248">Asociar
 					proyecto</button>
 			</sec:authorize>
@@ -170,10 +167,13 @@
 			style="background-color: #4c4c4c; padding: 1%">
 			<h3 style="margin: 0">Ficha t&eacutecnica</h3>
 		</div>
-
+	
+		
+	   <!-- Datos -->
+	   <div style="display:flex">
+       <div class="col-6 p-3" style="border-color: #af3248; border-style: solid; border-width: 0 2px 0 0;">
 		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
-			<!-- Datos -->
-			<div style="width: 150%">
+			<div style= "width: 150%">
 				<div style="margin: 1% 0">
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">T&iacutetulo</h5>
@@ -193,7 +193,7 @@
 					<p style="margin-left: 3%">${story.body}</p>
 				</div>
 				<div>
-					<div class="d-flex flex-wrap ">
+					<div class="d-flex flex-wrap">
 						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">Escritor</h5>
 					</div>
 					<div class="d-flex align-items-center" style="cursor: pointer"
@@ -205,15 +205,38 @@
 								style="width: 100%; height: 100%; object-fit: cover">
 						</div>
 						<p style="margin-left: 3%">${myWriter.user.username}</p>
+					
 					</div>
-
+					</div>
 				</div>
 			</div>
-
-		</div>
-	</div>
-
-
+			</div>
+			
+			
+			  
+                 
+					<div style="padding: 2% 0; width: 30%; margin-left: 3%">
+						<h4 style="margin-bottom: 4%">Proyectos asociados a esta historia</h4>
+						<c:forEach items="${myProjectsRel}" var="myProjects">
+							<div class="d-flex align-items-center justify-content-evenly"
+								style="height: 15vh; margin: 1% 0; cursor: pointer"
+								onClick="location.href='/projects/show/${myProjects.id}'">
+								<div style="width: 10vh; height: 10vh; overflow: hidden"
+									class="rounded-circle">
+									<img src="${myProjects.photo}"
+										style="width: 100%; height: 100%; object-fit: cover">
+								</div>
+								<div style="margin-left: 12%">
+									<h5>${myProjects.title}</h5>
+									<p>${myProjects.genre}</p>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				</div>
+			</div>
+			
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 

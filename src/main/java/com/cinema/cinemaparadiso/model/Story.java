@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.URL;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +43,12 @@ public class Story extends BaseEntity {
 	
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
+	
+	@Column(name="photo")
+    @NotBlank(message="No puedes dejarlo vacío")
+	@URL(message = "Debe indicar una URL")
+	@Size(min=1,max=200,message="La foto debe tener como máximo 200 caracteres")
+	private String photo;
 
 	public Story() {}
 	
@@ -53,13 +61,14 @@ public class Story extends BaseEntity {
 
 
 
-	public Story(Integer id, String title,String body,Genre genre, Integer storylength) {
+	public Story(Integer id, String title,String body,Genre genre, Integer storylength, String photo) {
 		this.title = title;
 		this.body = body;
 		this.genre = genre;
 		this.storylength = storylength;
 		this.isSponsored = false;
 		this.id = id;
+		this.setPhoto(photo);
 	}
 
 

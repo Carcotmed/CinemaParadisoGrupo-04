@@ -37,5 +37,13 @@ public interface MessageRepository extends CrudRepository<Message,Integer>{
 	@Modifying
 	@Query("DELETE FROM Message m WHERE m.story.id = :storyId")
 	public Object deleteAllByStoryId(@Param("storyId") Integer storyId);
+
+	@Query("SELECT COUNT(*) FROM Message m WHERE m.receptor.username= :username AND m.seen= false")
+	public Integer checkMessages(@Param("username") String username);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE FROM Message m SET m.seen= true WHERE m.id= :messageId")
+	public void checkSeen(@Param("messageId") Integer messageId);
 	
 }

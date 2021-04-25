@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
 <html class="h-100">
@@ -104,6 +105,15 @@
 					</div>
 					<form:errors style="color:red" path="photo" />
 					<div>
+
+					<br>
+					<br>
+					<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+							<div class="d-flex flex-wrap ">
+								<label><input type="checkbox" name="cb-terminosservicio" required> Acepto los  <a href="/terms" target="_blank">Términos y Condiciones de Uso</a> </label>
+							</div>
+					</div>
+
 					<div
 						class="form-group d-flex justify-content-center align-items-center my-4">
 						<form:button class="btn"

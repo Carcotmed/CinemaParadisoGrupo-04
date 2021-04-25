@@ -58,7 +58,7 @@
 						<div onclick="location.href='/stories/show/${sponsoredStories.id}'" class="col-sm" style="cursor: pointer; height: fit-content; background-color: #c1c113; border-radius: 2vw; margin: 1vw 3vw 1vw 3vw; text-align: center; padding-bottom: 1vw; padding-top: 1vw;">
 							<div style="margin-bottom: 1vw; padding-left: 6vw; overflow:hidden;height:40%;width:80%">
 								<div  class="rounded-circle d-flex">
-									<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg" style="border-radius: 50%; width:5vw;height:5vw;object-fit:cover">
+									<img src="${sponsoredStories.photo}" style="border-radius: 50%; width:5vw;height:5vw;object-fit:cover">
 								</div>
 							</div>
 							<i>
@@ -76,7 +76,7 @@
 	      		<c:forEach items="${stories}" var="stories">
 	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="cursor:pointer;flex-basis: 15%; margin: 1vw;height:10vw" onClick="location.href='/stories/show/${stories.id}'">
 	      				<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:80%">
-							<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
+							<img src="${stories.photo}" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 						</div>
 		      			<h5 style="margin: 0.5vw; text-align:center">${stories.title}</h5>
 		      		</div>

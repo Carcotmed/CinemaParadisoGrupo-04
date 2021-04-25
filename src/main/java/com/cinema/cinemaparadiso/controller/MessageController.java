@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cinema.cinemaparadiso.model.Message;
 import com.cinema.cinemaparadiso.service.MessageService;
@@ -47,6 +49,18 @@ public class MessageController {
         return "messages/listMessage";
     }
 
+    @GetMapping("/check")
+    @ResponseBody
+    public String check(Model model, @RequestParam String username){
+    	String res="false";
+		String usernameReal = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+		if(usernameReal.equals(username)) {
+			if(messageService.checkMessage(username))
+				res="true";
+		}
+		return res;
+    }
+
     @GetMapping("/listReceived")
     public String listReceived(Model model){
 		String username = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
@@ -72,7 +86,8 @@ public class MessageController {
 	        if(!messageForMe) {
 	        	return "error/error-403";
 	        }
-	        
+	        if(!message.isSeen() && usernameActual == message.getReceptor().getUsername())
+	        	messageService.checkSeen(messageId);
 	        model.addAttribute("isRequest",isRequest);
 	        model.addAttribute("isWriter",isWriter);
 	        model.addAttribute("isArtist",isArtist);
