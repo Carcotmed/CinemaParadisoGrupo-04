@@ -83,12 +83,21 @@
 		}
 		
 		.pago{
-			width:35%;
+			width: 65%;
 		}
 		
 		.pago h4{
 			margin-bottom: 1rem;
 		}
+		
+		#resumen{
+			 width: 65%;
+		}
+		
+		#list-wrap-mobile{
+			display: none;
+		}
+		
 		
 					
 		@media(max-width: 1545px) {
@@ -106,8 +115,76 @@
 				width: 100%;
 			}
 			
-
+			.ficha-tecnica > div{
+				background: linear-gradient(0deg, var(--gris) 0%, var(--gris) 65%, transparent 100%);
+				position: unset;
+				background-color: var(--gris);
+			}
 			
+			.ficha-tecnica{
+				justify-content: flex-start;
+    			flex-direction: column;
+    			position: unset;
+			}
+			
+			.padding-nav{
+			    padding-top: 6rem !important;
+			}
+			
+			
+			.card-wrap > div > div{
+			    display: flex;
+   				justify-content: space-between;
+			}
+			
+			.card-wrap{
+				width:unset;
+				border-radius: unset;
+			}
+			
+			.card-wrap > img{
+				height: 15rem;
+				width: 100%;
+			}
+			
+			#resumen, .acciones, .pago, .pago > div {
+				width: 100%;
+				display: block !important;
+			}
+			
+			.acciones{
+			    display: flex !important;
+ 				flex-direction: column;
+			}
+			
+			.acciones button{
+				margin: 0.5rem;
+			}
+					
+			.integrantes{
+				display: none;
+			}
+			
+			#list-wrap-mobile{
+				display: block;
+				background-color: var(--gris);
+				margin-top: 1.5rem;
+				padding: 1.5rem 0;
+			}
+			
+			#list-wrap-mobile h4{
+				text-align: center;
+			}
+			
+			.linea-hor{
+				border-color: var(--rojo);
+				background-color: var(--rojo);
+			}
+			
+			.padding-footer{
+				padding-bottom: 30rem !important;
+			}
+						
 		}
 				
 		
@@ -117,7 +194,10 @@
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
 	<div class="background-image"></div>
 	<div class="padding-nav padding-footer">
+
 		<div class="card-wrap ficha-tecnica">
+			<img src="${project.photo}">
+			
 			<div>
 				<div>
 					<h4>T&iacutetulo</h4>
@@ -127,7 +207,7 @@
 					<h4>G&eacutenero</h4>
 					<span>${project.genre}</span>
 				</div>
-				<div style="width: 65%">
+				<div id="resumen">
 					<h4>Resumen</h4>
 					<span>${project.description}</span>
 				</div>
@@ -143,6 +223,7 @@
 				</c:if>
 				
 				<div class="acciones">
+					<h4>Acciones</h4>
 					<c:if test="${ isAdminProject == true  || isAdmin}">
 						<button class="boton btn rounded-pill" onclick="location.href='/projects/update/${project.id}'">Editar</button>
 					</c:if>
@@ -211,16 +292,20 @@
 								      });
 								    }
 								  }).render('#paypal-button-ad');
+								
+								
 							  </script>
-								<h4>¡Publicita tu proyecto! (30&#8364)</h4>
-								<p>TODO poner info y arreglar index paypal</p>
-								<div id="paypal-button-ad" style="z-index:1"></div>
+								<h4>¡Publicita tu proyecto!</h4>
+								<div class="d-flex justify-content-between">
+									<p>Por tan solo 30&#8364 puedes hacer que tu proyecto pueda salir publicitado en el listado de proyectos
+									y así conseguir más visibilidad.</p>
+									<div id="paypal-button-ad"></div>
+								</div>
 						</div>
 					</c:if>
 				</c:if>
 				
 			</div>
-			<img src="${project.photo}">
 		</div>
 		
 		
@@ -249,13 +334,41 @@
 				</div>
 			</c:if>
 		</div>
+		
+		<!-- Listado Mobile -->
+		<div id="list-wrap-mobile">
+			<div>
+				<h4>Integrantes - Artistas</h4>
+				<c:forEach items="${members}" var="member">
+	      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/artists/show/${artistPro.id}'">
+						<img class="rounded-circle" src="${member.photo}">
+		      			<h5>${member.name}</h5>
+		      		</div>
+					<hr class="m-3 ${member.pro ? 'linea-hor-pro' : 'linea-hor'}">
+	      		</c:forEach>
+			</div>
+			
+			<div>
+				<c:if test="${producers.size() != 0}">
+					<h4>Integrantes - Productoras</h4>
+					<c:forEach items="${producers}" var="producer">
+		      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/producers/show/${producer.id}'">
+							<img class="rounded-circle" src="${producer.photo}">
+			      			<h5>${producer.name}</h5>
+			      		</div>
+						<hr class="m-3 linea-hor linea-hor">
+		      		</c:forEach>
+		      	</c:if>
+			</div>
+		</div>	
+			
 	</div>
 	
 	
-	
-	
-	
-	
+			
+	<div id="boton-up" onClick="location.href='/projects/show/${project.id}#top'">
+		<span>^</span>
+	</div>
 	<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 	
 </body>
