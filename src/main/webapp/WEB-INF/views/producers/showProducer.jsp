@@ -132,7 +132,7 @@
 			}
 			
 			.padding-footer{
-				padding-bottom: 25rem !important;
+				padding-bottom: 29rem !important;
 			}
 			
 		}
@@ -142,7 +142,6 @@
 <body>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<div class="background-image"></div>
-	<a id="top"></a>
 	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
 		<img src="${producer.photo}" class="rounded-circle">
 		<div>
@@ -202,10 +201,7 @@
 		</c:if>
 		
 	</div>
-						
-	<div id="boton-up" onClick="location.href='/producers/show/${producer.id}#top'">
-		<span>^</span>
-	</div>
+
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 </html>
