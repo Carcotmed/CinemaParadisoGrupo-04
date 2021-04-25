@@ -76,6 +76,8 @@
 		.lista{
 			display: grid;
  			 grid-template-columns: repeat(5, 15rem);
+ 			 margin: auto;
+    		width: fit-content;
 		}
 		
 		.adminP:hover{
@@ -222,35 +224,37 @@
 					</div>
 				</c:if>
 				
-				<div class="acciones">
-					<h4>Acciones</h4>
-					<c:if test="${ isAdminProject == true  || isAdmin}">
-						<button class="boton btn rounded-pill" onclick="location.href='/projects/update/${project.id}'">Editar</button>
-					</c:if>
-					
-					<c:if test="${pertenece}">
-						<button class="boton btn rounded-pill"  onClick="location.href='/projects/delete/${project.id}'">Salir del proyecto</button>
-					</c:if>
-					
-					<c:if test="${isAdmin || isAdminProject}">
-						<button class="boton btn rounded-pill" onClick="location.href='/projects/deleteAll/${project.id}'">Eliminar</button>
-					</c:if>
-					
-					<c:if test="${ !noPuedeP}">
-						<c:if test="${ (!perteneceP) && (!requestexistP) }">
-							<button class="boton btn rounded-pill" onclick="location.href='/projects/joinProducer/${project.id}'">Unirse</button>
+				<c:if test="${ (isAdminProject == true  || isAdmin) || (pertenece) || (isAdmin || isAdminProject) || (!noPuedeP) || (perteneceP) || ((!noPuede || isAdmin) && ((!pertenece) && (!requestexist) && !isAdmin))}">
+					<div class="acciones">
+						<h4>Acciones</h4>
+						<c:if test="${ isAdminProject == true  || isAdmin}">
+							<button class="boton btn rounded-pill" onclick="location.href='/projects/update/${project.id}'">Editar</button>
 						</c:if>
-						<c:if test="${perteneceP}">
+						
+						<c:if test="${pertenece}">
 							<button class="boton btn rounded-pill"  onClick="location.href='/projects/delete/${project.id}'">Salir del proyecto</button>
 						</c:if>
-					</c:if>
-					
-					<c:if test="${ !noPuede || isAdmin}">
-						<c:if test="${ (!pertenece) && (!requestexist) && !isAdmin }">
-							<button class="boton btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'">Unirse</button>
+						
+						<c:if test="${isAdmin || isAdminProject}">
+							<button class="boton btn rounded-pill" onClick="location.href='/projects/deleteAll/${project.id}'">Eliminar</button>
 						</c:if>
-					</c:if>
-				</div>
+						
+						<c:if test="${!noPuedeP}">
+							<c:if test="${ (!perteneceP) && (!requestexistP) }">
+								<button class="boton btn rounded-pill" onclick="location.href='/projects/joinProducer/${project.id}'">Unirse</button>
+							</c:if>
+							<c:if test="${perteneceP}">
+								<button class="boton btn rounded-pill"  onClick="location.href='/projects/delete/${project.id}'">Salir del proyecto</button>
+							</c:if>
+						</c:if>
+						
+						<c:if test="${!noPuede || isAdmin}">
+							<c:if test="${ (!pertenece) && (!requestexist) && !isAdmin }">
+								<button class="boton btn rounded-pill" onclick="location.href='/projects/joinArtist/${project.id}'">Unirse</button>
+							</c:if>
+						</c:if>
+					</div>
+				</c:if>
 				
 				<c:if test="${ isAdminProject == true }">
 					<c:if test="${ !project.isSponsored and !isAdmin }">
@@ -344,7 +348,7 @@
 						<img class="rounded-circle" src="${member.photo}">
 		      			<h5>${member.name}</h5>
 		      		</div>
-					<hr class="m-3 ${member.pro ? 'linea-hor-pro' : 'linea-hor'}">
+					<hr class="m-3 linea-hor ${member.pro ? 'linea-hor-pro' : ''}">
 	      		</c:forEach>
 			</div>
 			
