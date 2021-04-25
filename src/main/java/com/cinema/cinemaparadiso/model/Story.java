@@ -47,7 +47,7 @@ public class Story extends BaseEntity {
 	@Column(name="photo")
     @NotBlank(message="No puedes dejarlo vacío")
 	@URL(message = "Debe indicar una URL")
-	@Size(min=1,max=150,message="La foto debe tener como máximo 150 caracteres")
+	@Size(min=1,max=200,message="La foto debe tener como máximo 200 caracteres")
 	private String photo;
 
 	public Story() {}
@@ -61,13 +61,14 @@ public class Story extends BaseEntity {
 
 
 
-	public Story(Integer id, String title,String body,Genre genre, Integer storylength) {
+	public Story(Integer id, String title,String body,Genre genre, Integer storylength, String photo) {
 		this.title = title;
 		this.body = body;
 		this.genre = genre;
 		this.storylength = storylength;
 		this.isSponsored = false;
 		this.id = id;
+		this.setPhoto(photo);
 	}
 
 

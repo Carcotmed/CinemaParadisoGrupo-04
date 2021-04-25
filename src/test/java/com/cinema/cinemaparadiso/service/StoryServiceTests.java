@@ -43,7 +43,7 @@ public class StoryServiceTests {
 	@Order(2)
 	@WithMockUser(username = "GradyManning", authorities = {"writer"})
 	public void shouldCreateStory(){
-		Story story = new Story(9, "Titulo de prueba", "Body de prueba para objeto recien creado", Genre.ACCION, 1000);
+		Story story = new Story(9, "Titulo de prueba", "Body de prueba para objeto recien creado", Genre.ACCION, 1000, "https://media.istockphoto.com/vectors/project-management-icon-flat-design-vector-id585291474?b=1&k=6&m=585291474&s=170667a&w=0&h=PsqYKLdR6SBC4bmLmhPCx3vvzvHiaKlR15FgyPNVQaE=");
 		storyService.createStory(story);
 		assertThat(storyService.findStoryById(9)).isEqualTo(story);
 	}
@@ -80,7 +80,7 @@ public class StoryServiceTests {
 	@Test
 	@Order(6)
 	public void shouldFindStoryById(){
-		assertThat(storyService.findStoryById(2)).isEqualTo(new Story(2, "Gone Girl", "En esta historia el protagonista decide abandonar su hogar y explorar el mundo", Genre.ACCION, 1000));
+		assertThat(storyService.findStoryById(2)).isEqualTo(new Story(2, "Gone Girl", "En esta historia el protagonista decide abandonar su hogar y explorar el mundo", Genre.ACCION, 1000, "https://media.istockphoto.com/vectors/project-management-icon-flat-design-vector-id585291474?b=1&k=6&m=585291474&s=170667a&w=0&h=PsqYKLdR6SBC4bmLmhPCx3vvzvHiaKlR15FgyPNVQaE="));
 	}
 
 	/*@Test
