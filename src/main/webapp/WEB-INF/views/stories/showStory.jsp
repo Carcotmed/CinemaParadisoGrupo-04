@@ -213,48 +213,47 @@
 				</div>
 			</div>
 
-			<div style="width: 50%;">
+			<div style="width: 50%; margin-left: 3%">
+			<div style="display:flex">
+			<div>
 			<h2>Apoya la historia!!</h2>
+			</div>
+			<div>
+			<video autoplay muted loop style="margin-left:10px;width:2vw;height:3vh;object-fit:cover" class= "rounded-circle"
+			 src="https://github.com/ivan-desing-testing/CinemaParadisoGrupo-04/blob/feature/%23285-likestory-V2/src/main/webapp/WEB-INF/views/static/corazon%20latiendo.mp4?raw=true" 
+			 type="video/mp4"></video>
+			</div>
+			</div>
 			<br>
-		    
-		    <h5>usuario(s) le(s) gusta(n) la historia</h5>
+			<c:if test="${likes < 1}">
+		    <h5>El primer amor no se olvida !!</h5>
+		    </c:if>
+		    <c:if test="${likes == 1}">
+		    <h5>Ladrillo a ladrillo se construyó la Gran Muralla</h5>
+		    </c:if>
+		    <c:if test="${likes > 1}">
+		    <h5>Usuarios que ya le han dado amor animate!!</h5>
+		    </c:if>
 		    <div style= "background-color: #af3248; margin-right: 50%">
 			<h5 style="color:white; margin: 0% 0% 0% 50% ">${likes} </h5>
-			
 			</div>
-			
-			
 			<br>
 			<c:if test="${actualUserLiked}">
-			
 			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png" 
 			onClick="location.href='/stories/notLike/${story.id}'"
 								style="width: 10%; height: 10%; "> 
-								
-		       
 			</c:if>
-			
 			<c:if test="${!actualUserLiked}">
-			
-			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/dislike.png" 
+			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likestory-V2/src/main/webapp/WEB-INF/views/static/dislike.png" 
 			onClick="location.href='/stories/like/${story.id}'"
 								style="width: 8%; height: 8%; "> 
-			 
-			
 			</c:if>
 		    </div>
 
 		</div>
-	</div>
-
-
-
-			</div>
-			
-			
-			  
-                 
-					<div style="padding: 2% 0; width: 30%; margin-left: 3%">
+	
+			                 
+					<div style="padding: 2% 0; width: 30%; margin-left: 5%">
 						<h4 style="margin-bottom: 4%">Proyectos asociados a esta historia</h4>
 						<c:forEach items="${myProjectsRel}" var="myProjects">
 							<div class="d-flex align-items-center justify-content-evenly"
@@ -274,8 +273,6 @@
 					</div>
 				</div>
 				</div>
-			</div>
-			
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
