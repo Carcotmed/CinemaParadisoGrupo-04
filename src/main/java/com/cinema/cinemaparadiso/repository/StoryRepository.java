@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
 
@@ -26,4 +27,7 @@ public interface StoryRepository extends CrudRepository<Story,Integer>{
 
 	@Query("SELECT story from Story story WHERE story.isSponsored = TRUE")
 	public List<Story> findAllSponsoredStories();
+	
+	@Query("SELECT project FROM Project project INNER JOIN Rel_projects_story rel_projects_story ON project.id = rel_projects_story.project_id AND rel_projects_story.story_id = :storyId")
+	public List<Project> findMyProjects(@Param("storyId") Integer storyId);
 }
