@@ -225,7 +225,15 @@
 			</div>
 			</div>
 			<br>
-		    <h5>usuario(s) le(s) gusta(n) la historia</h5>
+			<c:if test="${likes < 1}">
+		    <h5>El primer amor no se olvida !!</h5>
+		    </c:if>
+		    <c:if test="${likes == 1}">
+		    <h5>Ladrillo a ladrillo se construyó la Gran Muralla</h5>
+		    </c:if>
+		    <c:if test="${likes > 1}">
+		    <h5>Usuarios que ya le han dado amor animate!!</h5>
+		    </c:if>
 		    <div style= "background-color: #af3248; margin-right: 50%">
 			<h5 style="color:white; margin: 0% 0% 0% 50% ">${likes} </h5>
 			</div>
@@ -236,7 +244,7 @@
 								style="width: 10%; height: 10%; "> 
 			</c:if>
 			<c:if test="${!actualUserLiked}">
-			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/dislike.png" 
+			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likestory-V2/src/main/webapp/WEB-INF/views/static/dislike.png" 
 			onClick="location.href='/stories/like/${story.id}'"
 								style="width: 8%; height: 8%; "> 
 			</c:if>
