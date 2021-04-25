@@ -1,16 +1,25 @@
 package com.cinema.cinemaparadiso.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import org.hibernate.validator.constraints.URL;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,11 +53,21 @@ public class Story extends BaseEntity {
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
 	
+
+	@Column(name="likes")
+	@ManyToMany(mappedBy = "likes", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<User> users;
+	
+	@Column(name="numlikes")
+	private Long numLikes;
+
 	@Column(name="photo")
     @NotBlank(message="No puedes dejarlo vacío")
 	@URL(message = "Debe indicar una URL")
 	@Size(min=1,max=200,message="La foto debe tener como máximo 200 caracteres")
 	private String photo;
+
 
 	public Story() {}
 	

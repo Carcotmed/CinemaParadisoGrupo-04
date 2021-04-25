@@ -10,7 +10,6 @@
 <html class="h-100">
 
 <head>
-
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +24,7 @@
 
 <body class="h-100" style="background-color: #272727; color: white">
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
+
 <script>
 		$(document).ready(function () {
 			$("#levantaModal").click(function () {
@@ -137,7 +137,7 @@
 						</script>
 
 			<div>
-				<p>¡Publicita tu historia! (30&#8364)</p>
+				<p>Â¡Publicita tu historia! (30&#8364)</p>
 			</div>
 			<div id="paypal-button-ad-story" style="z-index: 1"></div>
 
@@ -167,6 +167,7 @@
 			style="background-color: #4c4c4c; padding: 1%">
 			<h3 style="margin: 0">Ficha t&eacutecnica</h3>
 		</div>
+
 	
 		
 	   <!-- Datos -->
@@ -174,6 +175,7 @@
        <div class="col-6 p-3" style="border-color: #af3248; border-style: solid; border-width: 0 2px 0 0;">
 		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
 			<div style= "width: 150%">
+
 				<div style="margin: 1% 0">
 					<div class="d-flex flex-wrap ">
 						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">T&iacutetulo</h5>
@@ -210,6 +212,43 @@
 					</div>
 				</div>
 			</div>
+
+			<div style="width: 50%;">
+			<h2>Apoya la historia!!</h2>
+			<br>
+		    
+		    <h5>usuario(s) le(s) gusta(n) la historia</h5>
+		    <div style= "background-color: #af3248; margin-right: 50%">
+			<h5 style="color:white; margin: 0% 0% 0% 50% ">${likes} </h5>
+			
+			</div>
+			
+			
+			<br>
+			<c:if test="${actualUserLiked}">
+			
+			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png" 
+			onClick="location.href='/stories/notLike/${story.id}'"
+								style="width: 10%; height: 10%; "> 
+								
+		       
+			</c:if>
+			
+			<c:if test="${!actualUserLiked}">
+			
+			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/dislike.png" 
+			onClick="location.href='/stories/like/${story.id}'"
+								style="width: 8%; height: 8%; "> 
+			 
+			
+			</c:if>
+		    </div>
+
+		</div>
+	</div>
+
+
+
 			</div>
 			
 			
@@ -237,6 +276,7 @@
 				</div>
 			</div>
 			
+
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 

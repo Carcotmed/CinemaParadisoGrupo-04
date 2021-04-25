@@ -3,7 +3,11 @@ package com.cinema.cinemaparadiso.service;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -33,6 +37,9 @@ public class StoryService {
 	private Rel_projects_storyService rel_projects_storyService;
 	
 	@Autowired
+	private RelUserStoryService relUserStoryService;
+	
+	@Autowired
 	private MessageService messageService;
 
 
@@ -54,6 +61,7 @@ public class StoryService {
 	
 
 	public void createStory(Story story){
+		   story.setNumLikes(relUserStoryService.count(story.getId()));
 	       saveStory(story);
 	       
 	       Integer idWriter = writerService.getPrincipal().getId();
@@ -113,10 +121,49 @@ public class StoryService {
 		return storyRepository.findAllSponsoredStories();
 	}
 	
+
+	public Iterable<Story> sortByLikes(Iterable<Story> stories){
+		Map<Story,Long> storyLikes = new HashMap<>();
+		for(Story s : stories) {
+			
+			storyLikes.put(s, relUserStoryService.count(s.getId()));
+		}
+		LinkedHashMap<Story, Long> sortedMap = new LinkedHashMap<>();
+		storyLikes.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+		.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+		
+		Iterable<Story> res = sortedMap.keySet();
+		
+		return res;
+		
+		
+	}
+	
+	public List<Story> sortByLikesList(List<Story> stories){
+		Map<Story,Long> storyLikes = new HashMap<>();
+		for(Story s : stories) {
+			
+			storyLikes.put(s, relUserStoryService.count(s.getId()));
+		}
+		LinkedHashMap<Story, Long> sortedMap = new LinkedHashMap<>();
+		storyLikes.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+		.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+		
+		List<Story> res = new ArrayList<>();
+		for(Story s : sortedMap.keySet()) {
+			res.add(s);
+		}
+		
+		return res;
+		
+		
+	}
+
 	@Transactional
 	public List<Project> findMyProjects(Integer storyId) {
 		return this.storyRepository.findMyProjects(storyId);
 	}
+
 
 
 }
