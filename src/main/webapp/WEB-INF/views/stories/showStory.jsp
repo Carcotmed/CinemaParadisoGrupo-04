@@ -335,28 +335,33 @@ svg{
 
 				</div>
 			</div>
-			<div>
+			<div style="width: 50%;">
 			<h2>Apoya la historia!!</h2>
 			<br>
 		    
 		    <h5>usuario(s) le(s) gusta(n) la historia</h5>
-			<h5 style="color:white;background-color: #af3248;">${likes} </h5>
+		    <div style= "background-color: #af3248; margin-right: 50%">
+			<h5 style="color:white; margin: 0% 0% 0% 50% ">${likes} </h5>
 			
-			
+			</div>
 			
 			
 			<br>
 			<c:if test="${actualUserLiked}">
-		        <button class="btn rounded-pill"
-				onClick="location.href='/stories/notLike/${story.id}'"
-				style="color:white;background-color: #af3248">DisLike</button>
+			
+			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png" 
+			onClick="location.href='/stories/notLike/${story.id}'"
+								style="width: 10%; height: 10%; "> 
+								
+		       
 			</c:if>
 			
 			<c:if test="${!actualUserLiked}">
 			
-			 <button class="btn rounded-pill"
-				onClick="location.href='/stories/like/${story.id}'"
-				style="color:white;background-color: #af3248;">Like</button>
+			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/dislike.png" 
+			onClick="location.href='/stories/like/${story.id}'"
+								style="width: 8%; height: 8%; "> 
+			 
 			
 			</c:if>
 		    </div>
