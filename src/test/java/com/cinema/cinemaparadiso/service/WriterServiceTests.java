@@ -78,7 +78,7 @@ public class WriterServiceTests {
 		} catch (UserUniqueException e) {
 			assertTrue(false);
 		}
-		assertThat(writerService.findWriterById(3)).isEqualTo(writer);
+		assertThat(writerService.list().size()).isEqualTo(3);
 	}
 
 	@Test
