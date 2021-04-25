@@ -219,8 +219,8 @@
 			<h2>Apoya la historia!!</h2>
 			</div>
 			<div>
-			<video autoplay muted loop style="position:absolute;width:10vw;height:10vh;object-fit:cover"
-			 src="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/develop/src/main/webapp/WEB-INF/views/static/index-video.mp4?raw=true" 
+			<video autoplay muted loop style="margin-left:10px;width:2vw;height:3vh;object-fit:cover" class= "rounded-circle"
+			 src="https://github.com/ivan-desing-testing/CinemaParadisoGrupo-04/blob/feature/%23285-likestory-V2/src/main/webapp/WEB-INF/views/static/corazon%20latiendo.mp4?raw=true" 
 			 type="video/mp4"></video>
 			</div>
 			</div>
