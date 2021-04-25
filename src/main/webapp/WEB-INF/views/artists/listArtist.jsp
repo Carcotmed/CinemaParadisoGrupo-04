@@ -80,6 +80,7 @@
 			
 		label{
 			width:50%;
+			padding-right: 0.6rem;
 		}	
 			
 		@media(max-width: 1545px) {
@@ -134,8 +135,20 @@
 			
 		}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"	type="text/javascript"></script>
-<script>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shorcut icon" type="image/ico" href="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/feature/fix-general/src/main/webapp/WEB-INF/views/static/favicon.ico?raw=true" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+</head>
+<body>
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+	<script>
 	
 	$(window).scroll(function () {
 	    var lista = document.getElementById("list-wrap");
@@ -150,19 +163,6 @@
 	})
 	
 </script>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shorcut icon" type="image/ico" href="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/feature/fix-general/src/main/webapp/WEB-INF/views/static/favicon.ico?raw=true" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-</head>
-<body>
-	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
 	<a id="top"></a>
 	<div class="background-image"></div>
 	<div class="padding-nav">
