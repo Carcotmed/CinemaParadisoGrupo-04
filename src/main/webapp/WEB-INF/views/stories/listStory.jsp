@@ -44,13 +44,14 @@
 				</div>
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="haveProject">Proyecto asociado</form:label>
-					<form:select class="form-control" style="width:60%" path="haveProject">
-							<form:option value="${haveProject=true}">Con proyecto asociada</form:option>
-							<form:option value="${haveProject=false}">Sin proyecto asociada</form:option>
-						
-					</form:select>
-				</div>
+					
+					<form:label class="form-control-label" path="haveProject">Proyecto asociado</form:label>  
+					 Con Proyecto asociado<input type="checkbox" name="haveProject" value="true"
+                       />
+                        Sin Proyecto asociado <input type="checkbox" name="haveProject" value="false"
+                       />
+
+				</div>  
 								
 				<div class="form-group d-flex justify-content-center align-items-center my-4">
 					<form:button class="btn" style="color:white;background-color: #3e3e3e">Filtrar</form:button>
