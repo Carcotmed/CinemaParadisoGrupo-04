@@ -45,6 +45,7 @@
 			<h2>Usuario desactivado</h2>
 
 		</div>
+	</c:if>
 		<c:if test="${!userDisabled}">
 			<c:if test="${sameWriter == false && !isAdmin}">
 				<button class="btn rounded-pill"

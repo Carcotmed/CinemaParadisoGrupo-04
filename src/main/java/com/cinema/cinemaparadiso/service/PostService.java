@@ -1,7 +1,10 @@
 package com.cinema.cinemaparadiso.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,8 +24,6 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
     
-    @Autowired
-    private ArtistService artistService;
     
     @Autowired
     private ProjectService projectService;
@@ -52,7 +53,9 @@ public class PostService {
     		post.setProducer(optionalProducer.get());
     	}
 		post.setProject(this.projectService.findProjectById(projectId));
-    	post.setDate(new Date());
+		DateTimeFormatter patternWithOptional = DateTimeFormatter.ofPattern("d/M/yyyy[ H:mm]");
+    	post.setDate(LocalDateTime.now().format(patternWithOptional));
+    	post.setUsername(username);
         return postRepository.save(post);
     }
     
