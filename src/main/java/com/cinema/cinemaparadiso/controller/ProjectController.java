@@ -112,19 +112,21 @@ public class ProjectController {
 		model.addAttribute("projects", projects);
 		model.addAttribute("projectsFiltered", projectsFiltered);
 
+		String defaultS = "truefalse";
+
 		List<Project> projectsProFiltrados = projects.stream()
 				.filter(a -> a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
-				&& rel_projects_storyService.haveProjectStory(a.getId()).equals(projectsFiltered.getHaveStory())
-				).collect(Collectors.toList());
+				&& (( rel_projects_storyService.haveProjectStory(a.getId()).equals(projectsFiltered.getHaveStory())
+				) || !defaultS.contains(projectsFiltered.getHaveStory())) ).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
 				.filter(a -> !a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
-				&& rel_projects_storyService.haveProjectStory(a.getId()).equals(projectsFiltered.getHaveStory())
-				).collect(Collectors.toList());
+				&& (( rel_projects_storyService.haveProjectStory(a.getId()).equals(projectsFiltered.getHaveStory())
+				) || !defaultS.contains(projectsFiltered.getHaveStory())) ).collect(Collectors.toList());
 		
 		
 		model.addAttribute("projectsPro", projectsProFiltrados);

@@ -77,7 +77,7 @@ public class Project extends BaseEntity {
 	
 
 	@Column(name="haveStory")
-	private Boolean haveStory;
+	private String haveStory;
 	
 	
 

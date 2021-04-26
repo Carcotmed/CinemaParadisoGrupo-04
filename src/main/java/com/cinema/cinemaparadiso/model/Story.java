@@ -70,7 +70,7 @@ public class Story extends BaseEntity {
 
 
 	@Column(name="haveProject")
-	private Boolean haveProject;
+	private String haveProject;
 
 
 	public Story() {}
