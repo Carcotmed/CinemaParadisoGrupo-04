@@ -17,11 +17,270 @@
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
 </head>
+<style>
+.background-image {
+	z-index: -1;
+	background-image:
+		url(https://www.teahub.io/photos/full/55-553913_photo-wallpaper-background-wallpaper-blur-book-book-background.jpg);
+	width: 110%;
+	position: absolute;
+	height: 100%;
+	filter: blur(5px);
+	background-size: cover;
+}
 
-<body class="h-100" style="background-color: #272727; color: white">
+.card-wrap {
+	width: 80%;
+	box-shadow: 0 0 10px black;
+	border-radius: 20px;
+	margin: auto;
+}
+
+.ficha-tecnica {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	justify-content: flex-end;
+	height: 50%;
+}
+
+.integrantes {
+	margin: 1.5rem auto;
+	padding: 1.5rem;
+	background-color: var(--gris);
+}
+
+.card-wrap .element-wrapper:hover {
+	background-color: var(--gris-claro);
+}
+
+.integrantes h4 {
+	text-align: center;
+}
+
+.ficha-tecnica > div {
+	padding: 1.5rem;
+	position: absolute;
+	background: linear-gradient(90deg, var(--gris) 0%, var(--gris) 70%,
+		transparent 100%);
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.ficha-tecnica > div > div {
+	margin-bottom: 1rem;
+}
+
+.ficha-tecnica img {
+	object-fit: cover;
+}
+
+.lista {
+	display: grid;
+	grid-template-columns: repeat(5, 15rem);
+	margin: auto;
+	width: fit-content;
+}
+
+.adminP:hover {
+	background-color: var(--rojo) !important;
+}
+
+.pago {
+	width: 65%;
+}
+
+.pago h4 {
+	margin-bottom: 1rem;
+}
+
+#resumen {
+	width: 70%;
+}
+
+#list-wrap-mobile {
+	display: none;
+}
+
+.ficha-tecnica > div img{
+	height: 6rem;
+	width: 6rem;
+}
+
+.escritor{
+	transition: 0.3s;
+	cursor: pointer;
+	padding: 1rem 0;
+	border-radius: 20px;
+	width: 70%;
+}
+
+.escritor:hover{
+	padding: 1rem 3rem;
+	background-color: var(--rojo);
+	font-weight: bold;
+}
+
+#fondoModal{
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+}
+
+#modalProyectos{
+	display: none;
+	padding: 1rem 0;
+	position: fixed;
+	background-color: var(--gris);
+	z-index: 90;
+    box-shadow: 0 0 10px black;
+    width: 25rem;
+    border-radius: 20px 0 0 20px;
+    right: 0;
+    text-align: center;
+    transition: 0.3s;
+    top: 8rem;
+}
+
+#modalProyectos > div{
+	margin-top:1rem;
+	padding: 0.5rem;
+	transition: 0.3s;
+}
+
+#modalProyectos > div:hover{
+	background-color: var(--rojo);
+}
+
+#modalProyectos > div:hover button{
+	border-color: var(--gris);
+}
+
+#modalProyectos > div:hover button:hover{
+	background-color: var(--gris);
+}
+
+@media ( max-width : 1545px) {
+	.lista {
+		grid-template-columns: repeat(4, 13rem);
+	}
+}
+
+@media ( max-width : 1160px) {
+	.background-image {
+		width: 100%;
+	}
+	
+	.ficha-tecnica > div {
+		background: linear-gradient(0deg, var(--gris) 0%, var(--gris) 70%,
+			transparent 100%);
+		position: unset;
+		background-color: var(--gris);
+	}
+	
+	.ficha-tecnica {
+		justify-content: flex-start;
+		flex-direction: column;
+		position: unset;
+		height: unset;
+    }
+	
+	.padding-nav {
+		padding-top: 6rem !important;
+	}
+	
+	.card-wrap > div > div {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.card-wrap {
+		width: unset;
+		border-radius: unset;
+	}
+	
+	.card-wrap > img {
+		height: 15rem;
+		width: 100%;
+	}
+	
+	#resumen, #escritorWrap, .acciones, .pago, .pago > div {
+		width: 100%;
+		display: block !important;
+	}
+	
+	.acciones {
+		display: flex !important;
+		flex-direction: column;
+	}
+	
+	.acciones button {
+		margin: 0.5rem;
+	}
+	
+	.integrantes {
+		display: none;
+	}
+	
+	#list-wrap-mobile {
+		display: block;
+		background-color: var(--gris);
+		margin-top: 1.5rem;
+		padding: 1.5rem 0;
+	}
+	
+	#list-wrap-mobile h4 {
+		text-align: center;
+	}
+	
+	.linea-hor {
+		border-color: var(--rojo);
+		background-color: var(--rojo);
+	}
+	
+	.padding-footer{
+		padding-bottom: 27rem !important;
+	}
+	
+	#modalProyectos{
+	    padding: 1rem 0;
+	    position: fixed;
+	    background-color: var(--gris);
+	    z-index: 90;
+	    width: 100%;
+	    text-align: center;
+	    transition: 0.3s;
+	    height: 100%;
+	    box-shadow: unset;
+	    top:unset;
+	    right:unset;
+	    border-radius: unset;
+	}
+
+}
+</style>
+<script
+	src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2&currency=EUR"></script>
+<body>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
-	<script>
+	<div class="background-image"></div>
+	<div id="global-wrap" class="padding-nav">
+		<script>
 		$(document).ready(function () {
+		    var global = document.getElementById("global-wrap");
+		    var card = document.getElementById("infoCard");
+
+			if($(window).width() < 1160){
+				card.classList.add("padding-footer");
+				global.classList.remove("padding-footer");
+			}else{
+				card.classList.remove("padding-footer");
+				global.classList.add("padding-footer");
+			}
+			
 			$("#levantaModal").click(function () {
 				$("#fondoModal").show();
 				$("#modalProyectos").show();
@@ -36,178 +295,140 @@
 			$("#fondoModal").hide();
 			$("#modalProyectos").hide();
 		})
-
+		
 	</script>
-	<div id="fondoModal"
-		style="display: none; position: fixed; width: 100%; height: 100%; background-color: transparent;"></div>
-	<div id="modalProyectos"
-		style="color: white; border-radius: 20px; display: none; left: 24vw; top: 20vh; padding: 1%; position: fixed; width: 50vw; background-color: #3c3c3c">
-		<div class="container-fluid"
-			style="background-color: #af3248; border-radius: 20px; padding: 1%">
-			<h2>Proyectos a asociar</h2>
+
+		<!-- Modal -->
+		<div id="fondoModal"></div>
+		<div id="modalProyectos">
+			<h4>Proyectos a asociar</h4>
+			<c:forEach items="${projects}" var="projects">
+				<div class="d-flex justify-content-between align-items-center">
+					<h6>${ projects.title }</h6>
+					<button class="boton btn rounded-pill"
+						onClick="location.href='/stories/request/${story.id}/${projects.id}'">Asociar</button>
+				</div>
+			</c:forEach>
 		</div>
-		<c:forEach items="${projects}" var="projects">
-			<br>
-			<div class="d-flex justify-content-between align-items-center">
-				<h5>${ projects.title }</h5>
-				<button class="btn rounded-pill"
-					onClick="location.href='/stories/request/${story.id}/${projects.id}'"
-					style="color: white; background-color: #af3248">Asociar</button>
-			</div>
-		</c:forEach>
-	</div>
 
-	<!-- Header Historia -->
-	<div class="d-flex justify-content-between p-3" style="height: 15%">
-		<div class="d-flex align-items-center" style="width: 50%">
-			<div class="rounded-circle d-flex"
-				style="overflow: hidden; height: 100%; width: 12vh">
-				<img
-					src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"
-					style="width: 100%; height: 100%; object-fit: cover">
-			</div>
-			<div class="py-3 mx-3" style="width: 40%">
-				<h2>${story.title}</h2>
-			</div>
-		</div>
-		<c:if test="${showButton == false}">
-			<sec:authorize access="isAuthenticated()">
-				<button class="btn rounded-pill"
-					onClick="location.href='/messages/create/${writerUsername}'"
-					style="color: white; height: fit-content; background-color: #af3248">Contactar
-					con el escritor</button>
-				<button class="btn rounded-pill" id="levantaModal"
-					style="color: white; height: fit-content; background-color: #af3248">Asociar
-					proyecto</button>
-			</sec:authorize>
-		</c:if>
-		<c:if test="${showButton == true and !story.isSponsored and !isAdmin}">
-			<!-- PAYPAL -->
-
-			<script
-				src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2&currency=EUR"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
-							</script>
-
-			<script>
-							function post(path, params, method = 'post') {
-								// The rest of this code assumes you are not using a library.
-								// It can be made less verbose if you use one.
-								const form = document.createElement('form');
-								form.method = method;
-								form.action = path;
-								for (const key in params) {
-									if (params.hasOwnProperty(key)) {
-										const hiddenField = document.createElement('input');
-										hiddenField.type = 'hidden';
-										hiddenField.name = key;
-										hiddenField.value = params[key];
-										form.appendChild(hiddenField);
-									}
-								}
-								document.body.appendChild(form);
-								form.submit();
-							}
-
-						</script>
-
-			<script>
-							paypal.Buttons({
-								createOrder: function (data, actions) {
-									return actions.order.create({
-										purchase_units: [{
-											amount: {
-												currency: "EUR",
-												value: "30"
-											},
-										}]
-									});
-								},
-								onApprove: function (data, actions) {
-									// This function captures the funds from the transaction.
-									return actions.order.capture().then(function (details) {
-										post("/pro/confirmedAdStory", { storyID: ${ story.id }, paymentDetails: details, ${ _csrf.parameterName }: "${_csrf.token}"})
-								});
-						    }
-						  }).render('#paypal-button-ad-story');
-						  //This function displays Smart Payment Buttons on your web page.
-						</script>
+		<div id="infoCard" class="card-wrap ficha-tecnica">
+			<img
+				src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg">
 
 			<div>
-				<p>¡Publicita tu historia! (30&#8364)</p>
-			</div>
-			<div id="paypal-button-ad-story" style="z-index: 1"></div>
-
-			<!-- END PAYPAL -->
-		</c:if>
-
-		<sec:authorize access="isAuthenticated()">
-			<c:if test="${isAdmin}">
-				<button class="btn rounded-pill"
-					onClick="location.href='/messages/create/${writerUsername}'"
-					style="color: white; height: fit-content; background-color: #af3248">Contactar
-					con el escritor</button>
-			</c:if>
-		</sec:authorize>
-		<c:if test="${showButton == true}">
-			<button class="btn rounded-pill"
-				onClick="location.href='/stories/update/${story.id}'"
-				style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar</button>
-			<button class="btn rounded-pill"
-				onClick="location.href='/stories/delete/${story.id}'"
-				style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Eliminar</button>
-		</c:if>
-	</div>
-	<!-- Info general Historia -->
-	<div>
-		<div class="container-fluid"
-			style="background-color: #4c4c4c; padding: 1%">
-			<h3 style="margin: 0">Ficha t&eacutecnica</h3>
-		</div>
-
-		<div class="d-flex justify-content-between" style="padding: 2% 5%;">
-			<!-- Datos -->
-			<div style="width: 150%">
-				<div style="margin: 1% 0">
-					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">T&iacutetulo</h5>
-					</div>
-					<p style="margin-left: 3%">${story.title}</p>
-				</div>
-				<div style="margin: 1% 0">
-					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">G&eacutenero</h5>
-					</div>
-					<p style="margin-left: 3%">${story.genre}</p>
+				<div>
+					<h4>T&iacutetulo</h4>
+					<span>${story.title}</span>
 				</div>
 				<div>
-					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">Descripci&oacuten</h5>
-					</div>
-					<p style="margin-left: 3%">${story.body}</p>
+					<h4>G&eacutenero</h4>
+					<span>${story.genre}</span>
 				</div>
-				<div>
-					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color: #3e3e3e">Escritor</h5>
-					</div>
-					<div class="d-flex align-items-center" style="cursor: pointer"
+				<div id="resumen">
+					<h4>Resumen</h4>
+					<span>${story.body}</span>
+				</div>
+
+				<div id="escritorWrap">
+					<h4>Escritor/a</h4>
+					<div class="escritor d-flex flex-wrap align-items-center"
 						onClick="location.href='/writers/show/${myWriter.id}'">
-						<div
-							style="width: 20vh; height: 20vh; overflow: hidden; cursor: pointer"
-							class="rounded-circle">
-							<img src="${myWriter.photo}"
-								style="width: 100%; height: 100%; object-fit: cover">
-						</div>
-						<p style="margin-left: 3%">${myWriter.user.username}</p>
+						<img class="rounded-circle" src="${myWriter.photo}">
+						<p style="margin-left: 1rem">${myWriter.name}</p>
+					</div>
+				</div>
+
+					<div class="acciones">
+						<h4>Acciones</h4>
+						
+						<c:if test="${showButton == false}">
+							<sec:authorize access="isAuthenticated()">
+								<button class="boton btn rounded-pill"	onClick="location.href='/messages/create/${writerUsername}'">Contactar
+									con el escritor</button>
+								<button class="boton btn rounded-pill" id="levantaModal">Asociar
+									proyecto</button>
+							</sec:authorize>
+						</c:if>
+						
+						<sec:authorize access="isAuthenticated()">
+							<c:if test="${isAdmin}">
+								<button class="boton btn rounded-pill"
+									onClick="location.href='/messages/create/${writerUsername}'">Contactar
+									con el escritor</button>
+							</c:if>
+						</sec:authorize>
+						
+						<c:if test="${showButton == true}">
+							<button class="boton btn rounded-pill"
+								onClick="location.href='/stories/update/${story.id}'">Editar</button>
+							<button class="boton btn rounded-pill"
+								onClick="location.href='/stories/delete/${story.id}'">Eliminar</button>
+						</c:if>
 					</div>
 
-				</div>
+				<c:if
+					test="${ showButton == true and !story.isSponsored and !isAdmin}">
+					<div class="pago">
+						<script>
+								function post(path, params, method = 'post') {
+									const form = document.createElement('form');
+									form.method = method;
+									form.action = path;
+									for (const key in params) {
+										if (params.hasOwnProperty(key)) {
+											const hiddenField = document.createElement('input');
+											hiddenField.type = 'hidden';
+											hiddenField.name = key;
+											hiddenField.value = params[key];
+											form.appendChild(hiddenField);
+										}
+									}
+									document.body.appendChild(form);
+									form.submit();
+								}
+							</script>
+						<script>
+								paypal.Buttons({
+									createOrder: function (data, actions) {
+										return actions.order.create({
+											purchase_units: [{
+												amount: {
+													currency: "EUR",
+													value: "30"
+												},
+											}]
+										});
+									},
+									onApprove: function (data, actions) {
+										// This function captures the funds from the transaction.
+										return actions.order.capture().then(function (details) {
+											post("/pro/confirmedAdStory", { storyID: ${ story.id }, paymentDetails: details, ${ _csrf.parameterName }: "${_csrf.token}"})
+									});
+							    }
+							  }).render('#paypal-button-ad-story');
+						  </script>
+						<h4>¡Publicita tu historia!</h4>
+						<div class="d-flex justify-content-between">
+							<p>Por tan solo 30&#8364 puedes hacer que tu historia pueda
+								salir publicitada en el listado de historias y así conseguir más
+								visibilidad.</p>
+							<div id="paypal-button-ad-story"></div>
+						</div>
+					</div>
+				</c:if>
 			</div>
-
 		</div>
+
+
 	</div>
 
 
-	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-</body>
 
+	<div id="boton-up"
+		onClick="location.href='/stories/show/${story.id}#top'">
+		<span>^</span>
+	</div>
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+
+</body>
 </html>

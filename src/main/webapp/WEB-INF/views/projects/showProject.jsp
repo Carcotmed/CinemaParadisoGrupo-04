@@ -59,7 +59,7 @@
 		.ficha-tecnica > div{
 			padding: 1.5rem;
 			position: absolute;
-			background: linear-gradient(90deg, var(--gris) 0%, var(--gris) 65%, transparent 100%);
+			background: linear-gradient(90deg, var(--gris) 0%, var(--gris) 70%, transparent 100%);
 			width: 100%;
 			height: 100%;
 			overflow-y:scroll;
@@ -85,7 +85,7 @@
 		}
 		
 		.pago{
-			width: 65%;
+			width: 70%;
 		}
 		
 		.pago h4{
@@ -93,7 +93,7 @@
 		}
 		
 		#resumen{
-			 width: 65%;
+			 width: 70%;
 		}
 		
 		#list-wrap-mobile{
