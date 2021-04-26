@@ -116,12 +116,14 @@ public class ProjectController {
 				.filter(a -> a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
+				&& rel_projects_storyService.haveProjectStory(a.getId()).equals(projectsFiltered.getHaveStory())
 				).collect(Collectors.toList());
 		
 		List<Project> projectsNoProFiltrados = projects.stream()
 				.filter(a -> !a.getPro()
 				&& a.getTitle().toLowerCase().contains(projectsFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(projectsFiltered.getGenre()) || a.getGenre().equals(projectsFiltered.getGenre()))
+				&& rel_projects_storyService.haveProjectStory(a.getId()).equals(projectsFiltered.getHaveStory())
 				).collect(Collectors.toList());
 		
 		

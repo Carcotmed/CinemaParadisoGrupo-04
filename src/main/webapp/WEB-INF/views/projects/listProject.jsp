@@ -44,6 +44,16 @@
 						</c:forEach>
 					</form:select>
 				</div>
+				
+				<div class="form-group d-flex justify-content-between align-items-center my-4">
+					
+					<form:label class="form-control-label" path="haveStory">Proyecto asociado</form:label>  
+					 Con Historia asociada<input type="checkbox" name="haveStory" value="true"
+                       />
+                     Sin Historia asociada <input type="checkbox" name="haveStory" value="false"
+                       />
+
+				</div>  
 								
 				<div class="form-group d-flex justify-content-center align-items-center my-4">
 					<form:button class="btn" style="color:white;background-color: #3e3e3e">Filtrar</form:button>

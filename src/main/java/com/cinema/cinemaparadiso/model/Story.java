@@ -69,9 +69,14 @@ public class Story extends BaseEntity {
 	private String photo;
 
 
+	@Column(name="haveProject")
+	private Boolean haveProject;
+
+
 	public Story() {}
 	
 	
+
 	
 	@Override
 	public String toString() {

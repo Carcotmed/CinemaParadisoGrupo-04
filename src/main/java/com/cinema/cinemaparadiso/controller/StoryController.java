@@ -205,6 +205,7 @@ public class StoryController {
 		List<Story> storiesFiltrados = stories.stream()
 				.filter(s->s.getTitle().toLowerCase().contains(storiesFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(storiesFiltered.getGenre()) || s.getGenre().equals(storiesFiltered.getGenre()))
+				&& rel_projects_storyService.haveStoryProject(s.getId()).equals(storiesFiltered.getHaveProject())
 				).collect(Collectors.toList());
 		
 		storiesFiltrados= storyService.sortByLikesList(storiesFiltrados);

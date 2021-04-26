@@ -75,6 +75,12 @@ public class Project extends BaseEntity {
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
 	
+
+	@Column(name="haveStory")
+	private Boolean haveStory;
+	
+	
+
 	public Project() {}
 	public Project(String title, String description, Genre genre, Integer id, String myAdmin, String photo) {
 		this.title = title;
@@ -148,6 +154,7 @@ public class Project extends BaseEntity {
 		return "Project (" + id + ")[title=" + title + ", genre=" + genre + ", description=" + description + ", pro=" + pro
 				+ ", photo=" + photo + ", myAdmin=" + myAdmin + ", isSponsored=" + isSponsored + "]";
 	}
+
 	
 	
  
