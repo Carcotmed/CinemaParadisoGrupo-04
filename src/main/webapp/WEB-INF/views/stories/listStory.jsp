@@ -89,6 +89,15 @@
 							<img src="${stories.photo}" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
 						</div>
 		      			<h5 style="margin: 0.5vw; text-align:center">${stories.title}</h5>
+		      			<div style="display:flex">
+		      			<div>
+		      			<h7 style="margin: 0.5vw; text-align:center">${stories.numLikes} </h7>
+		      			</div>
+		      			<div>
+		      			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png" 
+								style="width: 10%; height: 80%; "> 
+		      			</div>
+		      			</div>
 		      		</div>
 	      		</c:forEach>
 	      	</div>
