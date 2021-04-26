@@ -169,11 +169,11 @@
 			</div>
 		</div>
 		
-		<div class="container-fluid" style="display:flex;background-color:#4c4c4c; padding:1%">
+		<div class="container-fluid" style="display:flex;background-color:#4c4c4c; padding:1%;width:100%">
 		   
 			<h3 style="margin:0% ;padding-left: 100px">Integrantes</h3>
 			<c:if test="${pertenece || perteneceP}"> 
-			<h3 style=" max-height:100%;max-right:100%; margin:0 70% ;">Anuncios</h3>
+			<h3 style="margin:0 70% ;">Tablón de mensajes</h3>
 			</c:if>
 			
 		</div>
@@ -207,15 +207,18 @@
 			</div>
 			<div>
 			<c:if test="${pertenece || perteneceP }">
-			<div style="padding: 0% 20px;width:50%;max-height:100%">
-			       
+			<div style="padding: 0% 20px;width:80%;max-height:100%">
+			 <button  onclick="location.href='/posts/create/${project.id}'" class="btn rounded-pill" id="levantaModal"
+					style="color: white; height: fit-content; background-color: #af3248">Crear mensaje</button>
+					<br></br>      
 			<c:forEach items="${posts}" var="post">
 			            <h5>${post.title}</h5>
 						<p>${post.body}</p>
 						<p>${post.date}</p>
+						<p>Escrito por 	${post.username}</p>
+						<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e8c71a; width:100%; margin:1% auto">
 			</c:forEach>
-			<button  onclick="location.href='/posts/create/${project.id}'" class="btn rounded-pill" id="levantaModal"
-					style="color: white; height: fit-content; background-color: #af3248">Crear anuncio</button>
+			
 			</div>
 			</c:if>
 		</div>

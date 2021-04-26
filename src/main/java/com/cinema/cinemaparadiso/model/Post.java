@@ -1,6 +1,6 @@
 package com.cinema.cinemaparadiso.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,7 @@ public class Post extends BaseEntity{
 	
 	@Column(name = "date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH")
-	private Date date;
+	private String date;
 	
 	@ManyToOne(optional=true)
 	@JoinColumn(name = "artist_id")
@@ -43,5 +43,8 @@ public class Post extends BaseEntity{
 	@ManyToOne(optional=false)
 	@JoinColumn(name = "project_id")
 	private Project project;
+	
+	@Column(name = "username")
+	private String username;
 	
 }

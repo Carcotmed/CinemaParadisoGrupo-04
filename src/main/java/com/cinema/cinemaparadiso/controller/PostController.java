@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Post;
 import com.cinema.cinemaparadiso.service.PostService;
-import com.cinema.cinemaparadiso.service.ProjectService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,8 +27,7 @@ public class PostController {
     @Autowired
     private PostService postService;
     
-    @Autowired
-    private ProjectService projectService;
+
     
     @GetMapping("/create/{projectId}")
 	public String initFormCreatePost(Model model,@PathVariable("projectId") Integer projectId) {
@@ -42,7 +40,6 @@ public class PostController {
     		return "error/error-403";
     	}
 		Post post = new Post();
-		post.setProject(this.projectService.findProjectById(projectId));
 		
 		model.addAttribute("post", post);
 		return "posts/createPostForm";
