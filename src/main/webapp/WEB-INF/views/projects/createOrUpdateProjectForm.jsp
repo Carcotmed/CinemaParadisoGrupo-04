@@ -19,7 +19,7 @@
 <style>
 		.background-image{
 			z-index: -1;
-		   background-image: url(https://www.teahub.io/photos/full/55-553913_photo-wallpaper-background-wallpaper-blur-book-book-background.jpg);
+		   background-image: url(https://www.indecsur.cl/wp-content/uploads/2020/03/272910-desk-laptop.jpg);
 		   width: 100%;
 		   position: absolute;
 		   height: 100%;
@@ -89,7 +89,7 @@
 	<div class="padding-nav padding-footer d-flex justify-content-center align-items-center">
 
 		<div class="form-wrapper">
-			<h3>Crear proyecto</h3>
+			<h3>Crear/editar proyecto</h3>
 	
 			<form:form method="POST" action="${formAction}" modelAttribute="project" style="width:100%">
                 <div class="d-flex justify-content-between align-items-center">
