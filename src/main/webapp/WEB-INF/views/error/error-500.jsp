@@ -31,6 +31,11 @@
 		transform: scale(1.1);
 		text-shadow: unset;
 	}
+	
+	h1, h3{
+		text-align:center
+	}
+	
 </style>
 <body>
 	<div class="d-flex flex-column justify-content-center align-items-center" style="background-color: #3e3e3e; height: 100vh">
