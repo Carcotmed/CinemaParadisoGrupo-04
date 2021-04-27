@@ -90,7 +90,7 @@
             		<div class="d-flex flex-wrap ">
 						<form:label path="issue">Asunto: </form:label>
 					</div>
-					<form:input type="text" path="issue" placeholder="Asunto" />
+					<form:input class="form-control" type="text" path="issue" placeholder="Asunto" />
 				</div>
 				<form:errors style="color:red" path="issue"/>
 						
@@ -98,7 +98,7 @@
 					<div class="d-flex flex-wrap ">
 						<form:label path="body">Cuerpo: </form:label>
 					</div>
-					<form:textarea path="body"  placeholder="Mensaje" />
+					<form:textarea class="form-control"  path="body"  placeholder="Mensaje" />
 				</div>
 				<form:errors style="color:red" path="body"/>
 				
