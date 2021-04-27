@@ -33,7 +33,7 @@
 	}
 </style>
 <body>
-	<div class="d-flex flex-column justify-content-center align-items-center" style="background-color: #3e3e3e; margin-top: 15%">
+	<div class="d-flex flex-column justify-content-center align-items-center" style="background-color: #3e3e3e; height: 100vh">
 		<h1 style="color:white">Lo sentimos, no hemos encontrado lo que buscabas</h1>
 		<button class="boton btn rounded-pill" onClick="location.href='/'" style="color:white;height: fit-content;background-color: #af3248">Volver al Inicio</button>
 	</div>
