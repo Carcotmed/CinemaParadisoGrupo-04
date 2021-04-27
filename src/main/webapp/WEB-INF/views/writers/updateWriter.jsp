@@ -82,7 +82,7 @@
 		<div class="form-wrapper">
 			<h3>Editar escritor</h3>
 	
-			<form:form method="POST" action="create" modelAttribute="writer" style="width:100%">
+			<form:form method="POST" action="update" modelAttribute="writer" style="width:100%">
 
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="d-flex flex-wrap ">
