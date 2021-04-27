@@ -61,14 +61,14 @@ public class Rel_projects_storyService {
 	
 	
 	@Transactional
-	public Boolean haveProjectStory(Integer projectId){
-		return this.rel_projects_storyRepository.findRelacionesByProject(projectId).size()>0?true:false;
+	public String haveProjectStory(Integer projectId){
+		return this.rel_projects_storyRepository.findRelacionesByProject(projectId).size()>0?"true":"false";
 	}
 	
 	
 	@Transactional
-	public Boolean haveStoryProject(Integer storyId){
-		return this.rel_projects_storyRepository.findRelacionesByStory(storyId).size()>0?true:false;
+	public String haveStoryProject(Integer storyId){
+		return this.rel_projects_storyRepository.findRelacionesByStory(storyId).size()>0?"true":"false";
 	}
 	@Transactional
 	public Rel_projects_story findByProjectId(Integer projectId){

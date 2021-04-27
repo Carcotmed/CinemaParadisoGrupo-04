@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 
 <!DOCTYPE html>
 <html class="h-100">
@@ -45,11 +47,10 @@
 				
 				<div class="form-group d-flex justify-content-between align-items-center my-4">
 					
-					<form:label class="form-control-label" path="haveProject">Proyecto asociado</form:label>  
-					 Con Proyecto asociado<input type="checkbox" name="haveProject" value="true"
-                       />
-                        Sin Proyecto asociado <input type="checkbox" name="haveProject" value="false"
-                       />
+					<form:label class="form-control-label" path="haveProject"></form:label>  
+						<input type="radio" name="haveProject" value="true"/> Con Proyecto Asociado
+                    	<input type="radio" name="haveProject" value="false"/> Sin Proyecto asociado
+						<input type="radio" name="haveProject" value="default" style="visibility: hidden;" checked/>
 
 				</div>  
 								
