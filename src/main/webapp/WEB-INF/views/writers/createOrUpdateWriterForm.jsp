@@ -132,7 +132,7 @@
 				
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="d-flex flex-wrap ">
-						<form:label class="rounded-pill form-control-label" path="photo">Añade tu foto</form:label>
+						<form:label class="rounded-pill form-control-label" path="photo">A&ntildeade tu foto</form:label>
 					</div>
 					<form:input class="form-control" value="${writer.photo}"
 						placeholder="url" type="text" path="photo"></form:input>
