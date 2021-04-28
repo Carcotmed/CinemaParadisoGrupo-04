@@ -92,6 +92,16 @@ public class Project extends BaseEntity {
 		this.photo = photo;
 		this.pro = false;
 	}
+	public Project(String title, String description, Genre genre, Integer id, String myAdmin, String photo, Boolean pro, Boolean sponsored) {
+		this.title = title;
+		this.description = description;
+		this.genre = genre;
+		this.id = id;
+		this.isSponsored = sponsored;
+		this.myAdmin = myAdmin;
+		this.photo = photo;
+		this.pro = pro;
+	}
 	
 	@Override
 	public int hashCode() {

@@ -52,8 +52,28 @@ public class Artist extends Person {
 	private Boolean pro;
 	
 	
-  @OneToOne()
-  @Valid
-  @JoinColumn(name = "username", referencedColumnName = "username")
+	@OneToOne()
+	@Valid
+	@JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
+
+
+	public Artist(Integer id, @NotNull(message = "Debes escoger un rol") Role role, List<Project> projects,
+			List<Project> projectsHistory, Integer leftProjects, Boolean pro, @Valid User user) {
+		super();
+		this.id = id;
+		this.role = role;
+		this.projects = projects;
+		this.projectsHistory = projectsHistory;
+		this.leftProjects = leftProjects;
+		this.pro = pro;
+		this.user = user;
+	}
+	
+	
+	public Artist() {
+		super();
+	}
+  
+  
 }
