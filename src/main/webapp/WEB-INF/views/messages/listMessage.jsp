@@ -129,7 +129,8 @@
 				 		<spring:url value="/messages/show/{messageId}" var="showUrl">
 	                        <spring:param name="messageId" value="${message.id}"/>
 	                    </spring:url>
-	                    <a href="${fn:escapeXml(showUrl)}" class="boton btn rounded-pill">Mostrar</a>
+	                    <a href="${fn:escapeXml(showUrl)}" class="boton btn rounded-pill"
+	                    style="border-color:${(!message.seen && tipo=='received')?'rgb(234 154 55)':'var(--rojo);'}">Mostrar</a>
 		                   	 
 	                    <spring:url value="/messages/delete/{messageId}" var="deleteUrl">
 	                        <spring:param name="messageId" value="${message.id}"/>              
@@ -172,8 +173,8 @@
 					 		<spring:url value="/messages/show/{messageId}" var="showUrl">
 		                        <spring:param name="messageId" value="${message.id}"/>
 		                    </spring:url>
-		                    <a href="${fn:escapeXml(showUrl)}" class="boton btn rounded-pill">Mostrar</a>
-			                   	 
+		                    <a href="${fn:escapeXml(showUrl)}" class="boton btn rounded-pill"
+		                    style="border-color:${(!message.seen && tipo=='received')?'rgb(234 154 55)':'var(--rojo);'}" >Mostrar</a>
 		                    <spring:url value="/messages/delete/{messageId}" var="deleteUrl">
 		                        <spring:param name="messageId" value="${message.id}"/>              
 		                    </spring:url>

@@ -317,6 +317,7 @@
 	})
 	
 	$(document).ready(function () {
+		
 		$.ajax({
 		    type : "GET",
 		    url : "/messages/check",
@@ -325,7 +326,10 @@
 		    },
 		    success: function(data){
 		    	if(data && data=="true"){
-		    		$("#messagesButton").css("background-color", "#359106");
+		    		$("#messagesButton").css("background-color", "rgb(234 154 55)");
+		    		$("#messagesButton").css("border", "none");
+
+		    		$("#messagesButtonMobile").css("background-color", "rgb(234 154 55)");
 		    	}
 		    }
 		});
@@ -359,7 +363,7 @@
 				<li onClick="location.href='/projects/list'">Proyectos</li>
 				<li onClick="location.href='/producers/list'">Productoras</li>
 				<sec:authorize access="isAuthenticated()">
-					<li id="messagesButton" onClick="location.href='/messages/list'">Mensajes</li>
+					<li id="messagesButtonMobile" onClick="location.href='/messages/list'">Mensajes</li>
 				</sec:authorize>
 				<li class="pro" onClick="location.href='/pro'">PRO</li>
 				<sec:authorize access="!isAuthenticated()">
