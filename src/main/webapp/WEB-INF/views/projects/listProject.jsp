@@ -93,6 +93,12 @@
 		    background-position: center;
 		    border-radius: 20px;
 		}
+		
+		.radioInput{
+			display: flex;
+    		align-items: center;
+			text-align:center;
+		}
 					
 			
 		@media(max-width: 1545px) {
@@ -202,7 +208,20 @@
 								</c:forEach>
 							</form:select>
 						</div>
-		
+						
+						<div class="form-group d-flex justify-content-between align-items-center my-4">
+							<form:label class="form-control-label" path="haveStory" style="position:absolute"></form:label>  
+								<div class="radioInput">
+									<input type="radio" name="haveStory" value="true"/>
+									<span>Con Historia Asociada</span>
+								</div>
+								<div class="radioInput">
+									<input type="radio" name="haveStory" value="false"/>
+									<span>Sin Historia asociada</span>
+								</div>
+							 
+							<input type="radio" name="haveStory" value="default" style="visibility: hidden;position:absolute" checked/>
+						</div>  
 										
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
 							<form:button class="boton btn rounded-pill">Filtrar</form:button>
@@ -231,10 +250,24 @@
 								</c:forEach>
 							</form:select>
 						</div>
-				
-										
+						
+						<div class="form-group d-flex justify-content-between align-items-center my-4">
+							<form:label class="form-control-label" path="haveStory" style="position:absolute"></form:label>  
+								<div class="radioInput">
+									<input type="radio" name="haveStory" value="true"/>
+									<span>Con Historia Asociada</span>
+								</div>
+								<div class="radioInput">
+									<input type="radio" name="haveStory" value="false"/>
+									<span>Sin Historia asociada</span>
+								</div>
+							 
+							<input type="radio" name="haveStory" value="default" style="visibility: hidden;position:absolute" checked/>
+						</div> 
+													
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
 							<form:button class="boton btn rounded-pill">Filtrar</form:button>
+
 						</div>
 					</form:form>
 				</div>

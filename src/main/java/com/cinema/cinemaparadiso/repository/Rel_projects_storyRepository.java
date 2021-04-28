@@ -20,6 +20,9 @@ import com.cinema.cinemaparadiso.model.Rel_projects_story;
 		
 		@Query("SELECT rel_projects_story FROM Rel_projects_story rel_projects_story WHERE rel_projects_story.project_id = ?1")
 		public List<Rel_projects_story> findRelacionesByProject(Integer projectId) throws DataAccessException;
+		
+		@Query("SELECT rel_projects_story FROM Rel_projects_story rel_projects_story WHERE rel_projects_story.story_id = ?1")
+		public List<Rel_projects_story> findRelacionesByStory(Integer storyID) throws DataAccessException;
 
 		@Transactional
 		@Modifying

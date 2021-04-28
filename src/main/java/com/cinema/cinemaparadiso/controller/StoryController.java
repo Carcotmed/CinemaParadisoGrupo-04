@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.RelUserStory;
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
+import com.cinema.cinemaparadiso.service.RelUserStoryService;
 import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
 import com.cinema.cinemaparadiso.service.StoryService;
 import com.cinema.cinemaparadiso.service.UserService;
@@ -60,6 +62,9 @@ public class StoryController {
 
 	@Autowired
 	private Rel_projects_storyService rel_projects_storyService;
+	
+	@Autowired
+	private RelUserStoryService relUserStoryService;
 
 	@Transactional
 	@GetMapping("/request/{storyId}/{projectId}")
@@ -107,6 +112,7 @@ public class StoryController {
 	@PostMapping("/update/{storyId}")
 	public String updateStory(@ModelAttribute("story") @Valid Story story,BindingResult result, Model model, @PathVariable("storyId") Integer storyId) {
 		story.setId(storyId);
+		System.out.println(story.getNumLikes());
 		if(!storyService.isMyWriter(storyId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
@@ -119,6 +125,7 @@ public class StoryController {
 			log.info("Story Updated Successfully");
 			return "redirect:/stories/show/{storyId}";
 		} else {
+			System.out.println(result.getAllErrors());
 			return "stories/updateStory";
 		}
  
@@ -154,7 +161,7 @@ public class StoryController {
 		Iterable<Story> stories = storyService.list();
 		List<Genre> genres = Arrays.asList(Genre.values());
 		Story storiesFiltered = new Story();
-		
+		stories = storyService.sortByLikes(stories);	
 		model.addAttribute("stories", stories);
 		model.addAttribute("genres",genres);
 		model.addAttribute("storiesFiltered",storiesFiltered);
@@ -179,7 +186,6 @@ public class StoryController {
 	        	chosenSponsoredStories.add(allSponsoredStories.get(list.get(i)));
 	        }
 		}
-		System.out.println(allSponsoredStories);
         model.addAttribute("sponsoredStories",chosenSponsoredStories);
 		
 		return "stories/listStory";
@@ -190,16 +196,21 @@ public class StoryController {
 	public String list(@ModelAttribute("storiesFiltered") Story storiesFiltered,Model model) {
 		List<Story> stories = storyService.list();
 		List<Genre> genres = Arrays.asList(Genre.values());
-		
+
+		stories = storyService.sortByLikesList(stories);
 		model.addAttribute("stories", stories);
 		model.addAttribute("storiesFiltered",storiesFiltered);
 		
+		String defaultS = "truefalse";
+
 		
 		List<Story> storiesFiltrados = stories.stream()
 				.filter(s->s.getTitle().toLowerCase().contains(storiesFiltered.getTitle().toLowerCase()) 
 				&&(!genres.contains(storiesFiltered.getGenre()) || s.getGenre().equals(storiesFiltered.getGenre()))
-				).collect(Collectors.toList());
+				&& (( rel_projects_storyService.haveStoryProject(s.getId()).equals(storiesFiltered.getHaveProject())
+				) || !defaultS.contains(storiesFiltered.getHaveProject())) ).collect(Collectors.toList());
 		
+		storiesFiltrados= storyService.sortByLikesList(storiesFiltrados);
 		model.addAttribute("stories",storiesFiltrados);
 		model.addAttribute("genres", genres);
 		
@@ -230,15 +241,31 @@ public class StoryController {
 	
 	@GetMapping(value = { "/show/{storyId}" })
 	public String showStory(@PathVariable("storyId") int storyId, Model model) {
+		try {
+			String username = userService.getPrincipal().getUsername();
+			Boolean actualUserLiked = relUserStoryService.actualUserLiked(storyId, username);
+			log.info("***********************************" +actualUserLiked+"**********************************");
+			model.addAttribute("actualUserLiked",actualUserLiked);
+		}catch (Exception e) {
+			model.addAttribute("actualUserLiked",false);
+		}
 		Story story = storyService.findStoryById(storyId);
 		Writer myWriter = storyService.findMyWriter(storyId);
 		Boolean showButton = storyService.isMyWriter(storyId) || userService.isAdmin();
+
+		Long likes = relUserStoryService.count(storyId);
+
+		List<Project> myProjectsRel = storyService.findMyProjects(storyId);
+
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("story", story);
 		model.addAttribute("myWriter",myWriter);
+		model.addAttribute("myProjectsRel",myProjectsRel);
 		model.addAttribute("writerUsername", myWriter.getUser().getUsername());
 		model.addAttribute("showButton",showButton);
 		model.addAttribute("isAdmin",userService.isAdmin());
+		model.addAttribute("likes",likes);
+		
 		try {
 			Artist artist = artistService.getPrincipal();
 			List<Project> projects = projectService.findProjectByAdminUsername(artist.getUser().getUsername());
@@ -277,6 +304,44 @@ public class StoryController {
 			log.error("Error Deleting Project", e);
 		}
 		return "redirect:/stories/list";
+	}
+	
+	@GetMapping("/like/{storyId}")
+	public String like(@PathVariable("storyId") Integer storyId) {
+		String username = userService.getPrincipal().getUsername();
+		try {
+			if(!relUserStoryService.actualUserLiked(storyId, username)) {
+				RelUserStory rel = new RelUserStory();
+				rel.setStory_id(storyId);
+				rel.setUsername(username);
+				relUserStoryService.save(rel);
+			}
+			
+		}catch (Exception e) {
+			log.error("Error Like", e);
+		}
+		
+		
+		
+		return "redirect:/stories/show/"+storyId;
+	}
+	
+	@GetMapping("/notLike/{storyId}")
+	public String notLike(@PathVariable("storyId") Integer storyId) {
+		String username = userService.getPrincipal().getUsername();
+		try {
+			if(relUserStoryService.actualUserLiked(storyId, username)) {
+				RelUserStory rel = relUserStoryService.findRelationByUsernameAndId(username, storyId);
+				rel.setStory_id(storyId);
+				rel.setUsername(username);
+				relUserStoryService.deleteLike(rel);
+			}
+
+		}catch (Exception e) {
+			log.error("Error Not Like", e);
+		}
+		
+		return "redirect:/stories/show/"+storyId;
 	}
 
 }

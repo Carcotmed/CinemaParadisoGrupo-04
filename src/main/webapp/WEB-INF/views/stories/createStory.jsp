@@ -95,9 +95,47 @@
 				</div>
 				<form:errors style="color:red" path="body"/>
 						
+<!--  HEAD -->
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="d-flex flex-wrap ">
 						<form:label class="rounded-pill form-control-label" path="genre">G&eacutenero</form:label>
+<!--  ======= -->
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+							<div class="d-flex flex-wrap ">
+								<form:label class="p-2 rounded-pill form-control-label" style="background-color:#828282" path="body">Historia</form:label>
+							</div>
+							<form:input class="form-control" value="${story.body}" placeholder="Historia" style="margin-left: 3%;width:60%" type="text" path="body"></form:input>
+						</div>
+						<form:errors style="color:red" path="body"/>
+					
+					
+						<div class="d-flex justify-content-between align-items-center" style="margin:1% 0">
+							<div class="d-flex flex-wrap ">
+								<form:label class="p-2 rounded-pill form-control-label" path="genre" style="background-color:#828282">Género</form:label>
+							</div>
+							<form:select value="${story.genre}" class="form-control" style="width:60%" path="genre">
+								<form:option value="" selected="true">Selecciona un género</form:option>
+								<c:forEach items="${genres}" var="genre">
+									<form:option value="${genre}">${genre}</form:option>
+								</c:forEach>
+							</form:select>
+						</div>
+						<form:errors style="color:red" path="genre"/>
+						<div class="d-flex justify-content-between align-items-center"
+						style="margin: 1% 0">
+						<div class="d-flex flex-wrap ">
+							<form:label class="p-2 rounded-pill form-control-label"
+								style="background-color:#828282" path="photo">Url imagen</form:label>
+						</div>
+						<form:input class="form-control" value="${story.photo}"
+							placeholder="url" style="margin-left: 3%;width:60%" type="text"
+							path="photo"></form:input>
+					</div>
+					<form:errors style="color:red" path="photo" />
+						<div class="form-group d-flex justify-content-center align-items-center my-4">
+							<form:button class="btn" style="color:white;background-color: #af3248">Guardar</form:button>
+						</div>
+<!-- develop -->
 					</div>
 					<form:select value="${story.genre}" class="form-control" path="genre">
 						<form:option value="" selected="true">Selecciona un g&eacutenero</form:option>

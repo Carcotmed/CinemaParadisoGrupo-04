@@ -69,7 +69,7 @@
 			margin-bottom: 1rem;
 		}
 		
-		.ficha-tecnica img{
+		.ficha-tecnica > img{
 			object-fit: cover;
 			min-height: 20rem;
 		}
@@ -93,7 +93,7 @@
 			margin-bottom: 1rem;
 		}
 		
-		#resumen{
+		#resumen, #historia{
 			 width: 70%;
 		}
 		
@@ -101,12 +101,60 @@
 			display: none;
 		}
 		
+		#historia img{
+			height:7rem;
+			width:7rem;
+			object-fit: cover;
+		}
 		
+		
+		#historia > div{
+			border-radius: 20px;
+			padding: 0.5rem 1rem;
+			cursor: pointer;
+			transition: 0.3s;
+		}
+		
+		#historia > div:hover{
+			background-color: var(--rojo);
+			padding: 0.5rem 2rem;
+		}
+		
+		#tablonMsg{
+			position: relative;
+			background-color: var(--gris);
+			margin-top: 1rem;
+			padding: 1rem;
+			overflow-y: hidden;
+		}
+		
+		#tablonMsg h4{
+			text-align: center;
+		}
+		
+		#tablonMsg .linea-hor{
+			background-color: var(--rojo);
+			border-color: var(--rojo);
+			width: 60%;
+			margin: 1rem auto;
+		}
+		
+		#tablonMsg > div > div{
+			padding: 1rem 2rem;
+			
+		}
+		
+		#tablonMsg > div{
+			overflow-y: scroll;
+			margin-top: 1rem;
+			max-height: 30rem;
+			
+		}
+
 					
 		@media(max-width: 1545px) {
 			.lista{
 			 	grid-template-columns: repeat(4, 13rem);
-
 			}
 	
 		}
@@ -187,6 +235,15 @@
 			.padding-footer{
 				padding-bottom: 30rem !important;
 			}
+			
+			#tablonMsg > div > div{
+				display: block !important;
+				padding: unset;
+			}
+			
+			#tablonMsg h4 {
+				margin-bottom: 1.5rem;
+			}
 						
 		}
 				
@@ -216,10 +273,10 @@
 				</div>
 				
 				<c:if test="${ story!= null}">
-					<div>
+					<div id="historia">
 						<h4>Historia asociada</h4>
-						<div class="d-flex flex-wrap justify-content-between">
-							<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg">
+						<div class="d-flex align-items-center" onClick="location.href='/stories/show/${story.id}'">
+							<img class="rounded-circle" src="${story.photo}">
 							<p style="margin-left: 3%">${story.title}</p>
 						</div>
 					</div>
@@ -312,6 +369,30 @@
 				
 			</div>
 		</div>
+		
+		<c:if test="${pertenece || perteneceP}">
+			<div class="card-wrap" id="tablonMsg">
+				<h4>Tabl&oacuten de anuncios</h4>
+				
+				<button  onclick="location.href='/posts/create/${project.id}'" class="boton btn rounded-pill" id="levantaModal">Nuevo anuncio</button>
+
+				<div>
+					<c:forEach items="${posts}" var="post">
+						<div>
+							<h6>${post.title}</h6>
+							<p>${post.body}</p>
+							<div class="d-flex justify-content-between">								
+								<p>${post.username}</p>
+								<p>${post.date}</p>
+							</div>
+						</div>
+					            
+						<hr class="linea-hor">
+					</c:forEach>
+				</div>
+				
+			</div>
+		</c:if>
 		
 		
 		<div class="card-wrap integrantes">

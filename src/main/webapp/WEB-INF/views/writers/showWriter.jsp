@@ -149,10 +149,6 @@
 				width: 100%;
 			}
 			
-			.padding-footer{
-				padding-bottom: 29rem !important;
-			}
-			
 		}
 				
 		
@@ -209,7 +205,7 @@
 					</div>
 					<c:forEach items="${stories}" var="story">
 						<div class="perfil-element-wrap" onClick="location.href='/stories/show/${story.id}'">
-							<img class="rounded-circle" src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg">
+							<img class="rounded-circle" src="${story.photo}">
 							<div>
 								<h5>${story.title}</h5>
 								<p>${story.genre}</p>

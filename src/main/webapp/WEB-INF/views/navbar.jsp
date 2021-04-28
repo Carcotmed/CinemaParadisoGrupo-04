@@ -162,6 +162,19 @@
 		background-color: rgb(0 0 0 / 40%);
 	}
 
+	.terminos-input input{
+			width: 20% !important;
+		}
+		
+	.terminos-input{
+		margin-top: 2rem;
+	}
+	
+	.terminos-input label{
+		width: 100%;
+		font-weight: unset !important;
+	}
+
 		
 	@media(max-width: 1160px) {
 		#menu-list > ul{
@@ -260,8 +273,7 @@
 		.element-sponsored h4{
 			z-index: 1;
 			text-shadow: 0 0 10px black;
-		}
-			
+		}	
 	
 	}
 	
@@ -302,9 +314,22 @@
 	    	botonUp.style.display = "none";
 
 	    }
-
-		
 	})
+	
+	$(document).ready(function () {
+		$.ajax({
+		    type : "GET",
+		    url : "/messages/check",
+		    data : {
+		    	"username": $("#usernameContainer").text()
+		    },
+		    success: function(data){
+		    	if(data && data=="true"){
+		    		$("#messagesButton").css("background-color", "#359106");
+		    	}
+		    }
+		});
+	});
 	
 </script>
 <head>
@@ -312,6 +337,8 @@
 </head>
 <nav id="nav" style="padding: 0.5rem 1rem; z-index: 99; top: 0"
 	class="position-fixed d-flex justify-content-between align-items-center w-100">
+			
+	<p style="display: none;" id="usernameContainer"><sec:authentication property="name"/></p>
 	
 	<div class="d-flex align-items-center"
 		style="cursor: pointer; width: 20%" onClick="location.href='/'">
@@ -332,7 +359,7 @@
 				<li onClick="location.href='/projects/list'">Proyectos</li>
 				<li onClick="location.href='/producers/list'">Productoras</li>
 				<sec:authorize access="isAuthenticated()">
-					<li onClick="location.href='/messages/list'">Mensajes</li>
+					<li id="messagesButton" onClick="location.href='/messages/list'">Mensajes</li>
 				</sec:authorize>
 				<li class="pro" onClick="location.href='/pro'">PRO</li>
 				<sec:authorize access="!isAuthenticated()">
@@ -363,7 +390,7 @@
 			onClick="location.href='/producers/list'">Productoras</button>
 
 		<sec:authorize access="isAuthenticated()">
-			<button class="boton btn rounded-pill"
+			<button id="messagesButton" class="boton btn rounded-pill"
 				onClick="location.href='/messages/listReceived'">Mensajes</button>
 		</sec:authorize>
 		<button class="boton pro btn rounded-pill"

@@ -60,7 +60,6 @@
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
-
 	<div class="video-wrapper">
 		<video autoplay muted loop class="w-100 position-absolute"
 			src="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/develop/src/main/webapp/WEB-INF/views/static/index-video.mp4?raw=true"
@@ -88,7 +87,7 @@
 				<p class="text-center">Tu mejor opción para
 					formar un equipo para realizar tus proyectos cinematogr&aacuteficos
 					personales</p>
-			</div>
+			</div>			
 		</div>
 	</div>
 
@@ -125,5 +124,6 @@
 	</div>
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+
 </body>
 </html>

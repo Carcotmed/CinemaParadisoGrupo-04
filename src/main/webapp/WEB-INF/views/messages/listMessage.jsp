@@ -118,8 +118,7 @@
 				<span class="bold">RECEPTOR</span>
 				<span class="bold">ACCIONES</span>
                  	
-				<!-- Contenido -->
-				
+				<!-- Contenido -->	
 				<c:forEach items="${messages}" var="message">
                  	<span>${message.issue}</span>
                  	<fmt:formatDate value="${message.messageDate}" type="date" pattern="yyyy/MM/dd HH:mm" var="messageDate"/>

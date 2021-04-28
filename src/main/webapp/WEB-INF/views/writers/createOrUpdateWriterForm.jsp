@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <html>
 <head>
@@ -138,6 +139,12 @@
 						placeholder="url" type="text" path="photo"></form:input>
 				</div>
 				<form:errors style="color:red" path="photo" />
+				
+				<div class="d-flex align-items-center terminos-input">
+					<label>
+						<input type="checkbox" name="cb-terminosservicio" required> Acepto los  <a href="/terms" target="_blank">T&eacuterminos y Condiciones de Uso</a>
+					</label>
+				</div>
 				
 				<div class="d-flex justify-content-center align-items-center" style="margin-top: 2rem;">
 					<form:button class="boton btn rounded-pill">Guardar</form:button>

@@ -37,4 +37,9 @@ public class LoginController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/terms")
+	public String termsConditions(Model model) {
+		return "terms";
+	}
+
 }

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 	<style>
 	
@@ -72,11 +72,11 @@
 			}
 			
 			footer{
-				height: 32rem;
+				height: 35rem;
 			}
 			
 			.padding-footer{
-				padding-bottom: 32rem;
+				padding-bottom: 35rem;
 			}
 			
 			footer > * > div{
@@ -104,7 +104,8 @@
 			
 			<div class="d-flex flex-column">
 				<h5>Legal</h5>
-				<p>Cinema Paradiso no está afiliado de ninguna forma a Ariane Films, Miramax o cualquier otra empresa que disponga los derechos de la pel&iacutecula.</p>
+				<p>Cinema Paradiso no est&aacute afiliado de ninguna forma a Ariane Films, Miramax o cualquier otra empresa que disponga los derechos de la pel&iacutecula.</p>
+				<a href="/terms" target="_blank">TÃ©rminos y Condiciones de Uso</a>
 			</div>
 			
 			<div class="d-flex flex-column">
@@ -132,14 +133,14 @@
 			
 			<div>
 				<h5>Legal</h5>
-				<p>Cinema Paradiso no está afiliado de ninguna forma a Ariane Films, Miramax o cualquier otra empresa que disponga los derechos de la pel&iacutecula.</p>
+				<p>Cinema Paradiso no est&aacute afiliado de ninguna forma a Ariane Films, Miramax o cualquier otra empresa que disponga los derechos de la pel&iacutecula.</p>
+				<a href="/terms" target="_blank">TÃ©rminos y Condiciones de Uso</a>
 			</div>
 			
 			<div>
 				<h5>Contacto</h5>
 				<p>Email: cinemaparadisoapp@gmail.com</p>
 			</div>
-			
 		</div>
 	</footer>
 </html>

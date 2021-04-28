@@ -75,5 +75,87 @@ public class Project extends BaseEntity {
 	@Column(name="isSponsored", columnDefinition="bool default false")
 	private Boolean isSponsored;
 	
+
+	@Column(name="haveStory")
+	private String haveStory;
+	
+	
+
+	public Project() {}
+	public Project(String title, String description, Genre genre, Integer id, String myAdmin, String photo) {
+		this.title = title;
+		this.description = description;
+		this.genre = genre;
+		this.id = id;
+		this.isSponsored = false;
+		this.myAdmin = myAdmin;
+		this.photo = photo;
+		this.pro = false;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
+		result = prime * result + ((isSponsored == null) ? 0 : isSponsored.hashCode());
+		result = prime * result + ((myAdmin == null) ? 0 : myAdmin.hashCode());
+		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
+		result = prime * result + ((pro == null) ? 0 : pro.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Project other = (Project) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (genre != other.genre)
+			return false;
+		if (isSponsored == null) {
+			if (other.isSponsored != null)
+				return false;
+		} else if (!isSponsored.equals(other.isSponsored))
+			return false;
+		if (myAdmin == null) {
+			if (other.myAdmin != null)
+				return false;
+		} else if (!myAdmin.equals(other.myAdmin))
+			return false;
+		if (photo == null) {
+			if (other.photo != null)
+				return false;
+		} else if (!photo.equals(other.photo))
+			return false;
+		if (pro == null) {
+			if (other.pro != null)
+				return false;
+		} else if (!pro.equals(other.pro))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Project (" + id + ")[title=" + title + ", genre=" + genre + ", description=" + description + ", pro=" + pro
+				+ ", photo=" + photo + ", myAdmin=" + myAdmin + ", isSponsored=" + isSponsored + "]";
+	}
+
+	
+	
  
 }

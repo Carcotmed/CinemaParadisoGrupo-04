@@ -65,7 +65,7 @@ public class WriterController {
 	public String showWriter(@PathVariable("writerId") int writerId, Model model) {
 		Writer writer = writerService.findWriterById(writerId);
 		List<Story> stories = writerService.findMyStories(writerId);
-		Boolean sameWriter = userService.isAdmin();
+		Boolean sameWriter = false;
 		try {
 			sameWriter = writerService.getPrincipal().getId().equals(writerId);
 				}
