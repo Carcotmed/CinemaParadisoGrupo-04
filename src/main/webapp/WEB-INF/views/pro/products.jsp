@@ -6,7 +6,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head>
 <meta charset="UTF-8">
@@ -17,145 +16,212 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-
-<title>Products</title>
 <script
 		src="https://www.paypal.com/sdk/js?client-id=AXbp0NhXvchBXWtbvtRNBvVdch6cABb0d7084I04WtigxqKbiVA6WPNIJFwzLyXd-0el451LDtbOEwI2&currency=EUR"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
 </script>
 </head>
-<body class="position-relative">
+<style>
+	.background-image{
+		z-index: -1;
+	   background-image: url(https://hardfun.cl/inicio/wp-content/uploads/2018/02/Lets-Film.jpg);
+	   width: 100%;
+	   position: absolute;
+	   height: 100%;
+	   filter: blur(5px);
+	}
+	
+	.wrapper{
+		width: 80%;
+		border-radius: 20px;
+		box-shadow: 0 0 10px black;
+		background-color: var(--gris);
+		margin: 2rem 0;
+		padding: 1rem;
+	}
+	
+	.wrapper p {
+		text-align: center;
+		margin: 1rem 0;
+	}
+	
+	.padding-nav{
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+	
+	.pagos{
+		display: flex;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.pagos > div{
+		height: 100%;
+		width: 50%;
+		padding:2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	
+	.pagos h3, .pagos p{
+		text-align: center;
+	}
+	
+	#paypal-button-project,  #paypal-button-pro{
+		padding: 0 4rem;
+	}
+	
+	.linea-hor{
+		display: none;
+	}
+	
+	@media(max-width: 1160px) {
+		
+		.padding-nav{
+			padding-top: 6rem !important;
+			height: unset;
+		}
+		
+		.pagos, .pagos > div{
+			display: block;
+			width: unset;
+			padding: 0.5rem;
+		}
+		
+		#paypal-button-project,  #paypal-button-pro{
+			padding:unset;
+		}
+		
+		.linea-hor{
+			background-color: var(--rojo);
+			border-color: var(--rojo);
+			display: block;
+		}
+	}
+	
+</style>
+<body>
 
 	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
-
-<div class="p-4 d-flex flex-column justify-content-start align-items-center" style="width:100%;background-color: #3e3e3e">
-
-<br>
-<br>
-
+	<div class="background-image"></div>
 	
 
+	<div class="padding-nav padding-footer">
+
 	<script>
-    function post(path, params, method='post') {
-    	  // The rest of this code assumes you are not using a library.
-    	  // It can be made less verbose if you use one.
-    	  const form = document.createElement('form');
-    	  form.method = method;
-    	  form.action = path;
-    	  for (const key in params) {
-    	    if (params.hasOwnProperty(key)) {
-    	      const hiddenField = document.createElement('input');
-    	      hiddenField.type = 'hidden';
-    	      hiddenField.name = key;
-    	      hiddenField.value = params[key];
-    	      form.appendChild(hiddenField);
-    	    }
-    	  }
-    	  document.body.appendChild(form);
-    	  form.submit();
-    	}
+	    function post(path, params, method='post') {
+	     	  const form = document.createElement('form');
+	    	  form.method = method;
+	    	  form.action = path;
+	    	  for (const key in params) {
+	    	    if (params.hasOwnProperty(key)) {
+	    	      const hiddenField = document.createElement('input');
+	    	      hiddenField.type = 'hidden';
+	    	      hiddenField.name = key;
+	    	      hiddenField.value = params[key];
+	    	      form.appendChild(hiddenField);
+	    	    }
+	    	  }
+	    	  document.body.appendChild(form);
+	    	  form.submit();
+	    	}
 	
 	</script>
 		
-	<!-- COSAS DE ARTIST -->
-	<sec:authorize access="hasAuthority('artist')">
-		<div class="d-flex justify-content-center align-items-center"> 
-			<div style="width:46%;margin:2%" class="d-flex flex-column align-items-center">
-				<h3 style="margin: 0.7vw; color:white" >Un solo Proyecto (3&#8364)</h3>
-				<p style="color:white;text-align:center;font-size:1.2rem">A&ntildeade un proyecto extra al n&uacutemero de proyectos que puedes crear</p>
-				<div  id="paypal-button-project"></div>
-			</div>
+		<div class="wrapper">
+		
+			<!-- COSAS DE ARTIST -->
+			<sec:authorize access="hasAuthority('artist')">
 			
-			<div style="width:46%;margin:2%" class="d-flex flex-column align-items-center">
-				<h3 style="margin: 0.7vw; color:white">PRO (15&#8364)</h3>
-				<p style="color:white;text-align:center;font-size:1.2rem">°A&ntildeade tres proyectos extra al n&uacutemero de proyectos que puedes crear y adem&aacutes convi&eacutertete en usuario PRO!
-				°Aparecer&aacutes arriba en el listado y aumentar&aacutes tu probabilidad de que te encuentren!</p>
-				<div id="paypal-button-pro"></div>
-			</div>
-			<!-- TODO
-			<div>
-				<button class="btn rounded-pill" onClick="location.href='/patata'" style="color:white;height: fit-content;background-color: #af3248">
-				Anunciar proyecto
-				</button>
-			</div>
-			 -->
-			 	
-			 
-		</div>
-		<p style="color:white;text-align:center;font-size:1.2rem">
-			 		Para anunciar uno de tus proyectos, utiliza el bot&oacuten "Anunciar" en los detalles de tu proyecto.
+				<div class="pagos"> 
+					<div>
+						<div>
+							<h3>Un solo Proyecto (3&#8364)</h3>
+							<p>A&ntildeade un proyecto extra al n&uacutemero de proyectos que puedes crear</p>
+						</div>
+						<div  id="paypal-button-project"></div>
+					</div>
+					
+					<hr class="linea-hor">
+					
+					<div>
+						<div>
+							<h3>PRO (15&#8364)</h3>
+							<p>A&ntildeade tres proyectos extra al n&uacutemero de proyectos que puedes crear y adem&aacutes convi&eacutertete en usuario PRO!
+							Aparecer&aacutes arriba en el listado y aumentar&aacutes tu probabilidad de que te encuentren!</p>
+						</div>
+						<div id="paypal-button-pro"></div>
+					</div>
+					
+					<hr class="linea-hor">
+					
+					 
+				</div>
+				<p>
+			 		Si lo que buscas es anunciar uno de tus proyectos, utiliza el bot&oacuten "Anunciar" que encontrar&aacutes en los detalles de tu proyecto.
 			 	</p>
-	</sec:authorize>
+			</sec:authorize>
 	
-	<!-- COSAS DE WRITER -->
-	<sec:authorize access="hasAuthority('writer')">
-		<!-- TODO
-		<div> 
-			<button class="btn rounded-pill" onClick="location.href='/patata'" style="color:white;height: fit-content;background-color: #af3248">
-			Anunciar historia
-			</button>
-		</div>
-		 -->
-		 
-		 <div>
-		 	<p style="color:white">
-		 		Para anunciar una de tus historias, utiliza el bot√≥n "Anunciar" en los detalles de tu historia.
-		 	</p>
-		 </div>
-		 
-	</sec:authorize>
+			<!-- COSAS DE WRITER -->
+			<sec:authorize access="hasAuthority('writer')">
+				 	<p>
+				 		Para anunciar una de tus historias, utiliza el bot&oacuten "Anunciar" que encontrar&aacutes en los detalles de tu historia.
+				 	</p>
+			</sec:authorize>
 	
-	<script>
-	paypal.Buttons({
-	    createOrder: function(data, actions) {
-	      // This function sets up the details of the transaction, including the amount and line item details.
-	      return actions.order.create({
-	        purchase_units: [{
-	          amount: {
-		        currency: 'EUR',
-	            value: '3.00'
-	          }
-	        }]
-	      });
-	    },
-	    onApprove: function(data, actions) {
-	      // This function captures the funds from the transaction.
-	      return actions.order.capture().then(function(details) {
-	    	  post("/pro/confirmedProyect", {paymentDetails: details, ${_csrf.parameterName}:"${_csrf.token}"})
-	      });
-	    }
-	  }).render('#paypal-button-project');
-	  //This function displays Smart Payment Buttons on your web page.
-  </script>
+			<script>
+			paypal.Buttons({
+			    createOrder: function(data, actions) {
+			      return actions.order.create({
+			        purchase_units: [{
+			          amount: {
+				        currency: 'EUR',
+			            value: '3.00'
+			          }
+			        }]
+			      });
+			    },
+			    onApprove: function(data, actions) {
+			      return actions.order.capture().then(function(details) {
+			    	  post("/pro/confirmedProyect", {paymentDetails: details, ${_csrf.parameterName}:"${_csrf.token}"})
+			      });
+			    }
+			  }).render('#paypal-button-project');
+		  </script>
   
-  <script>
-	paypal.Buttons({
-	    createOrder: function(data, actions) {
-	      // This function sets up the details of the transaction, including the amount and line item details.
-	      return actions.order.create({
-	        purchase_units: [{
-	          amount: {
-	        	currency: 'EUR',
-	            value: '15.00'
-	          }
-	        }]
-	      });
-	    },
-	    onApprove: function(data, actions) {
-	      // This function captures the funds from the transaction.
-	      return actions.order.capture().then(function(details) {
-	    	  post("/pro/confirmedPro", {paymentDetails: details, ${_csrf.parameterName}:"${_csrf.token}"})
-	      });
-	    }
-	  }).render('#paypal-button-pro');
-	  //This function displays Smart Payment Buttons on your web page.
-  </script>
+		  <script>
+			paypal.Buttons({
+			    createOrder: function(data, actions) {
+			      return actions.order.create({
+			        purchase_units: [{
+			          amount: {
+			        	currency: 'EUR',
+			            value: '15.00'
+			          }
+			        }]
+			      });
+			    },
+			    onApprove: function(data, actions) {
+			      return actions.order.capture().then(function(details) {
+			    	  post("/pro/confirmedPro", {paymentDetails: details, ${_csrf.parameterName}:"${_csrf.token}"})
+			      });
+			    }
+			  }).render('#paypal-button-pro');
+		  </script>
+		  
+			<sec:authorize access="hasAuthority('producer')">
+				 	<p>
+				 		Lo sentimos, pero actualmente no disponemos de planes PRO para productoras.
+				 	</p>
+			</sec:authorize>		  
 
-<br>
-<br>
-<br>
+		</div>
 
-</div>
-		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+	</div>
+
+	<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 
 </body>
 </html>

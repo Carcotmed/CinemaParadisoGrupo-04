@@ -71,6 +71,7 @@
 		
 		.ficha-tecnica img{
 			object-fit: cover;
+			min-height: 20rem;
 		}
 		
 		.lista{
