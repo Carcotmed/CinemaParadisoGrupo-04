@@ -73,6 +73,10 @@
 		padding: 0 4rem;
 	}
 	
+	#paypal-button-project{
+		margin-top: 3rem;
+	}
+	
 	.linea-hor{
 		display: none;
 	}
@@ -98,6 +102,10 @@
 			background-color: var(--rojo);
 			border-color: var(--rojo);
 			display: block;
+		}
+		
+		#paypal-button-project{
+			margin-top: unset;
 		}
 	}
 	
