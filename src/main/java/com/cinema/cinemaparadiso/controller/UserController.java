@@ -36,35 +36,35 @@ public class UserController {
         return "users/listUser";
     }
 
-    @GetMapping("/create")
-    public String initFormCreateUser(Model model){
-        User user = new User();
-        model.addAttribute("user", user);
-        Artist artist = new Artist();
-        model.addAttribute("artist", artist);
-        Producer producer = new Producer();
-        model.addAttribute("producer", producer);
-        Writer writer = new Writer();
-        model.addAttribute("writer", writer);
-        model.addAttribute("tipoUser", "artist");
-        return "users/createUserForm";
-    }
+//    @GetMapping("/create")
+//    public String initFormCreateUser(Model model){
+//        User user = new User();
+//        model.addAttribute("user", user);
+//        Artist artist = new Artist();
+//        model.addAttribute("artist", artist);
+//        Producer producer = new Producer();
+//        model.addAttribute("producer", producer);
+//        Writer writer = new Writer();
+//        model.addAttribute("writer", writer);
+//        model.addAttribute("tipoUser", "artist");
+//        return "users/createUserForm";
+//    }
     
     @GetMapping("/select")
     public String selectUser(Model model){
         return "users/selectUser";
     }
 
-    @PostMapping("/create")
-    public String createUser(@Validated @ModelAttribute("user") User user, BindingResult result){
-        try{
-            userService.createUser(user);
-            log.info("User Created Successfully");
-        }catch(Exception e){
-            log.error("Error Create User", e);
-        }
-        return "users/createUserForm";
-    }
+//    @PostMapping("/create")
+//    public String createUser(@Validated @ModelAttribute("user") User user, BindingResult result){
+//        try{
+//            userService.createUser(user);
+//            log.info("User Created Successfully");
+//        }catch(Exception e){
+//            log.error("Error Create User", e);
+//        }
+//        return "users/createUserForm";
+//    }
     
     @GetMapping("/miPerfil")
     public String myProfile() {
