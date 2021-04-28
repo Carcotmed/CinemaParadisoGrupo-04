@@ -50,9 +50,6 @@ public class UserControllerTests {
 	@MockBean
 	private UserService userService;
 
-	@MockBean
-	private ArtistService artistService;
-
 	private static User user1 = new User("testUser1", "testPassword1", "testEmail1@gmail.com");
 	private static User user2 = new User("testUser2", "testPassword2", "testEmail2@gmail.com");
 
