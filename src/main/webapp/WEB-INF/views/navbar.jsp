@@ -174,7 +174,20 @@
 		width: 100%;
 		font-weight: unset !important;
 	}
-
+		
+	@keyframes pulse {
+	    0% {
+	     transform: scale(1, 1);
+	    }
+	
+	    50% {
+	     transform: scale(1.1, 1.1);
+	    }
+	
+	    100% {
+	    transform: scale(1, 1);
+    	}
+	}
 		
 	@media(max-width: 1160px) {
 		#menu-list > ul{
@@ -328,6 +341,7 @@
 		    	if(data && data=="true"){
 		    		$("#messagesButton").css("background-color", "rgb(234 154 55)");
 		    		$("#messagesButton").css("border", "none");
+		    		$("#messagesButton").css("animation", "pulse 1s linear infinite");
 
 		    		$("#messagesButtonMobile").css("background-color", "rgb(234 154 55)");
 		    	}
@@ -413,8 +427,10 @@
 				class="boton btn rounded-pill">Registrate</button>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<button onClick="location.href='/users/miPerfil'"
-				class="boton btn rounded-pill">Perfil</button>
+			<sec:authorize access="!hasAuthority('admin')">
+				<button onClick="location.href='/users/miPerfil'"
+					class="boton btn rounded-pill">Perfil</button>
+			</sec:authorize>
 			<button onClick="location.href='/logoutsecure'"
 				class="boton btn rounded-pill">Salir</button>
 		</sec:authorize>

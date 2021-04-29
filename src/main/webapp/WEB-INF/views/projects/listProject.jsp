@@ -15,8 +15,8 @@
 			display: block;
 			position: relative;
 			background-color: var(--rojo);
-			border-radius: 0 100px 100px 0;
-		    box-shadow: 0 0 10px black;
+			border
+		    padding-right: 0.6rem;   box-shadow: 0 0 10px black;
 		}
 		
 		label{
@@ -163,10 +163,7 @@
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
 		rel="stylesheet"
 		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-		crossorigin="anonymous">
-</head>
-<body>
-<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
+		crossorig
 <script>
 	
 	$(window).scroll(function () {
@@ -174,6 +171,14 @@
 
 	    if($(window).scrollTop() > 400){
 	    	lista.classList.add("fondo-pj");
+
+	    }else{
+	    	lista.classList.remove("fondo-pj");
+	    }
+		
+	})
+	
+</script>pj");
 
 	    }else{
 	    	lista.classList.remove("fondo-pj");
@@ -307,7 +312,7 @@
 			<!-- Listado Mobile -->
 			<div id="list-wrap-mobile" class="padding-footer">
 				
-				<c:if test="${ sponsoredProjects.size()>0 }">
+				<c:if test="${sponsoredProjects.size()>0 }">
 					<div class="w-100" style="padding-top:1rem">
 						<c:forEach items="${ sponsoredProjects }" var="sponsoredProject">
 							<div onclick="location.href='/projects/show/${sponsoredProject.id}'" class="d-flex justify-content-center flex-column element-sponsored">

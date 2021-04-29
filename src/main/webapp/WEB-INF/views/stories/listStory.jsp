@@ -93,6 +93,35 @@
 		    background-position: center;
 		    border-radius: 20px;
 		}
+		
+		.radioInput{
+			display: flex;
+    		align-items: center;
+			text-align:center;
+		}
+		
+		.like{
+		    position: absolute;
+		    top: 0.5rem;
+		    display: flex;
+		    align-items: center;
+		    width: fit-content;
+		    justify-content: space-between;
+		    right: 0.5rem;
+		}
+		
+		.like img{
+			width: 1.5rem !important;
+			height: 1.5rem !important;
+		}
+		
+		.like h6{
+			margin: 0 0.5rem;
+		}
+		
+		.element-wrapper{
+			position: relative;
+		}
 					
 			
 		@media(max-width: 1545px) {
@@ -201,6 +230,20 @@
 								</c:forEach>
 							</form:select>
 						</div>
+						
+						<div class="form-group d-flex justify-content-between align-items-center my-4">
+							<form:label class="form-control-label" path="haveProject" style="position:absolute"></form:label>  
+								<div class="radioInput">
+									<input type="radio" name="haveProject" value="true"/>
+									<span>Con proyecto asociado</span>
+								</div>
+								<div class="radioInput">
+									<input type="radio" name="haveProject" value="false"/>
+									<span>Sin proyecto asociado</span>
+								</div>
+							 
+							<input type="radio" name="haveProject" value="default" style="visibility: hidden;position:absolute" checked/>
+						</div>  
 		
 										
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
@@ -230,92 +273,36 @@
 								</c:forEach>
 							</form:select>
 						</div>
+						
+						<div class="form-group d-flex justify-content-between align-items-center my-4">
+							<form:label class="form-control-label" path="haveProject" style="position:absolute"></form:label>  
+								<div class="radioInput">
+									<input type="radio" name="haveProject" value="true"/>
+									<span>Con proyecto asociado</span>
+								</div>
+								<div class="radioInput">
+									<input type="radio" name="haveProject" value="false"/>
+									<span>Sin proyecto asociado</span>
+								</div>
+							 
+							<input type="radio" name="haveProject" value="default" style="visibility: hidden;position:absolute" checked/>
+						</div>  
 				
-<!--  HEAD -->										
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
 							<form:button class="boton btn rounded-pill">Filtrar</form:button>
-<!-- ======= -->
-				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					<form:label class="form-control-label" path="genre">G&eacutenero:</form:label>
-					<form:select class="form-control" style="width:60%" path="genre">
-						<form:option value="" selected="true">Selecciona un g&eacutenero</form:option>
-						<c:forEach items="${genres}" var="genre">
-							<form:option value="${genre}">${genre}</form:option>
-						</c:forEach>
-					</form:select>
-				</div>
-				
-				<div class="form-group d-flex justify-content-between align-items-center my-4">
-					
-					<form:label class="form-control-label" path="haveProject"></form:label>  
-						<input type="radio" name="haveProject" value="true"/> Con Proyecto Asociado
-                    	<input type="radio" name="haveProject" value="false"/> Sin Proyecto asociado
-						<input type="radio" name="haveProject" value="default" style="visibility: hidden;" checked/>
-
-				</div>  
-								
-				<div class="form-group d-flex justify-content-center align-items-center my-4">
-					<form:button class="btn" style="color:white;background-color: #3e3e3e">Filtrar</form:button>
-				</div>
-			</form:form>
-		</div>
-
-		<!--  Listado  -->
-		<div class="w-75 p-4 d-flex flex-column justify-content-start align-items-center" style="background-color: #3e3e3e">
-			<c:if test="${ sponsoredStories.size()>0 }">
-				<div class="row">
-					<h4 style="padding-bottom: 1.5vw; padding-left: 4vw;">Historias descatacadas</h4>
-					<c:forEach items="${ sponsoredStories }" var="sponsoredStories">
-						<div onclick="location.href='/stories/show/${sponsoredStories.id}'" class="col-sm" style="cursor: pointer; height: fit-content; background-color: #c1c113; border-radius: 2vw; margin: 1vw 3vw 1vw 3vw; text-align: center; padding-bottom: 1vw; padding-top: 1vw;">
-							<div style="margin-bottom: 1vw; padding-left: 6vw; overflow:hidden;height:40%;width:80%">
-								<div  class="rounded-circle d-flex">
-									<img src="${sponsoredStories.photo}" style="border-radius: 50%; width:5vw;height:5vw;object-fit:cover">
-								</div>
-							</div>
-							<i>
-								<b>
-									${ sponsoredStories.title }
-								</b>
-							</i>
-<!-- develop -->
 						</div>
 					</form:form>
 				</div>
-<!--  HEAD -->
 			</div>
 	
 			<!--  Listado  -->
 			<div id="list-wrap" class="d-flex justify-content-center align-items-center w-75 padding-footer">
-<!-- ======= -->
-				<hr width="100%">
-			</c:if>
-			<div class="d-flex flex-wrap justify-content-center align-items-center">
-			
-	      		<c:forEach items="${stories}" var="stories">
-	      			<div class="d-flex flex-column align-items-center justify-content-evenly" style="cursor:pointer;flex-basis: 15%; margin: 1vw;height:10vw" onClick="location.href='/stories/show/${stories.id}'">
-	      				<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:80%">
-							<img src="${stories.photo}" style="cursor:pointer;width:100%;height:100%;object-fit:cover">
-						</div>
-		      			<h5 style="margin: 0.5vw; text-align:center">${stories.title}</h5>
-		      			<div style="display:flex">
-		      			<div>
-		      			<h7 style="margin: 0.5vw; text-align:center">${stories.numLikes} </h7>
-		      			</div>
-		      			<div>
-		      			<img  class= "rounded-circle" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png" 
-								style="width: 10%; height: 80%; "> 
-		      			</div>
-		      			</div>
-		      		</div>
-	      		</c:forEach>
-	      	</div>
-<!-- develop -->
-			
+		
 				<c:if test="${ sponsoredStories.size()>0 }">
 					<div class="w-100">
 						<c:forEach items="${ sponsoredStories }" var="sponsoredStory">
 							<div onclick="location.href='/stories/show/${sponsoredStory.id}'" class="d-flex justify-content-center flex-column element-sponsored">
-								<div class="sponsored-bckg"  style="background-image:url('https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg')"></div>
+								<div class="sponsored-bckg"  style="background-image:url('${sponsoredStory.photo}')"></div>
 								<h4>${sponsoredStory.title}</h4>
 							</div>
 						</c:forEach>
@@ -325,8 +312,12 @@
 				<div class="lista">
 		      		<c:forEach items="${stories}" var="story">
 		      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/stories/show/${story.id}'">
-							<img class="rounded-circle" src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg">
+							<img class="rounded-circle" src="${story.photo}">
 			      			<h5>${story.title}</h5>
+			      			<div class="like">
+								<h6>${story.numLikes} </h6>
+								<img  src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png"> 
+							</div>
 			      		</div>
 		      		</c:forEach>
 		      	</div>
@@ -339,7 +330,7 @@
 					<div class="w-100" style="padding-top:1rem">
 						<c:forEach items="${ sponsoredStories }" var="sponsoredStory">
 							<div onclick="location.href='/stories/show/${sponsoredStory.id}'" class="d-flex justify-content-center flex-column element-sponsored">
-								<div class="sponsored-bckg"  style="background-image:url('https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg')"></div>
+								<div class="sponsored-bckg"  style="background-image:url('${sponsoredStory.photo}')"></div>
 								<h4>${sponsoredStory.title}</h4>
 							</div>
 						</c:forEach>
@@ -349,8 +340,12 @@
 			
 				<c:forEach items="${stories}" var="story">
 		      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/stories/show/${story.id}'">
-							<img class="rounded-circle" src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg">
+							<img class="rounded-circle" src="${story.photo}">
 			      			<h5>${story.title}</h5>
+			      			<div class="like">
+								<h6>${story.numLikes} </h6>
+								<img  src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png"> 
+							</div>
 			      		</div>
   							<hr class="m-3 linea-hor linea-hor">
 	      		</c:forEach>
