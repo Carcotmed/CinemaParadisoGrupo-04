@@ -6,7 +6,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <style>
-
 		.filtro-wrap-mobile{
 			display: none  !important;
 		}
@@ -15,8 +14,8 @@
 			display: block;
 			position: relative;
 			background-color: var(--rojo);
-			border
-		    padding-right: 0.6rem;   box-shadow: 0 0 10px black;
+			border-radius: 0 100px 100px 0;
+		    box-shadow: 0 0 10px black;
 		}
 		
 		label{
@@ -104,7 +103,6 @@
 		@media(max-width: 1545px) {
 			.lista{
 			 	grid-template-columns: repeat(4, 13rem);
-
 			}
 	
 		}
@@ -151,7 +149,6 @@
 				background-color: var(--rojo);
 			}
 			
-
 		}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"	type="text/javascript"></script>
@@ -163,23 +160,16 @@
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
 		rel="stylesheet"
 		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-		crossorig
+		crossorigin="anonymous">
+</head>
+<body>
+<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 <script>
 	
 	$(window).scroll(function () {
 	    var lista = document.getElementById("list-wrap");
-
 	    if($(window).scrollTop() > 400){
 	    	lista.classList.add("fondo-pj");
-
-	    }else{
-	    	lista.classList.remove("fondo-pj");
-	    }
-		
-	})
-	
-</script>pj");
-
 	    }else{
 	    	lista.classList.remove("fondo-pj");
 	    }
