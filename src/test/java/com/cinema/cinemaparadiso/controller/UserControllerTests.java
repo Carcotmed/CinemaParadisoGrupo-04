@@ -71,6 +71,7 @@ public class UserControllerTests {
 				.andExpect(view().name("users/listUser"));
 	}
 
+	@WithMockUser(username = "testUser1", authorities = { "artist" })
 	@Test
 	public void selectUserTest() throws Exception {
 		mockMvc.perform(get("/users/select"))

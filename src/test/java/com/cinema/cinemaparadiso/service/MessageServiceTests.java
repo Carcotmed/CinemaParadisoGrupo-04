@@ -1,6 +1,7 @@
 package com.cinema.cinemaparadiso.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.Instant;
@@ -102,23 +103,37 @@ public class MessageServiceTests {
 		User user2 = userService.getUserByUsername("autoCreatedTestUser2");
 
 		Message message = new Message("Created Test Issue", "Created Test Body", Date.from(Instant.now()), user2, user1);
-		message.setId(99);
 		
 		messageService.create(message);
+		Integer messageId = message.getId();
 		
-		Message retrievedMessage = messageService.findById(99);
+		Message retrievedMessage = messageService.findById(messageId);
+		
+		assertNotNull(retrievedMessage);
+		assertEquals("Created Test Body", retrievedMessage.getBody());
+		assertEquals(user2.getUsername(), retrievedMessage.getEmisor().getUsername());
+		assertEquals(user1.getUsername(), retrievedMessage.getReceptor().getUsername());
+		assertEquals("Created Test Issue", retrievedMessage.getIssue());
+	}
+
+	@Test
+	public void deleteTest() {
+		Integer messageId = 3;
+		Message messageToDelete = messageService.findById(messageId);
+		
+		assertNotNull(messageToDelete);
+		messageService.delete(messageToDelete);
+		assertThrows(NoSuchElementException.class, () -> messageService.findById(messageId));
+	}
+
+	@Test
+	public void requestAlreadyExistArtist() {
+		Integer projectId = 1;
+		Integer artistId = 1;
 		
 		
 	}
 
-//	@Test
-//	public void delete(Message message) throws IllegalArgumentException {
-//	}
-//
-//	@Test
-//	public void requestAlreadyExistArtist(Integer projectId, Integer artistId) {
-//	}
-//
 //	@Test
 //	public void requestToEnterProjectArtist(Integer projectId, Integer artistId) {
 //	}
