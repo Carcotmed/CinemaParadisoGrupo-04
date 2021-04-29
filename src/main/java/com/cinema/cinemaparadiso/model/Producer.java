@@ -1,5 +1,6 @@
 package com.cinema.cinemaparadiso.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ public class Producer extends Person {
 	@Column(name="projects")
 	@ManyToMany(mappedBy = "team2", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
-	private List<Project> projects;
+	private List<Project> projects = new ArrayList<>();
 	
 	public Producer() {}
 	
@@ -43,6 +44,19 @@ public class Producer extends Person {
 		this.surName = surName;
 		this.setPhoto(photo);
 	}
+	
+	public Producer(User user, String name, String description, Integer id, String surName, String photo, List<Project> projects) {
+		this.user = user;
+		this.description = description;
+		this.id = id;
+		this.name = name;
+		this.surName = surName;
+		this.setPhoto(photo);
+		this.projects = projects;
+	}
+	
+	
+	
 	
 	@Override
 	public String toString() {
@@ -74,6 +88,8 @@ public class Producer extends Person {
 			return false;
 		}
 	}
+
+	
 	
   
 }
