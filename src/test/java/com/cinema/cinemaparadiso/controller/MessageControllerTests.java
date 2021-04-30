@@ -1,6 +1,8 @@
 package com.cinema.cinemaparadiso.controller;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -244,28 +246,38 @@ public class MessageControllerTests {
 
     @WithMockUser(username = "user2", authorities = { "artist" })
 	@Test
-    @PostMapping("/create/{userName}")
-    public String create(@PathVariable("userName") String userName, @Validated @ModelAttribute("message") Message message, BindingResult result, Model model){
+    public void createTest() throws Exception{
 		String username1 = "user1";
 		String username2 = "user2";
     	BDDMockito.given(userService.getUserByUsername(username1)).willReturn(user1);
     	BDDMockito.given(userService.getUserByUsername(username2)).willReturn(user2);
 
+    	mockMvc.perform(post("/messages/create/"+username1).with(csrf())
+				.param("username", username1)
+				.param("issue", "Test Create Issue")
+				.param("body", "Test Create Body"))
+		.andExpect(status().is3xxRedirection())
+		.andExpect(view().name("redirect:/messages/listSend"));
     	
-    	
-    	if(!result.hasErrors()) {
-    		String emisor_username = SecurityContextHolder.getContext().getAuthentication().getName();
-    		message.setEmisor(userService.getUserByUsername(emisor_username));
-    		message.setReceptor(userService.getUserByUsername(userName));
-    		message.setMessageDate(Date.from(Instant.now()));
-    		messageService.create(message);
-    		model.addAttribute("Estado", "Exito");
-            return "redirect:/messages/listSend";
-    	}else {
-    		model.addAttribute("Estado", "Error, entidad incorrecta");
-    		model.addAttribute(message);
-            return "messages/createMessageForm";
-		}
+    }
+    
+    @WithMockUser(username = "user2", authorities = { "artist" })
+   	@Test
+       public void createWithErrorsTest() throws Exception{
+   		String username1 = "user1";
+   		String username2 = "user2";
+       	BDDMockito.given(userService.getUserByUsername(username1)).willReturn(user1);
+       	BDDMockito.given(userService.getUserByUsername(username2)).willReturn(user2);
+
+       	mockMvc.perform(post("/messages/create/"+username1).with(csrf())
+   				.param("username", username1)
+   				.param("issue", "Test Create Issue")
+   				.param("body", "a"))
+   		.andExpect(status().is2xxSuccessful())
+   		.andExpect(model().attributeExists("Estado", "message"))
+   		.andExpect(model().attribute("Estado", "Error, entidad incorrecta"))
+   		.andExpect(model().attributeHasFieldErrors("message", "body"))
+   		.andExpect(view().name("messages/createMessageForm"));
     }
 
     @WithMockUser(username = "user1", authorities = { "artist" })
@@ -277,9 +289,6 @@ public class MessageControllerTests {
     	
     	mockMvc.perform(get("/messages/delete/"+messageId))
 		.andExpect(status().is3xxRedirection())
-		
-		.andExpect(model().attributeExists("Estado"))
-		.andExpect(model().attribute("Estado", "Exito"))
 
 		.andExpect(view().name("redirect:/messages/listReceived"));
     }
