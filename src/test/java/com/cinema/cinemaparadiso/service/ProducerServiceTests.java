@@ -60,7 +60,7 @@ public class ProducerServiceTests {
     	Producer producer = new Producer(
 				new User("producerCreado",
 				"$2y$10$UN0qXXYHTvg7wH.4hJntxOUuGcyamkkZmlzyHOWiVa.GEjbZ95Pai",
-				"lacus.Nulla@ametultricies.ca")
+				"lacus.nulla@ametultricies.ca")
 			,"Leonard Photography",
 			"Empresa productora de peliculas, buscamos artistas nuevos en el sector",
 			6,"Horton","https://image.flaticon.com/icons/png/512/183/183349.png");
