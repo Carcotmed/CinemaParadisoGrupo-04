@@ -32,6 +32,9 @@ public class MessageService {
 
 	@Autowired
 	private ArtistService artistService;
+	
+	@Autowired
+	private WriterService writerService;
 
 	@Autowired
 	private StoryService storyService;
@@ -386,7 +389,36 @@ public class MessageService {
     
     
     
-    
+	@Transactional
+	public Integer messageConfirmPaymentArtist(Integer artistId) {
+		Artist artist = artistService.findArtistById(artistId);
+		Message message = new Message();
+
+		message.setIssue("Pago aceptado");
+		message.setBody("El pago realizado ha sido tratado con éxito, los beneficios por los cuales has pagado ya se encuentran disponibles.");
+		message.setReceptor(artist.getUser());
+		message.setEmisor(userService.findUser("admin").get());
+		message.setMessageDate(Date.from(Instant.now()));
+		create(message);
+		
+		return message.getId();
+	}
+	
+	@Transactional
+	public Integer messageConfirmPaymentWriter(Integer WriterId) {
+		Writer writer = writerService.findWriterById(WriterId);
+		Message message = new Message();
+
+		message.setIssue("Pago aceptado");
+		message.setBody("El pago realizado ha sido tratado con éxito, los beneficios por los cuales has pagado ya se encuentran disponibles.");
+		message.setReceptor(writer.getUser());
+		message.setEmisor(userService.findUser("admin").get());
+		message.setMessageDate(Date.from(Instant.now()));
+		create(message);
+		
+		return message.getId();
+	}
+
     
 
 }
