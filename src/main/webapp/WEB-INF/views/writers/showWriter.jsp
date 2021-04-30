@@ -159,6 +159,7 @@
 	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
 		<img src="${writer.photo}" class="rounded-circle">
 		<div>
+			<h3>${writer.user.username}</h3>
 			<h3>${writer.name}&nbsp${writer.surName}</h3>
 		</div>
 	</div>

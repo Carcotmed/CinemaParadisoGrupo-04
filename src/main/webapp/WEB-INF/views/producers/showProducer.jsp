@@ -145,6 +145,7 @@
 	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
 		<img src="${producer.photo}" class="rounded-circle">
 		<div>
+			<h3>${producer.user.username}</h3>
 			<h3>${producer.name}&nbsp${producer.surName}</h3>
 		</div>
 	</div>
