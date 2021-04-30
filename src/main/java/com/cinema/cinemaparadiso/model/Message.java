@@ -64,9 +64,40 @@ public class Message extends BaseEntity{
 		this.emisor = emisor;
 		this.receptor = receptor;
 	}
+	
+	
 
 	public Message() {
 		super();
+	}
+
+	public Message(
+			@Size(min = 3, max = 30, message = "Es necesario que el asunto tenga entre 3 y 30 caracteres") @NotBlank(message = "No puedes dejarlo vacío.") String issue,
+			@NotBlank(message = "No puedes dejarlo vacío.") @Size(min = 10, max = 900, message = "Use un cuerpo de mensaje que contenga entre 10 y 900 carácteres") String body,
+			Date messageDate, boolean seen, User emisor, User receptor, Integer isRequest, Story story) {
+		super();
+		this.issue = issue;
+		this.body = body;
+		this.messageDate = messageDate;
+		this.seen = seen;
+		this.emisor = emisor;
+		this.receptor = receptor;
+		this.isRequest = isRequest;
+		this.story = story;
+	}
+	
+	public Message(
+			@Size(min = 3, max = 30, message = "Es necesario que el asunto tenga entre 3 y 30 caracteres") @NotBlank(message = "No puedes dejarlo vacío.") String issue,
+			@NotBlank(message = "No puedes dejarlo vacío.") @Size(min = 10, max = 900, message = "Use un cuerpo de mensaje que contenga entre 10 y 900 carácteres") String body,
+			Date messageDate, boolean seen, User emisor, User receptor, Integer isRequest) {
+		super();
+		this.issue = issue;
+		this.body = body;
+		this.messageDate = messageDate;
+		this.seen = seen;
+		this.emisor = emisor;
+		this.receptor = receptor;
+		this.isRequest = isRequest;
 	}
 	
 	
