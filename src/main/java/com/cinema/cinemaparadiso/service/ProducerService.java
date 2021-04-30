@@ -130,5 +130,10 @@ public class ProducerService {
 	public Producer findProducerByUsername(String username) throws DataAccessException {
 		return producerRepository.findByUserUsername(username).get();
 	}
+	
+	@Transactional
+	public void deleteCompletelyProducer(Producer producer) {
+		this.producerRepository.delete(producer);
+	}
 }
 

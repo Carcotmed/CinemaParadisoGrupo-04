@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -432,6 +433,15 @@ public class MessageService {
 		
 		return message.getId();
 	}
+	
+    @Transactional
+    public void deleteMessagesOfAnUser(String username) {
+    	List<Message> messageOfAnUserEmisor = this.messageRepository.listMessagesOfAnUserEmisor(username);
+    	List<Message> messageOfAnUserReceptor = this.messageRepository.listMessagesOfAnUserReceptor(username);
+    	messageOfAnUserEmisor.addAll(messageOfAnUserReceptor);
+    	messageOfAnUserEmisor.stream().distinct().collect(Collectors.toList());
+    	messageOfAnUserEmisor.stream().forEach(m -> this.messageRepository.delete(m));
+    }
 
     
 
