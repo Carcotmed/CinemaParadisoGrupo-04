@@ -136,11 +136,11 @@ public class MessageService {
 
 
 	public void requestToEnterProjectStory(Integer projectId, Integer storyId) {
+
 		Story story = storyService.findStoryById(storyId);
 		Project project = projectService.findProjectById(projectId);
 		Artist admin = artistService.findArtistByUsername(project.getMyAdmin());
 		Message message = new Message();
-
 		message.setIssue("Quiero usar su historia");
 		message.setBody("Me gustaría usar su historia en mi proyecto " + project.getTitle() + ".");
 		message.setReceptor(storyService.findMyWriter(storyId).getUser());
@@ -149,8 +149,22 @@ public class MessageService {
 		message.setStory(story);
 		message.setIsRequest(projectId);
 		create(message);
+		
 	}
 
+	public void projectHaveAStorieError(Integer projectId) {
+		Message message2 = new Message();
+		Project project = projectService.findProjectById(projectId);
+		Artist admin = artistService.findArtistByUsername(project.getMyAdmin());
+		message2.setIssue("Ocurrio un error");
+		message2.setBody("Su petición no se pudo enviar con exito ya que el proyecto " + project.getTitle()
+				+ " ya posee una historia.");
+		message2.setReceptor(admin.getUser());
+		message2.setEmisor(userService.getUserByUsername("admin"));
+		message2.setMessageDate(Date.from(Instant.now()));
+		message2.setIsRequest(null);
+		create(message2);
+	}
 	public void requestToEnterProjectProducer(Integer projectId, Integer producerId) {
 		String adminProjectUsername = projectService.findProjectById(projectId).getMyAdmin();
 		Integer adminProjectId = artistService.findArtistByUsername(adminProjectUsername).getId();
