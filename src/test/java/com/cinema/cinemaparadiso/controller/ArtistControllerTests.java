@@ -113,7 +113,7 @@ public class ArtistControllerTests {
 		
 		
 		mockMvc.perform(post("/artists/list").with(csrf())
-				.param("username", "A"))
+				.param("user.username", "A"))
 		.andExpect(status().is2xxSuccessful())
 		.andExpect(model().attributeExists("artists"))
 		.andExpect(model().attributeExists("artistsPro"))
@@ -121,126 +121,279 @@ public class ArtistControllerTests {
 		.andExpect(model().attributeExists("roles"))
 		.andExpect(model().attributeExists("artistsFiltered"))
 
-		.andExpect(model().attribute("artists", Arrays.asList(artist1, artist3)))
+		.andExpect(model().attribute("artists", artistList))
 		.andExpect(model().attribute("artistsPro", Arrays.asList(artist1)))
 		.andExpect(model().attribute("artistsNoPro", Arrays.asList(artist3)))
+		.andExpect(model().attribute("roles", Arrays.asList(Role.values())))
 
 		.andExpect(view().name("artists/listArtist"));
 		
 		
 	}
 	
-//
-//	@GetMapping(value = { "/show/{artistId}" })
-//	public String showArtist(@PathVariable("artistId") int artistId, Model model) {
-//		Artist artist = artistService.findArtistById(artistId);
-//		Boolean showButton = artistService.isActualArtist(artistId) || userService.isAdmin();
-//		List<Project> myProjects = artistService.findMyProjects(artistId);
-//		Integer projectsLeft = artistService.leftProjects(artistId);
-//		Boolean disabled = !artistService.findMyUser(artistId).isEnabled();
-//		model.addAttribute("projectsLeft",projectsLeft);
-//		model.addAttribute("myProjects",myProjects);
-//		model.addAttribute("artistUsername", artist.getUser().getUsername());
-//		model.addAttribute("artistId", artistId);
-//		model.addAttribute("artist", artist);
-//		model.addAttribute("showButton",showButton);
-//		model.addAttribute("userDisabled",disabled);
-//		model.addAttribute("isAdmin",userService.isAdmin());
-//		return "artists/showArtist";
-//	}	
-//
-//	@GetMapping("/create")
-//	public String initFormCreateArtist(Model model) {
-//		Artist artist = new Artist();
-//		User user = new User();
-//		List<Role> role = Arrays.asList(Role.values());
-//		
-//		model.addAttribute("user",user);
-//		model.addAttribute("artist", artist);
-//		model.addAttribute("roles", role);
-//
-//		return "artists/createOrUpdateArtistForm";
-//	}
-//
-//	@PostMapping("/create")
-//	public String createArtist(@Valid Artist artist, BindingResult result, Model model) throws UserUniqueException{
-//		List<Role> role = Arrays.asList(Role.values());
-//		model.addAttribute("roles", role);
-//		if(!result.hasErrors()) {
-//			//Unique artist exception
-//			try{
-//				
-//				this.artistService.createArtist(artist);
-//			}
-//			catch(UserUniqueException ex) {
-//				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
-//				return "artists/createOrUpdateArtistForm";
-//			}
-//			log.info("Artist Created Successfully");
-//		} else {
-//			return "artists/createOrUpdateArtistForm";
-//		}
-//		return "redirect:/login";
-//	}
-//
-//	@GetMapping("/update/{artistId}")
-//	public String initFormUpdateArtist(Model model, @PathVariable("artistId") Integer artistId) {
-//		if(!artistService.isActualArtist(artistId) && !userService.isAdmin()) {
-//			return "error/error-403";
-//		}
-//		Artist artist = artistService.findArtistById(artistId);
-//		List<Role> roles = Arrays.asList(Role.values());
-//		model.addAttribute("artistId", artistId);
-//		model.addAttribute("artist", artist);
-//		model.addAttribute("roles",roles);
-//		return "artists/updateArtist";
-//	}
-//
-//
-//	@PostMapping("/update/{artistId}")
-//	public String updateArtist(@ModelAttribute("artist") @Valid Artist artist, BindingResult result,Model model, @PathVariable("artistId") Integer artistId) {
-//		artist.setId(artistId);
-//		if(!artistService.isActualArtist(artistId) && !userService.isAdmin()) {
-//			return "error/error-403";
-//		}
-//		List<Role> roles = Arrays.asList(Role.values());
-//		model.addAttribute("roles",roles);
-//		if(!result.hasErrors()) {
-//			artistService.editArtist(artist);
-//			return "redirect:/artists/show/{artistId}";
-//		}else {
-//			return "artists/updateArtist";
-//		}
-//	}
-//	@GetMapping("/delete/{artistId}")
-//	public String deleteArtist(@PathVariable("artistId") Integer artistId) {
-//		if(!artistService.isActualArtist(artistId) && !userService.isAdmin()) {
-//			return "error/error-403";
-//		}
-//		try {
-//			artistService.deleteArtist(artistId);
-//			if(!userService.isAdmin())
-//				SecurityContextHolder.clearContext();
-//			log.info("Artist Deleted Successfully");
-//		} catch (Exception e) {
-//			log.error("Error Deleting Artist", e);
-//		}
-//		return "redirect:/";
-//	}
-//	@GetMapping("/activate/{artistId}")
-//	public String activateArtist(@PathVariable("artistId") Integer artistId) {
-//		if(!userService.isAdmin()) {
-//			return "error/error-403";
-//		}
-//		try {
-//			artistService.activateArtist(artistId);
-//			if(!userService.isAdmin())
-//				SecurityContextHolder.clearContext();
-//			log.info("Artist Activated Successfully");
-//		} catch (Exception e) {
-//			log.error("Error Activating Artist", e);
-//		}
-//		return "redirect:/";
-//	}
+
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void showArtist() throws Exception {
+		Integer artistId = 1;
+		
+		BDDMockito.given(artistService.findArtistById(artistId)).willReturn(artist1);
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(true);
+		BDDMockito.given(artistService.findMyProjects(artistId)).willReturn(new ArrayList<>());
+		BDDMockito.given(artistService.leftProjects(artistId)).willReturn(10);
+		BDDMockito.given(artistService.findMyUser(artistId)).willReturn(user1);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+
+		mockMvc.perform(get("/artists/show/"+artistId))
+		.andExpect(status().is2xxSuccessful())
+		.andExpect(model().attributeExists("projectsLeft"))
+		.andExpect(model().attributeExists("myProjects"))
+		.andExpect(model().attributeExists("artistUsername"))
+		.andExpect(model().attributeExists("artistId"))
+		.andExpect(model().attributeExists("artist"))
+		.andExpect(model().attributeExists("showButton"))
+		.andExpect(model().attributeExists("userDisabled"))
+		.andExpect(model().attributeExists("isAdmin"))
+
+
+		.andExpect(model().attribute("projectsLeft", 10))
+		.andExpect(model().attribute("myProjects", new ArrayList<> ()))
+		.andExpect(model().attribute("artistUsername", "testAUser1"))
+		.andExpect(model().attribute("artistId", 1))
+		.andExpect(model().attribute("artist", artist1))
+		.andExpect(model().attribute("showButton", true))
+		.andExpect(model().attribute("userDisabled", false))
+		.andExpect(model().attribute("isAdmin", false))
+
+		.andExpect(view().name("artists/showArtist"));
+		
+	}	
+
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void initFormCreateArtist() throws Exception {
+		
+		mockMvc.perform(get("/artists/create"))
+		.andExpect(status().is2xxSuccessful())
+		.andExpect(model().attributeExists("user"))
+		.andExpect(model().attributeExists("artist"))
+		.andExpect(model().attributeExists("roles"))
+
+
+		.andExpect(model().attribute("user", new User()))
+		.andExpect(model().attribute("artist", new Artist ()))
+		.andExpect(model().attribute("roles", Arrays.asList(Role.values())))
+
+		.andExpect(view().name("artists/createOrUpdateArtistForm"));
+	}
+
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void createArtistTest() throws Exception {
+		
+		mockMvc.perform(post("/artists/create").with(csrf())
+				.param("user.username", "creatingUser")
+				.param("user.password", "creatingUserPass")
+				.param("user.email", "creatingUser@email.com")
+				.param("name", "Pedro")
+				.param("surName", "Pedrito")
+				.param("description", "Description very long yes")
+				.param("photo", "http://www.google.com")
+				.param("role", "CAMARA"))
+
+		.andExpect(status().is3xxRedirection())
+
+		.andExpect(view().name("redirect:/login"));
+	}
+	
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void createArtistWithErrorsTest() throws Exception {
+		
+		mockMvc.perform(post("/artists/create").with(csrf())
+				.param("user.username", "creatingUser")
+				.param("user.password", "creatingUserPass")
+				.param("user.email", "creatingUser@email.com")
+				.param("name", "Pedro")
+				.param("surName", "Pedrito")
+				.param("description", "Description very long yes")
+				.param("photo", "www.google.com")
+				.param("role", "CAMARA"))
+
+		.andExpect(status().is2xxSuccessful())
+		.andExpect(model().attributeExists("roles"))
+		.andExpect(model().attribute("roles", Arrays.asList(Role.values())))
+
+		.andExpect(model().attributeHasFieldErrors("artist", "photo"))
+		
+		.andExpect(view().name("artists/createOrUpdateArtistForm"));
+	
+	}
+
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void initFormUpdateArtistTest() throws Exception {
+		Integer artistId = 1;
+		
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(true);
+		BDDMockito.given(artistService.findArtistById(artistId)).willReturn(artist1);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(get("/artists/update/"+artistId))
+		.andExpect(status().is2xxSuccessful())
+		.andExpect(model().attributeExists("artistId"))
+		.andExpect(model().attributeExists("artist"))
+		.andExpect(model().attributeExists("roles"))
+
+
+		.andExpect(model().attribute("artistId", artistId))
+		.andExpect(model().attribute("artist", artist1))
+		.andExpect(model().attribute("roles", Arrays.asList(Role.values())))
+
+		.andExpect(view().name("artists/updateArtist"));
+	}
+	
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void initFormUnauthorizedUpdateArtistTest() throws Exception {
+		Integer artistId = 1;
+		
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(false);
+		BDDMockito.given(artistService.findArtistById(artistId)).willReturn(artist1);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(get("/artists/update/"+artistId))
+		.andExpect(status().is2xxSuccessful())
+
+		.andExpect(view().name("error/error-403"));
+	}
+
+
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void updateArtistTest() throws Exception {
+		Integer artistId = 1;
+		
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(true);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(post("/artists/update/"+artistId).with(csrf())
+				.param("user.username", "editingUser")
+				.param("user.email", "editingUser@email.com")
+				.param("user.password", "editingUserPass")
+				.param("name", "Pedro")
+				.param("surName", "Pedrito")
+				.param("description", "Description very long yes")
+				.param("photo", "http://www.google.com")
+				.param("role", "CAMARA"))
+
+		.andExpect(status().is3xxRedirection())
+		
+		.andExpect(view().name("redirect:/artists/show/{artistId}"));
+	
+	}
+	
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void updateUnauthorizedArtistTest() throws Exception {
+		Integer artistId = 1;
+		
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(false);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(post("/artists/update/"+artistId).with(csrf())
+				.param("user.username", "editingUser")
+				.param("user.email", "editingUser@email.com")
+				.param("user.password", "editingUserPass")
+				.param("name", "Pedro")
+				.param("surName", "Pedrito")
+				.param("description", "Description very long yes")
+				.param("photo", "http://www.google.com")
+				.param("role", "CAMARA"))
+
+		.andExpect(status().is2xxSuccessful())
+		
+		.andExpect(view().name("error/error-403"));
+	}
+	
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void updateArtistWithErrorsTest() throws Exception {
+		Integer artistId = 1;
+		
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(true);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(post("/artists/update/"+artistId).with(csrf())
+				.param("user.username", "editingUser")
+				.param("user.email", "editingUser@email.com")
+				.param("user.password", "editingUserPass")
+				.param("name", "Pedro")
+				.param("surName", "Pedrito")
+				.param("description", "Description very long yes")
+				.param("photo", "WRONG")
+				.param("role", "CAMARA"))
+
+		.andExpect(status().is2xxSuccessful())
+		.andExpect(model().attributeHasFieldErrors("artist", "photo"))
+		
+		.andExpect(view().name("artists/updateArtist"));
+	}
+	
+	
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void deleteArtist() throws Exception {
+		Integer artistId = 1;
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(true);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(get("/artists/delete/"+artistId))
+		.andExpect(status().is3xxRedirection())
+
+		.andExpect(view().name("redirect:/"));
+		
+	}
+	
+
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void deleteArtistUnauthorized() throws Exception {
+		Integer artistId = 1;
+		BDDMockito.given(artistService.isActualArtist(artistId)).willReturn(false);
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(get("/artists/delete/"+artistId))
+		.andExpect(status().is2xxSuccessful())
+
+		.andExpect(view().name("error/error-403"));
+	}
+	
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void activateArtistTest() throws Exception {
+		Integer artistId = 1;
+		BDDMockito.given(userService.isAdmin()).willReturn(true);
+		
+		mockMvc.perform(get("/artists/activate/"+artistId))
+		.andExpect(status().is3xxRedirection())
+
+		.andExpect(view().name("redirect:/"));
+		
+	}
+	
+	@WithMockUser(username = "user1", authorities = { "artist" })
+	@Test
+	public void activateArtistUnauthorizedTest() throws Exception {
+		Integer artistId = 1;
+		BDDMockito.given(userService.isAdmin()).willReturn(false);
+		
+		mockMvc.perform(get("/artists/activate/"+artistId))
+		.andExpect(status().is2xxSuccessful())
+
+		.andExpect(view().name("error/error-403"));
+		
+		
+	}
 
 }
