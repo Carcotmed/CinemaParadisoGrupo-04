@@ -185,6 +185,7 @@
 	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
 		<img src="${artist.photo}" style="border-color: ${artist.pro ? 'var(--amarillo)' : 'white'}" class="rounded-circle">
 		<div>
+			<h3>${artist.user.username}</h3>
 			<h3>${artist.name}&nbsp${artist.surName}</h3>
 		</div>
 	</div>
