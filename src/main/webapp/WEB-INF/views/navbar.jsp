@@ -377,7 +377,7 @@
 				<li onClick="location.href='/projects/list'">Proyectos</li>
 				<li onClick="location.href='/producers/list'">Productoras</li>
 				<sec:authorize access="isAuthenticated()">
-					<li id="messagesButtonMobile" onClick="location.href='/messages/list'">Mensajes</li>
+					<li id="messagesButtonMobile" onClick="location.href='/messages/listReceived'">Mensajes</li>
 				</sec:authorize>
 				<li class="pro" onClick="location.href='/pro'">PRO</li>
 				<sec:authorize access="!isAuthenticated()">
