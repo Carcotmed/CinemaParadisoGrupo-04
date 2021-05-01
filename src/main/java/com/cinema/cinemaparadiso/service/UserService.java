@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Producer;
@@ -24,28 +25,47 @@ public class UserService {
     
     @Autowired
     private UserRepository userRepository;
-
-
     
+    @Autowired
+    private ArtistService artistService;
+    
+    @Autowired
+    private ProducerService producerService;
+    
+    @Autowired
+    private WriterService writerService;
+    
+    @Autowired
+    private Rel_projects_artistsService rel_projects_artistsService;
+    
+    @Autowired
+    private Rel_projects_producersService rel_projects_producersService;
+    
+    @Autowired
+    private RelUserStoryService relUserStoryService;
+    
+    @Autowired
+    private Rel_story_writersService rel_story_writersService;
+    
+    @Autowired
+    private PostService postService;
+    
+    @Autowired
+    private MessageService messageService;
+    
+    @Autowired
+    private AuthoritiesService authoritiesService;
 
     public long countUsers(){
         return userRepository.count();
     }
     
-    public void deleteUser(User user) {
-    	userRepository.delete(user);
-    }
-
     public Iterable<User> list(){
         return userRepository.findAll();
     }
 
     public Boolean isAdmin(){
         return SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("admin"));
-    }
-    
-    public List<User> getEnabledUsers() {
-    	return userRepository.findByEnabled(true);
     }
     
     public User getUserByUsername(String username) throws NoSuchElementException {
@@ -117,5 +137,37 @@ public class UserService {
 	public Optional<Producer> findProducerByUserUsername(String username){
 		return this.userRepository.findProducerByUserUsername(username);
 	}
+	
+    public List<User> getEnabledUsers() {
+    	return userRepository.findEnabledUsers();
+    }
+    
+    @Transactional
+    public void deleteUser(User user) {
+    	String username = user.getUsername();
+    	this.postService.deletePostOfAnUser(username);
+    	this.messageService.deleteMessagesOfAnUser(username);
+    	this.authoritiesService.deleteAuthorities(username);
+    	this.relUserStoryService.deleteRelationsUserStories(username);
+    	//ARTIST
+    	Optional<Artist> optionalArtist = this.userRepository.findArtistByUserUsername(username);
+    	if(optionalArtist.isPresent()) {
+    	this.rel_projects_artistsService.deleteRelationsArtistProjects(optionalArtist.get().getId());
+    	this.artistService.deleteCompletelyArtist(optionalArtist.get());
+    	}
+    	//PRODUCER
+    	Optional<Producer> optionalProducer = this.userRepository.findProducerByUserUsername(username);
+    	if(optionalProducer.isPresent()) {
+    	this.rel_projects_producersService.deleteRelationsProducerProjects(optionalProducer.get().getId());
+    	this.producerService.deleteCompletelyProducer(optionalProducer.get());
+    	}
+    	//WRITER
+    	Optional<Writer> optionalWriter = this.userRepository.findWriterByUserUsername(username);
+    	if(optionalWriter.isPresent()) {
+    	this.rel_story_writersService.deleteRelationsWriterStories(optionalWriter.get().getId());
+    	this.writerService.deleteCompletelyWriter(optionalWriter.get());
+    	}
+    	this.userRepository.delete(user);
+    }
 
 }

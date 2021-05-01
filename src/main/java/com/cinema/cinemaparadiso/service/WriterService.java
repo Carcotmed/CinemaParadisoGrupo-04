@@ -135,5 +135,10 @@ public class WriterService {
 		User user = findMyUser(writerId);
 		user.setEnabled(true);
 	}
+	
+	@Transactional
+	public void deleteCompletelyWriter(Writer writer) {
+		this.writerRepository.delete(writer);
+	}
 
 }

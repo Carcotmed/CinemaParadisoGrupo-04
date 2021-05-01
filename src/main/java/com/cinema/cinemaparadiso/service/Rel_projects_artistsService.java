@@ -1,5 +1,7 @@
 package com.cinema.cinemaparadiso.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -63,6 +65,13 @@ public class Rel_projects_artistsService {
 	public void deleteByProjectId(Integer projectId) {
 		rel_projects_artistsRepository.deleteByProjectId(projectId);
 	}
+	
+	
+	@Transactional
+    public void deleteRelationsArtistProjects(Integer artistId) {
+    	List<Rel_projects_artists> relationsArtistProjects = this.rel_projects_artistsRepository.listRelationsArtistProjects(artistId);
+    	relationsArtistProjects.stream().forEach(r -> this.rel_projects_artistsRepository.delete(r));
+    }
 
 
 }

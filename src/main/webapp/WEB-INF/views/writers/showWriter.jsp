@@ -172,7 +172,7 @@
 					<button class="boton btn rounded-pill"
 						onClick="location.href='/messages/create/${writerUsername}'">Contactar</button>
 				</c:if>
-				<c:if test="${sameWriter == true}">
+				<c:if test="${sameWriter == true || isAdmin}">
 					<button class="boton btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'">Editar</button>
 					<button class="boton btn rounded-pill"
 						onClick="location.href='/writers/delete/${writer.id}'">Desactivar</button>
@@ -182,6 +182,8 @@
 			<c:if test="${userDisabled}">
 				<c:if test="${isAdmin}">
 					<button class="boton btn rounded-pill" onclick="location.href='/writers/activate/${writer.id}'">Activar</button>
+					<button class="boton btn rounded-pill"
+						onClick="location.href='/users/delete/${writerUsername}'">Eliminar datos</button>
 				</c:if>
 			</c:if>
 		</div>

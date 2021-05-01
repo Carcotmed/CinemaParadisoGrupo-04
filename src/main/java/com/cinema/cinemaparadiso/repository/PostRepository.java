@@ -15,4 +15,6 @@ public interface PostRepository extends CrudRepository<Post,Integer>{
 	@Query("SELECT post FROM Post post WHERE post.project.id = :projectId")
 	public List<Post> listPostOfProject(@Param("projectId") Integer projectId);
     
+	@Query("SELECT post FROM Post post WHERE post.username = :username")
+	public List<Post> listPostOfAnUser(@Param("username") String username);
 }

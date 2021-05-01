@@ -26,6 +26,9 @@ public interface UserRepository extends CrudRepository<User,String>{
 	@Query("SELECT writer FROM Writer writer WHERE writer.user.username = :username")
 	public Optional<Writer> findWriterByUserUsername(String username);
 	
+	@Query("SELECT user FROM User user WHERE user.enabled = 1")
+	public List<User> findEnabledUsers();
+	
 	
 	
 	

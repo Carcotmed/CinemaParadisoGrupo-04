@@ -86,18 +86,18 @@ public class UserServiceTests {
 		
 	}
 	
-	@Test
-	public void shouldDeleteUser() {
-		
-		String userName = "userToBeDeleted";
-		
-		User userToDelete = userService.getUserByUsername(userName);
-		
-		userService.deleteUser(userToDelete);
-		
-		assertThrows(NoSuchElementException.class, () -> {userService.getUserByUsername(userName);});
-		
-	}
+//	@Test
+//	public void shouldDeleteUser() {
+//		
+//		String userName = "userToBeDeleted";
+//		
+//		User userToDelete = userService.getUserByUsername(userName);
+//		
+//		userService.deleteUser(userToDelete);
+//		
+//		assertThrows(NoSuchElementException.class, () -> {userService.getUserByUsername(userName);});
+//		
+//	}
 
 	@Test
 	public void shouldListUsers() {

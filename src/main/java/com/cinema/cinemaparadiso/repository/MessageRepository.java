@@ -2,7 +2,6 @@ package com.cinema.cinemaparadiso.repository;
 
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -45,5 +44,11 @@ public interface MessageRepository extends CrudRepository<Message,Integer>{
 	@Modifying
 	@Query("UPDATE FROM Message m SET m.seen= true WHERE m.id= :messageId")
 	public void checkSeen(@Param("messageId") Integer messageId);
+	
+	@Query("SELECT message FROM Message message WHERE message.emisor.username = :username")
+	public List<Message> listMessagesOfAnUserEmisor(@Param("username") String username);
+	
+	@Query("SELECT message FROM Message message WHERE message.receptor.username = :username")
+	public List<Message> listMessagesOfAnUserReceptor(@Param("username") String username);
 	
 }
