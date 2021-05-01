@@ -160,8 +160,8 @@
 				</c:if>
 				<c:if test="${showButton == true}">
 					<button class="boton btn rounded-pill" onClick="location.href='/producers/update/${producer.id}'">Editar</button>
-					<button class="boton btn rounded-pill"
-						onClick="location.href='/producers/delete/${producer.id}'">Desactivar</button>
+					<a class="boton btn rounded-pill"
+						href='/producers/desactivarProducer/${producer.id}'>Desactivar</a>
 				</c:if>
 			</c:if>
 			

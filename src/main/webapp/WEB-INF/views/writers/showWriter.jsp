@@ -174,8 +174,8 @@
 				</c:if>
 				<c:if test="${sameWriter == true || isAdmin}">
 					<button class="boton btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'">Editar</button>
-					<button class="boton btn rounded-pill"
-						onClick="location.href='/writers/delete/${writer.id}'">Desactivar</button>
+					<a class="boton btn rounded-pill"
+						href='/writers/desactivarWriter/${writer.id}'>Desactivar</a>
 				</c:if>
 			</c:if>
 			

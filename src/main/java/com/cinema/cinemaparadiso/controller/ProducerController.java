@@ -46,6 +46,12 @@ public class ProducerController {
         return "producers/listProducer";
     }
     
+    @GetMapping("/desactivarProducer/{producerId}")
+	public String desactivarProducer(@PathVariable("producerId") Integer producerId,Model model) {
+           model.addAttribute("producerId",producerId);
+		return "desactivar/desactivarProducer";
+	}
+    
     @PostMapping("/list")
 	public String list(@ModelAttribute("producersFiltered") Producer producersFiltered,Model model) {
 		List<Producer> producers = producerService.list();

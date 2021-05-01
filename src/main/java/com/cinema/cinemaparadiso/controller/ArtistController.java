@@ -54,6 +54,11 @@ public class ArtistController {
 		return "artists/listArtist";
 	}
 
+	@GetMapping("/desactivarArtist/{artistId}")
+	public String desactivarArtist(@PathVariable("artistId") Integer artistId,Model model) {
+           model.addAttribute("artistId",artistId);
+		return "desactivar/desactivarArtist";
+	}
 	
 	@PostMapping("/list")
 	public String list(@ModelAttribute("artistsFiltered") Artist artistsFiltered,Model model) {
