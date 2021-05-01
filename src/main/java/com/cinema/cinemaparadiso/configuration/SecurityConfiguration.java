@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/miPerfil").authenticated()
 				.antMatchers("/users/create").permitAll()
+				.antMatchers("/users/delete/{username}").hasAnyAuthority("admin")
 				.antMatchers("/logout").authenticated()
 				//PRODUCER
 				.antMatchers("/producers/list").permitAll()

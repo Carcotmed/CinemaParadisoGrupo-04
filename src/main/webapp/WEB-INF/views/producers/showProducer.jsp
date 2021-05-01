@@ -168,6 +168,8 @@
 			<c:if test="${userDisabled}">
 				<c:if test="${isAdmin}">
 					<button class="boton btn rounded-pill" onclick="location.href='/producers/activate/${producer.id}'">Activar</button>
+					<button class="boton btn rounded-pill"
+						onClick="location.href='/users/delete/${producerUsername}'">Eliminar datos</button>
 				</c:if>
 			</c:if>
 		</div>

@@ -1,5 +1,7 @@
 package com.cinema.cinemaparadiso.repository;
 
+import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +22,8 @@ import com.cinema.cinemaparadiso.model.Rel_story_writers;
 	@Modifying
 	@Query("DELETE FROM Rel_story_writers rel where rel.story_id= :storyId")
 	public void deleteByStoryId(@Param("storyId") Integer storyId);
+	
+	@Query("SELECT rel_story_writers FROM Rel_story_writers rel_story_writers WHERE rel_story_writers.writer_id = :writerId")
+	public List<Rel_story_writers> listRelationsWriterStories(@Param("writerId") Integer writerId);
 
 }
