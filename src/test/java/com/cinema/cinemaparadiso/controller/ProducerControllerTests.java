@@ -193,5 +193,15 @@ public class ProducerControllerTests {
                 .andExpect(status().isFound())
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/"));
     }
+    
+    @WithMockUser(username="admin",authorities= {"admin"})
+	@Test
+	void shouldDeactivateProducer() throws Exception {
+		
+		mockMvc.perform(get("/producers/desactivarProducer/1"))
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.model().attribute("producerId", 1))
+                .andExpect(MockMvcResultMatchers.view().name("desactivar/desactivarProducer"));
+    }
    
 }
