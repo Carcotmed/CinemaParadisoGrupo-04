@@ -44,39 +44,6 @@ public class WriterControllerTests {
     @MockBean
     private WriterService writerService;
     
-    @BeforeEach
-	void setup() {
-    	/*
-    	User user1 = new User("user1", "user1", "email1@email.com");
-    	User user2 = new User("user2", "user2", "email2@email.com");
-    	User user3 = new User("adminTest", "adminTest", "emailadmin@email.com");
-    	User user4 = new User("admin", "admin", "emailadmin@email.com");
-    	Writer writer1 = new Writer(user1, "writer1", "Descripcion1", 1, "writer1", "photo.photo.es");
-    	Writer writer2 = new Writer(user2, "writer2", "Descripcion2", 2, "writer2", "photo.photo.es");
-    	Writer writer3 = new Writer(user3, "writer3", "Descripcion3", 3, "writer3", "photo.photo.es");
-    	Writer writer4 = new Writer(user4, "writer4", "Descripcion4", 4, "writer4", "photo.photo.es");
-    	this.writer1 = writer1;
-    	this.writer2 = writer2;
-    	this.writer3 = writer3;
-    	this.writer4 = writer4;
-    	List<Writer> listado = new ArrayList<>();
-    	listado.add(writer1);
-    	listado.add(writer2);
-    	listado.add(writer3);
-    	BDDMockito.given(writerService.list()).willReturn(listado);
-    	BDDMockito.given(writerService.findWriterByUsername(user1.getUsername())).willReturn(writer1);
-    	BDDMockito.given(writerService.findWriterByUsername("admin")).willReturn(writer4);
-    	BDDMockito.given(userService.getUserByUsername("admin")).willReturn(user4);
-    	BDDMockito.given(userService.getUserByUsername("adminTest")).willReturn(user3);
-    	BDDMockito.given(writerService.isUniqueUsername("admin")).willReturn(true);
-    	BDDMockito.given(writerService.isUniqueUsername("adminTest")).willReturn(false);
-    	BDDMockito.given(writerService.findWriterById(4)).willReturn(writer4);
-    	BDDMockito.given(writerService.findWriterById(3)).willReturn(writer3);
-    	*/
-    }
-
-    // He metido estos test como prueba para ver si el contexto carga correctamente.
-
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldListWriters() throws Exception {

@@ -112,7 +112,6 @@ public class StoryController {
 	@PostMapping("/update/{storyId}")
 	public String updateStory(@ModelAttribute("story") @Valid Story story,BindingResult result, Model model, @PathVariable("storyId") Integer storyId) {
 		story.setId(storyId);
-		System.out.println(story.getNumLikes());
 		if(!storyService.isMyWriter(storyId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
@@ -125,7 +124,6 @@ public class StoryController {
 			log.info("Story Updated Successfully");
 			return "redirect:/stories/show/{storyId}";
 		} else {
-			System.out.println(result.getAllErrors());
 			return "stories/updateStory";
 		}
  
@@ -209,7 +207,6 @@ public class StoryController {
 				&&(!genres.contains(storiesFiltered.getGenre()) || s.getGenre().equals(storiesFiltered.getGenre()))
 				&& (( rel_projects_storyService.haveStoryProject(s.getId()).equals(storiesFiltered.getHaveProject())
 				) || !defaultS.contains(storiesFiltered.getHaveProject())) ).collect(Collectors.toList());
-		
 		storiesFiltrados= storyService.sortByLikesList(storiesFiltrados);
 		model.addAttribute("stories",storiesFiltrados);
 		model.addAttribute("genres", genres);
@@ -271,23 +268,6 @@ public class StoryController {
 			List<Project> projects = projectService.findProjectByAdminUsername(artist.getUser().getUsername());
 			model.addAttribute("projects",projects);
 		}catch(Exception e) {model.addAttribute("projects",new ArrayList<Project>());}
-		
-		
-		//HISTORIAS ANUNCIADAS
-		List <Story> allSponsoredStories = storyService.findAllSponsoredStories();
-		
-		List <Story> chosenSponsoredStories = new ArrayList<Story>();
-		
-		List<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<allSponsoredStories.size(); i++) {
-            list.add(i);
-        }
-        Collections.shuffle(list);
-        for (int i=0; i<3; i++) {
-        	chosenSponsoredStories.add(allSponsoredStories.get(i));
-        }
-        
-        model.addAttribute("sponsoredStories",chosenSponsoredStories);
 
 		return "stories/showStory";
 	}

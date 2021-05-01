@@ -42,39 +42,6 @@ public class ProducerControllerTests {
     @MockBean
     private ProducerService producerService;
     
-    @BeforeEach
-	void setup() {
-    	/*
-    	User user1 = new User("user1", "user1", "email1@email.com");
-    	User user2 = new User("user2", "user2", "email2@email.com");
-    	User user3 = new User("adminTest", "adminTest", "emailadmin@email.com");
-    	User user4 = new User("admin", "admin", "emailadmin@email.com");
-    	Producer producer1 = new Producer(user1, "producer1", "Descripcion1", 1, "producer1", "photo.photo.es");
-    	Producer producer2 = new Producer(user2, "producer2", "Descripcion2", 2, "producer2", "photo.photo.es");
-    	Producer producer3 = new Producer(user3, "producer3", "Descripcion3", 3, "producer3", "photo.photo.es");
-    	Producer producer4 = new Producer(user4, "producer4", "Descripcion4", 4, "producer4", "photo.photo.es");
-    	this.producer1 = producer1;
-    	this.producer2 = producer2;
-    	this.producer3 = producer3;
-    	this.producer4 = producer4;
-    	List<Producer> listado = new ArrayList<>();
-    	listado.add(producer1);
-    	listado.add(producer2);
-    	listado.add(producer3);
-    	BDDMockito.given(producerService.list()).willReturn(listado);
-    	BDDMockito.given(producerService.findProducerByUsername(user1.getUsername())).willReturn(producer1);
-    	BDDMockito.given(producerService.findProducerByUsername("admin")).willReturn(producer4);
-    	BDDMockito.given(userService.getUserByUsername("admin")).willReturn(user4);
-    	BDDMockito.given(userService.getUserByUsername("adminTest")).willReturn(user3);
-    	BDDMockito.given(producerService.isUniqueUsername("admin")).willReturn(true);
-    	BDDMockito.given(producerService.isUniqueUsername("adminTest")).willReturn(false);
-    	BDDMockito.given(producerService.findProducerById(4)).willReturn(producer4);
-    	BDDMockito.given(producerService.findProducerById(3)).willReturn(producer3);
-    	*/
-    }
-
-    // He metido estos test como prueba para ver si el contexto carga correctamente.
-
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldListProducers() throws Exception {

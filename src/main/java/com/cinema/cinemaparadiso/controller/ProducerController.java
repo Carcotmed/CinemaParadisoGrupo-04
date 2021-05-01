@@ -131,7 +131,6 @@ public class ProducerController {
 			producerService.editProducer(producer);
 			return "redirect:/producers/show/{producerId}";
 		} else {
-			System.out.println(result.getAllErrors());
 			return "producers/updateProducer";
 		}
   }
