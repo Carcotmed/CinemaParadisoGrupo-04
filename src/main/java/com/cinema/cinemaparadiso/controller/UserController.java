@@ -1,11 +1,6 @@
 package com.cinema.cinemaparadiso.controller;
 
-import com.cinema.cinemaparadiso.model.Artist;
-import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.User;
-import com.cinema.cinemaparadiso.model.Writer;
-import com.cinema.cinemaparadiso.service.UserService;
-
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +10,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Producer;
+import com.cinema.cinemaparadiso.model.User;
+import com.cinema.cinemaparadiso.model.Writer;
+import com.cinema.cinemaparadiso.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -65,6 +67,19 @@ public class UserController {
 //        }
 //        return "users/createUserForm";
 //    }
+    
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username) {
+    	List<User> activatedUsers = this.userService.getEnabledUsers();
+    	User userToDelete = this.userService.findUser(username).get();
+    	if (!activatedUsers.contains(userToDelete)) {
+    		this.userService.deleteUser(userToDelete);
+    	}else {
+    		return "/error/error-403"; //En el caso de que se intente entrar por URL 
+    								  //estando activado el usuario lanza un 403
+    	}
+    	return "/index";
+    }
     
     @GetMapping("/miPerfil")
     public String myProfile() {

@@ -189,5 +189,15 @@ public class ArtistService {
 	public void makePro(Integer artistID) {
 		artistRepository.makePro(artistID);
 	}
+	
+	@Transactional
+	public void deleteTotalArtist(Integer artistId) {
+	
+	}
+	
+	@Transactional
+	public void deleteCompletelyArtist(Artist artist) {
+		this.artistRepository.delete(artist);
+	}
 
 }

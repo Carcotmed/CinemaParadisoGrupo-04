@@ -88,8 +88,8 @@ public class StoryController {
 			return "/error/error";
 		}
 		if(rel_projects_storyService.countByProjectId(projectId)!=0) {
-			model.addAttribute("Error", "Este proyecto ya posee una historia");
-			return "/error/error";
+			messageService.projectHaveAStorieError(projectId);
+			return "redirect:/messages/listReceived";
 		}
 		messageService.requestToEnterProjectStory(projectId, storyId);
 		return "redirect:/messages/listSend";
@@ -241,7 +241,7 @@ public class StoryController {
 		try {
 			String username = userService.getPrincipal().getUsername();
 			Boolean actualUserLiked = relUserStoryService.actualUserLiked(storyId, username);
-			log.info("***********************************" +actualUserLiked+"**********************************");
+			
 			model.addAttribute("actualUserLiked",actualUserLiked);
 		}catch (Exception e) {
 			model.addAttribute("actualUserLiked",false);

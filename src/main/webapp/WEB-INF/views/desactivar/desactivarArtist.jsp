@@ -58,12 +58,13 @@
 	
 	<div class="login-wrap padding-nav d-flex flex-column justify-content-center align-items-center">
 
-		<h2>Cerrar sesi&oacuten</h2>
+		<h2>¿estas seguro de que quieres desactivar la cuenta?</h2>
 		<div class="d-flex justify-content-between align-items-between">
-			<button onClick="location.href='/'"
+		
+			<button onClick="location.href='/artists/show/${artistId}'"
 				class="boton btn rounded-pill">Volver</button>
-			<button onClick="location.href='/logout'"
-				class="boton btn rounded-pill">Cerrar sesi&oacuten</button>
+			<button onClick="location.href='/artists/delete/${artistId}'"
+				class="boton btn rounded-pill">Desactivar</button>
 		</div>
 	</div>
 	

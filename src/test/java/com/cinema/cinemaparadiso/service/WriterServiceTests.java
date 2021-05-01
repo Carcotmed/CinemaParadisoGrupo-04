@@ -68,7 +68,7 @@ public class WriterServiceTests {
 		Writer writer = new Writer(
 				new User("UserNuevo",
 				"$2a$10$U9tzLPiS43F9SNtgGoYS5ekMLDj1BqxpcJNPeJrkvx59h1AWCFa",
-				"od.a@musAeneaneget.co.uk")
+				"od.a@musaeneaneget.co.uk")
 			,"Prueba",
 			"Aficionado a la escritura desde que era pequeños",
 			3,"Prueba","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXLauXHp8NfrusbSPOfujsPJgxe6KIgQjiVw&usqp=CAU");

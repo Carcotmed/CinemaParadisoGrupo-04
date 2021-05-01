@@ -1,20 +1,336 @@
-<%@ page session="false" trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%@ page session="false" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
-	
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<html>
+<style>
 
-<head>
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	type="text/javascript"></script>
-	<script>
+	:root{
+		--rojo: #af3248;
+		--gris-oscuro: #232323;
+		--gris: #2b2b2b;
+		--gris-claro: #3e3e3e;
+		--amarillo: #e8c71a;
+	}
+
+	body{
+		min-height: 100vh;
+		background-color: var(--gris-oscuro);
+		position: relative;
+		overflow-x: hidden;
+	}
+	
+	.menu-nav{
+		display: none;
+	}
+	
+	.boton{
+		color:white;
+		border: 3px solid var(--rojo);
+		margin: 0 0.5rem;
+	  	transform: scale(1);
+	    transition: 0.3s ease;
+	    text-shadow: 0 0 4px black;
+	}
+	
+	.boton:hover{
+		background-color:var(--rojo);
+		color:white;
+		text-weight: bold;
+		transform: scale(1.1);
+		text-shadow: unset;
+	}
+	
+	.pro{
+		border-color:var(--amarillo);
+		color:white;
+	}
+	
+	.pro:hover{
+		background-color:var(--amarillo);
+		color:black;
+	}
+	
+	li,p,h1,h2,h3,h4,h5,h6,span,button,label{
+		color:white;
+	}
+	
+	#nav{
+		transition: 0.5s;
+	}
+	
+	.fondo{
+		background-color: var(--gris-oscuro);
+	}
+	
+	.padding-nav{
+		padding-top: 7rem;
+	}
+	
+	.linea-hor{
+		border-width: 3px;
+		border-style: solid;
+		border-radius: 20px;
+	}
+	
+	.linea-hor-pro{
+		border-color: var(--amarillo);
+		background-color: var(--amarillo);
+	}
+	
+	.element-wrapper{
+		border-radius: 20px;
+		transition: 0.3s;
+		cursor:pointer;
+		margin: 1rem;
+		padding: 1rem;
+	}
+	
+	.element-pro:hover{
+		background-color:var(--amarillo) !important;	
+	}
+	
+	.element-wrapper:hover{
+		background-color: var(--gris);
+		transform: scale(1.1);
+		box-shadow: 0 0 10px black;
+	}
+	
+	.element-wrapper img{
+		height:7rem;
+		width:7rem;
+		object-fit: cover;
+	}
+	
+	::-webkit-scrollbar {
+	  width: 12px;
+	  transition: 0.3s;
+	}
+	
+	::-webkit-scrollbar-thumb {
+	  background: var(--rojo);
+	  border-radius: 20px;
+	  transition: 0.3s;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+	  background-color: #8a2f3f;
+	}
+	
+	#boton-up{
+		display:none;
+	}
+	
+	.element-sponsored{
+	        cursor: pointer;
+		    border-radius: 20px;
+		    margin: 1rem 3rem;
+		    text-align: center;
+		    box-shadow: 0 0 10px black;
+		    position: relative;
+		    height: 10rem;
+		    background-color: rgb(0 0 0 / 10%);
+		    transition: 0.3s;
+	}
+	
+	.element-sponsored p{
+		display: none;
+	    transition: 0.3s;
+	}
+	
+	.element-sponsored:hover p{
+		display: block;
+		
+	}
+	
+	.element-sponsored h4{
+		margin-bottom: 0;
+	    transition: 0.3s;
+	    text-shadow: 0 0 10px black;
+	}
+	
+	.element-sponsored:hover h4{
+		margin-bottom: 2rem;		
+	}
+	
+	.element-sponsored:hover{
+		background-color: rgb(0 0 0 / 40%);
+	}
+
+	.terminos-input input{
+			width: 20% !important;
+		}
+		
+	.terminos-input{
+		margin-top: 2rem;
+	}
+	
+	.terminos-input label{
+		width: 100%;
+		font-weight: unset !important;
+	}
+		
+	@keyframes pulse {
+	    0% {
+	     transform: scale(1, 1);
+	    }
+	
+	    50% {
+	     transform: scale(1.1, 1.1);
+	    }
+	
+	    100% {
+	    transform: scale(1, 1);
+    	}
+	}
+		
+	@media(max-width: 1160px) {
+		#menu-list > ul{
+			list-style-type: none;
+		    padding: 0;
+		    margin: 0;
+		    position: absolute;
+		    background-color: var(--gris-oscuro);
+		    width: 10rem;
+		    text-align: center;
+		    right: 0;
+	        margin-top: 1.3rem;
+		}
+		
+		#menu-list > * > li{
+			padding: 1rem 0;
+		}
+		
+		.pro{
+			background-color:var(--amarillo);
+			color: black;
+			font-weight: bold;
+		}
+		
+		.menu-nav{
+			display:block;
+		}
+		
+		.menu-long{
+			display:none !important;
+		}
+		
+		.menu-list{
+			display:none;
+		}
+		
+		nav{
+			background-color: var(--gris-oscuro);
+		}
+		
+		#logout{
+			background-color: var(--rojo);
+		}
+		
+		#menu-b{
+			padding: 5%;
+		    width: 3rem;
+		    height: 3rem;
+		    filter: invert(1);
+		}
+		
+		nav h4 {
+			display:none;
+		}
+		
+		.padding-nav{
+			padding-top: 8rem;
+		}
+		
+		.element-wrapper{
+			margin: 0;
+			padding: 1rem;
+		}
+		
+		#boton-up{
+		    border-radius: 100%;
+		    background-color: var(--gris);
+		    justify-content: center;
+		    align-items: center;
+		    position: sticky;
+		    bottom: 1rem;
+		    left: 80%;
+		    width: 4rem;
+		    height: 4rem;
+		    font-size: 2.5rem;
+		    z-index: 99;
+	        box-shadow: 0 0 10px rgb(0,0,0,40%);
+		}
+		
+		.button-up-show{
+			display: flex !important;
+		}
+		
+		.hide{
+			display: none;
+		}
+	
+		.element-sponsored{
+			margin: 1rem;
+		}
+		
+		.sponsored-bckg{
+			z-index: unset;
+		}
+		
+		.element-sponsored h4{
+			z-index: 1;
+			text-shadow: 0 0 10px black;
+		}	
+	
+	}
+	
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"	type="text/javascript"></script>
+<script>
+	
+	
 	$(document).ready(function () {
+		document.getElementById("menu-list").style.display = "none";
+	});
+	
+	function toggleMobileMenu() {
+		var menu = document.getElementById("menu-list");
+
+		if(menu.style.display === "none"){
+			menu.style.display = "block";
+		}else{
+			menu.style.display = "none"
+		}
+	}
+	
+	$(window).scroll(function () {
+	    var nav = document.getElementById("nav");
+	    var botonUp = document.getElementById("boton-up");
+
+	    if($(window).scrollTop()){
+	    	nav.classList.add("fondo");
+
+	    }else{
+	    	nav.classList.remove("fondo");
+	    }
+	    
+	    if($(window).scrollTop() > 400 && $(window).width() <= 1160){
+	    	botonUp.style.display = "flex";
+
+	    }else{
+	    	botonUp.style.display = "none";
+
+	    }
+	})
+	
+	$(document).ready(function () {
+		
 		$.ajax({
 		    type : "GET",
 		    url : "/messages/check",
@@ -23,98 +339,102 @@
 		    },
 		    success: function(data){
 		    	if(data && data=="true"){
-		    		$("#messagesButton").css("background-color", "#359106");
+		    		$("#messagesButton").css("background-color", "rgb(234 154 55)");
+		    		$("#messagesButton").css("border", "none");
+		    		$("#messagesButton").css("animation", "pulse 1s linear infinite");
+
+		    		$("#messagesButtonMobile").css("background-color", "rgb(234 154 55)");
 		    	}
 		    }
 		});
 	});
-	</script>
+	
+</script>
+<head>
+<title>Cinema Paradiso</title>
 </head>
-
-	<div style="padding:0.5%;background-color:#2b2b2b;z-index:99;top:0" class="position-sticky d-flex justify-content-between align-items-center w-100">
-		<div class="d-flex align-items-center" style="cursor:pointer; width:20%" onClick="location.href='/'">
-			<img src="https://image.flaticon.com/icons/png/512/96/96595.png" style="cursor:pointer;width:30%;margin-left:1%;filter:invert(1)">
-			<h4 style="color:white; margin-left: 1rem">Cinema Paradiso</h4>
-		</div>
-		
-		<style>
-		
-		.boton {
-  color: #af3248 !important;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 0.5em 1.2em;
-  background: #af3248;
-  border: 2px solid;
-  border-color: white;
-  position: relative;
-}
-		.boton3 {
-  color: white !important;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 0.5em 1.2em;
-  background: #af3248;
-  border: 2px solid;
-  border-color: white;
-  transition: all 1s ease;
-  position: relative;
-}
-.boton3:hover {
-  background: #2b2b2b;
-  color: #af3248 !important;
-}
-
-.boton4 {
-  color: #2b2b2b !important;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 0.5em 1.2em;
-  background: #e8c71a;
-  position: relative;
-  border: 2px solid #318aac;
-  outline: 1px solid;
-  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.boton4:hover {
-  box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
-  outline-offset: 90px;
-  outline-color: rgba(49, 138, 172, 0);
-  text-shadow: 1px 1px 6px #fff;
-  color: #af3248 !important;
-  border-shadow: 
-  
-}
-
-		</style>
-		</head>
-		<!-- Botones -->
-		<div class="d-flex justify-content-center align-items-center" style="width:50%">
-			<button class="btn rounded-pill boton boton3" style="margin:0 1%" onClick="location.href='/stories/list'">Historias</button>
-			<button class="btn rounded-pill boton boton3" style="margin:0 1%" onClick="location.href='/writers/list'">Escritores</button>
-			<button class="btn rounded-pill boton boton3" style="margin:0 1%" onClick="location.href='/artists/list'">Artistas</button>
-			<button class="btn rounded-pill boton boton3" style="margin:0 1%" onClick="location.href='/projects/list'">Proyectos</button>
-			<button class="btn rounded-pill boton boton3" style="margin:0 1%" onClick="location.href='/producers/list'">Productoras</button>
- 			
-			<sec:authorize access="isAuthenticated()">
-
-				<button class="btn rounded-pill" id="messagesButton" style="color:white;background-color:#af3248;margin:0 1%" onClick="location.href='/messages/listReceived'">Mensajes</button>
-
-			</sec:authorize>
-			<button class="btn rounded-pill boton boton4" style="margin:0 1%" onClick="location.href='/pro'"><strong>PRO</strong></button>
-		</div>
-		<!-- User menu -->
-		<p style="display: none;" id="usernameContainer"><sec:authentication property="name"/></p>
-		<div style="width: 15%;margin-right:1%" class="d-flex justify-content-between align-items-center">
-			<sec:authorize access="!isAuthenticated()">
-				<button class="btn rounded-pill boton boton3" style="margin:0 1%" onClick="location.href='/login'" >Inicia sesi&oacuten</button>
-				<button class="btn rounded-pill boton boton3" style="margin:0 1%" onClick="location.href='/users/select'" >Registrate</button>
-			</sec:authorize>
-			<sec:authorize access="isAuthenticated()">
-				<button onClick="location.href='/users/miPerfil'" style="margin: 0 6%" class="btn rounded-pill boton boton3">Mi perfil</button>
-				<button onClick="location.href='/logoutsecure'" style="margin: 0 6%" class="btn rounded-pill boton boton3">Cerrar sesi&oacuten</button>
-			</sec:authorize>
+<nav id="nav" style="padding: 0.5rem 1rem; z-index: 99; top: 0"
+	class="position-fixed d-flex justify-content-between align-items-center w-100">
 			
+	<p style="display: none;" id="usernameContainer"><sec:authentication property="name"/></p>
+	
+	<div class="d-flex align-items-center"
+		style="cursor: pointer; width: 20%" onClick="location.href='/'">
+		<img src="https://image.flaticon.com/icons/png/512/96/96595.png"
+			style="cursor: pointer; width: 5rem; filter: invert(1)">
+		<h4 style="margin:0;margin-left: 1rem">Cinema Paradiso</h4>
+	</div>
+
+	<!-- Menu movil -->
+	<div class="menu-nav">
+		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png" id="menu-b" onClick="toggleMobileMenu()" />
+		
+		<div id="menu-list">
+			<ul class="nav-ul">
+				<li onClick="location.href='/stories/list'">Historias</li>
+				<li onClick="location.href='/writers/list'">Escritores</li>
+				<li onClick="location.href='/artists/list'">Artistas</li>
+				<li onClick="location.href='/projects/list'">Proyectos</li>
+				<li onClick="location.href='/producers/list'">Productoras</li>
+				<sec:authorize access="isAuthenticated()">
+					<li id="messagesButtonMobile" onClick="location.href='/messages/listReceived'">Mensajes</li>
+				</sec:authorize>
+				<li class="pro" onClick="location.href='/pro'">PRO</li>
+				<sec:authorize access="!isAuthenticated()">
+					<li onClick="location.href='/login'">Iniciar sesi&oacuten</li>
+					<li onClick="location.href='/users/select'">Registrarse</li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li onClick="location.href='/users/miPerfil'">Perfil</li>
+					<li id="logout" onClick="location.href='/logoutsecure'">Salir</li>
+				</sec:authorize>
+				
+			</ul>
 		</div>
 	</div>
+	
+	<!-- Botones -->
+	<div class="menu-long d-flex justify-content-center align-items-center"
+		style="width: fit-content">
+		<button class="boton btn rounded-pill"
+			onClick="location.href='/stories/list'">Historias</button>
+		<button class="boton btn rounded-pill"
+			onClick="location.href='/writers/list'">Escritores</button>
+		<button class="boton btn rounded-pill"
+			onClick="location.href='/artists/list'">Artistas</button>
+		<button class="boton btn rounded-pill"
+			onClick="location.href='/projects/list'">Proyectos</button>
+		<button class="boton btn rounded-pill"
+			onClick="location.href='/producers/list'">Productoras</button>
+
+		<sec:authorize access="isAuthenticated()">
+			<button id="messagesButton" class="boton btn rounded-pill"
+				onClick="location.href='/messages/listReceived'">Mensajes</button>
+		</sec:authorize>
+		<button class="boton pro btn rounded-pill"
+			onClick="location.href='/pro'">
+			<strong>PRO</strong>
+		</button>
+	</div>
+	
+	<!-- User menu -->
+	<div style="width: fit-content;"
+		class="menu-long d-flex justify-content-between align-items-center">
+		<sec:authorize access="!isAuthenticated()">
+			<button onClick="location.href='/login'"
+				class="boton btn rounded-pill">Inicia sesi&oacuten</button>
+			<button onClick="location.href='/users/select'"
+				class="boton btn rounded-pill">Registrate</button>
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="!hasAuthority('admin')">
+				<button onClick="location.href='/users/miPerfil'"
+					class="boton btn rounded-pill">Perfil</button>
+			</sec:authorize>
+			<button onClick="location.href='/logoutsecure'"
+				class="boton btn rounded-pill">Salir</button>
+		</sec:authorize>
+
+	</div>
+</nav>
 </html>

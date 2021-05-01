@@ -3,83 +3,157 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html class="h-100">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shorcut icon" type="image/ico" href="https://github.com/Carcotmed/CinemaParadisoGrupo-04/blob/feature/fix-general/src/main/webapp/WEB-INF/views/static/favicon.ico?raw=true" />
-
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-
-<title>Elige que tipo de usuario quieres ser</title>
 </head>
-<body class="h-100" style="background-color: #272727; color: white">
-	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+<style>
 
-	<div  class="d-flex flex-column justify-content-center">
-	
-		<div class="d-flex justify-content-between" style="background-color:#4c4c4c; padding:1%">
-			<h4>Elige que tipo de usuario quieres ser</h4>
-		</div>
+		.background-image{
+			z-index: -1;
+		   background-image: url(https://hardfun.cl/inicio/wp-content/uploads/2018/02/Lets-Film.jpg);
+		   width: 100vw;
+		   position: absolute;
+		   height: 100vh;
+		   filter: blur(5px);
+		   background-size: cover;
+		   transition: 0.5s;
+		}
 		
+		.wrapper{
+			box-shadow: 0 0 10px black;
+			border-radius: 20px;
+			position: relative;
+			overflow: hidden;
+			display: flex;
+			justify-content: flex-end;
+			transition: 0.3s;
+			width: 20rem;
+			height: 25rem;
+			margin: 2rem;
+		}
 		
-			<div class="d-flex justify-content-between align-items-evenly" style="padding:1% 2%;width:70%;height:12vh;margin:auto">
-				<div class="d-flex align-items-center" style="width:100%">
-					<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:10%">
-						<img src="https://fscomps.fotosearch.com/compc/CSP/CSP588/mimo-artista-actuar-cuerpo-clipart__k30691595.jpg"  style="cursor:pointer;width:100%;height:100%;object-fit:cover">
-					</div>
-					<h5 style="margin:0 2%">Artista</h5>
-				</div>
-				
-				<div class="d-flex justify-content-between align-items-center" style="width:30%">
-					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill" onClick="location.href='/artists/create'">Crear</button>
-				</div>
-				
+		.wrapper img{
+			width: 20rem;
+			height: 20rem;
+		}
+		
+		.wrapper:hover .content{
+			background-color: var(--rojo);
+		}
+		
+		.wrapper:hover h4{
+			font-size: 3rem;
+			padding-bottom: 50%;
+		}
+		
+		.content{
+			padding: 1.5rem;
+			position: absolute;
+			background: linear-gradient(0deg, var(--gris) 0%, var(--gris) 50%,	transparent 100%);
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			transition: 0.3s;
+		}
+		
+		h4{
+			height: fit-content;
+	    	align-self: flex-end;
+	    	transition: 0.3s;
+		}
+		
+		.padding-nav{
+			display: flex;
+			align-items:center;
+			justify-content: center;
+		}
+
+		@media(max-width: 1160px) {
+			.background-image{
+				width: 100%;
+				height: 100%;
+			}
+			
+			.padding-nav{
+				display: block !important;
+				padding-top: 6rem;
+			}
+			
+			.wrapper{
+				width: unset;
+				height: 10rem;
+			}
+			
+			.wrapper:hover h4{
+				padding-bottom:10%;
+			}
+		}
+
+</style>
+<body>
+
+	<jsp:include page="/WEB-INF/views/navbar.jsp" ></jsp:include>
+	<script>
+		$(document).ready(function () {
+		    var fondo = document.getElementById("global");
+		    var artist = document.getElementById("artista");
+		    var writer = document.getElementById("escritor");
+		    var producer = document.getElementById("productora");
+		    
+		    artist.addEventListener("mouseenter", function() {
+		    	fondo.style.backgroundImage = "url(https://cdn.hipwallpaper.com/i/33/55/hreiP4.jpg)";
+		    });
+		   
+		    writer.addEventListener("mouseenter", function() {
+		    	fondo.style.backgroundImage = "url(https://www.teahub.io/photos/full/55-553913_photo-wallpaper-background-wallpaper-blur-book-book-background.jpg)";
+		    });
+		    
+		   
+		    producer.addEventListener("mouseenter", function() {
+		    	fondo.style.backgroundImage = "url(https://images.wallpaperscraft.com/image/sound_recording_studio_music_166147_3840x2160.jpg)";
+		    });
+		    
+		    
+		  
+		})
+
+	</script>
+	<div id="global" class="background-image"></div>
+
+	<div class="padding-nav padding-footer">
+		<div id="artista" class="wrapper" onClick="location.href='/artists/create'">
+			<img src="https://cdn.hipwallpaper.com/i/33/55/hreiP4.jpg">
+			<div class="content">
+				<h4>Artista</h4>
 			</div>
-			
-			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e81a1a; width:60%; margin:1% auto">
-			
-			<div class="d-flex justify-content-between align-items-evenly" style="padding:1% 2%;width:70%;height:12vh;margin:auto">
-				<div class="d-flex align-items-center" style="width:100%">
-					<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:10%">
-						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIFe2nWx71Hrd2NFlPvry-HXwdlHt8Rq-YwA&usqp=CAU"  style="cursor:pointer;width:100%;height:100%;object-fit:cover">
-					</div>
-					<h5 style="margin:0 2%">Productor</h5>
-				</div>
-				
-				<div class="d-flex justify-content-between align-items-center" style="width:30%">
-					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill" onClick="location.href='/producers/create'">Crear</button>
-					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill"  onClick="location.href='/'">Volver</button>
-				</div>
-				
+		</div>	
+		
+		<div id="escritor" class="wrapper" onClick="location.href='/writers/create'">
+			<img src="https://www.teahub.io/photos/full/55-553913_photo-wallpaper-background-wallpaper-blur-book-book-background.jpg">
+			<div class="content">
+				<h4>Escritor</h4>
 			</div>
-			
-			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e81a1a; width:60%; margin:1% auto">
-			
-	<div class="d-flex justify-content-between align-items-evenly" style="padding:1% 2%;width:70%;height:12vh;margin:auto">
-				<div class="d-flex align-items-center" style="width:100%">
-					<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:10%">
-						<img src="https://elcorreoweb.es/binrepository/675x507/0c54/675d400/none/10703/DYTH/escribir-tu-histroria-1024x769_20332201_20200104232241.jpg"  style="cursor:pointer;width:100%;height:100%;object-fit:cover">
-					</div>
-					<h5 style="margin:0 2%">Escritor</h5>
-				</div>
-				
-				<div class="d-flex justify-content-between align-items-center" style="width:30%">
-					<button style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill" onClick="location.href='/writers/create'">Crear</button>
-				</div>
-				
+		</div>	
+		
+		<div id="productora" class="wrapper" onClick="location.href='/producers/create'">
+		<img src="https://images.wallpaperscraft.com/image/sound_recording_studio_music_166147_3840x2160.jpg">
+			<div class="content">
+				<h4>Productora</h4>
 			</div>
-			
-			<hr style="border-width: 3px;border-style: solid;border-radius: 20px;border-color:#e81a1a; width:60%; margin:1% auto">
-			
+		</div>		
 	</div>
-		<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
+		
+	<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 	
 </body>
 </html>

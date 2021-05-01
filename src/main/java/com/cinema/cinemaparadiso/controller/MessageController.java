@@ -45,6 +45,7 @@ public class MessageController {
         Iterable<Message> messages = messageService.findByEmisorUsername(username);
         model.addAttribute("messages", messages);
         model.addAttribute("tipo", "send");
+        model.addAttribute("urlMsg", "");
         log.info("Listing Messages..."+messages.toString());
         return "messages/listMessage";
     }
@@ -67,6 +68,7 @@ public class MessageController {
         Iterable<Message> messages = messageService.findByReceptorUsername(username);
         model.addAttribute("messages", messages);
         model.addAttribute("tipo", "received");
+        model.addAttribute("urlMsg", "");
         log.info("Listing Messages..."+messages.toString());
         return "messages/listMessage";
     }

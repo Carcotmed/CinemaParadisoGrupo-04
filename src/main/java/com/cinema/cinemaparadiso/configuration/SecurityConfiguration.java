@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/miPerfil").authenticated()
 				.antMatchers("/users/create").permitAll()
+				.antMatchers("/users/delete/{username}").hasAnyAuthority("admin")
 				.antMatchers("/logout").authenticated()
 				//PRODUCER
 				.antMatchers("/producers/list").permitAll()
@@ -89,6 +90,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/show/{projectId}").permitAll()
 				.antMatchers("/projects/joinArtist/{projectId}").authenticated()
 				.antMatchers("/projects/joinProducer/{projectId}").authenticated()
+				
+				//DESACTIVAR
+				.antMatchers("/producers/desactivarProducer/{producerId}").permitAll()
+				.antMatchers("/artists/desactivarArtist/{artistId}").permitAll()
+				.antMatchers("/writers/desactivarWriter/{writerId}").permitAll()
 
 				//TERMS AND CONDITIONS
 				.antMatchers("/terms").permitAll()

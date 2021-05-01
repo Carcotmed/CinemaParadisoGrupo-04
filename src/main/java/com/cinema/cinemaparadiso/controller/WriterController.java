@@ -45,6 +45,13 @@ public class WriterController {
 		return "/writers/listWriter";
 	}
 	
+	@GetMapping("/desactivarWriter/{writerId}")
+	public String desactivarWriter(@PathVariable("writerId") Integer writerId,Model model) {
+           model.addAttribute("writerId",writerId);
+		return "desactivar/desactivarWriter";
+	}
+	
+	
 	@PostMapping("/list")
 	public String list(@ModelAttribute("writersFiltered") Writer writersFiltered,Model model) {
 		List<Writer> writers = writerService.list();

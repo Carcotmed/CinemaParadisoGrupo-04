@@ -2,8 +2,6 @@ package com.cinema.cinemaparadiso.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -75,6 +73,12 @@ public class PostService {
     	}
 		
     	return res;
+    }
+    
+    @Transactional
+    public void deletePostOfAnUser(String username) {
+    	List<Post> postOfAnUser = this.postRepository.listPostOfAnUser(username);
+    	postOfAnUser.stream().forEach(p -> this.postRepository.delete(p));
     }
 
 }
