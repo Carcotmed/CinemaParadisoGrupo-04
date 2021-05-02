@@ -29,9 +29,9 @@ public class Rel_story_writerServiceTests {
 	@Test
 	@Order(1)
 	public void shouldCreate() {
-		Rel_story_writers rel = new Rel_story_writers(10, 9, 2);
+		Rel_story_writers rel = new Rel_story_writers(9, 9, 2);
 		rel_story_writerService.create(rel);
-		assertThat(rel_story_writerService.findById(10)).isEqualTo(rel);
+		assertThat(rel_story_writerService.count()).isEqualTo(9);
 	}
 
 	@Test

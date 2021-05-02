@@ -58,7 +58,6 @@ public class ProducerController {
 		
 		model.addAttribute("producers", producers);
 		
-		
 		List<Producer> producersFiltrados = producers.stream()
 				.filter(w->w.getUser().getUsername().toLowerCase().contains(producersFiltered.getUser().getUsername().toLowerCase())
 				).collect(Collectors.toList());
@@ -167,11 +166,9 @@ public class ProducerController {
 		}
 		try {
 			producerService.activateProducer(producerId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
-			log.info("Producer Deleted Successfully");
+			log.info("Producer Activated Successfully");
 		} catch (Exception e) {
-			log.error("Error Deleting Producer", e);
+			log.error("Error Activating Producer", e);
 		}
 		return "redirect:/";
 	}

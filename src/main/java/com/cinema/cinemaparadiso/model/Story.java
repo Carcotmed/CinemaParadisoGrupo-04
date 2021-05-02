@@ -80,7 +80,7 @@ public class Story extends BaseEntity {
 	
 	@Override
 	public String toString() {
-		return "Story [title=" + title + ", body=" + body + ", genre=" + genre + "]";
+		return "Story (" + id + ") [title=" + title + ", body=" + body + ", genre=" + genre + "]";
 	}
 
 
