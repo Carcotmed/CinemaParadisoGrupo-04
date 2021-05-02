@@ -357,14 +357,14 @@ public class MessageService {
 		Integer projectId = message.getIsRequest();
 		Project project = projectService.findProjectById(projectId);
 		message.setIsRequest(null);
-		Artist artistRejected = artistService.findArtistByUsername(message.getEmisor().getUsername());
+		Producer producerRejected = producerService.findProducerByUsername(message.getEmisor().getUsername());
 		Artist artistOwnerProject = artistService.findArtistByUsername(message.getReceptor().getUsername());
 
 		Message message2 = new Message();
 
 		message2.setIssue("Has sido rechazado.");
 		message2.setBody("El admin de " + project.getTitle() + " ha rechazado su solicitud.");
-		message2.setReceptor(artistService.findMyUser(artistRejected.getId()));
+		message2.setReceptor(producerService.findMyUser(producerRejected.getId()));
 		message2.setEmisor(artistService.findMyUser(artistOwnerProject.getId()));
 		message2.setMessageDate(Date.from(Instant.now()));
 		message2.setIsRequest(null);

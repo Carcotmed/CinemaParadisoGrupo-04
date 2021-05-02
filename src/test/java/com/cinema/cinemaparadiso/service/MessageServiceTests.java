@@ -372,7 +372,7 @@ public class MessageServiceTests {
 
 	@Test
 	public void checkMessageTest() {
-		String username = "userWithMessages3";
+		String username = "userWithMessages4";
 		
 		assertTrue(messageService.checkMessage(username));
 	}

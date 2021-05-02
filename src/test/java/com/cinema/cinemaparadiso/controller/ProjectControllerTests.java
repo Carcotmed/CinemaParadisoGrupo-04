@@ -132,12 +132,11 @@ public class ProjectControllerTests {
 	public void filteredListTest() throws Exception {
 		BDDMockito.given(projectService.list()).willReturn(projectsList);
 		BDDMockito.given(projectService.findAllSponsoredProjects()).willReturn(sponsoredProjectsList);
-		
-		Project projectsFiltered = new Project();
-		projectsFiltered.setTitle("Test");
-		projectsFiltered.setGenre(Genre.CIENCIA_FICCION);
-		projectsFiltered.setHaveStory("false");
-		
+		BDDMockito.given(rel_projects_storyService.haveProjectStory(1)).willReturn("false");
+		BDDMockito.given(rel_projects_storyService.haveProjectStory(2)).willReturn("false");
+		BDDMockito.given(rel_projects_storyService.haveProjectStory(3)).willReturn("false");
+		BDDMockito.given(rel_projects_storyService.haveProjectStory(4)).willReturn("false");
+
 		mockMvc.perform(post("/projects/list").with(csrf())
 				.param("title", "Test")
 				.param("genre", "CIENCIA_FICCION")
