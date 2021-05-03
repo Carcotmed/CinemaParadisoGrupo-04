@@ -1,33 +1,21 @@
 package com.cinema.cinemaparadiso.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataAccessException;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.cinema.cinemaparadiso.model.Authorities;
-import com.cinema.cinemaparadiso.model.Genre;
-import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.Story;
-import com.cinema.cinemaparadiso.model.User;
-import com.cinema.cinemaparadiso.model.Writer;
-import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cinema.cinemaparadiso.model.User;
+import com.cinema.cinemaparadiso.model.Writer;
+import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
 
 @SpringBootTest
 @Sql("/db/testing-data/writerServiceTests/testing-data.sql")

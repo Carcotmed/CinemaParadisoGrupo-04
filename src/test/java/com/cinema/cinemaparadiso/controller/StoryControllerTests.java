@@ -6,26 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cinema.cinemaparadiso.model.Writer;
-import com.cinema.cinemaparadiso.model.Artist;
-import com.cinema.cinemaparadiso.model.Genre;
-import com.cinema.cinemaparadiso.model.Project;
-import com.cinema.cinemaparadiso.model.Role;
-import com.cinema.cinemaparadiso.model.Story;
-import com.cinema.cinemaparadiso.model.User;
-import com.cinema.cinemaparadiso.model.Writer;
-import com.cinema.cinemaparadiso.service.WriterService;
-import com.cinema.cinemaparadiso.service.ArtistService;
-import com.cinema.cinemaparadiso.service.MessageService;
-import com.cinema.cinemaparadiso.service.ProjectService;
-import com.cinema.cinemaparadiso.service.RelUserStoryService;
-import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
-import com.cinema.cinemaparadiso.service.StoryService;
-import com.cinema.cinemaparadiso.service.UserService;
-import com.cinema.cinemaparadiso.service.WriterService;
-
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +20,22 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Genre;
+import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Role;
+import com.cinema.cinemaparadiso.model.Story;
+import com.cinema.cinemaparadiso.model.User;
+import com.cinema.cinemaparadiso.model.Writer;
+import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.MessageService;
+import com.cinema.cinemaparadiso.service.ProjectService;
+import com.cinema.cinemaparadiso.service.RelUserStoryService;
+import com.cinema.cinemaparadiso.service.Rel_projects_storyService;
+import com.cinema.cinemaparadiso.service.StoryService;
+import com.cinema.cinemaparadiso.service.UserService;
+import com.cinema.cinemaparadiso.service.WriterService;
 
 
 @WebMvcTest(controllers = StoryController.class,
