@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,9 @@ public class MessageService {
 
 	@Autowired
 	private ArtistService artistService;
+	
+	@Autowired
+	private WriterService writerService;
 
 	@Autowired
 	private StoryService storyService;
@@ -132,11 +137,11 @@ public class MessageService {
 
 
 	public void requestToEnterProjectStory(Integer projectId, Integer storyId) {
+
 		Story story = storyService.findStoryById(storyId);
 		Project project = projectService.findProjectById(projectId);
 		Artist admin = artistService.findArtistByUsername(project.getMyAdmin());
 		Message message = new Message();
-
 		message.setIssue("Quiero usar su historia");
 		message.setBody("Me gustaría usar su historia en mi proyecto " + project.getTitle() + ".");
 		message.setReceptor(storyService.findMyWriter(storyId).getUser());
@@ -145,8 +150,22 @@ public class MessageService {
 		message.setStory(story);
 		message.setIsRequest(projectId);
 		create(message);
+		
 	}
 
+	public void projectHaveAStorieError(Integer projectId) {
+		Message message2 = new Message();
+		Project project = projectService.findProjectById(projectId);
+		Artist admin = artistService.findArtistByUsername(project.getMyAdmin());
+		message2.setIssue("Ocurrio un error");
+		message2.setBody("Su petición no se pudo enviar con exito ya que el proyecto " + project.getTitle()
+				+ " ya posee una historia.");
+		message2.setReceptor(admin.getUser());
+		message2.setEmisor(userService.getUserByUsername("admin"));
+		message2.setMessageDate(Date.from(Instant.now()));
+		message2.setIsRequest(null);
+		create(message2);
+	}
 	public void requestToEnterProjectProducer(Integer projectId, Integer producerId) {
 		String adminProjectUsername = projectService.findProjectById(projectId).getMyAdmin();
 		Integer adminProjectId = artistService.findArtistByUsername(adminProjectUsername).getId();
@@ -338,14 +357,14 @@ public class MessageService {
 		Integer projectId = message.getIsRequest();
 		Project project = projectService.findProjectById(projectId);
 		message.setIsRequest(null);
-		Artist artistRejected = artistService.findArtistByUsername(message.getEmisor().getUsername());
+		Producer producerRejected = producerService.findProducerByUsername(message.getEmisor().getUsername());
 		Artist artistOwnerProject = artistService.findArtistByUsername(message.getReceptor().getUsername());
 
 		Message message2 = new Message();
 
 		message2.setIssue("Has sido rechazado.");
 		message2.setBody("El admin de " + project.getTitle() + " ha rechazado su solicitud.");
-		message2.setReceptor(artistService.findMyUser(artistRejected.getId()));
+		message2.setReceptor(producerService.findMyUser(producerRejected.getId()));
 		message2.setEmisor(artistService.findMyUser(artistOwnerProject.getId()));
 		message2.setMessageDate(Date.from(Instant.now()));
 		message2.setIsRequest(null);
@@ -370,12 +389,60 @@ public class MessageService {
 	public void deleteAllByStoryId(Integer storyId) {
 		messageRepository.deleteAllByStoryId(storyId);
 	}
+
+	public boolean checkMessage(String username) {
+		return messageRepository.checkMessages(username)>0;
+	}
+
+	@Transactional
+	@Modifying
+	public void checkSeen(Integer messageId) {
+		this.messageRepository.checkSeen(messageId);
+	}
     
     
     
     
     
-    
+	@Transactional
+	public Integer messageConfirmPaymentArtist(Integer artistId) {
+		Artist artist = artistService.findArtistById(artistId);
+		Message message = new Message();
+
+		message.setIssue("Pago aceptado");
+		message.setBody("El pago realizado ha sido tratado con éxito, los beneficios por los cuales has pagado ya se encuentran disponibles.");
+		message.setReceptor(artist.getUser());
+		message.setEmisor(userService.findUser("admin").get());
+		message.setMessageDate(Date.from(Instant.now()));
+		create(message);
+		
+		return message.getId();
+	}
+	
+	@Transactional
+	public Integer messageConfirmPaymentWriter(Integer WriterId) {
+		Writer writer = writerService.findWriterById(WriterId);
+		Message message = new Message();
+
+		message.setIssue("Pago aceptado");
+		message.setBody("El pago realizado ha sido tratado con éxito, los beneficios por los cuales has pagado ya se encuentran disponibles.");
+		message.setReceptor(writer.getUser());
+		message.setEmisor(userService.findUser("admin").get());
+		message.setMessageDate(Date.from(Instant.now()));
+		create(message);
+		
+		return message.getId();
+	}
+	
+    @Transactional
+    public void deleteMessagesOfAnUser(String username) {
+    	List<Message> messageOfAnUserEmisor = this.messageRepository.listMessagesOfAnUserEmisor(username);
+    	List<Message> messageOfAnUserReceptor = this.messageRepository.listMessagesOfAnUserReceptor(username);
+    	messageOfAnUserEmisor.addAll(messageOfAnUserReceptor);
+    	messageOfAnUserEmisor.stream().distinct().collect(Collectors.toList());
+    	messageOfAnUserEmisor.stream().forEach(m -> this.messageRepository.delete(m));
+    }
+
     
 
 }

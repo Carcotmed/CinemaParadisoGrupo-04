@@ -46,12 +46,17 @@ public class ProducerController {
         return "producers/listProducer";
     }
     
+    @GetMapping("/desactivarProducer/{producerId}")
+	public String desactivarProducer(@PathVariable("producerId") Integer producerId,Model model) {
+           model.addAttribute("producerId",producerId);
+		return "desactivar/desactivarProducer";
+	}
+    
     @PostMapping("/list")
 	public String list(@ModelAttribute("producersFiltered") Producer producersFiltered,Model model) {
 		List<Producer> producers = producerService.list();
 		
 		model.addAttribute("producers", producers);
-		
 		
 		List<Producer> producersFiltrados = producers.stream()
 				.filter(w->w.getUser().getUsername().toLowerCase().contains(producersFiltered.getUser().getUsername().toLowerCase())
@@ -161,11 +166,9 @@ public class ProducerController {
 		}
 		try {
 			producerService.activateProducer(producerId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
-			log.info("Producer Deleted Successfully");
+			log.info("Producer Activated Successfully");
 		} catch (Exception e) {
-			log.error("Error Deleting Producer", e);
+			log.error("Error Activating Producer", e);
 		}
 		return "redirect:/";
 	}

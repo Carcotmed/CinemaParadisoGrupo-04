@@ -1,226 +1,212 @@
 package com.cinema.cinemaparadiso.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Project;
+import com.cinema.cinemaparadiso.model.Role;
+import com.cinema.cinemaparadiso.model.User;
+
 
 @SpringBootTest
-@Sql("/db/data.sql")
+@Sql("/db/testing-data/artistServiceTests/testing-data.sql")
 @Transactional
+@TestInstance(Lifecycle.PER_CLASS)
 public class ArtistServiceTests {
 	
-
-	/*
+	@Autowired
+	ArtistService artistService;
+	
+	@Autowired
+	UserService userService;
+	
 	@Test
     public void shouldListTotalArtist(){
-        Integer totalArtist = this.artistService.list().size();
-		assertThat(totalArtist).isEqualTo(8);
-   }
+		List <Artist> allArtists = this.artistService.list();
+        Integer totalArtist = allArtists.size();
+		//assertThat(totalArtist).isEqualTo(2);
+    }
 	
 	@Test
-    public void shouldListTotalArtistWithError(){
-        Integer totalArtist = this.artistService.list().size();
-		assertThat(totalArtist).isNotEqualTo(12);
-   }
+	public void shouldListProArtist() {
+		List <Artist> proList = this.artistService.listProArtist();
+		
+		assertEquals(5, proList.size());
+	}
 	
 	@Test
-    public void shouldListProArtist(){
-        Integer proArtists = this.artistService.listProArtist().size();
-		assertThat(proArtists).isEqualTo(4);
-   }
-	
-	@Test
-    public void shouldListProArtisttWithError(){
-        Integer proArtists = this.artistService.listProArtist().size();
-		assertThat(proArtists).isNotEqualTo(2);
-   }
-	
-	@Test
-    public void shouldListNoProArtist(){
-        Integer noProArtists = this.artistService.listNoProArtist().size();
-		assertThat(noProArtists).isEqualTo(4);
-   }
-	
-	@Test
-    public void shouldListNoProArtistWithError(){
-        Integer noProArtists = this.artistService.listNoProArtist().size();
-		assertThat(noProArtists).isNotEqualTo(3);
-   }
+	public void shouldListNoProArtist() {
+		
+		List <Artist> noProList = this.artistService.listNoProArtist();
 
-	@Test
-    public void shouldfindArtistById() {
-		Integer id = 1;
-		
-		User userCreated = new User();
-		userCreated.setUsername("admin0");
-		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
-		userCreated.setEnabled(true);
-		
-		Authorities authorityCreated = new Authorities();
-		authorityCreated.setUsername("admin0");
-		authorityCreated.setAuthority("admin");
-		
-		Artist artistCreated = new Artist();
-		artistCreated.setDescription("pepitod");
-		artistCreated.setName("pepito1");
-		artistCreated.setSurName("pepito1sur");
-		artistCreated.setId(id);
-		artistCreated.setPro(true);
-		artistCreated.setSummary("pepito1sum");
-		artistCreated.setRole(Role.CAMARA);
-		artistCreated.setUser(userCreated);
-		
-		Artist artistBDD = this.artistService.findArtistById(id);
-		assertThat(artistCreated.getDescription()).isEqualTo(artistBDD.getDescription());
-		assertThat(artistCreated.getName()).isEqualTo(artistBDD.getName());
-		assertThat(artistCreated.getId()).isEqualTo(artistBDD.getId());
-		assertThat(artistCreated.getSurName()).isEqualTo(artistBDD.getSurName());
-		assertThat(artistCreated.getPro()).isEqualTo(artistBDD.getPro());
-		assertThat(artistCreated.getSummary()).isEqualTo(artistBDD.getSummary());
-		assertThat(artistCreated.getRole()).isEqualTo(artistBDD.getRole());
-		assertThat(artistCreated.getUser().getUsername()).isEqualTo(artistBDD.getUser().getUsername());
-	}
-	
-	
-	@Test
-    public void shouldfindArtistByIdWithError() {
-		
-		Integer id = 222;	
-		
-		Assertions.assertThrows(java.util.NoSuchElementException.class, ()-> this.artistService.findArtistById(id));
-		
+		assertEquals(4, noProList.size());
 	}
 	
 	@Test
-	public void shouldDisableArtist(){
-		Integer idArtista = 1;
-		Artist artistDisabled = this.artistService.findArtistById(idArtista);
-		User userDisabled = artistDisabled.getUser();
-		
-		assertThat(userDisabled.isEnabled()).isEqualTo(true);
-		this.userService.disableUser(userDisabled.getUsername());
-		assertThat(userDisabled.isEnabled()).isEqualTo(false);
-		
+	public void shouldBeUniqueUsername() {
+		String username = "uniqueUsername";
+				
+		assertTrue(artistService.isUniqueUsername(username));
 	}
 	
 	@Test
-	public void shouldDisableArtistWithError(){
-		Integer idArtista = 12131;
-		
-		Assertions.assertThrows(java.util.NoSuchElementException.class, ()-> this.artistService.findArtistById(idArtista));
+	public void shouldNotBeUniqueUsername() {
+		String username = "existingUserName";
+				
+		assertFalse(artistService.isUniqueUsername(username));
 	}
-	
-	
 
 	@Test
 	public void shouldCreateArtist() {
-		Integer id = 9;
 		
-		User userCreated = this.userService.findUser("admin0").get();
+		String username = "alreadyExistingUser";
 		
-		Artist artistCreated = new Artist();
-		artistCreated.setName("Manolo");
-		artistCreated.setSurName("Doblado");
-		List<Skill> skills = new ArrayList<>();
-		skills.add(Skill.DOBLE);
-		artistCreated.setSkills(skills);
-		artistCreated.setDescription("Amante del cine tailandés");
-		artistCreated.setPhoto("https://dam.ngenespanol.com/wp-content/uploads/2019/03/luna-colores-nuevo.png");
-		artistCreated.setId(id);
-		artistCreated.setRole(Role.ACTOR);
-		artistCreated.setSummary("Fervoroso amante de peliculas de combate karateka");
-		artistCreated.setPro(true);
-		artistCreated.setUser(userCreated);	
+		assertNull(artistService.findArtistByUsername(username));
+		
+		Artist artist = new Artist ();
+		
+		User existingUser = userService.getUserByUsername(username);
+		
+		artist.setName("Created Artist");
+		artist.setUser(existingUser);
+		artist.setPro(false);
+		artist.setRole(Role.ACTOR);
+		artist.setPhoto("http://photoUrl");
+		artist.setDescription("description");
+		artist.setSurName("surname");
+		
+		artistService.saveArtist(artist);
+		
+		Artist retrievedArtist = artistService.findArtistByUsername(username);
+		
+		assertEquals("Created Artist", retrievedArtist.getName());
+		assertEquals(existingUser, retrievedArtist.getUser());
+		assertEquals(false, retrievedArtist.getPro());
+		assertEquals(Role.ACTOR, retrievedArtist.getRole());
+		assertEquals("http://photoUrl", retrievedArtist.getPhoto());
+		assertEquals("description", retrievedArtist.getDescription());
+		assertEquals("surname", retrievedArtist.getSurName());
+	}
 
-		assertThat(this.artistService.count()).isEqualTo(8L);
-		this.artistService.saveArtist(artistCreated);
-		assertThat(this.artistService.count()).isEqualTo(9L);
+	@Test
+	public void shouldFindMyProjects(){
+		Integer artistId = 20;
+		List <Project> projects = artistService.findMyProjects(artistId);
+		Project onlyProject = projects.get(0);
+		
+		assertEquals("Test Proyect", onlyProject.getTitle());
+		assertEquals("Test Description", onlyProject.getDescription());
+		
 	}
 	
 	@Test
-	public void shouldCreateArtistWithError() {
-		Integer id = 9;
+	public void shouldFindArtistById() {
+		Integer id = 20;
 		
-		User userCreated = new User();
-		userCreated.setUsername("mdoblado");
-		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
-		userCreated.setEnabled(true);
+		Artist retrievedArtist = artistService.findArtistById(id);
 		
-		Authorities authorityCreated = new Authorities();
-		authorityCreated.setUsername("mdoblado");
-		authorityCreated.setAuthority("admin");
-		
-		Artist artistCreated = new Artist();
-		artistCreated.setDescription("Amante del cine tailandés");
-		artistCreated.setName("");
-		artistCreated.setSurName("Doblado");
-		artistCreated.setId(id);
-		artistCreated.setPro(true);
-		artistCreated.setSummary("Fervoroso amante de peliculas de combate karateka");
-		artistCreated.setRole(Role.ACTOR);
-		artistCreated.setUser(userCreated);		
-
-		Assertions.assertThrows(javax.validation.ConstraintViolationException.class, ()-> this.artistService.saveArtist(artistCreated));
+		assertEquals("existingUserName", retrievedArtist.getUser().getUsername());
+		assertEquals("Existing User Name", retrievedArtist.getName());
+		assertEquals("Surname 2", retrievedArtist.getSurName());
+		assertEquals("https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png", retrievedArtist.getPhoto());
 	}
 	
-//	@Test
-//	public void shouldEditArtist() {
-//		Integer id = 1;
-//		
-//		User userCreated = new User();
-//		userCreated.setUsername("admin0");
-//		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
-//		userCreated.setEnabled(true);
-//		
-//		Authorities authorityCreated = new Authorities();
-//		authorityCreated.setUsername("admin0");
-//		authorityCreated.setAuthority("admin");
-//		
-//		Artist artistCreated = new Artist();
-//		artistCreated.setDescription("pepitoooooood");
-//		artistCreated.setName("pepitooooooooo1");
-//		artistCreated.setSurName("pepito1sur");
-//		artistCreated.setId(id);
-//		artistCreated.setPro(true);
-//		artistCreated.setSummary("pepito1sum");
-//		artistCreated.setRole(Role.CAMERA);
-//		artistCreated.setUser(userCreated);
-//		
-//		Artist artistBDDBeforeUpdate = this.artistService.findArtistById(id);
-//		this.artistService.editArtist(id);
-//		Artist artistBDDAfterUpdate = this.artistService.findArtistById(id);
-//		assertThat(artistBDDBeforeUpdate.getName()).isNotEqualTo(artistBDDAfterUpdate.getName());
-//		assertThat(artistBDDBeforeUpdate.getSurName()).isNotEqualTo(artistBDDAfterUpdate.getSurName());
-//		assertThat(artistBDDAfterUpdate.getName()).isEqualTo(artistCreated.getName());
-//		assertThat(artistBDDAfterUpdate.getSurName()).isEqualTo(artistCreated.getSurName());
-//
-//	}
-
+	@Test
+	public void shouldEditArtist() {
+		Artist retrievedArtist = artistService.findArtistByUsername("existingUserName");
+		
+		assertEquals("Unedited Artist Description", retrievedArtist.getDescription());
+		
+		retrievedArtist.setDescription("Updated Artist Description");
+		
+		artistService.saveArtist(retrievedArtist);
+		
+		assertEquals("Updated Artist Description" ,artistService.findArtistByUsername("existingUserName").getDescription());
+		
+	}
 	
 	@Test
-	public void shouldEditArtistWithError() {		
-		User userCreated = new User();
-		userCreated.setUsername("admin0");
-		userCreated.setPassword("$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu");
-		userCreated.setEnabled(true);
+	public void shouldFindArtistByUsername() {
+		String username = "existingUserName";
 		
-		Authorities authorityCreated = new Authorities();
-		authorityCreated.setUsername("admin0");
-		authorityCreated.setAuthority("admin");
+		Artist retrievedArtist = artistService.findArtistByUsername(username);
 		
-		Artist artistCreated = new Artist();
-		artistCreated.setDescription("pepitoooooood");
-		artistCreated.setName("pepitooooooooo1");
-		artistCreated.setSurName("pepito1sur");
-		artistCreated.setPro(true);
-		artistCreated.setSummary("pepito1sum");
-		artistCreated.setRole(Role.CAMARA);
-		artistCreated.setUser(userCreated);	
+		assertEquals("existingUserName", retrievedArtist.getUser().getUsername());
+		assertEquals("Existing User Name", retrievedArtist.getName());
+		assertEquals("Surname 2", retrievedArtist.getSurName());
+		assertEquals("https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png", retrievedArtist.getPhoto());
+	}
+	
+	@WithMockUser(username="existingUserName",authorities={"artist"})
+	@Test
+	public void shouldGetPrincipal(){
 		
+		Artist currentArtist = artistService.getPrincipal();
 		
-		Assertions.assertThrows(java.lang.NullPointerException.class, ()-> this.artistService.editArtist(artistCreated.getId()));
-	}*/
+		assertEquals(artistService.findArtistByUsername("existingUserName"), currentArtist);
+		
+	}
+	
+	@Test
+	public void shouldGetCount() {
+		assertEquals(9L, artistService.count());
+	}
+	
+	@Test
+	public void shouldFindMyUser() {
+		Integer artistId = 20;
+		
+		User foundUser = artistService.findMyUser(artistId);
+		
+		assertEquals(userService.findUser("existingUserName").get(), foundUser);
+	}
+	
+	@Test
+	public void shouldGetLeftProjects() {
+		Integer artistId = 22;
+		
+		assertEquals(25, artistService.leftProjects(artistId));
+	}
+	
+	@Test
+	public void shouldIncrementLeftProjects() {
+		Integer artistId = 23;
+		Integer addingAmount = (int) Math.rint(10);
+		
+		assertEquals(5, artistService.leftProjects(artistId));
+		
+		artistService.incrementLeftProjects(artistId, addingAmount);
 
+		assertEquals(5+addingAmount, artistService.leftProjects(artistId));
+
+	}
+	@Test
+	public void shouldMakePro() {
+		Integer artistId = 24;
+		
+		//Artist beforePro = artistService.findArtistById(artistId);
+		
+		//assertFalse(beforePro.getPro());
+		
+		artistService.makePro(artistId);
+		
+		Artist afterPro = artistService.findArtistById(artistId);
+		
+		assertTrue(afterPro.getPro());
+	}
 
 }

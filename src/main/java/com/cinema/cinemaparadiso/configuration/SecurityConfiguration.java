@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/miPerfil").authenticated()
 				.antMatchers("/users/create").permitAll()
+				.antMatchers("/users/delete/{username}").hasAnyAuthority("admin")
 				.antMatchers("/logout").authenticated()
 				//PRODUCER
 				.antMatchers("/producers/list").permitAll()
@@ -48,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/messages/show/{messageId}").authenticated()
 				.antMatchers("/messages/create/{userId}").authenticated()
 				.antMatchers("/messages/delete/{messageId}").authenticated()
+				.antMatchers("/messages/check").authenticated()
 				.antMatchers("/messages/show/{messageId}/acceptRequestArtist").authenticated()
 				.antMatchers("/messages/show/{messageId}/rejectRequestArtist").authenticated()
 				.antMatchers("/messages/show/{messageId}/acceptRequestProducer").authenticated()
@@ -58,12 +60,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
 				.antMatchers("/users/select").permitAll()
-				//POST
-				.antMatchers("/posts/list").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/posts/find/{postId}").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/posts/create/{projectId}").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/posts/update/{postId}").permitAll()//hasAnyAuthority("authenticated")
-				.antMatchers("/posts/delete/{postId}").permitAll()//hasAnyAuthority("authenticated")
+				//POST - TABLON DE ANUNCIOS
+				.antMatchers("/posts/create/{projectId}").authenticated()
 				//PRO
 				.antMatchers("/pro/**").authenticated()//hasAnyAuthority("authenticated")
 		     //WRITERS
@@ -80,6 +78,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/stories/update/{storyId}").authenticated()
 				.antMatchers("/stories/delete/{storyId}").authenticated()
 				.antMatchers("/stories/request/{storyId}/{projectId}").authenticated()
+				.antMatchers("/stories/like/{storyId}").authenticated()
+				.antMatchers("/stories/notLike/{storyId}").authenticated()
 				
 				//PROJECTS
 				.antMatchers("/projects/list").permitAll()
@@ -90,6 +90,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/projects/show/{projectId}").permitAll()
 				.antMatchers("/projects/joinArtist/{projectId}").authenticated()
 				.antMatchers("/projects/joinProducer/{projectId}").authenticated()
+				
+				//DESACTIVAR
+				.antMatchers("/producers/desactivarProducer/{producerId}").permitAll()
+				.antMatchers("/artists/desactivarArtist/{artistId}").permitAll()
+				.antMatchers("/writers/desactivarWriter/{writerId}").permitAll()
+
+				//TERMS AND CONDITIONS
+				.antMatchers("/terms").permitAll()
 				
 				.antMatchers("/logoutsecure").authenticated()
 				

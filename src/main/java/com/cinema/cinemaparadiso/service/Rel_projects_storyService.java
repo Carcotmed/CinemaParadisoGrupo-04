@@ -59,6 +59,17 @@ public class Rel_projects_storyService {
 		return this.rel_projects_storyRepository.findRelacionesByProject(projectId).size();
 	}
 	
+	
+	@Transactional
+	public String haveProjectStory(Integer projectId){
+		return this.rel_projects_storyRepository.findRelacionesByProject(projectId).size()>0?"true":"false";
+	}
+	
+	
+	@Transactional
+	public String haveStoryProject(Integer storyId){
+		return this.rel_projects_storyRepository.findRelacionesByStory(storyId).size()>0?"true":"false";
+	}
 	@Transactional
 	public Rel_projects_story findByProjectId(Integer projectId){
 		return this.rel_projects_storyRepository.findRelacionesByProject(projectId).get(0);

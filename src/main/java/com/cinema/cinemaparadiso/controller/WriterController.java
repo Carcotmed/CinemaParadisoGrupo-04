@@ -45,6 +45,13 @@ public class WriterController {
 		return "/writers/listWriter";
 	}
 	
+	@GetMapping("/desactivarWriter/{writerId}")
+	public String desactivarWriter(@PathVariable("writerId") Integer writerId,Model model) {
+           model.addAttribute("writerId",writerId);
+		return "desactivar/desactivarWriter";
+	}
+	
+	
 	@PostMapping("/list")
 	public String list(@ModelAttribute("writersFiltered") Writer writersFiltered,Model model) {
 		List<Writer> writers = writerService.list();
@@ -65,7 +72,7 @@ public class WriterController {
 	public String showWriter(@PathVariable("writerId") int writerId, Model model) {
 		Writer writer = writerService.findWriterById(writerId);
 		List<Story> stories = writerService.findMyStories(writerId);
-		Boolean sameWriter = userService.isAdmin();
+		Boolean sameWriter = false;
 		try {
 			sameWriter = writerService.getPrincipal().getId().equals(writerId);
 				}

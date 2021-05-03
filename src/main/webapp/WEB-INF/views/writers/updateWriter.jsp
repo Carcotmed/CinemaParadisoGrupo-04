@@ -5,8 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html>
-<html class="h-100">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,76 +15,116 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-
-<title>Actualizar escritor</title>
 </head>
-<body class="h-100" style="background-color: #272727; color: white">
-	<div class="d-flex justify-content-center align-items-center"
-		style="padding: 2%">
+<style>
+		.background-image{
+			z-index: -1;
+		   background-image: url(https://www.teahub.io/photos/full/55-553913_photo-wallpaper-background-wallpaper-blur-book-book-background.jpg);
+		   width: 100%;
+		   position: absolute;
+		   height: 100%;
+		   filter: blur(5px);
+		   background-size: contain;
+		}
+		
+		.form-wrapper{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 1.5rem;
+			width:30rem;
+			height: fit-content;
+			box-shadow: 0 0 10px black;
+			background-color: var(--gris);
+			border-radius: 20px;
+			margin: 1rem 0 2rem 0;
+		}
+		
+		
+		form input, form textarea{
+			width: 60% !important;
+		}
+		
+		form div{
+			margin: 0.5rem 0;
+		}
+		
+		form {
+			margin: 0;
+		}
+		
+		form label{
+			font-weight: bold;
+		}
+	
+		
+		@media(max-width: 1160px) {
+			
+			.padding-nav{
+				padding-top: 6rem !important;
+			}
+		
+			.form-wrapper{
+				box-shadow: unset;
+				border-radius: unset;
+				margin: unset;
+			}
+		
+		}
+		
+</style>
+<body>
+	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
+	<div class="background-image"></div>
 
-		<!-- Info general Proyecto -->
+	<div class="padding-nav padding-footer d-flex justify-content-center align-items-center">
 
-		<div class="d-flex justify-content-between" style="width: 40%;">
+		<div class="form-wrapper">
+			<h3>Editar escritor</h3>
+	
+			<form:form method="POST" action="" modelAttribute="writer" style="width:100%">
 
-			<form:form method="POST" action="${writer.id}" modelAttribute="writer"
-				style="width:100%">
-				<!-- Datos -->
-				<div>
-					<div class="d-flex justify-content-between align-items-center"
-						style="margin: 1% 0">
-						<div class="d-flex flex-wrap ">
-							<form:label class="p-2 rounded-pill form-control-label"
-								style="background-color:#828282" path="name">Nombre</form:label>
-						</div>
-						<form:input class="form-control" value="${writer.name}"
-							placeholder="Nombre" style="margin-left: 3%;width:60%"
-							type="text" path="name"></form:input>
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="d-flex flex-wrap ">
+						<form:label class="rounded-pill form-control-label" path="name">Nombre</form:label>
 					</div>
-					<form:errors style="color:red" path="name" />
-					<div class="d-flex justify-content-between align-items-center"
-						style="margin: 1% 0">
-						<div class="d-flex flex-wrap ">
-							<form:label class="p-2 rounded-pill form-control-label"
-								style="background-color:#828282" path="surName">Apellidos</form:label>
-						</div>
-						<form:input class="form-control" value="${writer.surName}"
-							placeholder="Apellidos" style="margin-left: 3%;width:60%"
-							type="text" path="surName"></form:input>
-					</div>
-					<form:errors style="color:red" path="surName" />
-					<div class="d-flex justify-content-between align-items-center"
-						style="margin: 1% 0">
-						<div class="d-flex flex-wrap ">
-							<form:label class="p-2 rounded-pill form-control-label"
-								style="background-color:#828282" path="description">Resumen</form:label>
-						</div>
-						<form:textarea class="form-control" value="${writer.description}"
-							placeholder="Descripción" style="margin-left: 3%;width:60%"
-							type="text" path="description"></form:textarea>
-					</div>
-					<form:errors style="color:red" path="description" />
-					<div class="d-flex justify-content-between align-items-center"
-						style="margin: 1% 0">
-						<div class="d-flex flex-wrap ">
-							<form:label class="p-2 rounded-pill form-control-label"
-								style="background-color:#828282" path="photo">Añade tu foto</form:label>
-						</div>
-						<form:input class="form-control" value="${writer.photo}"
-							placeholder="url" style="margin-left: 3%;width:60%" type="text"
-							path="photo"></form:input>
-					</div>
-					<form:errors style="color:red" path="photo" />
-					<div
-						class="form-group d-flex justify-content-center align-items-center my-4">
-						<form:button class="btn"
-							style="color:white;background-color: #af3248">Guardar</form:button>
-					</div>
+					<form:input class="form-control" value="${writer.name}"	placeholder="Nombre" type="text" path="name"></form:input>
 				</div>
-				<br>
-              <a href="/writers/show/${writer.id}" style="color:white;height: fit-content;background-color:#af3248" class="btn rounded-pill">Volver</a>
+				<form:errors style="color:red" path="name" />
+				
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="d-flex flex-wrap ">
+						<form:label class="rounded-pill form-control-label" path="surName">Apellidos</form:label>
+					</div>
+					<form:input class="form-control" value="${writer.surName}" placeholder="Apellidos" type="text" path="surName"></form:input>
+				</div>
+				<form:errors style="color:red" path="surName" />
+				
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="d-flex flex-wrap ">
+						<form:label class="rounded-pill form-control-label" path="description">Resumen</form:label>
+					</div>
+					<form:textarea class="form-control" value="${writer.description}"
+						placeholder="Descripcion" type="text" path="description"></form:textarea>
+				</div>
+				<form:errors style="color:red" path="description" />
+				
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="d-flex flex-wrap ">
+						<form:label class="rounded-pill form-control-label" path="photo">A&ntildeade tu foto</form:label>
+					</div>
+					<form:input class="form-control" value="${writer.photo}"
+						placeholder="url" type="text" path="photo"></form:input>
+				</div>
+				<form:errors style="color:red" path="photo" />
+				
+				<div class="d-flex justify-content-center align-items-center" style="margin-top: 2rem;">
+					<form:button class="boton btn rounded-pill">Guardar</form:button>
+				</div>
 			</form:form>
 		</div>
 
 	</div>
+	<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </body>
 </html>

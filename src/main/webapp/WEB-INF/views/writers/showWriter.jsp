@@ -3,8 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html class="h-100">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,94 +14,218 @@
 	rel="stylesheet"
 	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
 	crossorigin="anonymous">
-
-<title>Escritor</title>
 </head>
-<body class="h-100" style="background-color: #272727; color: white">
-<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
-	<!-- Header Historia -->
-	<div class="d-flex justify-content-between p-3" style="height:15%">
-			<div class="d-flex align-items-center" style="width:50%">
-				<div  class="rounded-circle d-flex" style="overflow:hidden;height:100%;width:12vh">
-					<img src="${writer.photo}" style="width:100%;height:100%;object-fit:cover">			
-				</div>
-				<div class="py-3 mx-3" style="width:40%">
-					<h2>${writer.user.username}</h2>
-				</div>
-			</div>
-	<c:if test="${!userDisabled}">
-		<c:if test="${sameWriter == false && !isAdmin}">
-			<button class="btn rounded-pill" onClick="location.href='/messages/create/${writerUsername}'" style="color:white;height: fit-content;background-color: #af3248">Contactar</button>
-		</c:if>
-		<c:if test="${sameWriter == true || isAdmin}">
-			<button class="btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'" style="color: white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Actualizar perfil</button>
-			<button class="btn rounded-pill" onClick="location.href='/writers/delete/${writer.id}'" style="color:white;height: fit-content;background-color: ${isAdmin?'#8a4380':'#af3248'}">Desactivar perfil</button>
-		</c:if>
-	</c:if>
-	<c:if test="${userDisabled}">
-		<div class="py-3 mx-3" style="width:40%">
-			<h2>Usuario desactivado</h2>
-		</div>
-		<c:if test="${isAdmin}">
-			<button class="btn rounded-pill" style="background-color: ${isAdmin?'#8a4380':'#af3248'}; color: white;" onclick="location.href='/writers/activate/${writer.id}'">Activar escritor</button>
-		</c:if>
-	</c:if>
-	</div>
-	<!-- Info general Historia -->
-	<c:if test="${!userDisabled}">
-	<div>
-		<div class="d-flex justify-content-between w-100" style="background-color:#4c4c4c; padding:1%">
-			<h3 style="margin:0">Datos</h3>
-			<c:choose>
-				<c:when test="${sameWriter == true && !isAdmin}">
-					<button class="btn rounded-pill" onClick="location.href='/stories/create'" style="color:white;background-color: #af3248">Crear nueva historia</button>
-				</c:when>
-			</c:choose>
-		</div>
+<style>
+		.background-image{
+			z-index: -1;
+		   background-image: url(https://www.teahub.io/photos/full/55-553913_photo-wallpaper-background-wallpaper-blur-book-book-background.jpg);
+		   width: 110%;
+		   position: absolute;
+		   height: 100%;
+		   filter: blur(5px);
+		   background-size: contain;
+		}
 		
-		<div class="d-flex" style="padding: 2% 5%">
-			<!-- Datos -->
-			<div style="width:50%;border-color: #af3248;border-style: solid;border-width: 0 2px 0 0;">
-				<div style="margin:1% 0">
-					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre de usuario</h5>
-					</div>
-					<p style="margin-left: 3%">${writer.user.username}</p>
-				</div>
-				<div style="margin:1% 0">
-					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Nombre</h5>
-					</div>
-					<p style="margin-left: 3%">${writer.name}</p>
-				</div>
-				<div>
-					<div class="d-flex flex-wrap ">
-						<h5 class="p-2 rounded-pill" style="background-color:#3e3e3e">Descripci&oacuten</h5>
-					</div>
-					<p style="margin-left: 3%">${writer.description}</p>
+		.perfil-top img{
+			width: 10rem;
+		    height: 10rem;
+		    border: 5px solid white;
+		    object-fit: cover;
+		}
+		
+		.perfil-top{
+			width: 30%;
+	    	margin: auto;
+		}
+		
+	
+		.perfil-bot{
+			background: linear-gradient(180deg, transparent 0%, var(--gris) 12%, var(--gris) 100%);
+		}
+		
+		.acciones-wrap{
+			width: 100%;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			padding: 1rem;
+		}
+		
+		.perfil-info-wrap > div{
+			width:50%;
+			padding: 1.5rem;
+		}
+		
+		.perfil-info-wrap{
+			padding: 2rem 0;
+		}
+		
+		.perfil-borde{
+			border-right: 3px solid var(--rojo);
+		}
+		
+		h3{
+			text-align: center;
+			text-shadow: 0 0 10px black;
+		}
+		
+		h4{
+			margin-bottom: 1rem;
+		}
+		
+		.perfil-element-wrap{
+			display: flex;
+			justify-content:space-between;
+			align-items: center;
+			padding: 1.5rem 1rem;
+			cursor: pointer;
+			border-radius: 20px;
+			transition: 0.3s;
+		    margin-top: 1rem;
+		}
+		
+		.perfil-element-wrap:hover{
+			padding: 1.5rem 8rem;
+			background-color: var(--rojo);
+		}
+		
+		.perfil-bot img{
+			height:7rem;
+			width:7rem;
+			object-fit: cover;
+		}
+		
+		.linea-hor{
+			display: none;
+		}
+		
+		.perfil-element-wrap div{
+			text-align: end;
+		}
+		
+		.perfil-borde > div > p {
+			background-color: var(--rojo);
+			padding: 0.2rem 1rem;
+			font-weight: bold;
+		}
+		
+		.b-create{
+			width: 2rem;
+		    padding: 0;
+		    height: 2rem;
+		    font-weight: bold;
+		}
+		
+		.info-list-wrap{
+			display: flex;
+		}
+		
+		@media(max-width: 1160px) {
+			.perfil-info-wrap{
+				flex-direction: column;
+			}
+			
+			.perfil-info-wrap > div{
+				width:100%;
+			}
+			
+			.perfil-borde{
+				border: unset;
+			}
+			
+			.perfil-bot{
+				background: linear-gradient(180deg, transparent 0%, var(--gris) 10%, var(--gris) 100%);
+			}
+			
+			.linea-hor{
+				display: block;
+				background-color: var(--rojo);
+				border-color: var(--rojo);
+				width: 80%;
+   				margin: 0 auto;
+			}
+			
+			.background-image{
+				width: 100%;
+			}
+			
+		}
+				
+		
+</style>
+<body>
+	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
+	<div class="background-image"></div>
+	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
+		<img src="${writer.photo}" class="rounded-circle">
+		<div>
+			<h3>${writer.user.username}</h3>
+			<h3>${writer.name}&nbsp${writer.surName}</h3>
+		</div>
+	</div>
+	
+	<div class="perfil-bot padding-footer d-flex position-relative flex-column">
+	
+		<div class="acciones-wrap">
+			<c:if test="${!userDisabled}">
+				<c:if test="${sameWriter == false || isAdmin}">
+					<button class="boton btn rounded-pill"
+						onClick="location.href='/messages/create/${writerUsername}'">Contactar</button>
+				</c:if>
+				<c:if test="${sameWriter == true || isAdmin}">
+					<button class="boton btn rounded-pill" onClick="location.href='/writers/update/${writer.id}'">Editar</button>
+					<a class="boton btn rounded-pill"
+						href='/writers/desactivarWriter/${writer.id}'>Desactivar</a>
+				</c:if>
+			</c:if>
+			
+			<c:if test="${userDisabled}">
+				<c:if test="${isAdmin}">
+					<button class="boton btn rounded-pill" onclick="location.href='/writers/activate/${writer.id}'">Activar</button>
+					<button class="boton btn rounded-pill"
+						onClick="location.href='/users/delete/${writerUsername}'">Eliminar datos</button>
+				</c:if>
+			</c:if>
+		</div>
+
+		<c:if test="${!userDisabled}">
+			<div class="perfil-info-wrap d-flex">
+				<div class="perfil-borde">
+					<h4>Datos del escritor</h4>
+					<p>${writer.description}</p>
 				</div>
 				
-			</div>
-			<div style="padding: 2% 0;width:30%;margin-left:3%">
-				<h4 style="margin-bottom: 4%">Mis historias</h4>
-				<c:forEach items="${stories}" var="story">
-					<div class="d-flex align-items-center justify-content-evenly" style="height:15vh; margin: 1% 0;cursor: pointer" onClick="location.href='/stories/show/${story.id}'">
-						<div style="width:10vh;height:10vh;overflow:hidden" class="rounded-circle">
-							<img src="https://www.psicoactiva.com/wp-content/uploads/puzzleclopedia/Libros-codificados-300x262.jpg"  style="width:100%;height:100%;object-fit:cover">
-						</div>
-						<div style="margin-left: 12%">
-							<h5>${story.title}</h5>
-							<p>${story.genre}</p>
-						</div>
+				<hr class="linea-hor">
+				
+				<div>
+					<div class="info-list-wrap justify-content-between align-items-center"">
+						<h4>Historias</h4>
+						<c:choose>
+							<c:when test="${sameWriter == true && !isAdmin}">
+								<button class="b-create boton btn rounded-circle" onClick="location.href='/stories/create'">+</button>
+							</c:when>
+						</c:choose>
 					</div>
-					
-					
-				</c:forEach>
-		</div>
-			
-		</div>
+					<c:forEach items="${stories}" var="story">
+						<div class="perfil-element-wrap" onClick="location.href='/stories/show/${story.id}'">
+							<img class="rounded-circle" src="${story.photo}">
+							<div>
+								<h5>${story.title}</h5>
+								<p>${story.genre}</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${userDisabled}">
+			<div class="d-flex justify-content-center align-items-center" style="width: 100%; padding-top: 4rem">
+				<h2>Usuario desactivado</h2>
+			</div>
+		</c:if>
+		
 	</div>
-	</c:if>
+						
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
-<jsp:include page="/WEB-INF/views/footer.jsp" ></jsp:include>
 </html>
