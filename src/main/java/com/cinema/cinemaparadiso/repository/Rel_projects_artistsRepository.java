@@ -10,7 +10,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cinema.cinemaparadiso.model.Post;
 import com.cinema.cinemaparadiso.model.Rel_projects_artists;
 
 	public interface Rel_projects_artistsRepository extends CrudRepository<Rel_projects_artists,Integer>{

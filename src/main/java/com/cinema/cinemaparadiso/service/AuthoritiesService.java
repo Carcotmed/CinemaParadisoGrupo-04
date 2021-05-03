@@ -15,8 +15,7 @@ public class AuthoritiesService {
 	@Autowired
     private AuthoritiesRepository authoritiesRepository;
 	
-	@Autowired
-    private UserService userService;
+	
 
 	@Autowired
 	public AuthoritiesService(AuthoritiesRepository authoritiesRepository) {

@@ -1,40 +1,17 @@
 package com.cinema.cinemaparadiso.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cinema.cinemaparadiso.model.Artist;
-import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Post;
-import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.Project;
-import com.cinema.cinemaparadiso.model.Rel_projects_artists;
-import com.cinema.cinemaparadiso.model.Rel_projects_producers;
-import com.cinema.cinemaparadiso.service.exceptions.ProjectLimitException;
-import com.cinema.cinemaparadiso.service.exceptions.UserUniqueException;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-
-import org.assertj.core.util.Arrays;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 
 
 @SpringBootTest

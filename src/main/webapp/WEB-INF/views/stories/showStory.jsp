@@ -194,19 +194,18 @@
 }
 
 #liked{
-	background-image: url(https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png);
+	background-image: url(https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/like.png);
 }
 
 #notLiked{
-	background-image: url(https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likestory-V2/src/main/webapp/WEB-INF/views/static/dislike.png);
-}
+	background-image: url(https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/dislike.png);
 
 .likes:hover div{
 	transform: scale(1.1);
 }
 
 .likes:hover #notLiked{
-	background-image: url(https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png);
+	background-image: url(https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/like.png);
 }
 
 .escritor > div{

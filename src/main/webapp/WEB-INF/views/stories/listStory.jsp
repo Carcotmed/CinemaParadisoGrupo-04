@@ -316,7 +316,7 @@
 			      			<h5>${story.title}</h5>
 			      			<div class="like">
 								<h6>${story.numLikes} </h6>
-								<img  src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png"> 
+								<img  src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/like.png"> 
 							</div>
 			      		</div>
 		      		</c:forEach>
@@ -344,7 +344,7 @@
 			      			<h5>${story.title}</h5>
 			      			<div class="like">
 								<h6>${story.numLikes} </h6>
-								<img  src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/feature/%23285-likesStory/src/main/webapp/WEB-INF/views/static/like.png"> 
+								<img  src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/like.png"> 
 							</div>
 			      		</div>
   							<hr class="m-3 linea-hor linea-hor">

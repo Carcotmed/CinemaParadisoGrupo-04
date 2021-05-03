@@ -10,27 +10,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Message;
-import com.cinema.cinemaparadiso.model.Producer;
-import com.cinema.cinemaparadiso.model.Project;
-import com.cinema.cinemaparadiso.model.Rel_projects_story;
-import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
-import com.cinema.cinemaparadiso.model.Writer;
 
 @SpringBootTest
 @Sql("/db/testing-data/messageServiceTests/testing-data.sql")
