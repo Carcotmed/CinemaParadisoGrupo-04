@@ -5,8 +5,8 @@ INSERT INTO projects (id,version,title, genre, description, pro, photo,my_admin,
 INSERT INTO users(username,password,enabled,email) VALUES ('artistUser1','does not matter',TRUE,'artistUser1@cinemaparadiso.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('artistUser2','does not matter',TRUE,'artistUser2@cinemaparadiso.com');
 
-INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (1,0,'Test description','Artist 1','Surname 2','True','artistUser1','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
-INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (2,0,'Test description','Artist 2','Surname 2','True','artistUser2','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
+INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (1,0,'Test description','Artist 1','Surname 2',TRUE,'artistUser1','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
+INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (2,0,'Test description','Artist 2','Surname 2',TRUE,'artistUser2','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
 
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (1, 1);
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (2, 1);
@@ -15,6 +15,6 @@ INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (1, 2);
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (2, 2);
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (3, 2);
 
-INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (1,0,'Holad1','Holaddddd1',TO_DATE('26/04/2021', 'DD/MM/YYYY'),1,null,1,'artistUser1');
-INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (2,0,'Holad2','Holaddddd2',TO_DATE('27/04/2021', 'DD/MM/YYYY'),2,null,1,'artistUser2');
-INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (3,0,'Holad3','Holaddddd3',TO_DATE('28/04/2021', 'DD/MM/YYYY'),1,null,1,'artistUser1');
+INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (1,0,'Holad1','Holaddddd1',DATE('26/04/2021', 'DD/MM/YYYY'),1,null,1,'artistUser1');
+INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (2,0,'Holad2','Holaddddd2',DATE('27/04/2021', 'DD/MM/YYYY'),2,null,1,'artistUser2');
+INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (3,0,'Holad3','Holaddddd3',DATE('28/04/2021', 'DD/MM/YYYY'),1,null,1,'artistUser1');
