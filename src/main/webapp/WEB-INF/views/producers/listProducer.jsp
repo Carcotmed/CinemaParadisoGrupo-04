@@ -247,6 +247,20 @@
   							<hr class="m-3 linea-hor">
 			      	</c:if>
 	      		</c:forEach>
+	      		<sec:authorize access="hasAuthority('admin')">
+		      
+		
+		      		<h2>Productores Desactivados</h2>
+		      		
+		      		<c:forEach items="${producersDisabled}" var="producerDisabled">
+			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/producers/show/${producerDisabled.id}'">
+								<img class="rounded-circle" src="${producerDisabled.photo}">
+				      			<h5>${producerDisabled.user.username}</h5>
+				      		</div>
+		      		</c:forEach>
+		      	
+			
+		      	</sec:authorize>
 			</div>
 			
 			<div id="boton-up" onClick="location.href='/producers/list#top'">
