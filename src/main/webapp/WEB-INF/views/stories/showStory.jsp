@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 
 <html>
 <head>
@@ -495,10 +497,10 @@
 						    }
 						  }).render('#paypal-button-ad-story');
 					</script>
-					<h4>¡Publicita tu historia!</h4>
+					<h4>ï¿½Publicita tu historia!</h4>
 					<div class="d-flex justify-content-between">
 						<p>Por tan solo 30&#8364 puedes hacer que tu historia pueda
-							salir publicitada en el listado de historias y así conseguir más
+							salir publicitada en el listado de historias y asï¿½ conseguir mï¿½s
 							visibilidad.</p>
 						<div id="paypal-button-ad-story"></div>
 					</div>

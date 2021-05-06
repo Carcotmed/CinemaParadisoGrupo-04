@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 
 <html>
 <head>
@@ -70,7 +72,7 @@
 				style="z-index: 2;padding:0 1rem">
 				<h1 class="text-center" style="margin-bottom: 2rem;">Cinema Paradiso</h1>
 				<h5 class="text-center">El material con el
-					que se hacen los sueños</h5>
+					que se hacen los sueÃ±os</h5>
 			</div>
 		</div>
 	</div>
@@ -80,11 +82,11 @@
 		style="background-color: var(--rojo)">
 		<div class="d-flex justify-content-center align-items-center">
 			<div class="info-element">
-				<h3 class="text-center" style="color: white">¿Qu&eacute es
+				<h3 class="text-center" style="color: white">Â¿QuÃ© es
 					Cinema Paradiso?</h3>
 			</div>
 			<div class="info-element">
-				<p class="text-center">Tu mejor opción para
+				<p class="text-center">Tu mejor opciÃ³n para
 					formar un equipo para realizar tus proyectos cinematogr&aacuteficos
 					personales</p>
 			</div>			
@@ -112,11 +114,11 @@
 		style="background-color: var(--rojo)" id="last-element">
 		<div class="d-flex justify-content-center align-items-center">
 			<div class="info-element">
-				<h3 class="text-center">¿Eres mas de
+				<h3 class="text-center">Â¿Eres mas de
 					libros?</h3>
 			</div>
 			<div class="info-element">
-				<p class="text-center">Aquí puedes
+				<p class="text-center">AquÃ­ puedes
 					encontrar a personas que hagan realidad tus historias para que
 					dejen de ser solo historias</p>
 			</div>
