@@ -422,15 +422,19 @@
            </c:if>   
 
 			<div class="acciones">
-				<h4>Acciones</h4>
 				
 				<c:if test="${showButton == false}">
+					<sec:authorize access="hasAuthority('artist') || hasAuthority('producer')">
 					<sec:authorize access="isAuthenticated()">
+					<h4>Acciones</h4>
+					
 						<button class="boton btn rounded-pill"	onClick="location.href='/messages/create/${writerUsername}'">Contactar
 							con el escritor</button>
 						<button class="boton btn rounded-pill" id="levantaModal">Asociar
 							proyecto</button>
 					</sec:authorize>
+					</sec:authorize>
+
 				</c:if>
 						
 				<sec:authorize access="isAuthenticated()">
@@ -442,6 +446,8 @@
 				</sec:authorize>
 						
 				<c:if test="${showButton == true}">
+				<h4>Acciones</h4>
+				
 					<button class="boton btn rounded-pill"
 						onClick="location.href='/stories/update/${story.id}'">Editar</button>
 					<button class="boton btn rounded-pill"

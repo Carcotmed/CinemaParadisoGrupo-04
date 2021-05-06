@@ -5,6 +5,7 @@ package com.cinema.cinemaparadiso.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -53,6 +54,10 @@ public class ArtistService {
 		List<Artist> artistasNoPro = new ArrayList<>();
 		artistasNoPro = artistRepository.findNoProArtists();
 		return artistasNoPro;
+	}
+	
+	public List<Artist> listDisabledArtist(){
+		return list().stream().filter(a-> !a.getUser().isEnabled()).collect(Collectors.toList());
 	}
 
 	//FUTURA MEJORA

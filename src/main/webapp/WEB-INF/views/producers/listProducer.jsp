@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <html>
 <style>
 
@@ -216,6 +218,21 @@
 				      		</div>
 				      	</c:if>
 		      		</c:forEach>
+		      		
+		      		<sec:authorize access="hasAuthority('admin')">
+		      
+		
+		      		<h2>Productores Desactivados</h2>
+		      		
+		      		<c:forEach items="${producersDisabled}" var="producerDisabled">
+			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/producers/show/${producerDisabled.id}'">
+								<img class="rounded-circle" src="${producerDisabled.photo}">
+				      			<h5>${producerDisabled.user.username}</h5>
+				      		</div>
+		      		</c:forEach>
+		      	
+			
+		      	</sec:authorize>
 		      	</div>
 			</div>
 			
