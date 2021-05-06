@@ -250,6 +250,20 @@
     		
 			      	</c:if>
 	      		</c:forEach>
+	      		<sec:authorize access="hasAuthority('admin')">
+		      
+		
+		      		<h2>Escritores Desactivados</h2>
+		      		
+		      		<c:forEach items="${writersDisabled}" var="writerDisabled">
+			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/writers/show/${writerDisabled.id}'">
+								<img class="rounded-circle" src="${writerDisabled.photo}">
+				      			<h5>${writerDisabled.user.username}</h5>
+				      		</div>
+		      		</c:forEach>
+		      	
+			
+		      	</sec:authorize>
 			</div>
 			
 			<div id="boton-up" onClick="location.href='/writers/list#top'">
