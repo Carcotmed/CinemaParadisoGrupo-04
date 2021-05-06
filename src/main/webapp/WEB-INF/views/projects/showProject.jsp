@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 
 <html>
 <head>
@@ -357,10 +359,10 @@
 								
 								
 							  </script>
-								<h4>¡Publicita tu proyecto!</h4>
+								<h4>Â¡Publicita tu proyecto!</h4>
 								<div class="d-flex justify-content-between">
 									<p>Por tan solo 30&#8364 puedes hacer que tu proyecto pueda salir publicitado en el listado de proyectos
-									y así conseguir más visibilidad.</p>
+									y asÃ­ conseguir mÃ¡s visibilidad.</p>
 									<div id="paypal-button-ad"></div>
 								</div>
 						</div>
