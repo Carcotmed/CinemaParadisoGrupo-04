@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <html>
 <style>
 
@@ -189,6 +191,8 @@
 								</c:forEach>
 							</form:select>
 						</div>
+						
+						
 				
 										
 						<div class="form-group d-flex justify-content-center align-items-center my-4">
@@ -246,6 +250,22 @@
 				      		</div>
 				      	</c:if>
 		      		</c:forEach>
+
+		      		<sec:authorize access="hasAuthority('admin')">
+		      
+		
+		      		<h2>Artistas Desactivados</h2>
+		      		
+		      		<c:forEach items="${artistsDisabled}" var="artistDisabled">
+			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistDisabled.id}'">
+								<img class="rounded-circle" src="${artistDisabled.photo}">
+				      			<h5>${artistDisabled.user.username}</h5>
+				      		</div>
+		      		</c:forEach>
+		      	
+			
+		      			</sec:authorize>
+		      		
 		      	</div>
 			</div>
 			

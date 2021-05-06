@@ -47,6 +47,7 @@ public class ArtistController {
 		model.addAttribute("artists", artists);
 		model.addAttribute("artistsPro", artistService.listProArtist());
 		model.addAttribute("artistsNoPro", artistService.listNoProArtist());
+		model.addAttribute("artistsDisabled", artistService.listDisabledArtist());
 		model.addAttribute("roles", roles);
 		model.addAttribute("artistsFiltered", artistsFiltered);
 		
@@ -83,6 +84,7 @@ public class ArtistController {
 		
 		model.addAttribute("artistsPro", artistasProFiltrados);
 		model.addAttribute("artistsNoPro", artistasNoProFiltrados);
+		model.addAttribute("artistsDisabled", artistService.listDisabledArtist());
 		model.addAttribute("roles", roles);
 		
 		log.info("Listando artists..." + artistsFiltered.toString());

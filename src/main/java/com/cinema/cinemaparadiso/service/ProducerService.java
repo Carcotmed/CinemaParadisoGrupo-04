@@ -3,6 +3,7 @@ package com.cinema.cinemaparadiso.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -34,6 +35,12 @@ public class ProducerService {
 		producerRepository.findAll().forEach(w -> producers.add(w));
 		return producers;
 	}
+    
+    public List<Producer> listDisabledProducer(){
+		return list().stream().filter(a-> !a.getUser().isEnabled()).collect(Collectors.toList());
+	}
+    
+
 
 	@Transactional(readOnly = true)
 	public Producer findProducerById(int id) throws DataAccessException {
