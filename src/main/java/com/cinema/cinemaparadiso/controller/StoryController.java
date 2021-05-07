@@ -21,12 +21,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Comment;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.RelUserStory;
 import com.cinema.cinemaparadiso.model.Story;
+import com.cinema.cinemaparadiso.model.WholeComment;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.CommentService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.RelUserStoryService;
@@ -59,6 +62,9 @@ public class StoryController {
 
 	@Autowired
 	private ProjectService projectService;
+
+	@Autowired
+	private CommentService commentService;
 
 	@Autowired
 	private Rel_projects_storyService rel_projects_storyService;
@@ -268,6 +274,12 @@ public class StoryController {
 			List<Project> projects = projectService.findProjectByAdminUsername(artist.getUser().getUsername());
 			model.addAttribute("projects",projects);
 		}catch(Exception e) {model.addAttribute("projects",new ArrayList<Project>());}
+		
+		List<Comment> masterComments = commentService.getMasterComments();
+		List<WholeComment> comments = new ArrayList<>();
+		masterComments.forEach(m-> comments.add(new WholeComment(m, commentService.getAnswers(m.getId()))));
+		System.out.println("=========================================================");
+		model.addAttribute("comments", comments);
 
 		return "stories/showStory";
 	}

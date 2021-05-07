@@ -1,3 +1,5 @@
+<%@page import="com.cinema.cinemaparadiso.service.CommentService"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@ page session="false" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -6,7 +8,6 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-
 
 <html>
 <head>
@@ -507,6 +508,35 @@
 				</div>
 			</c:if>
 		</div>	
+	</div>
+	
+	<div class="card-wrap ficha-tecnica" style="height: ${ comments==null?8:20 }rem; margin-top: 2rem; margin-bottom: 2rem">
+		<div style="${ comments==null?'overflow-y: hidden;':'' } color: white; background: linear-gradient(90deg, var(--gris) 0%, var(--gris) 70%, #353535 100%);">
+			<div>
+				<h4 style="margin-bottom: 1.3rem">
+					Comentarios
+				</h4>
+				<c:forEach items="${ comments }" var="comment">
+				<div style="margin-bottom: 1rem;">
+				<div style="display: flex; margin-bottom: 0.2rem">
+				<div style="width: 12rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ comment.comment.username }</div>-->
+				<div style="border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ comment.comment.body }</div>
+				<img src="../escribir.png">
+				</div>
+				<c:if test="${comment.answers!=null}">
+					<div style="font-size: 0.7rem">
+						<c:forEach items="${ comment.answers }" var="answer">
+							<div style="display: flex; margin-left: 3rem; margin-bottom: 0.2rem">
+							<div style="width: 8rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ answer.username }</div>-->
+							<div style="border-radius: 1rem; background-color: #575758; padding: 0.1rem 0.5rem 0.1rem 0.5rem">${ answer.body }</div>
+							</div>
+						</c:forEach>
+					</div>
+				</c:if>
+				</div>
+				</c:forEach>
+			</div>
+		</div>
 	</div>
 
 	<div id="boton-up"
