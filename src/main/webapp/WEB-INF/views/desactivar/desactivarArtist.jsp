@@ -41,6 +41,7 @@
 		
 	h2,label{
 		text-shadow: 0 0 4px black;
+		text-align: center;
 	}
 	
 	@media(max-width: 1160px) {
@@ -60,7 +61,7 @@
 	
 	<div class="login-wrap padding-nav d-flex flex-column justify-content-center align-items-center">
 
-		<h2>�estas seguro de que quieres desactivar la cuenta?</h2>
+		<h2>¿Est&aacutes seguro de que quieres desactivar la cuenta?</h2>
 		<div class="d-flex justify-content-between align-items-between">
 		
 			<button onClick="location.href='/artists/show/${artistId}'"

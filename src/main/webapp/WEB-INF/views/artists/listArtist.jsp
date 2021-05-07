@@ -35,6 +35,7 @@
 			position: sticky;
 			top:10rem;
 			bottom:0;
+			padding-bottom: 14rem;
 		}
 		
 		.background-image{
@@ -54,6 +55,7 @@
 		#list-wrap{
 			transition: 0.5s;
 			display: block;
+			flex-direction: column;
 		}
 		
 		.filtro-wrap button{
@@ -90,6 +92,7 @@
 		@media(max-width: 1545px) {
 			.lista{
 			 	grid-template-columns: repeat(4, 13rem);
+			 	margin:auto;
 
 			}
 	
@@ -101,6 +104,10 @@
 			.filtro-wrap-mobile{
 				display: block  !important;
     			padding: 0 1.5rem;
+			}
+			
+			.padding-footer{
+				padding-bottom: 32rem !important;
 			}
 			
 			.filtro-wrap{
@@ -135,6 +142,10 @@
 			.linea-hor{
 				border-color: var(--rojo);
 				background-color: var(--rojo);
+			}
+			
+			.filtro-scroller{
+				padding-bottom: unset;
 			}
 			
 		}
@@ -252,23 +263,19 @@
 				      		</div>
 				      	</c:if>
 		      		</c:forEach>
-
-		      		<sec:authorize access="hasAuthority('admin')">
-		      
-		
-		      		<h2>Artistas Desactivados</h2>
-		      		
-		      		<c:forEach items="${artistsDisabled}" var="artistDisabled">
-			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistDisabled.id}'">
-								<img class="rounded-circle" src="${artistDisabled.photo}">
-				      			<h5>${artistDisabled.user.username}</h5>
-				      		</div>
-		      		</c:forEach>
-		      	
-			
-		      			</sec:authorize>
 		      		
 		      	</div>
+		      	<sec:authorize access="hasAuthority('admin')">
+			      	<h2 style="text-align: center;margin:2rem 0;">Artistas Desactivados</h2>	
+    				<div  class="lista">
+			      		<c:forEach items="${artistsDisabled}" var="artistDisabled">
+				      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistDisabled.id}'">
+									<img class="rounded-circle" src="${artistDisabled.photo}">
+					      			<h5>${artistDisabled.user.username}</h5>
+					      		</div>
+			      		</c:forEach>
+			      	</div>
+			     </sec:authorize>		      		
 			</div>
 			
 			<!-- Listado Mobile -->
@@ -292,20 +299,17 @@
 			      		 		
 			      	</c:if>
 	      		</c:forEach>
-	      				      		<sec:authorize access="hasAuthority('admin')">
-		      
-		
-		      		<h2>Artistas Desactivados</h2>
-		      		
+	      		
+  				<sec:authorize access="hasAuthority('admin')">
+		      		<h2 style="text-align: center;margin: 2rem 0;font-size: 1.8rem;">Artistas Desactivados</h2>
 		      		<c:forEach items="${artistsDisabled}" var="artistDisabled">
 			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistDisabled.id}'">
 								<img class="rounded-circle" src="${artistDisabled.photo}">
 				      			<h5>${artistDisabled.user.username}</h5>
 				      		</div>
+				      		<hr class="m-3 linea-hor">	
 		      		</c:forEach>
-		      	
-			
-		      			</sec:authorize>
+		      	</sec:authorize>
 			</div>
 			
 			<div id="boton-up" onClick="location.href='/artists/list#top'">
