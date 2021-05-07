@@ -510,34 +510,47 @@
 		</div>	
 	</div>
 	
-	<div class="card-wrap ficha-tecnica" style="height: ${ comments==null?8:20 }rem; margin-top: 2rem; margin-bottom: 2rem">
-		<div style="${ comments==null?'overflow-y: hidden;':'' } color: white; background: linear-gradient(90deg, var(--gris) 0%, var(--gris) 70%, #353535 100%);">
-			<div>
-				<h4 style="margin-bottom: 1.3rem">
-					Comentarios
-				</h4>
-				<c:forEach items="${ comments }" var="comment">
-				<div style="margin-bottom: 1rem;">
-				<div style="display: flex; margin-bottom: 0.2rem">
-				<div style="width: 12rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ comment.comment.username }</div>-->
-				<div style="border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ comment.comment.body }</div>
-				<img src="../escribir.png">
-				</div>
-				<c:if test="${comment.answers!=null}">
-					<div style="font-size: 0.7rem">
-						<c:forEach items="${ comment.answers }" var="answer">
-							<div style="display: flex; margin-left: 3rem; margin-bottom: 0.2rem">
-							<div style="width: 8rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ answer.username }</div>-->
-							<div style="border-radius: 1rem; background-color: #575758; padding: 0.1rem 0.5rem 0.1rem 0.5rem">${ answer.body }</div>
+	<div class="card-wrap ficha-tecnica" style="height: ${ comments==null?12:24 }rem; margin-top: 2rem; margin-bottom: 2rem; overflow-y: hidden">
+		<div style="color: white; background: linear-gradient(90deg, var(--gris) 0%, var(--gris) 70%, #353535 100%); overflow-y: hidden">
+			<c:if test="${ comments!=null }">
+				<div style="height: 18rem; overflow-y: scroll">
+					<div>
+						<h4 style="margin-bottom: 1.3rem">
+							Comentarios
+						</h4>
+						<c:forEach items="${ comments }" var="comment">
+						<div style="margin-bottom: 1rem;">
+						<div style="display: flex; margin-bottom: 0.2rem">
+						<div style="width: 12rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ comment.comment.username }</div>-->
+						<div style="border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem; max-width: 40rem;">${ comment.comment.body }</div>
+						<img src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/escribir.png" style="width: 1.3rem; height: 1.3rem; margin-left: 1rem; margin-right: 2rem">
+						<div style="font-size: 0.7rem">${ comment.comment.date }</div>
+						</div>
+						<c:if test="${comment.answers!=null}">
+							<div style="font-size: 0.7rem">
+								<c:forEach items="${ comment.answers }" var="answer">
+									<div style="display: flex; margin-left: 3rem; margin-bottom: 0.2rem">
+									<div style="width: 8.9rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ answer.username }</div>-->
+									<div style="margin-right: 2rem; max-width: 40rem; border-radius: 1rem; background-color: #575758; padding: 0.1rem 0.5rem 0.1rem 0.5rem">${ answer.body }</div>
+									<div style="font-size: 0.7rem">${ answer.date }</div>
+									</div>
+								</c:forEach>
 							</div>
+						</c:if>
+						</div>
 						</c:forEach>
 					</div>
-				</c:if>
 				</div>
-				</c:forEach>
+			</c:if>
+			<div style="display: flex; text-align: center; place-content: center;">
+				<form action="">
+					<input style="padding-left: 0.5rem; outline: none; border-radius: 1rem; width: 25rem; border-style: none;" type="text">
+					<input style="padding-left: 0.6rem; padding-right: 0.6rem; border-radius: 0.8rem; border-style: none" type="submit">
+				</form>
 			</div>
 		</div>
 	</div>
+</div>	
 
 	<div id="boton-up"
 		onClick="location.href='/stories/show/${story.id}#top'">

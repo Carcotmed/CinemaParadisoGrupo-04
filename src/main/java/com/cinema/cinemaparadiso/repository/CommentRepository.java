@@ -14,7 +14,7 @@ import com.cinema.cinemaparadiso.model.Story;
 @Repository
 public interface CommentRepository extends CrudRepository<Comment,Integer>{
 
-	@Query("SELECT comment from Comment comment WHERE comment.masterComment = null")
+	@Query("SELECT comment from Comment comment WHERE comment.masterComment = null ORDER BY comment.date DESC")
 	public List<Comment> findMasterComments();
 
 	@Query("SELECT comment from Comment comment WHERE comment.masterComment = :id")
