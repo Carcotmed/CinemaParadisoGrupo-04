@@ -159,8 +159,9 @@ public class WriterController {
 		}
 		try {
 			writerService.deleteWriter(writerId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
+			if(userService.isAdmin())
+				return "redirect:/writers/show/"+writerId;
+			SecurityContextHolder.clearContext();
 			log.info("Writer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Writer", e);

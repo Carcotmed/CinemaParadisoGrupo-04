@@ -1,5 +1,7 @@
 package com.cinema.cinemaparadiso.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -19,12 +21,11 @@ import lombok.Setter;
 public class Comment extends BaseEntity{
 	
 	@Column(name = "body")
-	@Size(min=5,max=140,message="El cuerpo debe tener un tamaño entre 5 y 140 carácteres")
 	private String body;
 	
 	@Column(name = "date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	private String date;
+	private Date date;
 	
 	private String username;
 	

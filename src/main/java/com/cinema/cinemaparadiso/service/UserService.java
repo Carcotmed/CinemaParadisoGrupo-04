@@ -36,6 +36,9 @@ public class UserService {
     private WriterService writerService;
     
     @Autowired
+    private CommentService commentService;
+    
+    @Autowired
     private Rel_projects_artistsService rel_projects_artistsService;
     
     @Autowired
@@ -149,6 +152,7 @@ public class UserService {
     	this.messageService.deleteMessagesOfAnUser(username);
     	this.authoritiesService.deleteAuthorities(username);
     	this.relUserStoryService.deleteRelationsUserStories(username);
+    	this.commentService.deleteByUser(username);
     	//ARTIST
     	Optional<Artist> optionalArtist = this.userRepository.findArtistByUserUsername(username);
     	if(optionalArtist.isPresent()) {

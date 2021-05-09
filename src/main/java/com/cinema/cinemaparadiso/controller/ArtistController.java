@@ -180,9 +180,10 @@ public class ArtistController {
 		}
 		try {
 			artistService.deleteArtist(artistId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
 			log.info("Artist Deleted Successfully");
+			if(userService.isAdmin())
+				return "redirect:/artists/show/"+artistId;
+			SecurityContextHolder.clearContext();
 		} catch (Exception e) {
 			log.error("Error Deleting Artist", e);
 		}

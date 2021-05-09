@@ -26,9 +26,9 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-	public List<Comment> getMasterComments() {
+	public List<Comment> getMasterComments(Integer storyId) {
 		List<Comment> comments = new ArrayList<>();
-		comments = commentRepository.findMasterComments();
+		comments = commentRepository.findMasterComments(storyId);
 		return comments;
 	}
 
@@ -36,5 +36,30 @@ public class CommentService {
 		List<Comment> comments = new ArrayList<>();
 		comments = commentRepository.findAnswers(id);
 		return comments;
+	}
+
+	public void createComment(Comment comment) {
+		commentRepository.save(comment);
+	}
+	
+	public void deleteByUser(String username) {
+		List<Comment> comments = commentRepository.findAllByUsername(username);
+		comments.forEach(comment->{
+			if(comment.getMasterComment()!=null) {
+				commentRepository.delete(comment);
+			}
+		});
+		comments = commentRepository.findAllByUsername(username);
+		comments.forEach(comment->{
+			if(comment.getMasterComment()==null) {
+				commentRepository.deleteAnswers(comment.getId());
+				commentRepository.delete(comment);
+			}
+		});
+	}
+	
+	public void deleteByStory(Integer storyId) {
+		commentRepository.deleteAnswersByStory(storyId);
+		commentRepository.deleteCommentsByStory(storyId);
 	}
 }
