@@ -15,6 +15,6 @@ INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (1, 2);
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (2, 2);
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (3, 2);
 
-INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (1,0,'Holad1','Holaddddd1',DATE('26/04/2021', 'DD/MM/YYYY'),1,null,1,'artistUser1');
-INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (2,0,'Holad2','Holaddddd2',DATE('27/04/2021', 'DD/MM/YYYY'),2,null,1,'artistUser2');
-INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (3,0,'Holad3','Holaddddd3',DATE('28/04/2021', 'DD/MM/YYYY'),1,null,1,'artistUser1');
+INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (1,0,'Holad1','Holaddddd1','26/04/2021',1,null,1,'artistUser1');
+INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (2,0,'Holad2','Holaddddd2','27/04/2021',2,null,1,'artistUser2');
+INSERT INTO posts (id,version,title,body,date,artist_id,producer_id,project_id,username) VALUES (3,0,'Holad3','Holaddddd3','28/04/2021',1,null,1,'artistUser1');
