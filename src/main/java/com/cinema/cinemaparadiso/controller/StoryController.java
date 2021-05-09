@@ -3,6 +3,7 @@ package com.cinema.cinemaparadiso.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,12 +22,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cinema.cinemaparadiso.model.Artist;
+import com.cinema.cinemaparadiso.model.Comment;
 import com.cinema.cinemaparadiso.model.Genre;
 import com.cinema.cinemaparadiso.model.Project;
 import com.cinema.cinemaparadiso.model.RelUserStory;
 import com.cinema.cinemaparadiso.model.Story;
+import com.cinema.cinemaparadiso.model.WholeComment;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.CommentService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.RelUserStoryService;
@@ -59,6 +63,9 @@ public class StoryController {
 
 	@Autowired
 	private ProjectService projectService;
+
+	@Autowired
+	private CommentService commentService;
 
 	@Autowired
 	private Rel_projects_storyService rel_projects_storyService;
@@ -152,6 +159,41 @@ public class StoryController {
 			return "stories/createStory";
 		}
 		return "redirect:/writers/show/"+actualId;
+	}
+
+	@PostMapping("/createComment/{storyId}")
+	public String createStory(@Validated Comment comment, @PathVariable("storyId") int storyId, BindingResult result,Model model) {
+		if(comment.getBody().length()==0)
+			return "redirect:/stories/show/"+storyId;
+		try {
+			comment.setDate(new Date());
+			comment.setStory(storyId);
+			comment.setUsername(userService.getPrincipal().getUsername());
+			commentService.createComment(comment);
+			log.info("Comment Created Successfully");
+		} catch (Exception e) {
+			log.error("Error Creating Comment", e);
+			return "error/error";
+		}
+		return "redirect:/stories/show/"+storyId;
+	}
+
+	@PostMapping("/answer/{storyId}/{commentId}")
+	public String answer(@Validated Comment comment, @PathVariable("commentId") int commentId, @PathVariable("storyId") int storyId, BindingResult result,Model model) {
+		if(comment.getBody().length()==0)
+			return "redirect:/stories/show/"+storyId;
+		try {
+			comment.setDate(new Date());
+			comment.setStory(storyId);
+			comment.setMasterComment(commentId);
+			comment.setUsername(userService.getPrincipal().getUsername());
+			commentService.createComment(comment);
+			log.info("Comment Created Successfully");
+		} catch (Exception e) {
+			log.error("Error Creating Comment", e);
+			return "error/error";
+		}
+		return "redirect:/stories/show/"+storyId;
 	}
 
 	@GetMapping("/list")
@@ -268,6 +310,12 @@ public class StoryController {
 			List<Project> projects = projectService.findProjectByAdminUsername(artist.getUser().getUsername());
 			model.addAttribute("projects",projects);
 		}catch(Exception e) {model.addAttribute("projects",new ArrayList<Project>());}
+		
+		List<Comment> masterComments = commentService.getMasterComments(storyId);
+		List<WholeComment> comments = new ArrayList<>();
+		masterComments.forEach(m-> comments.add(new WholeComment(m, commentService.getAnswers(m.getId()))));
+		model.addAttribute("comments", comments);
+		model.addAttribute("comment", new Comment());
 
 		return "stories/showStory";
 	}

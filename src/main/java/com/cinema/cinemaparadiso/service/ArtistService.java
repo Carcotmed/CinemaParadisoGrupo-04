@@ -196,11 +196,6 @@ public class ArtistService {
 	}
 	
 	@Transactional
-	public void deleteTotalArtist(Integer artistId) {
-	
-	}
-	
-	@Transactional
 	public void deleteCompletelyArtist(Artist artist) {
 		this.artistRepository.delete(artist);
 	}

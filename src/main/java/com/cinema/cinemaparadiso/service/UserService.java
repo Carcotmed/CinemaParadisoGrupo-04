@@ -30,10 +30,16 @@ public class UserService {
     private ArtistService artistService;
     
     @Autowired
+    private StoryService storyService;
+    
+    @Autowired
     private ProducerService producerService;
     
     @Autowired
     private WriterService writerService;
+    
+    @Autowired
+    private CommentService commentService;
     
     @Autowired
     private Rel_projects_artistsService rel_projects_artistsService;
@@ -149,6 +155,7 @@ public class UserService {
     	this.messageService.deleteMessagesOfAnUser(username);
     	this.authoritiesService.deleteAuthorities(username);
     	this.relUserStoryService.deleteRelationsUserStories(username);
+    	this.commentService.deleteByUser(username);
     	//ARTIST
     	Optional<Artist> optionalArtist = this.userRepository.findArtistByUserUsername(username);
     	if(optionalArtist.isPresent()) {
@@ -164,8 +171,10 @@ public class UserService {
     	//WRITER
     	Optional<Writer> optionalWriter = this.userRepository.findWriterByUserUsername(username);
     	if(optionalWriter.isPresent()) {
-    	this.rel_story_writersService.deleteRelationsWriterStories(optionalWriter.get().getId());
-    	this.writerService.deleteCompletelyWriter(optionalWriter.get());
+	    	//this.rel_story_writersService.deleteRelationsWriterStories(optionalWriter.get().getId());
+	    	this.writerService.deleteCompletelyWriter(optionalWriter.get());
+	    	this.commentService.deleteByUser(username);
+	    	storyService.transferStoriesByWriterId(optionalWriter.get().getId());
     	}
     	this.userRepository.delete(user);
     }

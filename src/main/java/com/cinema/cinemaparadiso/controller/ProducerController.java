@@ -151,8 +151,9 @@ public class ProducerController {
 		}
 		try {
 			producerService.deleteProducer(producerId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
+			if(userService.isAdmin())
+				return "redirect:/producers/show/"+producerId;
+			SecurityContextHolder.clearContext();
 			log.info("Producer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Producer", e);
