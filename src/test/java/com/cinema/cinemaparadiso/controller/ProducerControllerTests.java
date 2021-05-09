@@ -179,7 +179,7 @@ public class ProducerControllerTests {
 		
 		mockMvc.perform(get("/producers/delete/1"))
                 .andExpect(status().isFound())
-                .andExpect(MockMvcResultMatchers.view().name("redirect:/"));
+                .andExpect(MockMvcResultMatchers.view().name("redirect:/producers/show/1"));
     }
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test

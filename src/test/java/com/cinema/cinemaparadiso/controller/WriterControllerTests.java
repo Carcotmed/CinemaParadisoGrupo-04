@@ -181,7 +181,7 @@ public class WriterControllerTests {
 		
 		mockMvc.perform(get("/writers/delete/1"))
                 .andExpect(status().isFound())
-                .andExpect(MockMvcResultMatchers.view().name("redirect:/"));
+                .andExpect(MockMvcResultMatchers.view().name("redirect:/writers/show/1"));
     }
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
