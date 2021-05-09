@@ -531,16 +531,16 @@
 						<c:forEach items="${ comments }" var="comment">
 						<div style="margin-bottom: 1rem;">
 						<div style="display: flex; margin-bottom: 0.2rem">
-						<div style="width: 12rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ comment.comment.username }</div>-->
+						<div style="width: 12rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem"><a style="color: white; text-decoration: none;" href="/users/showUser/${ comment.comment.username }">${ comment.comment.username }</a></div>-->
 						<div style="border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem; max-width: 40rem;">${ comment.comment.body }</div>
-						<img onclick="levantarRespuesta(${comment.comment.id})" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/escribir.png" style="width: 1.3rem; height: 1.3rem; margin-left: 1rem; margin-right: 2rem">
+						<img onclick="levantarRespuesta(${comment.comment.id})" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/escribir.png" style="cursor: pointer; width: 1.3rem; height: 1.3rem; margin-left: 1rem; margin-right: 2rem">
 						<div style="font-size: 0.7rem">${ comment.comment.date }</div>
 						</div>
 						<c:if test="${comment.answers!=null}">
 							<div style="font-size: 0.7rem">
 								<c:forEach items="${ comment.answers }" var="answer">
 									<div style="display: flex; margin-left: 3rem; margin-bottom: 0.2rem">
-									<div style="width: 8.9rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem">${ answer.username }</div>-->
+									<div style="width: 8.9rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem"><a style="color: white; text-decoration: none;" href="/users/showUser/${ answer.username }">${ answer.username }</a></div>-->
 									<div style="margin-right: 2rem; max-width: 40rem; border-radius: 1rem; background-color: #575758; padding: 0.1rem 0.5rem 0.1rem 0.5rem">${ answer.body }</div>
 									<div style="font-size: 0.7rem">${ answer.date }</div>
 									</div>

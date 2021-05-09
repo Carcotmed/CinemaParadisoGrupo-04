@@ -59,6 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
+				.antMatchers("/users/showUser/*").permitAll()
 				.antMatchers("/users/select").permitAll()
 				//POST - TABLON DE ANUNCIOS
 				.antMatchers("/posts/create/{projectId}").authenticated()

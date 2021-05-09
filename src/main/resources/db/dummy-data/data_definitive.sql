@@ -107,6 +107,7 @@ INSERT INTO users (username,password,enabled,email) VALUES ('SybillWilliamson','
 INSERT INTO users (username,password,enabled,email) VALUES ('HedwigCarey','$2y$10$6uEARWepHlWKLX93lJ5cWu0OU.vVbTumtjwwp1fr6P.lt1WuDLHgq','True','turpis@orci.com');
 INSERT INTO users (username,password,enabled,email) VALUES ('JosephineWoodard','$2y$10$BGZE.vbozUUDWRsO5RBNkOJHZz6AFCdWGaDhngoNAh7KEVzgMSOiS','True','Nulla.eget.metus@lorem.ca');
 INSERT INTO users (username,password,enabled,email) VALUES ('AlecHill','$2y$10$OX2GsiTQHRjACXhk96fcYOrBezuDeQPoiQKDvwcHftlK5LhsNaP3u','True','eu@risus.com');
+INSERT INTO users (username,password,enabled,email) VALUES ('DeletedUser','$2a$10$gn.RKrqUiPZuOhBeht0amudVq6eDxe4RB5ARGHa5SLJXig4b7Ollu','False','deleted@risus.com');
 
 
 --ARTIST-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -215,6 +216,7 @@ INSERT INTO writers (version, description, name, sur_name, photo, username) VALU
 INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aficionado a la escritura desde que era pequeños','Samantha','Rivas','https://img.freepik.com/foto-gratis/retrato-asiatico-joven-muchacha-aislado_53876-70968.jpg?size=626&ext=jpg','HedwigCarey');
 INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aficionado a la escritura desde que era pequeños','Bradley','Petty','https://processingraw.com/wp-content/uploads/2016/07/licuar-con-deteccion-de-rostros-3-729x1024.jpg','JosephineWoodard');
 INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aficionado a la escritura desde que era pequeños','Bert','Moody','https://www.lecturadelrostro.com/wp-content/uploads/2011/02/oldmanfaceread-e1433460211885-1024x843-450x370.jpg','AlecHill');
+INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aqui se asocian las historias de usuarios eliminados','User','Deleted','https://www.lecturadeltro.com/wp-content/uploads/2011/02/oldmanfaceread-e1433460211885-1024x843-450x370.jpg','DeletedUser');
 
 --AUTHORITIES-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO authorities(username, authority) VALUES ('admin','admin');
@@ -324,6 +326,7 @@ INSERT INTO authorities (username, authority) VALUES ('SybillWilliamson','writer
 INSERT INTO authorities (username, authority) VALUES ('HedwigCarey','writer');
 INSERT INTO authorities (username, authority) VALUES ('JosephineWoodard','writer');
 INSERT INTO authorities (username, authority) VALUES ('AlecHill','writer');
+INSERT INTO authorities (username, authority) VALUES ('DeletedUser','writer');
 
 --STORIES----------------------------------------------------------------------------
 

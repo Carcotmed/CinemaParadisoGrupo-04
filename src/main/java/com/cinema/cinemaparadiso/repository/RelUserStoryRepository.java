@@ -22,6 +22,9 @@ import com.cinema.cinemaparadiso.model.RelUserStory;
 	@Query("SELECT relUserStory FROM RelUserStory relUserStory WHERE relUserStory.username = :username")
 	public List<RelUserStory> listRelationsUserStories(@Param("username") String username);
 
+	@Query("SELECT relUserStory FROM RelUserStory relUserStory WHERE relUserStory.story_id = :storyId")
+	public List<RelUserStory> listRelationsUserStoriesByStory(@Param("storyId")Integer storyId);
+
 	
 
 }

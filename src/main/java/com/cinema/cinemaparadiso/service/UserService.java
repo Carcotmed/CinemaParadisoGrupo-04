@@ -30,6 +30,9 @@ public class UserService {
     private ArtistService artistService;
     
     @Autowired
+    private StoryService storyService;
+    
+    @Autowired
     private ProducerService producerService;
     
     @Autowired
@@ -168,8 +171,10 @@ public class UserService {
     	//WRITER
     	Optional<Writer> optionalWriter = this.userRepository.findWriterByUserUsername(username);
     	if(optionalWriter.isPresent()) {
-    	this.rel_story_writersService.deleteRelationsWriterStories(optionalWriter.get().getId());
-    	this.writerService.deleteCompletelyWriter(optionalWriter.get());
+	    	//this.rel_story_writersService.deleteRelationsWriterStories(optionalWriter.get().getId());
+	    	this.writerService.deleteCompletelyWriter(optionalWriter.get());
+	    	this.commentService.deleteByUser(username);
+	    	storyService.transferStoriesByWriterId(optionalWriter.get().getId());
     	}
     	this.userRepository.delete(user);
     }
