@@ -41,6 +41,12 @@ public class StoryService {
 	
 	@Autowired
 	private MessageService messageService;
+	
+	@Autowired
+	private CommentService commentService;
+	
+	@Autowired
+	private UserService userService;
 
 
 	@Autowired
@@ -107,7 +113,9 @@ public class StoryService {
 	public void deleteStory(Integer storyId) {
 		rel_story_writersService.deleteByStoryId(storyId);
 		rel_projects_storyService.deleteByStoryId(storyId);
+		relUserStoryService.deleteRelationsUserStoriesByStory(storyId);
 		messageService.deleteAllByStoryId(storyId);
+		commentService.deleteByStory(storyId);
 		storyRepository.delete(findStoryById(storyId));
 	}
 
@@ -162,6 +170,16 @@ public class StoryService {
 	@Transactional
 	public List<Project> findMyProjects(Integer storyId) {
 		return this.storyRepository.findMyProjects(storyId);
+	}
+
+	public void transferStoriesByWriterId(Integer writerId) {
+		List<Rel_story_writers> rels = rel_story_writersService.findByWriterId(writerId);
+		Integer deletedWriterId = userService.findWriterByUserUsername("DeletedUser").get().getId();
+		rels.forEach(r->{
+			r.setWriter_id(deletedWriterId);
+			System.out.println(r);
+			rel_story_writersService.save(r);
+		});
 	}
 
 

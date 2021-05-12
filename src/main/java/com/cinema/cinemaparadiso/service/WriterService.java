@@ -3,6 +3,7 @@ package com.cinema.cinemaparadiso.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -40,6 +41,10 @@ public class WriterService {
 		List<Writer> writers = new ArrayList<>();
 		writerRepository.findAll().forEach(w -> writers.add(w));
 		return writers;
+	}
+	
+    public List<Writer> listDisabledWriter(){
+		return list().stream().filter(a-> !a.getUser().isEnabled()).collect(Collectors.toList());
 	}
 
 	@Transactional(readOnly = true)

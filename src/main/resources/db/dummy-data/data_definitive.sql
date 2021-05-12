@@ -215,6 +215,7 @@ INSERT INTO writers (version, description, name, sur_name, photo, username) VALU
 INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aficionado a la escritura desde que era pequeños','Samantha','Rivas','https://img.freepik.com/foto-gratis/retrato-asiatico-joven-muchacha-aislado_53876-70968.jpg?size=626&ext=jpg','HedwigCarey');
 INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aficionado a la escritura desde que era pequeños','Bradley','Petty','https://processingraw.com/wp-content/uploads/2016/07/licuar-con-deteccion-de-rostros-3-729x1024.jpg','JosephineWoodard');
 INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aficionado a la escritura desde que era pequeños','Bert','Moody','https://www.lecturadelrostro.com/wp-content/uploads/2011/02/oldmanfaceread-e1433460211885-1024x843-450x370.jpg','AlecHill');
+INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aqui se asocian las historias de usuarios eliminados','User','Deleted','https://www.lecturadeltro.com/wp-content/uploads/2011/02/oldmanfaceread-e1433460211885-1024x843-450x370.jpg','DeletedUser');
 
 --AUTHORITIES-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO authorities(username, authority) VALUES ('admin','admin');
@@ -324,11 +325,12 @@ INSERT INTO authorities (username, authority) VALUES ('SybillWilliamson','writer
 INSERT INTO authorities (username, authority) VALUES ('HedwigCarey','writer');
 INSERT INTO authorities (username, authority) VALUES ('JosephineWoodard','writer');
 INSERT INTO authorities (username, authority) VALUES ('AlecHill','writer');
+INSERT INTO authorities (username, authority) VALUES ('DeletedUser','writer');
 
 --STORIES----------------------------------------------------------------------------
 
 INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'The Fault in Our Stars','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://i.pinimg.com/564x/60/ac/3b/60ac3bd7d45a2ad91725b976b61656c3.jpg',0);
-INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://n-accion.es/wp-content/uploads/2016/09/Fotolia_42033283_XL.jpg',0);
+INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'Gone Girl','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://n-accion.es/wp-content/uploads/2016/09/Fotolia_42033283_XL.jpg',4);
 INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'City of Lost Souls','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://i.blogs.es/39cab6/slide_438738_5766026_free/450_1000.jpg',0);
 INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'Pandemonium','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','ACCION',1000, true,'https://www.ambientum.com/wp-content/uploads/2018/03/conservacion-naturaleza-6-696x464.jpg',0);
 INSERT INTO stories (version, title, body, genre, storylength, is_sponsored,photo,numlikes) VALUES (0,'Cinder','En esta historia el protagonista decide abandonar su hogar y explorar el mundo','CIENCIA_FICCION',1000, true,'https://ideasparafotos.com/wp-content/uploads/2019/12/fotos-de-mariposas-preciosas.jpg',0);
@@ -563,3 +565,18 @@ INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,i
 INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,is_request) VALUES (0,'Saludos','Muy bien, y tu?',DATE('2021/04/10', 'YYYY/MM/DD'),'HedwigCarey','SybillWilliamson',false);
 INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,is_request) VALUES (0,'Saludos','Hey, que tal por la pagina?',DATE('2021/04/10', 'YYYY/MM/DD'),'JosephineWoodard','AlecHill',false);
 INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,is_request) VALUES (0,'Saludos','Muy bien, y tu?',DATE('2021/04/10', 'YYYY/MM/DD'),'AlecHill','JosephineWoodard',false);
+
+--COMMENTS----------------------------------------------------------------------------
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (1,1,'Primero en comentar!',TO_DATE('2021/05/06 16:30:04', 'YYYY/MM/DD HH24:MI:SS'),'JarrodHuffman',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (2,1,'Y el primero en responder un mensaje!',TO_DATE('2021/05/06 16:31:20', 'YYYY/MM/DD HH24:MI:SS'),'JarrodHuffman',1,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (3,1,'Me encanta esta historia',TO_DATE('2021/05/06 17:10:00', 'YYYY/MM/DD HH24:MI:SS'),'JosephineWoodard',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (4,1,'Que pesadilla...',TO_DATE('2021/05/06 17:10:40', 'YYYY/MM/DD HH24:MI:SS'),'JosephineWoodard',1,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (5,1,'No puedo esperar la siguiente',TO_DATE('2021/05/06 18:50:00', 'YYYY/MM/DD HH24:MI:SS'),'AlecHill',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (6,1,'Como puede inventar una trama tan buena?',TO_DATE('2021/05/07 09:00:47', 'YYYY/MM/DD HH24:MI:SS'),'SybillWilliamson',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (7,1,'Siiii, es increible',TO_DATE('2021/05/07 09:01:30', 'YYYY/MM/DD HH24:MI:SS'),'SybillWilliamson',3,2);
+
+--COMMENTS----------------------------------------------------------------------------
+INSERT INTO rel_user_story (id,story_id,username) VALUES (1,2,'JarrodHuffman')
+INSERT INTO rel_user_story (id,story_id,username) VALUES (2,2,'JosephineWoodard')
+INSERT INTO rel_user_story (id,story_id,username) VALUES (3,2,'AlecHill')
+INSERT INTO rel_user_story (id,story_id,username) VALUES (4,2,'SybillWilliamson')

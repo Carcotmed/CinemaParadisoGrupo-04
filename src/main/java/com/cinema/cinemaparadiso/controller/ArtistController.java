@@ -47,6 +47,7 @@ public class ArtistController {
 		model.addAttribute("artists", artists);
 		model.addAttribute("artistsPro", artistService.listProArtist());
 		model.addAttribute("artistsNoPro", artistService.listNoProArtist());
+		model.addAttribute("artistsDisabled", artistService.listDisabledArtist());
 		model.addAttribute("roles", roles);
 		model.addAttribute("artistsFiltered", artistsFiltered);
 		
@@ -83,6 +84,7 @@ public class ArtistController {
 		
 		model.addAttribute("artistsPro", artistasProFiltrados);
 		model.addAttribute("artistsNoPro", artistasNoProFiltrados);
+		model.addAttribute("artistsDisabled", artistService.listDisabledArtist());
 		model.addAttribute("roles", roles);
 		
 		log.info("Listando artists..." + artistsFiltered.toString());
@@ -178,9 +180,10 @@ public class ArtistController {
 		}
 		try {
 			artistService.deleteArtist(artistId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
 			log.info("Artist Deleted Successfully");
+			if(userService.isAdmin())
+				return "redirect:/artists/show/"+artistId;
+			SecurityContextHolder.clearContext();
 		} catch (Exception e) {
 			log.error("Error Deleting Artist", e);
 		}

@@ -1,10 +1,14 @@
+<%@page import="com.cinema.cinemaparadiso.service.CommentService"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@ page session="false" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <html>
 <head>
@@ -346,18 +350,27 @@
 		$("#fondoModal").click(function () {
 			$("#fondoModal").hide();
 			$("#modalProyectos").hide();
+			$("#modalResponder").hide();
 		});
 	});
+	function levantarRespuesta(comment){
+		console.log(document.getElementById('respuesta').action);
+		document.getElementById('respuesta').action = '/stories/answer/${story.id}/'+comment;
+		console.log(document.getElementById('respuesta').action);
+		document.getElementById("fondoModal").style.display = 'block';
+		$('#modalResponder').show();
+	}
 
 	$(window).scroll(function () {
 		$("#fondoModal").hide();
 		$("#modalProyectos").hide();
+		$("#modalResponder").hide();
 	})
 	
 </script>
 
 	<!-- Modal -->
-	<div id="fondoModal"></div>
+	<div style="z-index: 1;" id="fondoModal"></div>
 	<div id="modalProyectos">
 		<h4>Proyectos a asociar</h4>
 		<c:forEach items="${projects}" var="projects">
@@ -422,15 +435,19 @@
            </c:if>   
 
 			<div class="acciones">
-				<h4>Acciones</h4>
 				
 				<c:if test="${showButton == false}">
+					<sec:authorize access="hasAuthority('artist') || hasAuthority('producer')">
 					<sec:authorize access="isAuthenticated()">
+					<h4>Acciones</h4>
+					
 						<button class="boton btn rounded-pill"	onClick="location.href='/messages/create/${writerUsername}'">Contactar
 							con el escritor</button>
 						<button class="boton btn rounded-pill" id="levantaModal">Asociar
 							proyecto</button>
 					</sec:authorize>
+					</sec:authorize>
+
 				</c:if>
 						
 				<sec:authorize access="isAuthenticated()">
@@ -442,6 +459,8 @@
 				</sec:authorize>
 						
 				<c:if test="${showButton == true}">
+				<h4>Acciones</h4>
+				
 					<button class="boton btn rounded-pill"
 						onClick="location.href='/stories/update/${story.id}'">Editar</button>
 					<button class="boton btn rounded-pill"
@@ -489,10 +508,10 @@
 						    }
 						  }).render('#paypal-button-ad-story');
 					</script>
-					<h4>¡Publicita tu historia!</h4>
+					<h4>ï¿½Publicita tu historia!</h4>
 					<div class="d-flex justify-content-between">
 						<p>Por tan solo 30&#8364 puedes hacer que tu historia pueda
-							salir publicitada en el listado de historias y así conseguir más
+							salir publicitada en el listado de historias y asï¿½ conseguir mï¿½s
 							visibilidad.</p>
 						<div id="paypal-button-ad-story"></div>
 					</div>
@@ -500,6 +519,59 @@
 			</c:if>
 		</div>	
 	</div>
+	
+	<div class="card-wrap ficha-tecnica" style="height: ${ comments.size()==0?12:26 }rem; margin-top: 2rem; margin-bottom: 2rem; overflow-y: hidden">
+		<div style="color: white; background: linear-gradient(90deg, var(--gris) 0%, var(--gris) 70%, #353535 100%); overflow-y: hidden">
+			<h4 style="margin-bottom: 1.3rem">
+				Comentarios
+			</h4>
+			<c:if test="${ comments.size()!=0 }">
+				<div style="height: 16rem; overflow-y: scroll">
+					<div>
+						<c:forEach items="${ comments }" var="comment">
+						<div style="margin-bottom: 1rem;">
+						<div style="display: flex; margin-bottom: 0.2rem">
+						<div style="width: 12rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem"><a style="color: white; text-decoration: none;" href="/users/showUser/${ comment.comment.username }">${ comment.comment.username }</a></div>-->
+						<div style="border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem; max-width: 40rem;">${ comment.comment.body }</div>
+						<img onclick="levantarRespuesta(${comment.comment.id})" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/escribir.png" style="cursor: pointer; width: 1.3rem; height: 1.3rem; margin-left: 1rem; margin-right: 2rem">
+						<div style="font-size: 0.7rem">${ comment.comment.date }</div>
+						</div>
+						<c:if test="${comment.answers!=null}">
+							<div style="font-size: 0.7rem">
+								<c:forEach items="${ comment.answers }" var="answer">
+									<div style="display: flex; margin-left: 3rem; margin-bottom: 0.2rem">
+									<div style="width: 8.9rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem"><a style="color: white; text-decoration: none;" href="/users/showUser/${ answer.username }">${ answer.username }</a></div>-->
+									<div style="margin-right: 2rem; max-width: 40rem; border-radius: 1rem; background-color: #575758; padding: 0.1rem 0.5rem 0.1rem 0.5rem">${ answer.body }</div>
+									<div style="font-size: 0.7rem">${ answer.date }</div>
+									</div>
+								</c:forEach>
+							</div>
+						</c:if>
+						</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:if>
+			<div style="display: flex; text-align: center; place-content: center;">
+				<form:form method="POST" action="/stories/createComment/${story.id}" modelAttribute="comment">
+					<form:input autocomplete="off" path="body" style="padding-left: 0.5rem; outline: none; border-radius: 1rem; width: 25rem; border-style: none;" type="text" />
+					<form:button class="boton btn rounded-pill">Guardar</form:button>
+				</form:form>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modalResponder" style="z-index: 2; display: none; width: 100%; position: fixed; top: 17rem; left: 20rem">
+	<div style="width: fit-content; background-color: #424242; border-radius: 2rem; text-align: center;">
+		<h4 style="padding-top: 0.5rem;">Respuesta</h4>
+		<div class="d-flex justify-content-between align-items-center">
+			<form:form id="respuesta" method="POST" action="" modelAttribute="comment">
+				<form:input autocomplete="off" path="body" style="padding-left: 0.5rem; outline: none; border-radius: 1rem; margin-left: 3rem; width: 20rem; border-style: none;" type="text" />
+				<form:button style="margin-right: 3rem" class="boton btn rounded-pill">Guardar</form:button>
+			</form:form>
+		</div>
+	</div>
+</div>
 
 	<div id="boton-up"
 		onClick="location.href='/stories/show/${story.id}#top'">

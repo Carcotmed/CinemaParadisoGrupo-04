@@ -42,6 +42,7 @@ public class ProducerController {
         List<Producer> producers = producerService.list();
         Producer producersFiltered = new Producer();
         model.addAttribute("producers", producers);
+        model.addAttribute("producersDisabled", producerService.listDisabledProducer());
         model.addAttribute("producersFiltered",producersFiltered);
         return "producers/listProducer";
     }
@@ -63,6 +64,7 @@ public class ProducerController {
 				).collect(Collectors.toList());
 		
 		model.addAttribute("producers",producersFiltrados);
+		model.addAttribute("producersDisabled", producerService.listDisabledProducer());
 		
 		return "/producers/listProducer";
 	}
@@ -149,8 +151,9 @@ public class ProducerController {
 		}
 		try {
 			producerService.deleteProducer(producerId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
+			if(userService.isAdmin())
+				return "redirect:/producers/show/"+producerId;
+			SecurityContextHolder.clearContext();
 			log.info("Producer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Producer", e);

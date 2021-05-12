@@ -59,6 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				
 				//USER
 				.antMatchers("/users/list").hasAnyAuthority("admin")
+				.antMatchers("/users/showUser/*").permitAll()
 				.antMatchers("/users/select").permitAll()
 				//POST - TABLON DE ANUNCIOS
 				.antMatchers("/posts/create/{projectId}").authenticated()
@@ -74,7 +75,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		     //STORIES
 				.antMatchers("/stories/list").permitAll()
 				.antMatchers("/stories/show/{storyId}").permitAll()
-				.antMatchers("/stories/create").permitAll()
+				.antMatchers("/stories/show/{storyId}/*").permitAll()
+				.antMatchers("/stories/create").authenticated()
+				.antMatchers("/stories/createComment/{storyId}").authenticated()
+				.antMatchers("/stories/answer/{storyId}/{commentId}").authenticated()
 				.antMatchers("/stories/update/{storyId}").authenticated()
 				.antMatchers("/stories/delete/{storyId}").authenticated()
 				.antMatchers("/stories/request/{storyId}/{projectId}").authenticated()
