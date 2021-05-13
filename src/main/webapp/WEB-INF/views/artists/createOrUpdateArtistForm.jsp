@@ -77,14 +77,14 @@
 <body>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<script>
-	function photoChanged(value){
+		function photoChanged(value){
 		   if(value.length!=0){
 			   $("#photob").hide();
 		   }else{
 			   $("#photob").show();
 		   }
 		}
-	function photobChanged(value){
+		function photobChanged(value){
 		   if(value.length!=0){
 			   $("#photoA").attr('style', 'display: none !important');
 		   }else{

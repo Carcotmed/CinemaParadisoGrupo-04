@@ -77,6 +77,24 @@
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
+	<script>
+		function photoChanged(value){
+		   if(value.length!=0){
+			   $("#photob").hide();
+		   }else{
+			   $("#photob").show();
+		   }
+		}
+		function photobChanged(value){
+		   if(value.length!=0){
+			   $("#photoA input").val("");
+			   $("#photoA").attr('style', 'display: none !important');
+		   }else{
+			   $("#photoA").show();
+		   }
+		}
+		
+	</script>
 	<div class="background-image"></div>
 
 	<div class="padding-nav padding-footer d-flex justify-content-center align-items-center">
@@ -84,7 +102,7 @@
 		<div class="form-wrapper">
 			<h3>Editar artista</h3>
 	
-			<form:form method="POST" action="" modelAttribute="artist" style="width:100%">
+			<form:form method="POST" action="" modelAttribute="artist" style="width:100%" enctype="multipart/form-data">
                
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="d-flex flex-wrap ">
@@ -111,14 +129,17 @@
 				</div>
 				<form:errors style="color:red" path="description" />
 				
-				<div class="d-flex justify-content-between align-items-center">
+				<div id="photoA" class="d-flex justify-content-between align-items-center">
 					<div class="d-flex flex-wrap ">
 						<form:label class="rounded-pill form-control-label" path="photo">A&ntildeade tu foto</form:label>
 					</div>
-					<form:input class="form-control" value="${artist.photo}"
+					<form:input onchange="photoChanged(value)" class="form-control" value="${artist.photo}"
 						placeholder="url" type="text" path="photo"></form:input>
 				</div>
 				<form:errors style="color:red" path="photo" />
+				<div id="photob" style="width: 45rem">
+					<input onchange="photobChanged(value)" class="form-control" type="file" name="file"></input>
+				</div>
 				
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="d-flex flex-wrap ">

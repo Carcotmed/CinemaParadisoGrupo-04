@@ -171,14 +171,21 @@ public class ArtistController {
 
 
 	@PostMapping("/update/{artistId}")
-	public String updateArtist(@ModelAttribute("artist") @Valid Artist artist, BindingResult result,Model model, @PathVariable("artistId") Integer artistId) {
+	public String updateArtist(@RequestParam("file") MultipartFile file, @ModelAttribute("artist") @Valid Artist artist, BindingResult result,Model model, @PathVariable("artistId") Integer artistId) {
 		artist.setId(artistId);
 		if(!artistService.isActualArtist(artistId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
 		List<Role> roles = Arrays.asList(Role.values());
 		model.addAttribute("roles",roles);
-		if(!result.hasErrors()) {
+		if(!result.hasErrors() && ((file.getSize()==0 && result.getFieldValue("photo").toString().length()!=0) || (file.getSize()!=0 && result.getFieldValue("photo").toString().length()==0 && file.getContentType().contains("image")))) {
+			if(result.getFieldValue("photo").toString().length()==0) {
+				try {
+					artist.setPhotoB(encodeFileToBase64Binary(file.getBytes()));
+				} catch (IOException e) {
+					return "artists/updateArtist";
+				}
+			}
 			artistService.editArtist(artist);
 			return "redirect:/artists/show/{artistId}";
 		}else {
