@@ -36,10 +36,12 @@ public class Person extends BaseEntity {
 	protected String description;
 
 	@Column(name = "photo")
-	@NotBlank(message = "No puedes dejarlo vacío")
 	@URL(message = "Debe indicar una URL")
-	@Size(min = 1, max = 200, message = "La foto debe tener como máximo 200 caracteres")
+	@Size(max = 200, message = "La foto debe tener como máximo 200 caracteres")
 	private String photo;
+
+	@Column(name = "photoB", length=15000)
+	private String photoB;
 
 	@Override
 	public int hashCode() {

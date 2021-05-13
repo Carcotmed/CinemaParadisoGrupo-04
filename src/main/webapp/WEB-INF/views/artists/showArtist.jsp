@@ -185,7 +185,7 @@
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<div class="background-image"></div>
 	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
-		<img src="${artist.photo}" style="border-color: ${artist.pro ? 'var(--amarillo)' : 'white'}" class="rounded-circle">
+		<img src="${artist.photo.length()!=0?artist.photo:'data:image/jpeg;base64,'.concat(artist.photoB)}" style="border-color: ${artist.pro ? 'var(--amarillo)' : 'white'}" class="rounded-circle">
 		<div>
 			<h3>${artist.user.username}</h3>
 			<h3>${artist.name}&nbsp${artist.surName}</h3>

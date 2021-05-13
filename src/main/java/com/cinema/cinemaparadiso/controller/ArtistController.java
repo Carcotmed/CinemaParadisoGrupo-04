@@ -1,11 +1,17 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cinema.cinemaparadiso.model.Artist;
 import com.cinema.cinemaparadiso.model.Project;
@@ -124,18 +132,22 @@ public class ArtistController {
 	}
 
 	@PostMapping("/create")
-	public String createArtist(@Valid Artist artist, BindingResult result, Model model) throws UserUniqueException{
+	public String createArtist(@RequestParam("file") MultipartFile file, @Valid Artist artist, BindingResult result, Model model) throws UserUniqueException{
 		List<Role> role = Arrays.asList(Role.values());
 		model.addAttribute("roles", role);
-		if(!result.hasErrors()) {
+		if(!result.hasErrors() && ((file.getSize()==0 && result.getFieldValue("photo").toString().length()!=0) || (file.getSize()!=0 && result.getFieldValue("photo").toString().length()==0 && file.getContentType().contains("image")))) {
 			//Unique artist exception
 			try{
-				
+				if(result.getFieldValue("photo").toString().length()==0) {
+					artist.setPhotoB(encodeFileToBase64Binary(file.getBytes()));
+				}
 				this.artistService.createArtist(artist);
 			}
 			catch(UserUniqueException ex) {
 				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
 				return "artists/createOrUpdateArtistForm";
+			} catch (IOException e) {
+				this.artistService.createArtist(artist);
 			}
 			log.info("Artist Created Successfully");
 		} else {
@@ -204,4 +216,11 @@ public class ArtistController {
 		}
 		return "redirect:/";
 	}
+	
+	private static String encodeFileToBase64Binary(byte[] bytes){
+        String encodedfile = null;
+        encodedfile = new String(Base64.encodeBase64(bytes));
+
+        return encodedfile;
+    }
 }
