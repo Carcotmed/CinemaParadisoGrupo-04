@@ -86,10 +86,8 @@
 		}
 	function photobChanged(value){
 		   if(value.length!=0){
-			   alert("Escondiendo");
 			   $("#photoA").attr('style', 'display: none !important');
 		   }else{
-			   alert("Mostrando");
 			   $("#photoA").show();
 		   }
 		}

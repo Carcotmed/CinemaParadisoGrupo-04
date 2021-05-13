@@ -145,7 +145,7 @@
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<div class="background-image"></div>
 	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
-		<img src="${producer.photo}" class="rounded-circle">
+		<img src="${producer.photo.length()!=0?producer.photo:'data:image/jpeg;base64,'.concat(producer.photoB)}" class="rounded-circle">
 		<div>
 			<h3>${producer.user.username}</h3>
 			<h3>${producer.name}&nbsp${producer.surName}</h3>

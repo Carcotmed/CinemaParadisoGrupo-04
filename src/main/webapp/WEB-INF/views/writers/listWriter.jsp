@@ -226,7 +226,7 @@
 		      		<c:forEach items="${writers}" var="writers">
 			      		<c:if test="${writers.user.enabled}">
 			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/writers/show/${writers.id}'">
-								<img class="rounded-circle" src="${writers.photo}">
+								<img class="rounded-circle" src="${writers.photo.length()!=0?writers.photo:'data:image/jpeg;base64,'.concat(writers.photoB)}">
 				      			<h5>${writers.user.username}</h5>
 				      		</div>
 				      	</c:if>
@@ -237,7 +237,7 @@
 		      		<div class="lista">
 			      		<c:forEach items="${writersDisabled}" var="writerDisabled">
 				      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/writers/show/${writerDisabled.id}'">
-									<img class="rounded-circle" src="${writerDisabled.photo}">
+									<img class="rounded-circle" src="${writerDisabled.photo.length()!=0?writerDisabled.photo:'data:image/jpeg;base64,'.concat(writerDisabled.photoB)}">
 					      			<h5>${writerDisabled.user.username}</h5>
 					      		</div>
 			      		</c:forEach>
@@ -250,7 +250,7 @@
 				<c:forEach items="${writers}" var="writers">
 		      		<c:if test="${writers.user.enabled}">
 		      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/writers/show/${writers.id}'">
-							<img class="rounded-circle" src="${writers.photo}">
+							<img class="rounded-circle" src="${writers.photo.length()!=0?writers.photo:'data:image/jpeg;base64,'.concat(writers.photoB)}">
 			      			<h5>${writers.user.username}</h5>
 			      		</div>
   							<hr class="m-3 linea-hor">
@@ -261,7 +261,7 @@
 		      		<h2 style="text-align: center;margin:2rem 0;">Escritores Desactivados</h2>
 		      		<c:forEach items="${writersDisabled}" var="writerDisabled">
 			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/writers/show/${writerDisabled.id}'">
-								<img class="rounded-circle" src="${writerDisabled.photo}">
+								<img class="rounded-circle" src="${writerDisabled.photo.length()!=0?writerDisabled.photo:'data:image/jpeg;base64,'.concat(writerDisabled.photoB)}">
 				      			<h5>${writerDisabled.user.username}</h5>
 				      		</div>
 				      		<hr class="m-3 linea-hor">

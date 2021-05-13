@@ -159,7 +159,7 @@
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<div class="background-image"></div>
 	<div class="padding-nav perfil-top d-flex flex-column justify-content-center align-items-center">
-		<img src="${writer.photo}" class="rounded-circle">
+		<img src="${writer.photo.length()!=0?writer.photo:'data:image/jpeg;base64,'.concat(writer.photoB)}" class="rounded-circle">
 		<div>
 			<h3>${writer.user.username}</h3>
 			<h3>${writer.name}&nbsp${writer.surName}</h3>

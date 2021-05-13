@@ -414,7 +414,7 @@
 				<h4>Escritor/a</h4>
 				<div class="escritor d-flex align-items-center"
 					onClick="location.href='/writers/show/${myWriter.id}'">
-					<img class="rounded-circle" src="${myWriter.photo}">
+					<img class="rounded-circle" src="${myWriter.photo.length()!=0?myWriter.photo:'data:image/jpeg;base64,'.concat(myWriter.photoB)}">
 					<p style="margin-left: 1rem">${myWriter.name}</p>
 				</div>
 			</div>

@@ -250,7 +250,7 @@
 		      		<c:forEach items="${artistsPro}" var="artistPro">
 			      		<c:if test="${artistPro.user.enabled}">
 			      			<div class="element-wrapper element-pro d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistPro.id}'">
-								<img class="rounded-circle" src="${artistPro.photo}">
+								<img class="rounded-circle" src="${artistPro.photo.length()!=0?artistPro.photo:'data:image/jpeg;base64,'.concat(artistPro.photoB)}">
 				      			<h5>${artistPro.user.username}</h5>
 				      		</div>
 				      	</c:if>
@@ -258,7 +258,7 @@
 		      		<c:forEach items="${artistsNoPro}" var="artistNoPro">
 			      		<c:if test="${artistNoPro.user.enabled}">
 			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistNoPro.id}'">
-								<img class="rounded-circle" src="${artistNoPro.photo}">
+								<img class="rounded-circle" src="${artistNoPro.photo.length()!=0?artistNoPro.photo:'data:image/jpeg;base64,'.concat(artistNoPro.photoB)}">
 				      			<h5>${artistNoPro.user.username}</h5>
 				      		</div>
 				      	</c:if>
@@ -270,7 +270,7 @@
     				<div  class="lista">
 			      		<c:forEach items="${artistsDisabled}" var="artistDisabled">
 				      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistDisabled.id}'">
-									<img class="rounded-circle" src="${artistDisabled.photo}">
+									<img class="rounded-circle" src="${artistDisabled.photo.length()!=0?artistDisabled.photo:'data:image/jpeg;base64,'.concat(artistDisabled.photoB)}">
 					      			<h5>${artistDisabled.user.username}</h5>
 					      		</div>
 			      		</c:forEach>
@@ -283,7 +283,7 @@
 				<c:forEach items="${artistsPro}" var="artistPro">
 		      		<c:if test="${artistPro.user.enabled}">
 		      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/artists/show/${artistPro.id}'">
-							<img class="rounded-circle" src="${artistPro.photo}">
+							<img class="rounded-circle" src="${artistPro.photo.length()!=0?artistPro.photo:'data:image/jpeg;base64,'.concat(artistPro.photoB)}">
 			      			<h5>${artistPro.user.username}</h5>
 			      		</div>
   							<hr class="m-3 linea-hor linea-hor-pro">
@@ -292,7 +292,7 @@
 	      		<c:forEach items="${artistsNoPro}" var="artistNoPro">
 		      		<c:if test="${artistNoPro.user.enabled}">
 		      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/artists/show/${artistNoPro.id}'">
-							<img class="rounded-circle" src="${artistNoPro.photo}">
+							<img class="rounded-circle" src="${artistNoPro.photo.length()!=0?artistNoPro.photo:'data:image/jpeg;base64,'.concat(artistNoPro.photoB)}">
 			      			<h5>${artistNoPro.user.username}</h5>
 			      		</div>   
      			      		<hr class="m-3 linea-hor">
@@ -304,7 +304,7 @@
 		      		<h2 style="text-align: center;margin: 2rem 0;font-size: 1.8rem;">Artistas Desactivados</h2>
 		      		<c:forEach items="${artistsDisabled}" var="artistDisabled">
 			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/artists/show/${artistDisabled.id}'">
-								<img class="rounded-circle" src="${artistDisabled.photo}">
+								<img class="rounded-circle" src="${artistDisabled.photo.length()!=0?artistDisabled.photo:'data:image/jpeg;base64,'.concat(artistDisabled.photoB)}">
 				      			<h5>${artistDisabled.user.username}</h5>
 				      		</div>
 				      		<hr class="m-3 linea-hor">	

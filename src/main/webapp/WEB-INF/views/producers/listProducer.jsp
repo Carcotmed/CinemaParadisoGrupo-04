@@ -226,7 +226,7 @@
 		      		<c:forEach items="${producers}" var="producer">
 			      		<c:if test="${producer.user.enabled}">
 			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/producers/show/${producer.id}'">
-								<img class="rounded-circle" src="${producer.photo}">
+								<img class="rounded-circle" src="${producer.photo.length()!=0?producer.photo:'data:image/jpeg;base64,'.concat(producer.photoB)}">
 				      			<h5>${producer.user.username}</h5>
 				      		</div>
 				      	</c:if>
@@ -237,7 +237,7 @@
 	      		    <div  class="lista">
 			      		<c:forEach items="${producersDisabled}" var="producerDisabled">
 				      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/producers/show/${producerDisabled.id}'">
-									<img class="rounded-circle" src="${producerDisabled.photo}">
+									<img class="rounded-circle" src="${producerDisabled.photo.length()!=0?producerDisabled.photo:'data:image/jpeg;base64,'.concat(producerDisabled.photoB)}">
 					      			<h5>${producerDisabled.user.username}</h5>
 					      		</div>
 			      		</c:forEach>
@@ -250,7 +250,7 @@
 				<c:forEach items="${producers}" var="producer">
 		      		<c:if test="${producer.user.enabled}">
 		      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/producers/show/${producer.id}'">
-							<img class="rounded-circle" src="${producer.photo}">
+							<img class="rounded-circle" src="${producer.photo.length()!=0?producer.photo:'data:image/jpeg;base64,'.concat(producer.photoB)}">
 			      			<h5>${producer.user.username}</h5>
 			      		</div>
   							<hr class="m-3 linea-hor">
@@ -260,7 +260,7 @@
 		      		<h2 style="text-align: center;margin: 2rem 0;font-size: 1.8rem;">Productores Desactivados</h2>
 		      		<c:forEach items="${producersDisabled}" var="producerDisabled">
 			      			<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/producers/show/${producerDisabled.id}'">
-								<img class="rounded-circle" src="${producerDisabled.photo}">
+								<img class="rounded-circle" src="${producerDisabled.photo.length()!=0?producerDisabled.photo:'data:image/jpeg;base64,'.concat(producerDisabled.photoB)}">
 				      			<h5>${producerDisabled.user.username}</h5>
 				      		</div>
 				      		<hr class="m-3 linea-hor">	

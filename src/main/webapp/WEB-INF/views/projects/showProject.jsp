@@ -403,7 +403,7 @@
 				<c:forEach items="${members}" var="member">
 					<div class="element-wrapper ${member.pro?'element-pro':''} ${isAdminProject?'adminP':''} d-flex flex-column align-items-center justify-content-evenly" 
 					onClick="location.href='/artists/show/${ member.id }'">
-						<img class="rounded-circle" src="${member.photo}">
+						<img class="rounded-circle" src="${member.photo.length()!=0?member.photo:'data:image/jpeg;base64,'.concat(member.photoB)}">
 		      			<h5>${member.name}</h5>
 	  				    <p>${member.role}</p>  			
 		      		</div>
@@ -414,7 +414,7 @@
 				<div class="lista">
 					<c:forEach items="${producers}" var="producer">
 						<div class="element-wrapper d-flex flex-column align-items-center justify-content-evenly" onClick="location.href='/producers/show/${ producer.id }'">
-							<img class="rounded-circle" src="${producer.photo}">
+							<img class="rounded-circle" src="${producer.photo.length()!=0?producer.photo:'data:image/jpeg;base64,'.concat(producer.photoB)}">
 			      			<h5>${producer.name}</h5>
 		  				    <p>Productor</p>  			
 			      		</div>
@@ -429,7 +429,7 @@
 				<h4>Integrantes - Artistas</h4>
 				<c:forEach items="${members}" var="member">
 	      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/artists/show/${artistPro.id}'">
-						<img class="rounded-circle" src="${member.photo}">
+						<img class="rounded-circle" src="${member.photo.length()!=0?member.photo:'data:image/jpeg;base64,'.concat(member.photoB)}">
 		      			<h5>${member.name}</h5>
 		      		</div>
 					<hr class="m-3 linea-hor ${member.pro ? 'linea-hor-pro' : ''}">
@@ -441,7 +441,7 @@
 					<h4>Integrantes - Productoras</h4>
 					<c:forEach items="${producers}" var="producer">
 		      			<div class="element-wrapper d-flex justify-content-between align-items-center w-100 " onClick="location.href='/producers/show/${producer.id}'">
-							<img class="rounded-circle" src="${producer.photo}">
+							<img class="rounded-circle" src="${producer.photo.length()!=0?producer.photo:'data:image/jpeg;base64,'.concat(producer.photoB)}">
 			      			<h5>${producer.name}</h5>
 			      		</div>
 						<hr class="m-3 linea-hor linea-hor">
