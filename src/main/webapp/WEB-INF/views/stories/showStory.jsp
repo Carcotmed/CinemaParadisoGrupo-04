@@ -217,6 +217,19 @@
 	width:100%;
 }
 
+.commentName{
+	display: flex;
+	justify-content: space-between;
+}
+
+.botonRespuesta{
+	cursor: pointer;
+	width: 1.3rem;
+	height: 1.3rem;
+	margin-left: 1rem;
+	margin-right: 2rem;
+}
+
 @media ( max-width : 1545px) {
 	.lista {
 		grid-template-columns: repeat(4, 13rem);
@@ -508,7 +521,7 @@
 						    }
 						  }).render('#paypal-button-ad-story');
 					</script>
-					<h4>�Publicita tu historia!</h4>
+					<h4>¡Publicita tu historia!</h4>
 					<div class="d-flex justify-content-between">
 						<p>Por tan solo 30&#8364 puedes hacer que tu historia pueda
 							salir publicitada en el listado de historias y as� conseguir m�s
@@ -529,25 +542,33 @@
 				<div style="height: 16rem; overflow-y: scroll">
 					<div>
 						<c:forEach items="${ comments }" var="comment">
-						<div style="margin-bottom: 1rem;">
-						<div style="display: flex; margin-bottom: 0.2rem">
-						<div style="width: 12rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem"><a style="color: white; text-decoration: none;" href="/users/showUser/${ comment.comment.username }">${ comment.comment.username }</a></div>-->
-						<div style="border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem; max-width: 40rem;">${ comment.comment.body }</div>
-						<img onclick="levantarRespuesta(${comment.comment.id})" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/escribir.png" style="cursor: pointer; width: 1.3rem; height: 1.3rem; margin-left: 1rem; margin-right: 2rem">
-						<div style="font-size: 0.7rem">${ comment.comment.date }</div>
-						</div>
-						<c:if test="${comment.answers!=null}">
-							<div style="font-size: 0.7rem">
-								<c:forEach items="${ comment.answers }" var="answer">
-									<div style="display: flex; margin-left: 3rem; margin-bottom: 0.2rem">
-									<div style="width: 8.9rem; border-radius: 1rem; background-color: #575758; padding: 0.2rem 0.7rem 0.2rem 0.7rem"><a style="color: white; text-decoration: none;" href="/users/showUser/${ answer.username }">${ answer.username }</a></div>-->
-									<div style="margin-right: 2rem; max-width: 40rem; border-radius: 1rem; background-color: #575758; padding: 0.1rem 0.5rem 0.1rem 0.5rem">${ answer.body }</div>
-									<div style="font-size: 0.7rem">${ answer.date }</div>
+							<div style="margin-bottom: 1rem;">
+								<div style="margin-bottom: 0.2rem">
+									<div style="padding-top: 0.5rem;display: flex;justify-content: space-between">
+										<a class="boton btn rounded-pill" style="padding: 2px 7px;color: white; text-decoration: none;" href="/users/showUser/${ comment.comment.username }">${ comment.comment.username }</a>
+										<div>${ comment.comment.date }</div>
 									</div>
-								</c:forEach>
+									<div style="display: flex;justify-content: space-between;margin: 1rem 2rem;">
+										<div style="max-width: 80%;">${ comment.comment.body }</div>
+										<img style="cursor:pointer;width:2rem;height:2rem;filter: invert(1);" onclick="levantarRespuesta(${comment.comment.id})" src="https://raw.githubusercontent.com/ivan-desing-testing/CinemaParadisoGrupo-04/develop/src/main/webapp/WEB-INF/views/static/escribir.png">
+									</div>
+								</div>
+								<hr class="linea-hor">
+								<c:if test="${comment.answers!=null}">
+									<div style="font-size: 0.8rem;margin-left: 5rem;">
+										<c:forEach items="${ comment.answers }" var="answer">
+											<div style="padding-top: 0.5rem;display: flex;justify-content: space-between">
+												<a class="boton btn rounded-pill" style="padding: 2px 7px;color: white; text-decoration: none;" href="/users/showUser/${ answer.username }">${ answer.username }</a>
+												<div>${ answer.date }</div>
+											</div>
+											<div style="display: flex;justify-content: space-between;margin: 1rem 2rem;">
+												<div style="max-width: 80%;">${ answer.body }</div>
+											</div>	
+											<hr class="linea-hor">								
+										</c:forEach>
+									</div>
+								</c:if>
 							</div>
-						</c:if>
-						</div>
 						</c:forEach>
 					</div>
 				</div>
@@ -555,13 +576,13 @@
 			<div style="display: flex; text-align: center; place-content: center;">
 				<form:form method="POST" action="/stories/createComment/${story.id}" modelAttribute="comment">
 					<form:input autocomplete="off" path="body" style="padding-left: 0.5rem; outline: none; border-radius: 1rem; width: 25rem; border-style: none;" type="text" />
-					<form:button class="boton btn rounded-pill">Guardar</form:button>
+					<form:button class="boton btn rounded-pill">Enviar</form:button>
 				</form:form>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="modalResponder" style="z-index: 2; display: none; width: 100%; position: fixed; top: 17rem; left: 20rem">
+<div id="modalResponder" style="z-index: 2; display: none; position: fixed; top: 40%; left: 33%">
 	<div style="width: fit-content; background-color: #424242; border-radius: 2rem; text-align: center;">
 		<h4 style="padding-top: 0.5rem;">Respuesta</h4>
 		<div class="d-flex justify-content-between align-items-center">
