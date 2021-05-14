@@ -89,7 +89,7 @@
 			<div>
 				<form:label class="form-control-label" path="password">Contrase&ntildea</form:label>
 				<form:input class="form-control" type="password" path="password"
-					name="password" placeholder="Contrase�a" />
+					name="password" placeholder="Contraseña" />
 			</div>
 
 			<div class="d-flex justify-content-center">
