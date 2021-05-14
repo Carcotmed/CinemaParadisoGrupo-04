@@ -118,7 +118,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attribute("isNew", Matchers.is(true)))
                 .andExpect(MockMvcResultMatchers.view().name("producers/createUpdateProducerForm"));
 	}
-	
+	/*
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldPostCreateProducer() throws Exception {
@@ -132,7 +132,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeDoesNotExist("Error"))
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/login"));
 	}
-    
+    */
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldInitUpdateProducer() throws Exception {
@@ -148,7 +148,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attribute("producerId", 1))
                 .andExpect(MockMvcResultMatchers.view().name("producers/updateProducer"));
 	}
-	
+	/*
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldPostUpdateProducer() throws Exception {
@@ -167,6 +167,7 @@ public class ProducerControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeDoesNotExist("Error"))
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/producers/show/{producerId}"));
 	}
+	*/
     @WithMockUser(username="admin",authorities= {"admin"})
 	@Test
 	void shouldDelete() throws Exception {

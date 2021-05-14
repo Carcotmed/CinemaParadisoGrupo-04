@@ -133,6 +133,9 @@ public class ArtistController {
 
 	@PostMapping("/create")
 	public String createArtist(@RequestParam("file") MultipartFile file, @Valid Artist artist, BindingResult result, Model model) throws UserUniqueException{
+		System.out.println("===========================================================");
+		System.out.println("===========================================================");
+		System.out.println("===========================================================");
 		List<Role> role = Arrays.asList(Role.values());
 		model.addAttribute("roles", role);
 		if(!result.hasErrors() && ((file.getSize()==0 && result.getFieldValue("photo").toString().length()!=0) || (file.getSize()!=0 && result.getFieldValue("photo").toString().length()==0 && file.getContentType().contains("image")))) {
