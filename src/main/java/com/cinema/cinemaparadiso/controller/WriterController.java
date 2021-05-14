@@ -1,10 +1,12 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
@@ -103,18 +107,20 @@ public class WriterController {
     }
 
     @PostMapping("/create")
-    public String createWriter(Model model, @ModelAttribute("writer") @Valid Writer writer,
+    public String createWriter(@RequestParam("file") MultipartFile file, Model model, @ModelAttribute("writer") @Valid Writer writer,
               BindingResult result) throws UserUniqueException{
   
 
-          if(!result.hasErrors()) {
+          if(!result.hasErrors() && ((file.getSize()==0 && result.getFieldValue("photo").toString().length()!=0) || (file.getSize()!=0 && result.getFieldValue("photo").toString().length()==0 && file.getContentType().contains("image")))) {
 			try{
-				
+				writer.setPhotoB(encodeFileToBase64Binary(file.getBytes()));
 				this.writerService.createWriter(writer);
 			}
 			catch(UserUniqueException ex) {
 				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
 				return "writers/createOrUpdateWriterForm";
+			} catch (IOException e) {
+				this.writerService.createWriter(writer);
 			}
 			log.info("Writer Created Successfully");          
 			}
@@ -136,13 +142,18 @@ public class WriterController {
 	}
 
 	@PostMapping("/update/{writerId}")
-	public String updateWriter(@ModelAttribute("writer") @Valid Writer writer,BindingResult result, Model model, @PathVariable("writerId") Integer writerId) {
+	public String updateWriter(@RequestParam("file") MultipartFile file, @ModelAttribute("writer") @Valid Writer writer,BindingResult result, Model model, @PathVariable("writerId") Integer writerId) {
 		writer.setId(writerId);
 		
 		if(!writerService.isActualWriter(writerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
-		if(!result.hasErrors()) {
+		if(!result.hasErrors() && ((file.getSize()==0 && result.getFieldValue("photo").toString().length()!=0) || (file.getSize()!=0 && result.getFieldValue("photo").toString().length()==0 && file.getContentType().contains("image")))) {
+			try {
+				writer.setPhotoB(encodeFileToBase64Binary(file.getBytes()));
+			} catch (IOException e) {
+				return "artists/updateArtist";
+			}
 			writerService.editWriter(writer);
 			return "redirect:/writers/show/{writerId}";
 		} else {
@@ -183,5 +194,12 @@ public class WriterController {
 		}
 		return "redirect:/";
 	}
+	
+	private static String encodeFileToBase64Binary(byte[] bytes){
+        String encodedfile = null;
+        encodedfile = new String(Base64.encodeBase64(bytes));
+
+        return encodedfile;
+    }
 
 }

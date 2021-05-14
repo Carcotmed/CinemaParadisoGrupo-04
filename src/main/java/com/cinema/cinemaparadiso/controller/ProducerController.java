@@ -1,10 +1,12 @@
 package com.cinema.cinemaparadiso.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cinema.cinemaparadiso.model.Producer;
 import com.cinema.cinemaparadiso.model.Project;
@@ -97,17 +101,19 @@ public class ProducerController {
     }
 
     @PostMapping("/create")
-    public String createProducer(Model model, @ModelAttribute("producer") @Valid Producer producer,
+    public String createProducer(@RequestParam("file") MultipartFile file, Model model, @ModelAttribute("producer") @Valid Producer producer,
               BindingResult result) throws UserUniqueException{
   
-          if(!result.hasErrors()) {
+          if(!result.hasErrors() && ((file.getSize()==0 && result.getFieldValue("photo").toString().length()!=0) || (file.getSize()!=0 && result.getFieldValue("photo").toString().length()==0 && file.getContentType().contains("image")))) {
 			try{
-				
+				producer.setPhotoB(encodeFileToBase64Binary(file.getBytes()));
 				this.producerService.createProducer(producer);
 			}
 			catch(UserUniqueException ex) {
 				result.rejectValue("user.username", "unique", "Este usuario ya existe, pruebe con otro");
 				return "producers/createUpdateProducerForm";
+			} catch (IOException e) {
+				this.producerService.createProducer(producer);
 			}
 			log.info("Producer Created Successfully");
           }else {
@@ -129,13 +135,18 @@ public class ProducerController {
 	}
 
 	@PostMapping("/update/{producerId}")
-	public String updateProducer(@ModelAttribute("producer") @Valid Producer producer,BindingResult result, Model model, @PathVariable("producerId") Integer producerId) {
+	public String updateProducer(@RequestParam("file") MultipartFile file, @ModelAttribute("producer") @Valid Producer producer,BindingResult result, Model model, @PathVariable("producerId") Integer producerId) {
 		producer.setId(producerId);
 		
 		if(!producerService.isActualProducer(producerId) && !userService.isAdmin()) {
 			return "error/error-403";
 		}
-		if(!result.hasErrors()) {
+		if(!result.hasErrors() && ((file.getSize()==0 && result.getFieldValue("photo").toString().length()!=0) || (file.getSize()!=0 && result.getFieldValue("photo").toString().length()==0 && file.getContentType().contains("image")))) {
+			try {
+				producer.setPhotoB(encodeFileToBase64Binary(file.getBytes()));
+			} catch (IOException e) {
+				return "artists/updateArtist";
+			}
 			producerService.editProducer(producer);
 			return "redirect:/producers/show/{producerId}";
 		} else {
@@ -175,4 +186,11 @@ public class ProducerController {
 		}
 		return "redirect:/";
 	}
+	
+	private static String encodeFileToBase64Binary(byte[] bytes){
+        String encodedfile = null;
+        encodedfile = new String(Base64.encodeBase64(bytes));
+
+        return encodedfile;
+    }
 }
