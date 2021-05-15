@@ -545,7 +545,7 @@
 							<div style="margin-bottom: 1rem;">
 								<div style="margin-bottom: 0.2rem">
 									<div style="padding-top: 0.5rem;display: flex;justify-content: space-between">
-										<a class="boton btn rounded-pill" style="padding: 2px 7px;color: white; text-decoration: none;" href="/users/showUser/${ comment.comment.username }">${ comment.comment.username }</a>
+										<a class="boton btn rounded-pill" style="padding: 2px 7px;color: white; text-decoration: none;" href="/users/showUser/${ comment.comment.username }/${story.id}">${ comment.comment.username }</a>
 										<div>${ comment.comment.date }</div>
 									</div>
 									<div style="display: flex;justify-content: space-between;margin: 1rem 2rem;">
@@ -558,7 +558,7 @@
 									<div style="font-size: 0.8rem;margin-left: 5rem;">
 										<c:forEach items="${ comment.answers }" var="answer">
 											<div style="padding-top: 0.5rem;display: flex;justify-content: space-between">
-												<a class="boton btn rounded-pill" style="padding: 2px 7px;color: white; text-decoration: none;" href="/users/showUser/${ answer.username }">${ answer.username }</a>
+												<a class="boton btn rounded-pill" style="padding: 2px 7px;color: white; text-decoration: none;" href="/users/showUser/${ answer.username }/${ story.id }">${ answer.username }</a>
 												<div>${ answer.date }</div>
 											</div>
 											<div style="display: flex;justify-content: space-between;margin: 1rem 2rem;">
