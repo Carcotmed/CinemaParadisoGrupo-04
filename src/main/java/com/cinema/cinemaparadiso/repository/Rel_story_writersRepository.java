@@ -26,4 +26,5 @@ import com.cinema.cinemaparadiso.model.Rel_story_writers;
 	@Query("SELECT rel_story_writers FROM Rel_story_writers rel_story_writers WHERE rel_story_writers.writer_id = :writerId")
 	public List<Rel_story_writers> listRelationsWriterStories(@Param("writerId") Integer writerId);
 
+
 }

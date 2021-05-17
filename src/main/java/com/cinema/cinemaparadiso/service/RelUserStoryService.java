@@ -72,5 +72,10 @@ public class RelUserStoryService {
     	relationsUserStories.stream().forEach(r -> this.relUserStoryRepository.delete(r));
     }
 
+	public void deleteRelationsUserStoriesByStory(Integer storyId) {
+    	List<RelUserStory> relationsUserStories = this.relUserStoryRepository.listRelationsUserStoriesByStory(storyId);
+    	relationsUserStories.stream().forEach(r -> this.relUserStoryRepository.delete(r));
+	}
+
 
 }

@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,7 +89,7 @@
 			<div>
 				<form:label class="form-control-label" path="password">Contrase&ntildea</form:label>
 				<form:input class="form-control" type="password" path="password"
-					name="password" placeholder="Contraseña" />
+					name="password" placeholder="ContraseÃ±a" />
 			</div>
 
 			<div class="d-flex justify-content-center">

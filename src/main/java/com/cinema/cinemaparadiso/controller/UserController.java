@@ -34,6 +34,20 @@ public class UserController {
         return "users/listUser";
     }
 
+    @GetMapping("/showUser/{username}/{storyId}")
+    public String showUser(@PathVariable("username") String username, @PathVariable("storyId") String storyId, Model model){
+        Optional<Artist> artist = userService.findArtistByUserUsername(username);
+        if(artist.isPresent())
+        	return "redirect:/artists/show/"+artist.get().getId();
+        Optional<Writer> writer = userService.findWriterByUserUsername(username);
+        if(writer.isPresent())
+        	return "redirect:/writers/show/"+writer.get().getId();
+        Optional<Producer> producer = userService.findProducerByUserUsername(username);
+        if(producer.isPresent())
+        	return "redirect:/producers/show/"+producer.get().getId();
+        return "redirect:/stories/show/"+storyId;
+    }
+
 //    @GetMapping("/create")
 //    public String initFormCreateUser(Model model){
 //        User user = new User();

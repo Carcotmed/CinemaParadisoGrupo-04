@@ -29,6 +29,7 @@ import com.cinema.cinemaparadiso.model.Story;
 import com.cinema.cinemaparadiso.model.User;
 import com.cinema.cinemaparadiso.model.Writer;
 import com.cinema.cinemaparadiso.service.ArtistService;
+import com.cinema.cinemaparadiso.service.CommentService;
 import com.cinema.cinemaparadiso.service.MessageService;
 import com.cinema.cinemaparadiso.service.ProjectService;
 import com.cinema.cinemaparadiso.service.RelUserStoryService;
@@ -51,6 +52,9 @@ public class StoryControllerTests {
 
     @MockBean
 	private ArtistService artistService;
+
+    @MockBean
+	private CommentService commentService;
 	
     @MockBean
 	private WriterService writerService;

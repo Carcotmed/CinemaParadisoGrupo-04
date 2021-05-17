@@ -65,4 +65,8 @@ public class Rel_story_writersService {
     	relationsWriterStories.stream().forEach(r -> this.rel_story_writersRepository.delete(r));
     }
 
+	public List<Rel_story_writers> findByWriterId(Integer writerId) {
+		return rel_story_writersRepository.listRelationsWriterStories(writerId);
+	}
+
 }

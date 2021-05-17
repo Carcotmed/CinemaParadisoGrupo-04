@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -229,11 +231,11 @@
 				<div>
 					<div class="info-list-wrap justify-content-between align-items-center"">
 						<h4>Proyectos</h4>
-						<p class="buy-mobile">¡Accede a la ventana PRO para comprar más proyectos!</p>
+						<p class="buy-mobile">Â¡Accede a la ventana PRO para comprar mÃ¡s proyectos!</p>
 						<c:if test="${showButton == true}">
 							<c:choose>
 								<c:when test="${projectsLeft == null || projectsLeft == 0}">
-									<span class="buy">¡Accede a la ventana PRO para comprar más proyectos!</span>
+									<span class="buy">Â¡Accede a la ventana PRO para comprar mÃ¡s proyectos!</span>
 								</c:when>
 								<c:when test="${projectsLeft != null && !isAdmin}">
 									<span style="text-align: center;">Proyectos disponibles: ${projectsLeft}</span>

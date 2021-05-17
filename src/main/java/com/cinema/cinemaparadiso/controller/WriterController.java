@@ -41,6 +41,7 @@ public class WriterController {
 		Iterable<Writer> writers = writerService.list();
 		Writer writersFiltered = new Writer();
 		model.addAttribute("writers", writers);
+		model.addAttribute("writersDisabled", writerService.listDisabledWriter());
 		model.addAttribute("writersFiltered",writersFiltered);
 		return "/writers/listWriter";
 	}
@@ -64,6 +65,7 @@ public class WriterController {
 				).collect(Collectors.toList());
 		
 		model.addAttribute("writers",writersFiltrados);
+		model.addAttribute("writersDisabled", writerService.listDisabledWriter());
 		
 		return "/writers/listWriter";
 	}
@@ -157,8 +159,9 @@ public class WriterController {
 		}
 		try {
 			writerService.deleteWriter(writerId);
-			if(!userService.isAdmin())
-				SecurityContextHolder.clearContext();
+			if(userService.isAdmin())
+				return "redirect:/writers/show/"+writerId;
+			SecurityContextHolder.clearContext();
 			log.info("Writer Deleted Successfully");
 		} catch (Exception e) {
 			log.error("Error Deleting Writer", e);

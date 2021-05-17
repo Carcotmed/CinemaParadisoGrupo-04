@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 
 <html style="background-color: #3e3e3e">
 <head>
@@ -39,8 +41,8 @@
 </style>
 <body>
 	<div class="d-flex flex-column justify-content-center align-items-center" style="background-color: #3e3e3e; height: 100vh">
-		<h1 style="color:white">¡Algo ha ido mal!</h1>
-		<h3 style="color:white">Nuestros ingenieros están trabajando en ello</h3>
+		<h1 style="color:white">ï¿½Algo ha ido mal!</h1>
+		<h3 style="color:white">Nuestros ingenieros estï¿½n trabajando en ello</h3>
 		<button class="boton btn rounded-pill" onClick="location.href='/'" style="color:white;height: fit-content;background-color: #af3248">Volver al Inicio</button>
 	</div>
 </body>

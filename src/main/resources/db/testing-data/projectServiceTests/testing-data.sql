@@ -8,8 +8,8 @@ INSERT INTO projects (id,version,title, genre, description, pro, photo,my_admin,
 INSERT INTO users(username,password,enabled,email) VALUES ('artistUser1','does not matter',TRUE,'artistUser1@cinemaparadiso.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('artistUser2','does not matter',TRUE,'artistUser2@cinemaparadiso.com');
 
-INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (1,0,'Test description','Artist 1','Surname 2','True','artistUser1','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
-INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (2,0,'Test description','Artist 2','Surname 2','True','artistUser2','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
+INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (1,0,'Test description','Artist 1','Surname 2',TRUE,'artistUser1','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
+INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (2,0,'Test description','Artist 2','Surname 2',TRUE,'artistUser2','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
 
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (3, 1);
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (3, 2);
@@ -31,8 +31,8 @@ INSERT INTO projects (id,version,title, genre, description, pro, photo,my_admin,
 INSERT INTO users(username,password,enabled,email) VALUES ('artistUser3','does not matter',TRUE,'artistUser1@cinemaparadiso.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('artistUser4','does not matter',TRUE,'artistUser2@cinemaparadiso.com');
 
-INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (3,0,'Test description','Artist 3','Surname','True','artistUser3','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
-INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (4,0,'Test description','Artist 4','Surname','True','artistUser4','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',20);
+INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (3,0,'Test description','Artist 3','Surname',TRUE,'artistUser3','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
+INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (4,0,'Test description','Artist 4','Surname',TRUE,'artistUser4','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',20);
 
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (4, 3);
 INSERT INTO rel_projects_artists (project_id, artist_id) VALUES (4, 4);
