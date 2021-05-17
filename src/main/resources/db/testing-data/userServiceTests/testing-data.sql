@@ -11,7 +11,7 @@ INSERT INTO users(username,password,enabled,email) VALUES ('testArtist','a',TRUE
 INSERT INTO users(username,password,enabled,email) VALUES ('testProducer','a',TRUE,'testProducer@cinemaparadiso.com');
 INSERT INTO users(username,password,enabled,email) VALUES ('testWriter','a',TRUE,'testWriter@cinemaparadiso.com');
 
-INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (1,0,'Cámara buscando un proyecto en el que trabajar en sus ratos libres','Test Artist Name','Artist','True','testArtist','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
+INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (1,0,'Cámara buscando un proyecto en el que trabajar en sus ratos libres','Test Artist Name','Artist',TRUE,'testArtist','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
 INSERT INTO writers (version, description, name, sur_name, photo, username) VALUES (0,'Aficionado a la escritura desde que era pequeños','Test Writer Name','Bullock','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXLauXHp8NfrusbSPOfujsPJgxe6KIgQjiVw&usqp=CAU','testWriter');
 INSERT INTO producers (version, photo, username, name, description, sur_name) VALUES (0,'https://image.flaticon.com/icons/png/512/183/183349.png','testProducer','Test Producer Name','Empresa productora de peliculas, buscamos artistas nuevos en el sector','Horton');
 

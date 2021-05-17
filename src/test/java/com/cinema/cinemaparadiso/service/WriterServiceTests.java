@@ -38,7 +38,7 @@ public class WriterServiceTests {
 		assertThat(writerService.findWriterById(1)).isEqualTo(new Writer(
     					new User("GradyManning",
     					"$2a$10$U9tzLPiS43F9SNtgGoYS5ekMLDj1BqxpcJNPeJrkvx59h1AWCFa",
-    					"odio.a@musAeneaneget.co.uk")
+    					"odio.a@musAeneaneget.co.uk", false)
     				,"Rebecca",
     				"Aficionado a la escritura desde que era pequeños",
     				1,"Bullock","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXLauXHp8NfrusbSPOfujsPJgxe6KIgQjiVw&usqp=CAU"));
@@ -93,7 +93,8 @@ public class WriterServiceTests {
     			new Writer(
     					new User("GradyManning",
     					"$2a$10$U9tzLPiS43F9SNtgGoYS5ekMLDj1BqxpcJNPeJrkvx59h1AWCFa",
-    					"odio.a@musAeneaneget.co.uk")
+    					"odio.a@musAeneaneget.co.uk",
+    					false)
     				,"Rebecca",
     				"Aficionado a la escritura desde que era pequeños",
     				1,"Bullock","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXLauXHp8NfrusbSPOfujsPJgxe6KIgQjiVw&usqp=CAU"));
@@ -117,7 +118,8 @@ public class WriterServiceTests {
     	assertThat(writerService.findMyUser(1)).isEqualTo(
     			new User("GradyManning",
     					"$2a$10$U9tzLPiS43F9SNtgGoYS5ekMLDj1BqxpcJNPeJrkvx59h1AWCFa",
-    					"odio.a@musAeneaneget.co.uk"));
+    					"odio.a@musAeneaneget.co.uk",
+    					false));
     }
 
 	@Test
