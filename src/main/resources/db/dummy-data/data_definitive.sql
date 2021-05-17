@@ -108,6 +108,7 @@ INSERT INTO users (username,password,enabled,email) VALUES ('HedwigCarey','$2y$1
 INSERT INTO users (username,password,enabled,email) VALUES ('JosephineWoodard','$2y$10$BGZE.vbozUUDWRsO5RBNkOJHZz6AFCdWGaDhngoNAh7KEVzgMSOiS',TRUE,'Nulla.eget.metus@lorem.ca');
 INSERT INTO users (username,password,enabled,email) VALUES ('AlecHill','$2y$10$OX2GsiTQHRjACXhk96fcYOrBezuDeQPoiQKDvwcHftlK5LhsNaP3u',TRUE,'eu@risus.com');
 
+INSERT INTO users (username,password,enabled,email) VALUES ('DeletedUser','-',FALSE,'deleted@risus.com');
 
 --ARTIST-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO artists (id,version,description,name,sur_name,pro,username,role,photo,left_projects) VALUES (1,0,'Cámara buscando un proyecto en el que trabajar en sus ratos libres','Artist','Artist',TRUE,'artist','CAMARA','https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png',1);
@@ -567,13 +568,13 @@ INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,i
 INSERT INTO messages (version,issue, body, messagedate, emisor_id, receptor_id,is_request) VALUES (0,'Saludos','Muy bien, y tu?',DATE('2021/04/10', 'YYYY/MM/DD'),'AlecHill','JosephineWoodard',false);
 
 --COMMENTS----------------------------------------------------------------------------
-INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (1,1,'Primero en comentar!',TO_DATE('2021/05/06 16:30:04', 'YYYY/MM/DD HH24:MI:SS'),'JarrodHuffman',null,2);
-INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (2,1,'Y el primero en responder un mensaje!',TO_DATE('2021/05/06 16:31:20', 'YYYY/MM/DD HH24:MI:SS'),'JarrodHuffman',1,2);
-INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (3,1,'Me encanta esta historia',TO_DATE('2021/05/06 17:10:00', 'YYYY/MM/DD HH24:MI:SS'),'JosephineWoodard',null,2);
-INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (4,1,'Que pesadilla...',TO_DATE('2021/05/06 17:10:40', 'YYYY/MM/DD HH24:MI:SS'),'JosephineWoodard',1,2);
-INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (5,1,'No puedo esperar la siguiente',TO_DATE('2021/05/06 18:50:00', 'YYYY/MM/DD HH24:MI:SS'),'AlecHill',null,2);
-INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (6,1,'Como puede inventar una trama tan buena?',TO_DATE('2021/05/07 09:00:47', 'YYYY/MM/DD HH24:MI:SS'),'SybillWilliamson',null,2);
-INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (7,1,'Siiii, es increible',TO_DATE('2021/05/07 09:01:30', 'YYYY/MM/DD HH24:MI:SS'),'SybillWilliamson',3,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (1,1,'Primero en comentar!',DATE('2021/05/06 16:30:04', 'YYYY/MM/DD HH24:MI:SS'),'JarrodHuffman',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (2,1,'Y el primero en responder un mensaje!',DATE('2021/05/06 16:31:20', 'YYYY/MM/DD HH24:MI:SS'),'JarrodHuffman',1,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (3,1,'Me encanta esta historia',DATE('2021/05/06 17:10:00', 'YYYY/MM/DD HH24:MI:SS'),'JosephineWoodard',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (4,1,'Que pesadilla...',DATE('2021/05/06 17:10:40', 'YYYY/MM/DD HH24:MI:SS'),'JosephineWoodard',1,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (5,1,'No puedo esperar la siguiente',DATE('2021/05/06 18:50:00', 'YYYY/MM/DD HH24:MI:SS'),'AlecHill',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (6,1,'Como puede inventar una trama tan buena?',DATE('2021/05/07 09:00:47', 'YYYY/MM/DD HH24:MI:SS'),'SybillWilliamson',null,2);
+INSERT INTO comments (id,version,body,date,username,master_comment,story) VALUES (7,1,'Siiii, es increible',DATE('2021/05/07 09:01:30', 'YYYY/MM/DD HH24:MI:SS'),'SybillWilliamson',3,2);
 
 --COMMENTS----------------------------------------------------------------------------
 INSERT INTO rel_user_story (id,story_id,username) VALUES (1,2,'JarrodHuffman')
