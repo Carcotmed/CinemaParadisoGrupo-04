@@ -11,6 +11,9 @@ local.properties
 .loadpath
 .recommenders
 
+#SQLite
+#cinema_paradiso.db
+
 # External tool builders
 .externalToolBuilders/
 

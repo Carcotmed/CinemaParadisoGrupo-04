@@ -63,6 +63,14 @@ public class User {
     	this.password = password;
     	this.email=email;
     }
+    
+    public User(String username,String password,String email, Boolean enabled) {
+    	this.username = username;
+    	this.enabled = true;
+    	this.password = password;
+    	this.email=email;
+    	this.enabled = enabled;
+    }
 
     
 	@Override
