@@ -88,7 +88,7 @@ public class MessageController {
 	        if(!messageForMe) {
 	        	return "error/error-403";
 	        }
-	        if(!message.isSeen() && usernameActual == message.getReceptor().getUsername())
+	        if(!message.isSeen() && usernameActual.equals(message.getReceptor().getUsername()))
 	        	messageService.checkSeen(messageId);
 	        model.addAttribute("isRequest",isRequest);
 	        model.addAttribute("isWriter",isWriter);

@@ -200,7 +200,7 @@
 				<hr class="linea-hor">
 				
 				<div>
-					<div class="info-list-wrap justify-content-between align-items-center"">
+					<div class="info-list-wrap justify-content-between align-items-center">
 						<h4>Historias</h4>
 						<c:choose>
 							<c:when test="${sameWriter == true && !isAdmin}">
