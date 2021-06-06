@@ -351,6 +351,7 @@
 	
 </script>
 <head>
+<link rel="icon" href="/favicon.ico" type="image/ico">
 <title>Cinema Paradiso</title>
 </head>
 <nav id="nav" style="padding: 0.5rem 1rem; z-index: 99; top: 0"

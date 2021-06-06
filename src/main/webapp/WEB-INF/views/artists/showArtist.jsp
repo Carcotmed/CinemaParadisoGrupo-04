@@ -229,7 +229,7 @@
 				<hr class="linea-hor">
 				
 				<div>
-					<div class="info-list-wrap justify-content-between align-items-center"">
+					<div class="info-list-wrap justify-content-between align-items-center">
 						<h4>Proyectos</h4>
 						<p class="buy-mobile">¡Accede a la ventana PRO para comprar más proyectos!</p>
 						<c:if test="${showButton == true}">
